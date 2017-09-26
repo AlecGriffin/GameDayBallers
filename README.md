@@ -1,75 +1,66 @@
+## A skeleton for building Python applications on Google App Engine with [Flask](http://flask.pocoo.org), [React](https://facebook.github.io/react/), [Webpack](https://webpack.github.io/) and [Babel](https://babeljs.io/).
 
-# React + Flask starter kit
+## Run Locally
+1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
+You'll need python 2.7 and [pip 1.4 or later](http://www.pip-installer.org/en/latest/installing.html) installed too.
 
-A quick starter repo that includes Flask and React, with Babel and Webpack. For proof-of-concept projects, workshop settings, etc where you don't want to worry about developer setup or writing config files.
+2. Install Python dependencies in the project's lib directory and install Node dev dependencies.
+   Note: App Engine can only import libraries from inside your project directory.
 
-TLDR; for the quick and dirty setup, install your dependencies:
+   ```
+   virtualenv env
+   source env/bin/activate
+   pip install -r requirements.txt -t lib
+   npm install
+   ```
 
-```
-pip install virtualenv
-virtualenv venv; source venv/bin/activate
-pip install -r requirements.txt
-npm install -g webpack; npm install
-```
+3. Run
+   ```
+   webpack --watch
+   ```
+   from command line so that you can `require` your components and compile .jsx files to .js.
 
-Then in two separate tabs run `python app.py` and `webpack --watch`. Make edits to `js/Hello.js` and `app.py` to edit the frontend and backend, respectively.
+4. Run local server from the command line:
 
-These steps are explained in more detail below.
+   ```
+   dev_appserver.py app.yaml
+   ```
+   Visit the application [http://localhost:8080](http://localhost:8080)
 
-## Prerequisites
 
-You'll need some package managers.
+See [the development server documentation](https://developers.google.com/appengine/docs/python/tools/devserver)
+for options when running dev_appserver.
 
-- `npm`
-- `pip`
+## Deploy
+To deploy the application:
 
-## Setup
+1. Use the [Admin Console](https://appengine.google.com) to create a
+   project/app id. (App id and project id are identical)
+1. [Deploy the
+   application](https://developers.google.com/appengine/docs/python/tools/uploadinganapp) with
 
-For the backend:
+   ```
 
-```
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+   ```
+1. Congratulations!  Your application is now live at your-app-id.appspot.com
 
-For the frontend:
+### Relational Databases and Datastore
+To add persistence to your models, use
+[NDB](https://developers.google.com/appengine/docs/python/ndb/) for
+scale.  Consider
+[CloudSQL](https://developers.google.com/appengine/docs/python/cloud-sql)
+if you need a relational database.
 
-If you don't have webpack, install it:
+### Installing Libraries
+See the [Third party
+libraries](https://developers.google.com/appengine/docs/python/tools/libraries27)
+page for libraries that are already included in the SDK.  To include SDK
+libraries, add them in your app.yaml file. Other than libraries included in
+the SDK, only pure python libraries may be added to an App Engine project.
 
-```
-npm install -g webpack
-```
+### Feedback
+Star this repo if you found it useful. Use the github issue tracker to give
+feedback on this repo.
 
-Then, use `npm` to install the remaining JavaScript dependencies.
-
-```
-npm install
-```
-
-## Development
-
-The entry point for the app is in `js/app.js`. The starter React component is `js/Hello.js`. Editing this file is a good place to start.
-
-While developing on the frontend, run `webpack --watch` to keep re-compiling your JavaScript code.
-
-Running `webpack` creates a file in `static/bundle.js`, which is the bundled version of your frontend code.
-
-The "backend" here is a bare-bones Flask app. Look in `app.py` if you want to make edits to the backend.
-
-To run the application, follow the steps in the next section.
-
-## Running the app
-
-If you're using a virtualenv, activate it.
-
-```
-source venv/bin/activate
-```
-
-Then run the Flask app:
-
-```
-python app.py
-```
-
+## Author
+Axo Sal

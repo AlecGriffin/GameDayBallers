@@ -1,0 +1,51 @@
+.main {
+  width: 90%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.carousel-container {
+  padding-top: 30px;
+}
+
+.tweets-container {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.img-container img {
+  width: 100%;
+}
+
+.info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-head {
+  padding-top: 7px;
+  text-align: center;
+  background-color: #a12020;
+  color: white;
+}
+
+.card-list {
+  margin-top: 10px;
+}
+
+.table-wrapper h4{
+  margin-top: 80px;
+}
+
+.table thead {
+  background-color: #a12020;
+  color: white;
+}
+
+.table-title {
+  border: none;
+}
