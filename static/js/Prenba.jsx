@@ -29,33 +29,15 @@ export default class PreNba extends React.Component {
             </div>
 
             <div className="">
-              Mascot: {}
+              Mascot: {preNba.mascot}
             </div>
 
             <div className="roster-wrapper">
               <div className="roster">
-                Players
+                Players: {preNba.players}
               </div>
             </div>
 
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <div className="card-head">
-                <h5>Titles</h5>
-              </div>
-              <ul className="card-list">
-                <li>
-                  Title
-                </li>
-                <li>
-                  Title
-                </li>
-                <li>
-                  Title
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>
