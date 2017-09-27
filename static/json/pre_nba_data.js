@@ -5,7 +5,8 @@ var arizona_state={
     "state": "Arizona",
     "country": "United States",
     "mascot": "Sun Devil",
-    "players": []
+    "mascot_img": "http://cdn.fbschedules.com/blog/wp-content/uploads/2016/10/arizona-state-sun-devils.jpg",
+    "players": ["James Harden"]
 };
 
 
@@ -15,18 +16,20 @@ var san_diego_state = {
     "city": "San Diego",
     "state": "California",
     "country": "United States",
-    "mascot": "Aztec",
+    "mascot": "Aztec Warrior",
+    "mascot_img": "http://darkroom.baltimoresun.com/wp-content/uploads/2013/03/00220721_H31298599.jpg",
     "players": ["Kawhi Leonard"]
 };
 
 
 var st_vincent = {
     "name": "St. Vincent-St. Mary HS (OH)",
-    "logo": "http://www.stvm.com/sites/default/files/logo-header-new_0.png ",
+    "logo": "https://usathss.files.wordpress.com/2014/08/2013-stvm-leprechaun-logo.jpg?w=640",
     "city": "Akron",
     "state": "Ohio",
     "country": "United States",
     "mascot": "The Fighting Irish",
+    "mascot_img": "",
     "players": ["LeBron James"]
 };
 

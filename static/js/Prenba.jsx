@@ -10,7 +10,7 @@ export default class PreNba extends React.Component {
 
     var players = preNba.players.map((player) =>
     <div className="grid-element col-md-4 col-sm-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <a>
+      <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
       </a>
     </div>
@@ -38,6 +38,7 @@ export default class PreNba extends React.Component {
 
             <div className="title-photo">
               <h3>Mascot</h3>
+              <img src={preNba.mascot_img}/>
               {preNba.mascot}
             </div>
 

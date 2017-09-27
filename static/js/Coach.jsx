@@ -22,7 +22,7 @@ export default class Coach extends React.Component {
 
     var roster = coach.current_roster.map((player) =>
     <div className="grid-element col-md-4 col-sm-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <a>
+      <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
       </a>
     </div>
