@@ -22,26 +22,28 @@ export default class Player extends React.Component {
 
     var pastTeamsCard;
     if (player.past_teams.length != 0) {
-      pastTeamsCard = (<div className="card">
-                            <div className="card-head">
-                              <h5>Past Teams</h5>
-                            </div>
-                            <ul className="card-list">
-                              { pastTeams }
-                            </ul>
-                          </div>);
+      pastTeamsCard = (
+        <div className="card">
+          <div className="card-head">
+            <h5>Past Teams</h5>
+          </div>
+          <ul className="card-list">
+            { pastTeams }
+          </ul>
+        </div>);
     }
 
     var recognitionsCard;
     if (player.recognitions.length != 0) {
-      recognitionsCard = (<div className="card">
-                            <div className="card-head">
-                              <h5>Recognitions</h5>
-                            </div>
-                            <ul className="card-list">
-                              { recognitions }
-                            </ul>
-                          </div>);
+      recognitionsCard = (
+        <div className="card">
+          <div className="card-head">
+            <h5>Recognitions</h5>
+          </div>
+          <ul className="card-list">
+            { recognitions }
+          </ul>
+        </div>);
     }
 
     return (

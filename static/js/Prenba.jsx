@@ -8,6 +8,14 @@ export default class PreNba extends React.Component {
     var schoolName = url.split('/')[url.split('/').length - 1];
     var preNba = getPreNba(schoolName);
 
+    var players = preNba.players.map((player) =>
+    <div className="grid-element col-md-4 col-sm-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+      <a>
+        { player }
+      </a>
+    </div>
+    );
+
     return (
       <div className="main">
         <div className="row">
@@ -22,23 +30,29 @@ export default class PreNba extends React.Component {
                     { preNba.name }
                   </li>
                   <li>
-                    {preNba.city}, {preNba.state} {preNba.country}
+                    {preNba.city}, {preNba.state}
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="">
-              Mascot: {preNba.mascot}
+            <div className="title-photo">
+              <h3>Mascot</h3>
+              {preNba.mascot}
             </div>
 
-            <div className="roster-wrapper">
-              <div className="roster">
-                Players: {preNba.players}
+            <div className="roster-wrapper image-grid">
+              <div className="grid-title">
+                <h3>Players</h3>
+              </div>
+              <div className="roster row">
+                { players }
               </div>
             </div>
-
           </div>
+
+
+
         </div>
       </div>
     );

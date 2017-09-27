@@ -21,7 +21,7 @@ export default class Coach extends React.Component {
     );
 
     var roster = coach.current_roster.map((player) =>
-    <div class="grid-element col-md-4 col-sm-6">
+    <div className="grid-element col-md-4 col-sm-6" key={player.toLowerCase().replace(/\s+/g, '')}>
       <a>
         { player }
       </a>
@@ -30,26 +30,28 @@ export default class Coach extends React.Component {
 
     var pastTeamsCard;
     if (coach.past_teams.length != 0) {
-      pastTeamsCard = (<div className="card">
-                            <div className="card-head">
-                              <h5>Past Teams Coached</h5>
-                            </div>
-                            <ul className="card-list">
-                              { pastTeams }
-                            </ul>
-                          </div>);
+      pastTeamsCard = (
+        <div className="card">
+          <div className="card-head">
+            <h5>Past Teams Coached</h5>
+          </div>
+          <ul className="card-list">
+            { pastTeams }
+          </ul>
+        </div>);
     }
 
     var recognitionsCard;
     if (coach.recognitions.length != 0) {
-      recognitionsCard = (<div className="card">
-                            <div className="card-head">
-                              <h5>Recognitions</h5>
-                            </div>
-                            <ul className="card-list">
-                              { recognitions }
-                            </ul>
-                          </div>);
+      recognitionsCard = (
+        <div className="card">
+          <div className="card-head">
+            <h5>Recognitions</h5>
+          </div>
+          <ul className="card-list">
+            { recognitions }
+          </ul>
+        </div>);
     }
 
 
@@ -83,10 +85,10 @@ export default class Coach extends React.Component {
             </div>
 
             <div className="roster-wrapper image-grid">
-              <div class="grid-title">
+              <div className="grid-title">
                 <h3>Players</h3>
               </div>
-              <div class="roster row">
+              <div className="roster row">
                 { roster }
               </div>
             </div>
