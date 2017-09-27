@@ -22,8 +22,12 @@ james_harden = {
       "assists_per_game": "5.7",
       "blocks_per_game": "0.4",
     },
-    "past_teams": ["Oklahoma City Thunder"],
-    "recognitions": []
+    "past_teams": ["Oklahoma City Thunder (2009–2012)"],
+    "recognitions": ["5× NBA All-Star (2013–2017)", "3× All-NBA First Team (2014, 2015, 2017)",
+    "All-NBA Third Team (2013)", "NBA Sixth Man of the Year (2012)",
+    "NBA assists leader (2017)", "NBA All-Rookie Second Team (2010)",
+    "Consensus first-team All-American (2009)", "Pac-10 Player of the Year (2009)",
+    "2× First-team All-Pac-10 (2008, 2009)", "No. 13 retired by Arizona State"]
 };
 
 kawhi_leonard = {
@@ -51,7 +55,18 @@ kawhi_leonard = {
       "blocks_per_game": "0.7"
     },
     "past_teams": [],
-    "recognitions": []
+    "recognitions": ["NBA champion (2014)",
+"NBA Finals MVP (2014)",
+"2× NBA All-Star (2016, 2017)",
+"2× All-NBA First Team (2016, 2017)",
+"2× NBA Defensive Player of the Year (2015, 2016)",
+"3× NBA All-Defensive First Team (2015–2017)",
+"NBA All-Defensive Second Team (2014)",
+"NBA All-Rookie First Team (2012)",
+"NBA steals leader (2015)",
+"Consensus second-team All-American (2011)",
+"2× First-team All-MWC (2010, 2011)",
+"California Mr. Basketball (2009)"]
 };
 
 lebron_james = {
@@ -78,8 +93,26 @@ lebron_james = {
         "assists_per_game": "7",
         "blocks_per_game": "0.8"
       },
-      "past_teams": ["Cleveland Cavaliers", "Miami Heat"],
-      "recognitions": []
+      "past_teams": ["Cleveland Cavaliers (2003–2010)", "Miami Heat (2010–2014)"],
+      "recognitions": ["3× NBA champion (2012, 2013, 2016)",
+"3× NBA Finals MVP (2012, 2013, 2016)",
+"4× NBA Most Valuable Player (2009, 2010, 2012, 2013)",
+"13× NBA All-Star (2005–2017)",
+"2× NBA All-Star Game MVP (2006, 2008)",
+"11× All-NBA First Team (2006, 2008–2017)",
+"2× All-NBA Second Team (2005, 2007)",
+"5× NBA All-Defensive First Team (2009–2013)",
+"NBA All-Defensive Second Team (2014)",
+"NBA Rookie of the Year (2004)",
+"NBA scoring champion (2008)",
+"J. Walter Kennedy Citizenship Award (2017)",
+"2× AP Athlete of the Year (2013, 2016)",
+"2× Sports Illustrated Sportsperson of the Year (2012, 2016)",
+"USA Basketball Male Athlete of the Year (2012)",
+"2× Mr. Basketball USA (2002, 2003)",
+"Naismith Prep Player of the Year (2003)",
+"McDonald's All-American Game MVP (2003)",
+"3× Ohio Mr. Basketball (2001–2003)"]
 };
 
 function getPlayer(playerName) {
