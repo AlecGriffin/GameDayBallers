@@ -8,10 +8,30 @@ export default class Team extends React.Component {
     var teamName = url.split('/')[url.split('/').length - 1];
     var team = getTeam(teamName);
 
-    var titles = team.titles.championships.map((rec) =>
-    <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
-      {rec}
+    var ctitles = team.titles.championships.map((title) =>
+    <li key={title.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+      {title}
     </li>
+    );
+
+    var cctitles = team.titles.conference_champs.map((title) =>
+    <li key={title.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+      {title}
+    </li>
+    );
+
+    var dtitles = team.titles.division_champs.map((title) =>
+    <li key={title.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+      {title}
+    </li>
+    );
+
+    var roster = team.current_roster.map((player) =>
+    <div class="grid-element col-md-4 col-sm-6">
+      <a>
+        { player }
+      </a>
+    </div>
     );
 
     var titlesCard;
@@ -21,7 +41,24 @@ export default class Team extends React.Component {
                               <h5>Titles</h5>
                             </div>
                             <ul className="card-list">
-                              { titles }
+                              <li>
+                                Championship Titles
+                                <ul>
+                                  { ctitles }
+                                </ul>
+                              </li>
+                              <li>
+                                Conference Titles
+                                <ul>
+                                  { cctitles }
+                                </ul>
+                              </li>
+                              <li>
+                                Division Titles
+                                <ul>
+                                  { dtitles }
+                                </ul>
+                              </li>
                             </ul>
                           </div>);
     }
@@ -49,21 +86,23 @@ export default class Team extends React.Component {
               </div>
             </div>
 
-            <div className="">
+            <div className="title-photo">
+              <h3>Head Coach</h3>
               { team.head_coach }
             </div>
 
-            <div className="roster-wrapper">
-              <div className="roster">
-                { team.current_roster }
+            <div className="roster-wrapper image-grid">
+              <div class="grid-title">
+                <h3>Players</h3>
+              </div>
+              <div class="roster row">
+                { roster }
               </div>
             </div>
-
           </div>
+
           <div className="col-md-3">
             { titlesCard }
-
-            <div><h3>TWEETS GO HERE</h3></div>
           </div>
         </div>
       </div>
