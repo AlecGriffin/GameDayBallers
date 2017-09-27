@@ -9,6 +9,7 @@ module.exports = {
     "player": "./static/js/Player.jsx",
     "team": "./static/js/Team.jsx",
     "coach": "./static/js/Coach.jsx",
+    "prenba": "./static/js/Prenba.jsx",
     "about": "./static/js/About.jsx"
   },
   output: {
