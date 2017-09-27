@@ -1,13 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { getPlayer } from '../json/player_data.js';
 
 export default class Player extends React.Component {
   render() {
     var url = window.location.href;
     var playerName = url.split('/')[url.split('/').length - 1];
     var player = getPlayer(playerName);
-    var teamURL = "/teams/" + player.teamURL;
     var prenbaURL = "/pre-nba/" + player.prenbaURL;
+
+    var pastTeams = player.past_teams.map((team) =>
+      <li key={team.toLowerCase().replace(/\s+/g, '')}>
+        <a>{team}</a>
+      </li>
+    );
+    var recognitions = player.recognitions.map((rec) =>
+    <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+      {rec}
+    </li>
+    );
+
+    var pastTeamsCard;
+    if (player.past_teams.length != 0) {
+      pastTeamsCard = (<div className="card">
+                            <div className="card-head">
+                              <h5>Past Teams</h5>
+                            </div>
+                            <ul className="card-list">
+                              { pastTeams }
+                            </ul>
+                          </div>);
+    }
+
+    var recognitionsCard;
+    if (player.recognitions.length != 0) {
+      recognitionsCard = (<div className="card">
+                            <div className="card-head">
+                              <h5>Recognitions</h5>
+                            </div>
+                            <ul className="card-list">
+                              { recognitions }
+                            </ul>
+                          </div>);
+    }
 
     return (
       <div className="main">
@@ -23,7 +58,7 @@ export default class Player extends React.Component {
                     { player.name } #{ player.jersey_number }
                   </li>
                   <li id="team">
-                    <a href={teamURL}>{ player.team }</a>
+                    <a href={ "/teams/" + player.team.toLowerCase().replace(/\s+/g, '') }>{ player.team }</a>
                   </li>
                   <li id="position">
                     Position: { player.position }
@@ -77,39 +112,11 @@ export default class Player extends React.Component {
               </table>
             </div>
           </div>
+
           <div className="col-md-3">
-            <div className="card">
-              <div className="card-head">
-                <h5>Past Teams</h5>
-              </div>
-              <ul className="card-list">
-                <li>
-                  Past team
-                </li>
-                <li>
-                  Past team
-                </li>
-                <li>
-                  Past team
-                </li>
-              </ul>
-            </div>
-            <div className="card">
-              <div className="card-head">
-                <h5>Recognitions</h5>
-              </div>
-              <ul className="card-list">
-                <li>
-                  Award
-                </li>
-                <li>
-                  Award
-                </li>
-                <li>
-                  Award
-                </li>
-              </ul>
-            </div>
+            { pastTeamsCard }
+
+            { recognitionsCard }
           </div>
         </div>
       </div>

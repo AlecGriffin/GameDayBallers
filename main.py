@@ -52,5 +52,9 @@ def coach_profile(name):
 def prenba_profile(name):
     return render_template("pre-nba.html")
 
+@app.route('/about')
+def about_profile():
+    return render_template("about.html")
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -9,7 +9,7 @@ module.exports = {
     "player": "./static/js/Player.jsx"
   },
   output: {
-    path: __dirname + "/static/js",
+    path: __dirname + "/static/compiledJSX/",
     filename: "[name].bundle.js"
   },
   resolve: {
