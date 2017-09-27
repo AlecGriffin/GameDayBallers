@@ -6,7 +6,8 @@ module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
   entry: {
     "home": "./static/js/Home.jsx",
-    "player": "./static/js/Player.jsx"
+    "player": "./static/js/Player.jsx",
+    "team": "./static/js/Team.jsx",
   },
   output: {
     path: __dirname + "/static/compiledJSX/",

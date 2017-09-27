@@ -8,14 +8,14 @@ export default class Team extends React.Component {
     var teamName = url.split('/')[url.split('/').length - 1];
     var team = getTeam(teamName);
 
-    var titles = team.titles.map((rec) =>
+    var titles = team.titles.championships.map((rec) =>
     <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
       {rec}
     </li>
     );
 
     var titlesCard;
-    if (team.titles.length != 0) {
+    if (team.titles.championships.length != 0) {
       titlesCard = (<div className="card">
                             <div className="card-head">
                               <h5>Titles</h5>
@@ -24,6 +24,7 @@ export default class Team extends React.Component {
                               { titles }
                             </ul>
                           </div>);
+    }
 
     return (
       <div className="main">
@@ -61,10 +62,11 @@ export default class Team extends React.Component {
           </div>
           <div className="col-md-3">
             { titlesCard }
-          </div>
+
             <div><h3>TWEETS GO HERE</h3></div>
           </div>
-          </div>
+        </div>
+      </div>
     );
   }
 }
