@@ -6,11 +6,12 @@ var rockets = {
     "country": "United States",
     "arena": "Toyota Center",
     "head_coach": "Mike D’Antoni",
+    "coachURL": "mikedantoni",
     "current_roster": ["Ryan Anderson", "Trevor Ariza", "Tarik Black", "Bobby Brown", "Clint Capela", "Eric Gordon", "James Harden", "Demetrius Jackson", "Chris Johnson", "Shawn Long", "Luc Mbah a Moute", "Nenê", "Cameron Oliver", "Chunanu Onauku", "Chris Paul", "Tim Quarterman", "Isaiah Taylor", "P.J. Tucker", "Troy Williams", "Zhou Qi"],
     "titles": {
       "championships": ["1994", "1995"],
       "conference_champs": ["1981", "1986", "1994", "1995"],
-      "division_champs": ["1977", "1986", "2010", "1993", "1994", "2015"]
+      "division_champs": ["1977", "1986", "2010", "1993", "1994", "2017"]
     }
 };
 
@@ -23,6 +24,7 @@ var spurs = {
     "country": "United States",
     "arena": "AT&T Center",
     "head_coach": "Gregg Popovich",
+    "coachURL": "greggpopovich",
     "current_roster": ["LaMarcus Aldridge", "Kyle Anderson", "Dāvis Bertāns", "Amida Brimah", "Matt Costello", "Bryn Forbes", "Pau Gasol", "Rudy Gay"," Manu Ginóbili", "Danny Green", "Darrun Hilliard", "Joffery Lauvergne", "Kawhi Leonard", "Patty Mills", "Dejounte Murray", "Tony Parker", "Brandon Paul", "London Perrantes", "Derrick White"],
     "titles": {
       "championships": ["1999", "2003", "2005", "2007", "2014"],
@@ -39,6 +41,7 @@ var cavs = {
     "country": "United States",
     "arena": "Quicken Loans Arena",
     "head_coach": "Tyronn Lue",
+    "coachURL": "tyronnlue",
     "current_roster": ["José Calderón", "Jae Crowder", "Kay Felder", "Channing Frye", "Jeff Green", "John Holland", "LeBron James", "Richard Jefferson", "Kyle Korver", "Kevin Love", "Cedi Osman", "Kendrick Perkins", "Derrick Rose", "Iman Shumpert", "J.R. Smith", "Walter Tavares"," Isaiah Thomas", "Tristan Thompson", "Ante Žižić"],
     "titles": {
       "championships": ["2016"],

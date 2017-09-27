@@ -7,6 +7,7 @@ export default class Team extends React.Component {
     var url = window.location.href;
     var teamName = url.split('/')[url.split('/').length - 1];
     var team = getTeam(teamName);
+    var coachURL = "/coaches/" + team.coachURL;
 
     var ctitles = team.titles.championships.map((title) =>
     <li key={title.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
@@ -88,7 +89,7 @@ export default class Team extends React.Component {
 
             <div className="title-photo">
               <h3>Head Coach</h3>
-              { team.head_coach }
+                  <a href={ coachURL }>{ team.head_coach }</a>
             </div>
 
             <div className="roster-wrapper image-grid">

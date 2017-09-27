@@ -8,6 +8,7 @@ module.exports = {
     "home": "./static/js/Home.jsx",
     "player": "./static/js/Player.jsx",
     "team": "./static/js/Team.jsx",
+    "coach": "./static/js/Coach.jsx"
   },
   output: {
     path: __dirname + "/static/compiledJSX/",
