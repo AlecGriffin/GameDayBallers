@@ -4,10 +4,16 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname,
   devtool: debug ? "inline-sourcemap" : null,
-  entry: "./static/js/app.jsx",
+  entry: {
+    "home": "./static/js/Home.jsx",
+    "player": "./static/js/Player.jsx"
+  },
   output: {
     path: __dirname + "/static/js",
-    filename: "app.min.js"
+    filename: "[name].bundle.js"
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   },
   module: {
     loaders: [
