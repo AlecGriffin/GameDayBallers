@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+    <script type="text/javascript" src="/static/json/data.js"></script>
+    <script>
+      var url = window.location.href;
+      var playerName = url.split('/')[url.split('/').length - 1];
+      var player = getPlayer(playerName);
+    </script>
   </head>
 
   <body>
@@ -44,28 +50,28 @@
             </div>
             <div class="info col-sm-6">
               <ul>
-                <li>
+                <li id="nameAndJerseyNumber">
                   Name and Number
                 </li>
-                <li>
+                <li id="team">
                   <a>Team</a>
                 </li>
-                <li>
+                <li id="position">
                   Position
                 </li>
-                <li>
+                <li id="dob">
                   Born
                 </li>
-                <li>
+                <li id="height">
                   Height
                 </li>
-                <li>
+                <li id="weight">
                   Weight
                 </li>
-                <li>
+                <li id="country">
                   Country of Origin
                 </li>
-                <li>
+                <li id="prenba">
                   From (College/International)
                 </li>
               </ul>

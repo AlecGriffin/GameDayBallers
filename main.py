@@ -34,23 +34,23 @@ def coaches():
 
 @app.route('/pre-nba')
 def pre_nba():
-    return render_template("pre-nba.html")
+    return render_template("pre-nba-list.html")
 
 @app.route('/players/<name>')
 def player_profile(name):
-    return render_template("players/" + name + ".html")
+    return render_template("player.html")
 
 @app.route('/teams/<name>')
 def team_profile(name):
-    return render_template("teams/" + name + ".html")
+    return render_template("team.html")
 
 @app.route('/coaches/<name>')
 def coach_profile(name):
-    return render_template("coaches/" + name + ".html")
+    return render_template("coach.html")
 
 @app.route('/pre-nba/<name>')
 def prenba_profile(name):
-    return render_template("prenba/" + name + ".html")
+    return render_template("pre-nba.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
