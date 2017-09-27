@@ -13,8 +13,8 @@ threadsafe: yes
 # Handlers define how to route requests to your application.
 handlers:
 - url: /favicon\.ico
-  static_files: static/assets/AxoSal.ico
-  upload: static/assets/AxoSal\.ico
+  static_files: static/assets/favicon.ico
+  upload: static/assets/favicon\.ico
 
 # App Engine serves and caches static files contained in the listed directories
 # (and subdirectories). Uncomment and set the directory as needed.

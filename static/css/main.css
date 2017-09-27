@@ -79,6 +79,12 @@
   margin-top: 50px;
 }
 
+.title-photo img {
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+
 .roster-wrapper {
   margin-top: 50px;
   text-align: center;
