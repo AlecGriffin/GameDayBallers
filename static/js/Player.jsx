@@ -24,12 +24,14 @@ export default class Player extends React.Component {
     if (player.past_teams.length != 0) {
       pastTeamsCard = (
         <div className="card">
-          <div className="card-head">
-            <h5>Past Teams</h5>
+          <div className="card-title">
+            Previous Teams
           </div>
-          <ul className="card-list">
-            { pastTeams }
-          </ul>
+          <div className="card-body text-center">
+            <ul>
+              { pastTeams }
+            </ul>
+          </div>
         </div>);
     }
 
@@ -37,88 +39,106 @@ export default class Player extends React.Component {
     if (player.recognitions.length != 0) {
       recognitionsCard = (
         <div className="card">
-          <div className="card-head">
-            <h5>Recognitions</h5>
+          <div className="card-title">
+            Recognitions
           </div>
-          <ul className="card-list">
-            { recognitions }
-          </ul>
+          <div className="card-body card-list">
+            <ul>
+              { recognitions }
+            </ul>
+          </div>
         </div>);
     }
 
     return (
-      <div className="main">
+      <div id="main" className={"main " + player.teamColor}>
         <div className="row">
-          <div className="col-md-9">
-            <div className="row">
-              <div className="img-container col-sm-6">
-                <img src={player.image_url}/>
+          <div className="col-md-4">
+            <div className="card image-card">
+              <div className="card-title">
+                { player.name } #{ player.jersey_number }
+                <img src={ player.image_url } />
               </div>
-              <div className="info col-sm-6">
+              <div className="card-body">
                 <ul>
-                  <li id="nameAndJerseyNumber">
-                    { player.name } #{ player.jersey_number }
+                  <li>
+                    <a href={ "/teams/" + player.team.toLowerCase().replace(/\s+/g, '') }>
+                      <b>{ player.team }</b>
+                    </a>
                   </li>
-                  <li id="team">
-                    <a href={ "/teams/" + player.team.toLowerCase().replace(/\s+/g, '') }>{ player.team }</a>
+                  <li>
+                    <b>Position:</b> { player.position }
                   </li>
-                  <li id="position">
-                    Position: { player.position }
+                  <li>
+                    <b>Height:</b> { player.height }
                   </li>
-                  <li id="dob">
-                    Date of Birth: { player.dob }
+                  <li>
+                    <b>Weight:</b> { player.weight }
                   </li>
-                  <li id="height">
-                    Height: { player.height }
+                  <li>
+                    <b>Date of Birth:</b> { player.dob }
                   </li>
-                  <li id="weight">
-                    Weight: { player.weight }
-                  </li>
-                  <li id="country">
-                    Country of Origin: { player.country }
-                  </li>
-                  <li id="prenba">
-                    <a href={ prenbaURL }>{ player.prenba }</a>
+                  <li>
+                    <b>Pre-NBA Career:</b> <a href={ prenbaURL }>{ player.prenba }</a>
                   </li>
                 </ul>
               </div>
             </div>
-
-            <div className="table-wrapper">
-              <h4>Career Stats</h4>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>MPG</th>
-                    <th>FG%</th>
-                    <th>3P%</th>
-                    <th>FT%</th>
-                    <th>PPG</th>
-                    <th>RPG</th>
-                    <th>APG</th>
-                    <th>BPG</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{ player.career_stats.minutes_per_game }</td>
-                    <td>{ player.career_stats.field_goal_percentage }</td>
-                    <td>{ player.career_stats.three_point_percentage }</td>
-                    <td>{ player.career_stats.free_throw_percentage }</td>
-                    <td>{ player.career_stats.points_per_game }</td>
-                    <td>{ player.career_stats.rebounds_per_game }</td>
-                    <td>{ player.career_stats.assists_per_game }</td>
-                    <td>{ player.career_stats.blocks_per_game }</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
-
-          <div className="col-md-3">
-            { pastTeamsCard }
-
-            { recognitionsCard }
+          <div className="col-md-8">
+            <div className="card">
+              <div className="card-title">
+                Career Stats
+              </div>
+              <div className="card-body card-table">
+                <div className="row">
+                  <table className="tbl first-half col-sm-6">
+                    <thead className="table-head">
+                      <tr>
+                        <th>MPG</th>
+                        <th>FG%</th>
+                        <th>3P%</th>
+                        <th>FT%</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{ player.career_stats.minutes_per_game }</td>
+                        <td>{ player.career_stats.field_goal_percentage }</td>
+                        <td>{ player.career_stats.three_point_percentage }</td>
+                        <td>{ player.career_stats.free_throw_percentage }</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table className="tbl second-half col-sm-6">
+                    <thead className="table-head">
+                      <tr>
+                        <th>PPG</th>
+                        <th>RPG</th>
+                        <th>APG</th>
+                        <th>BPG</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{ player.career_stats.points_per_game }</td>
+                        <td>{ player.career_stats.rebounds_per_game }</td>
+                        <td>{ player.career_stats.assists_per_game }</td>
+                        <td>{ player.career_stats.blocks_per_game }</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-6">
+                { recognitionsCard }
+              </div>
+              <div className="col-lg-6">
+                { pastTeamsCard }
+              </div>
+            </div>
           </div>
         </div>
       </div>

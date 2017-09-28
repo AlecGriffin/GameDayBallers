@@ -1,7 +1,7 @@
 .main {
-  width: 90%;
+  width: 95%;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .carousel-container {
@@ -23,8 +23,101 @@
 }
 
 .card {
-  margin-bottom: 20px;
+  position: relative;
+  background-color: #fff;
+  -webkit-transition: -webkit-box-shadow .25s;
+  transition: -webkit-box-shadow .25s;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  border-radius: 2px;
+  display: block;
+  margin: 12px 0;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
+
+.card .card-title {
+  font-size: 24px;
+  font-weight: 300;
+  background-color: #A12020;
+  padding: 8px;
+  margin: 0px;
+  text-align: center;
+  color: white;
+  border-radius: 3px 3px 0 0;
+}
+
+.main.wine .card .card-title{
+  background-color: #582335;
+}
+
+.main.red .card .card-title{
+  background-color: #A12020;
+}
+
+.main.gray .card .card-title{
+  background-color: #6C6C6C;
+}
+
+.image-card .card-title {
+  padding: 8px 8px 0 8px;
+}
+
+
+.image-card .card-title img {
+  width: 90%;
+  margin-top: 20px;
+}
+
+.card .card-body{
+  padding: 16px 24px 8px 24px;
+}
+
+.card .card-table {
+  padding: 0px 13px 0px 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tbl {
+  width: 100%;
+}
+
+.tbl thead tr th{
+  padding: 7px;
+}
+
+.tbl tbody tr td {
+  padding: 7px;
+}
+
+.table-head {
+  background-color: lightgray;
+}
+
+.card-list ul {
+  padding: 0 20px;
+  list-style: disc;
+}
+
+nav.navbar a.navbar-brand {
+  font-family: 'Pacifico', cursive;
+  font-size: 24px;
+}
+
+nav.navbar a.navbar-brand:hover {
+  color: black;
+}
+
+a {
+  transition: color 0.5s;
+  -webkit-transition: color 0.5s;
+}
+
+/* MIGHT NEED TO REMOVE BENEATH HERE*/
 
 .card-head {
   padding-top: 7px;
