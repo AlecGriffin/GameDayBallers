@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { getPreNba } from '../json/pre_nba_data.js';
+import { getPlayer } from '../json/player_data.js';
 
 export default class PreNba extends React.Component {
   render() {
@@ -8,10 +9,19 @@ export default class PreNba extends React.Component {
     var schoolName = url.split('/')[url.split('/').length - 1];
     var preNba = getPreNba(schoolName);
 
+
     var players = preNba.players.map((player) =>
     <div className="grid-element col-md-4 col-6" key={player.toLowerCase().replace(/\s+/g, '')}>
       <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
+      </a>
+    </div>
+    );
+
+    var players_teams = preNba.players.map((player) =>
+    <div className="grid-element col-md-4 col-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+      <a href={ "/teams/" + getPlayer(player.toLowerCase().replace(/\s+/g, '')).teamURL }>
+        { getPlayer(player.toLowerCase().replace(/\s+/g, '')).team }
       </a>
     </div>
     );
@@ -56,6 +66,19 @@ export default class PreNba extends React.Component {
                 <div className="roster-wrapper">
                   <div className="roster row">
                     { players }
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card grid-card">
+              <div className="card-title">
+                Teams players have played on
+              </div>
+              <div className="card-body">
+
+                <div className="roster-wrapper">
+                  <div className="roster row">
+                    { players_teams }
                   </div>
                 </div>
               </div>

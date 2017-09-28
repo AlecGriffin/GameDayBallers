@@ -83,7 +83,7 @@ var lebron_james = {
       "team": "Cleveland Cavaliers",
       "teamURL": "clevelandcavaliers",
       "position": "F",
-      "dob": "June 29, 1991",
+      "dob": "December 30, 1984",
       "height": " 6” 8’",
       "weight": "250",
       "country": "United States",

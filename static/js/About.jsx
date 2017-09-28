@@ -28,19 +28,19 @@ export default class About extends React.Component {
             <div className="card-body">
               <ul>
                 <li>
-                  <b>About: </b>
+                  <b>About: </b>Senior Computer Science major
                 </li>
                 <li>
-                  <b>Major Responsibilities:</b>
+                  <b>Major Responsibilities: </b>Creating React elements, data collection
                 </li>
                 <li>
-                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Commits: </b> { 10 }
                 </li>
                 <li>
-                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Issues:</b> { 3 }
                 </li>
                 <li>
-                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Unit Tests:</b> { 0 }
                 </li>
               </ul>
             </div>
@@ -56,19 +56,19 @@ export default class About extends React.Component {
             <div className="card-body">
               <ul>
                 <li>
-                  <b>About: </b>
+                  <b>About: </b>Senior Computer Science major
                 </li>
                 <li>
-                  <b>Major Responsibilities:</b>
+                  <b>Major Responsibilities: </b>Final Report, Pre-NBA page
                 </li>
                 <li>
-                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Commits: </b> { 2 }
                 </li>
                 <li>
-                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Issues:</b> { 3 }
                 </li>
                 <li>
-                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Unit Tests:</b> { 0 }
                 </li>
               </ul>
             </div>
@@ -84,19 +84,19 @@ export default class About extends React.Component {
             <div className="card-body">
               <ul>
                 <li>
-                  <b>About: </b>
+                  <b>About: </b>Senior Computer Science major
                 </li>
                 <li>
-                  <b>Major Responsibilities:</b>
+                  <b>Major Responsibilities: </b>Front-end, data collection
                 </li>
                 <li>
-                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Commits: </b> { 20 }
                 </li>
                 <li>
-                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Issues:</b> { 3 }
                 </li>
                 <li>
-                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Unit Tests:</b> { 0 }
                 </li>
               </ul>
             </div>
@@ -114,19 +114,19 @@ export default class About extends React.Component {
             <div className="card-body">
               <ul>
                 <li>
-                  <b>About: </b>
+                  <b>About: </b>Junior Computer Science major
                 </li>
                 <li>
-                  <b>Major Responsibilities:</b>
+                  <b>Major Responsibilities: </b>Front-end, hosting setup
                 </li>
                 <li>
-                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Commits: </b> { 10 }
                 </li>
                 <li>
-                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Issues:</b> { 3 }
                 </li>
                 <li>
-                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Unit Tests:</b> { 0 }
                 </li>
               </ul>
             </div>
@@ -142,19 +142,19 @@ export default class About extends React.Component {
             <div className="card-body">
               <ul>
                 <li>
-                  <b>About: </b>
+                  <b>About: </b>Junior Computer Science major
                 </li>
                 <li>
-                  <b>Major Responsibilities:</b>
+                  <b>Major Responsibilities: </b>GCP setup, apiary documentation
                 </li>
                 <li>
-                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Commits: </b> { 2 }
                 </li>
                 <li>
-                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Issues:</b> { 4 }
                 </li>
                 <li>
-                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                  <b>No. of Unit Tests:</b> { 0 }
                 </li>
               </ul>
             </div>
@@ -185,19 +185,19 @@ export default class About extends React.Component {
             <div className="card-body">
               <ul>
                 <li>
-                  <b>Total No. of Commits:</b> {Math.round(getRandomArbitrary(5, 50))}
+                  <b>Total No. of Commits:</b> { 41 }
                 </li>
                 <li>
-                  <b>Total No. of Issues:</b> {Math.round(getRandomArbitrary(5, 50))}
+                  <b>Total No. of Issues:</b> { 16 }
                 </li>
                 <li>
-                  <b>Apiary:</b> {Math.round(getRandomArbitrary(5, 50))}
+                  <a href="http://docs.gamedayballers.apiary.io/" className="card-link">Apiary Link</a>
                 </li>
                 <li>
-                  <b>Github Repo:</b> {Math.round(getRandomArbitrary(5, 50))}
+                  <a href="https://github.com/GameDayBallers/GameDayBallers" className="card-link">Github Repo Link</a>
                 </li>
                 <li>
-                  <b>Trello</b> {Math.round(getRandomArbitrary(5, 50))}
+                  <a href="https://trello.com/b/ePPWWAuD/swe-project" className="card-link">Trello Link</a>
                 </li>
               </ul>
             </div>
