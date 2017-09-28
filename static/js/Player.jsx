@@ -51,7 +51,7 @@ export default class Player extends React.Component {
     }
 
     return (
-      <div id="main" className={"main " + player.teamColor}>
+      <div id="main" className={"main " + player.team_color}>
         <div className="row">
           <div className="col-md-4">
             <div className="card image-card">

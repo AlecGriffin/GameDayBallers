@@ -19,15 +19,15 @@ export default class PreNba extends React.Component {
     return (
       <div className="main">
         <div className="row">
-          <div className="col-md-9">
-            <div className="row">
-              <div className="img-container col-sm-6">
+          <div className="col-md-4">
+            <div className="card image-card white-card">
+              <div className="card-title">
                 <img src={preNba.logo}/>
               </div>
-              <div className="info col-sm-6">
+              <div className="card-body">
                 <ul>
                   <li>
-                    { preNba.name }
+                    <b>{ preNba.name }</b>
                   </li>
                   <li>
                     {preNba.city}, {preNba.state}
@@ -35,25 +35,32 @@ export default class PreNba extends React.Component {
                 </ul>
               </div>
             </div>
-
-            <div className="title-photo">
-              <h3>Mascot</h3>
-              <img src={preNba.mascot_img}/>
-              {preNba.mascot}
-            </div>
-
-            <div className="roster-wrapper image-grid">
-              <div className="grid-title">
-                <h3>Players</h3>
+            <div className="card image-card full-image">
+              <div className="card-title">
+                Mascot
+                <img src={preNba.mascot_img}/>
               </div>
-              <div className="roster row">
-                { players }
+              <div className="card-body">
+                <b>{preNba.mascot}</b>
               </div>
             </div>
           </div>
 
+          <div className="col-md-8">
+            <div className="card grid-card">
+              <div className="card-title">
+                Players
+              </div>
+              <div className="card-body">
 
-
+                <div className="roster-wrapper">
+                  <div className="roster row">
+                    { players }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

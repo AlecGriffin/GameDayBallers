@@ -135,30 +135,17 @@ a {
   -webkit-transition: color 0.5s;
 }
 
-/* MIGHT NEED TO REMOVE BENEATH HERE*/
-
-.card-head {
-  padding-top: 7px;
-  text-align: center;
-  background-color: #a12020;
-  color: white;
+.card.tweets-container {
+  padding-top: 0px;
 }
 
 .card-list {
   margin-top: 10px;
 }
 
-.table-wrapper h4{
-  margin-top: 80px;
-}
-
 .table thead {
   background-color: #a12020;
   color: white;
-}
-
-.table-title {
-  border: none;
 }
 
 .grid-element {
@@ -185,20 +172,19 @@ a {
   margin-bottom: 50px;
 }
 
-.title-photo {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.title-photo img {
-  width: 50%;
-  margin: auto;
-  display: block;
-}
-
 .roster-wrapper {
   margin-top: 25px;
   text-align: center;
+}
+
+.tools .grid-element {
+  text-align: center;
+}
+
+.card.display-card {
+  text-align: center;
+  background-color: #582335;
+  color: white;
 }
 
 @media only screen and (max-width: 768px) {

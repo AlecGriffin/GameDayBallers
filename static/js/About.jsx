@@ -9,168 +9,162 @@ export default class About extends React.Component {
       return Math.random() * (max - min) + min;
     }
 
-    // <-----Styling variables ----->
-    var marginLeft = {
-      // margin: ' 0% 0% 0% 16.5%'
-      marginLeft: '16.5%'
-    };
-
-    var marginRight = {
-      marginRight: '16.5%'
-    };
-    // <---------------------------->
-
     return (
-    <div class="main">
+    <div className="main">
 
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-3">Certified Ballers</h1>
+    <div className="card display-card">
+      <div className="card-body">
+        <h3 className="display-3">Certified Ballers</h3>
       </div>
     </div>
 
-      <div class="card-deck">
-        <div class="card">
-          <img class="card-img-top" src="..." alt="Card image cap"></img>
-          <div class="card-body">
-            <h4 class="card-title">Alec Griffin</h4>
-            <p class="card-text">
-              <strong>About:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>Major Responsibilities:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Commits:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Issues:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Unit Tests:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
+    <div className="row">
+      <div className="col-md-4">
+          <div className="card image-card full-image">
+            <div className="card-title">
+              Alec Griffin
+              <img src="https://avatars0.githubusercontent.com/u/8799789?v=4&s=460"/>
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>
+                  <b>About: </b>
+                </li>
+                <li>
+                  <b>Major Responsibilities:</b>
+                </li>
+                <li>
+                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-
-
-        <div class="card">
-          <img class="card-img-top" src="..." alt="Card image cap"></img>
-          <div class="card-body">
-            <h4 class="card-title">Regan Brickman</h4>
-            <p class="card-text">
-              <strong>About:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>Major Responsibilities:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Commits:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Issues:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Unit Tests:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-          </div>
-        </div>
-
-
-        <div class="card">
-          <img class="card-img-top" src="..." alt="Card image cap"></img>
-          <div class="card-body">
-            <h4 class="card-title">Andrew Duna</h4>
-            <p class="card-text">
-              <strong>About:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>Major Responsibilities:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Commits:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Issues:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Unit Tests:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-          </div>
-        </div>
       </div>
 
-
-      <div class="card-deck">
-        <div class="card" style= {marginLeft}>
-          <img class="card-img-top" src="..." alt="Card image cap"></img>
-          <div class="card-body">
-            <h4 class="card-title">Nihal Dhamani</h4>
-            <p class="card-text">
-              <strong>About:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>Major Responsibilities:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Commits:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Issues:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Unit Tests:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
+      <div className="col-md-4">
+          <div className="card image-card full-image">
+            <div className="card-title">
+              Regan Brickman
+              <img src="https://avatars1.githubusercontent.com/u/17559269?v=4&s=460"/>
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>
+                  <b>About: </b>
+                </li>
+                <li>
+                  <b>Major Responsibilities:</b>
+                </li>
+                <li>
+                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-
-
-        <div class="card" style={marginRight}>
-          <img class="card-img-top" src="..." alt="Card image cap"></img>
-          <div class="card-body">
-            <h4 class="card-title">Vikram Idury</h4>
-            <p class="card-text">
-              <strong>About:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>Major Responsibilities:</strong>
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Commits:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Issues:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-
-            <p class="card-text">
-              <strong>No. of Unit Tests:</strong> {Math.round(getRandomArbitrary(5, 20))}
-            </p>
-          </div>
-        </div>
-
       </div>
 
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-3">Project Details</h1>
+      <div className="col-md-4">
+          <div className="card image-card full-image">
+            <div className="card-title">
+              Andrew Duna
+              <img src="https://avatars0.githubusercontent.com/u/14189687?v=4&s=460"/>
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>
+                  <b>About: </b>
+                </li>
+                <li>
+                  <b>Major Responsibilities:</b>
+                </li>
+                <li>
+                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+
+      <div className="col-md-2"></div>
+
+      <div className="col-md-4">
+          <div className="card image-card full-image">
+            <div className="card-title">
+              Nihal Dhamani
+              <img src="https://avatars3.githubusercontent.com/u/20764557?v=4&s=460"/>
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>
+                  <b>About: </b>
+                </li>
+                <li>
+                  <b>Major Responsibilities:</b>
+                </li>
+                <li>
+                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+
+      <div className="col-md-4">
+          <div className="card image-card full-image">
+            <div className="card-title">
+              Vikram Idury
+              <img src="https://avatars3.githubusercontent.com/u/7564838?v=4&s=460"/>
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>
+                  <b>About: </b>
+                </li>
+                <li>
+                  <b>Major Responsibilities:</b>
+                </li>
+                <li>
+                  <b>No. of Commits: </b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Issues:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+                <li>
+                  <b>No. of Unit Tests:</b> {Math.round(getRandomArbitrary(5, 20))}
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+
+      <div className="card display-card">
+        <div className="card-body">
+          <h1 className="display-3">Project Details</h1>
         </div>
       </div>
 
@@ -182,65 +176,98 @@ export default class About extends React.Component {
           a link to the Apiary API
           a link to the GitHub Repo
           a link to the Trello --> */}
-
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title">Project Stats</h2>
-        <p class="card-text">
-          <strong>Total No. of Commits:</strong> {Math.round(getRandomArbitrary(5, 50))}
-        </p>
-
-        <p class="card-text">
-          <strong>Total No. of Issues:</strong> {Math.round(getRandomArbitrary(5, 50))}
-        </p>
-
-        <p class="card-text">
-          <strong>Apiary:</strong> {Math.round(getRandomArbitrary(5, 50))}
-        </p>
-
-        <p class="card-text">
-          <strong>Github Repo:</strong> {Math.round(getRandomArbitrary(5, 50))}
-        </p>
-
-        <p class="card-text">
-          <strong>Trello</strong> {Math.round(getRandomArbitrary(5, 50))}
-        </p>
-
+      <div className="row">
+        <div className="col-sm-6">
+          <div className="card">
+            <div className="card-title">
+              Project Stats
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>
+                  <b>Total No. of Commits:</b> {Math.round(getRandomArbitrary(5, 50))}
+                </li>
+                <li>
+                  <b>Total No. of Issues:</b> {Math.round(getRandomArbitrary(5, 50))}
+                </li>
+                <li>
+                  <b>Apiary:</b> {Math.round(getRandomArbitrary(5, 50))}
+                </li>
+                <li>
+                  <b>Github Repo:</b> {Math.round(getRandomArbitrary(5, 50))}
+                </li>
+                <li>
+                  <b>Trello</b> {Math.round(getRandomArbitrary(5, 50))}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div className="card">
+            <div class="card-title">
+              Data
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>
+                    <a href="https://github.com/seemethere/nba_py/wiki/stats.nba.com-Endpoint-Documentation" className="card-link">Python API for NBA.com</a>
+                </li>
+                <li>
+                  <a href="https://www.mysportsfeeds.com/data-feeds/" className="card-link">www.mysportsfeeds.com</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
 
     {/* <!-- >data:
         links to the data sources
         description of how each was scraped --> */}
 
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title">Data</h2>
-        <a href="https://github.com/seemethere/nba_py/wiki/stats.nba.com-Endpoint-Documentation" class="card-link">Python API for NBA.com</a>
-        <a href="https://www.mysportsfeeds.com/data-feeds/" class="card-link">www.mysportsfeeds.com</a>
-      </div>
-    </div>
+
 
     {/* <!-- ->tools:
         tools used
         describe their use
         special focus on optional tools that were not required --> */}
 
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title">Tools</h2>
-        <p>
-          Google Cloud Platform,
-          React,
-          Flask,
-          Bootstrap,
-          Slack,
-          Trello,
-          Apiary,
-          Planitpoker,
-          Git/Github,
-          Travis CI
-        </p>
+    <div className="card">
+      <div className="card-title">
+        Tools
+      </div>
+      <div className="card-body tools">
+        <div className="row">
+          <div className="grid-element col-sm-4">
+            Google Cloud Platform
+          </div>
+          <div className="grid-element col-sm-4">
+            Flask
+          </div>
+          <div className="grid-element col-sm-4">
+            Bootstrap
+          </div>
+          <div className="grid-element col-sm-4">
+            Slack
+          </div>
+          <div className="grid-element col-sm-4">
+            Trello
+          </div>
+          <div className="grid-element col-sm-4">
+            Apiary
+          </div>
+          <div className="grid-element col-sm-4">
+            Planitpoker
+          </div>
+          <div className="grid-element col-sm-4">
+            Git/Github
+          </div>
+          <div className="grid-element col-sm-4">
+            Travis CI
+          </div>
+        </div>
 
       </div>
     </div>

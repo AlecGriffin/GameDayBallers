@@ -4,7 +4,8 @@ var gregg_popovich = {
     "dob": "January 28, 1949 (Age 68)",
     "current_team": "San Antonio Spurs",
     "country_of_origin": "United States",
-    "win_loss_percentage": "69.4",
+    "win_loss_percentage": "69.4%",
+    "team_color": "gray",
     "current_roster": ["LaMarcus Aldridge", "Kyle Anderson", "Dāvis Bertāns", "Amida Brimah", "Matt Costello", "Bryn Forbes", "Pau Gasol", "Rudy Gay"," Manu Ginóbili", "Danny Green", "Darrun Hilliard", "Joffery Lauvergne", "Kawhi Leonard", "Patty Mills", "Dejounte Murray", "Tony Parker", "Brandon Paul", "London Perrantes", "Derrick White"],
     "past_teams": ["Air Force (assistant) (1973–1979)",
                    "Pomona-Pitzer (1979–1986)",
@@ -17,11 +18,12 @@ var gregg_popovich = {
 
 var mike_dantoni = {
     "name": "Mike D’Antoni",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mike_D%27Antoni_2010.jpg/440px-Mike_D%27Antoni_2010.jpg",
+    "image_url": "http://ww4.hdnux.com/photos/46/55/57/10148807/3/920x1240.jpg",
     "dob": "May 8, 1951 (Age 66)",
     "current_team": "Houston Rockets",
     "country_of_origin": "United States",
     "win_loss_percentage": "53%",
+    "team_color": "red",
     "current_roster": ["Ryan Anderson", "Trevor Ariza", "Tarik Black", "Bobby Brown", "Clint Capela", "Eric Gordon", "James Harden", "Demetrius Jackson", "Chris Johnson", "Shawn Long", "Luc Mbah a Moute", "Nenê", "Cameron Oliver", "Chunanu Onauku", "Chris Paul", "Tim Quarterman", "Isaiah Taylor", "P.J. Tucker", "Troy Williams", "Zhou Qi"],
     "past_teams": ["Olimpia Milano (1990–1994)",
                    "Benetton Basket (1994–1997)",
@@ -40,7 +42,8 @@ var tyronn_lue = {
     "dob": "May 3, 1977 (Age 40)",
     "current_team": "Cleveland Cavaliers",
     "country_of_origin": "United States",
-    "win_loss_percentage": "63.4",
+    "win_loss_percentage": "63.4%",
+    "team_color": "wine",
     "current_roster": ["José Calderón", "Jae Crowder", "Kay Felder", "Channing Frye", "Jeff Green", "John Holland", "LeBron James", "Richard Jefferson", "Kyle Korver", "Kevin Love", "Cedi Osman", "Kendrick Perkins", "Derrick Rose", "Iman Shumpert", "J.R. Smith", "Walter Tavares"," Isaiah Thomas", "Tristan Thompson", "Ante Žižić"],
     "past_teams": ["Boston Celtics (assistant) (2009-2013)", "Los Angeles Clippers (assistant) (2013-2014)", "Cleveland Cavaliers (associate HC) (2014-2016)"],
     "recognitions": ["NBA champion (2016)", "All-Star Game head coach (2016)"]

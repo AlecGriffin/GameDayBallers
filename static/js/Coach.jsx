@@ -32,12 +32,14 @@ export default class Coach extends React.Component {
     if (coach.past_teams.length != 0) {
       pastTeamsCard = (
         <div className="card">
-          <div className="card-head">
-            <h5>Past Teams Coached</h5>
+          <div className="card-title">
+            Past Teams Coached
           </div>
-          <ul className="card-list">
-            { pastTeams }
-          </ul>
+          <div class="card-body card-list">
+            <ul>
+              { pastTeams }
+            </ul>
+          </div>
         </div>);
     }
 
@@ -45,60 +47,63 @@ export default class Coach extends React.Component {
     if (coach.recognitions.length != 0) {
       recognitionsCard = (
         <div className="card">
-          <div className="card-head">
-            <h5>Recognitions</h5>
+          <div className="card-title">
+            Recognitions
           </div>
-          <ul className="card-list">
-            { recognitions }
-          </ul>
+          <div class="card-body card-list">
+            <ul>
+              { recognitions }
+            </ul>
+          </div>
         </div>);
     }
 
 
     return (
-      <div className="main">
+      <div className={ "main " + coach.team_color }>
         <div className="row">
-          <div className="col-md-9">
-            <div className="row">
-              <div className="img-container col-sm-6">
+          <div className="col-md-4">
+            <div className="card image-card full-image">
+              <div className="card-title">
                 <img src={coach.image_url}/>
               </div>
-              <div className="info col-sm-6">
+              <div className="card-body">
                 <ul>
-                  <li id="name">
-                    { coach.name }
+                  <li>
+                    <b>{ coach.name }</b>
                   </li>
-                  <li id="team">
-                    <a href={ "/teams/" + coach.current_team.toLowerCase().replace(/\s+/g, '') }>{ coach.current_team }</a>
+                  <li>
+                    <a href={ "/teams/" + coach.current_team.toLowerCase().replace(/\s+/g, '') }><b>{ coach.current_team }</b></a>
                   </li>
                   <li id="dob">
-                    Date of Birth: { coach.dob }
-                  </li>
-                  <li id="country">
-                    Country of Origin: { coach.country_of_origin }
+                    <b>Date of Birth: </b>{ coach.dob }
                   </li>
                   <li id="winloss">
-                    Win/Loss Percentage: { coach.win_loss_percentage }
+                    <b>Win/Loss Percentage: </b>{ coach.win_loss_percentage }
                   </li>
                 </ul>
               </div>
             </div>
+            { recognitionsCard }
+            { pastTeamsCard }
+          </div>
 
-            <div className="roster-wrapper image-grid">
-              <div className="grid-title">
-                <h3>Players</h3>
+          <div className="col-md-8">
+            <div className="card grid-card">
+              <div className="card-title">
+                Players
               </div>
-              <div className="roster row">
-                { roster }
+              <div className="card-body">
+
+                <div className="roster-wrapper row">
+                  <div className="roster row">
+                    { roster }
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="col-md-3">
-            { pastTeamsCard }
-
-            { recognitionsCard }
-          </div>
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 var arizona_state={
     "name": "Arizona State",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Arizona_State_Athletics_wordmark.svg/500px-Arizona_State_Athletics_wordmark.svg.png ",
+    "logo": "http://foxsportsuniversity.com/wp-content/uploads/2012/08/ASU-pitchfork_4-dk-bkgd.png",
     "city": "Tempe",
     "state": "Arizona",
     "country": "United States",

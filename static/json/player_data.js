@@ -12,7 +12,7 @@ var james_harden = {
     "prenba": "Arizona State",
     "prenbaURL": "arizonastate",
     "debut": "",
-    "teamColor": "red",
+    "team_color": "red",
     "career_stats": {
       "minutes_per_game": "33.6",
       "field_goal_percentage": "44.2",
@@ -50,7 +50,7 @@ var kawhi_leonard = {
     "prenba": "San Diego State",
     "prenbaURL": "sandiegostate",
     "debut": "",
-    "teamColor": "gray",
+    "team_color": "gray",
     "career_stats": {
       "minutes_per_game": "30.6",
       "field_goal_percentage": "49.5",
@@ -90,7 +90,7 @@ var lebron_james = {
       "prenba": "St. Vincent-St. Mary HS (OH)",
       "prenbaURL": "stvincentstmary",
       "debut": "2003",
-      "teamColor": "wine",
+      "team_color": "wine",
       "career_stats": {
         "minutes_per_game": "38.9",
         "field_goal_percentage": "50.1",

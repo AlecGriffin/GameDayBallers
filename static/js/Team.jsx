@@ -12,7 +12,7 @@ export default class Team extends React.Component {
 
     var roster = team.current_roster.map((player) =>
     <div className="grid-element col-md-4 col-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <a>
+      <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
       </a>
     </div>
@@ -76,7 +76,7 @@ export default class Team extends React.Component {
               </div>
             </div>
             { titlesCard }
-            <div className="tweets-container">
+            <div className="card tweets-container">
               { timeline }
             </div>
           </div>
