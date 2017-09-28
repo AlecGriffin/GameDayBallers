@@ -28,7 +28,7 @@ export default class Team extends React.Component {
     );
 
     var roster = team.current_roster.map((player) =>
-    <div className="grid-element col-md-4 col-sm-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+    <div className="grid-element col-md-4 col-6" key={player.toLowerCase().replace(/\s+/g, '')}>
       <a>
         { player }
       </a>
@@ -66,27 +66,66 @@ export default class Team extends React.Component {
     }
 
     return (
-      <div className="main">
+      <div className={"main " + team.color}>
         <div className="row">
-          <div className="col-md-9">
-            <div className="row">
-              <div className="img-container col-sm-6">
+          <div className="col-md-4">
+            <div className="card image-card white-card">
+              <div className="card-title">
                 <img src={team.logo_url}/>
               </div>
-              <div className="info col-sm-6">
+              <div className="card-body">
                 <ul>
                   <li>
-                     { team.name }
+                    <b>{ team.name }</b>
                   </li>
                   <li>
-                    { team.city }, { team.country }
+                    <b>{ team.city }, { team.country }</b>
                   </li>
                   <li>
-                    { team.arena }
+                    <b>Arena: </b>{ team.arena }
                   </li>
                 </ul>
               </div>
             </div>
+          </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <div className="card grid-card">
+                <div className="card-title">
+                  Roster
+                </div>
+                <div className="card-body">
+
+                  <div className="row">
+                    <div className="col-sm-4"></div>
+                    <div className="col-sm-4 text-center">
+                      <h3>Head Coach</h3>
+                      <a href={ coachURL }>
+                        <div className="card image-card full-image">
+                          <div className="card-title">
+                            <img src={team.coach_img}/>
+                          </div>
+                          <div className="card-body">
+                            {team.head_coach}
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="roster-wrapper row">
+                    <h3 className="col-sm-12">Players</h3>
+                    <div className="roster row">
+                      { roster }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-9">
 
             <div className="title-photo">
               <h3>Head Coach</h3>
@@ -106,7 +145,7 @@ export default class Team extends React.Component {
           <div className="col-md-3">
             { titlesCard }
           </div>
-        </div>
+
       </div>
     );
   }

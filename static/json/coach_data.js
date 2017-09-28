@@ -17,7 +17,7 @@ var gregg_popovich = {
 
 var mike_dantoni = {
     "name": "Mike D’Antoni",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mike_D%27Antoni_2010.jpg/440px-Mike_D%27Antoni_2010.jpg ",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mike_D%27Antoni_2010.jpg/440px-Mike_D%27Antoni_2010.jpg",
     "dob": "May 8, 1951 (Age 66)",
     "current_team": "Houston Rockets",
     "country_of_origin": "United States",
@@ -36,7 +36,7 @@ var mike_dantoni = {
 
 var tyronn_lue = {
     "name": "Tyronn Lue",
-    "image_url": "http://image.news-herald.com/storyimage/HR/20170530/SPORTS/170539989/AR/0/AR-170539989.jpg&maxh=400&maxw=667 ",
+    "image_url": "http://image.news-herald.com/storyimage/HR/20170530/SPORTS/170539989/AR/0/AR-170539989.jpg&maxh=400&maxw=667",
     "dob": "May 3, 1977 (Age 40)",
     "current_team": "Cleveland Cavaliers",
     "country_of_origin": "United States",
