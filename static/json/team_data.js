@@ -9,6 +9,7 @@ var rockets = {
     "coach_img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mike_D%27Antoni_2010.jpg/440px-Mike_D%27Antoni_2010.jpg",
     "coachURL": "mikedantoni",
     "color": "red",
+    "twitter_name": "HoustonRockets",
     "current_roster": ["Ryan Anderson", "Trevor Ariza", "Tarik Black", "Bobby Brown", "Clint Capela", "Eric Gordon", "James Harden", "Demetrius Jackson", "Chris Johnson", "Shawn Long", "Luc Mbah a Moute", "Nenê", "Cameron Oliver", "Chunanu Onauku", "Chris Paul", "Tim Quarterman", "Isaiah Taylor", "P.J. Tucker", "Troy Williams", "Zhou Qi"],
     "titles": {
       "championships": ["1994", "1995"],
@@ -29,6 +30,7 @@ var spurs = {
     "coach_img":"https://i.imgur.com/B1UfYJl.jpg",
     "coachURL": "greggpopovich",
     "color": "gray",
+    "twitter_name": "spurs",
     "current_roster": ["LaMarcus Aldridge", "Kyle Anderson", "Dāvis Bertāns", "Amida Brimah", "Matt Costello", "Bryn Forbes", "Pau Gasol", "Rudy Gay"," Manu Ginóbili", "Danny Green", "Darrun Hilliard", "Joffery Lauvergne", "Kawhi Leonard", "Patty Mills", "Dejounte Murray", "Tony Parker", "Brandon Paul", "London Perrantes", "Derrick White"],
     "titles": {
       "championships": ["1999", "2003", "2005", "2007", "2014"],
@@ -48,6 +50,7 @@ var cavs = {
     "coach_img":"http://image.news-herald.com/storyimage/HR/20170530/SPORTS/170539989/AR/0/AR-170539989.jpg&maxh=400&maxw=667",
     "coachURL": "tyronnlue",
     "color": "wine",
+    "twitter_name": "cavs",
     "current_roster": ["José Calderón", "Jae Crowder", "Kay Felder", "Channing Frye", "Jeff Green", "John Holland", "LeBron James", "Richard Jefferson", "Kyle Korver", "Kevin Love", "Cedi Osman", "Kendrick Perkins", "Derrick Rose", "Iman Shumpert", "J.R. Smith", "Walter Tavares"," Isaiah Thomas", "Tristan Thompson", "Ante Žižić"],
     "titles": {
       "championships": ["2016"],
