@@ -185,7 +185,7 @@ export default class About extends React.Component {
             <div className="card-body">
               <ul>
                 <li>
-                  <b>Total No. of Commits:</b> { 41 }
+                  <b>Total No. of Commits:</b> { 43 }
                 </li>
                 <li>
                   <b>Total No. of Issues:</b> { 16 }
@@ -206,9 +206,9 @@ export default class About extends React.Component {
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div className="col-sm-6">
           <div className="card">
-            <div class="card-title">
+            <div className="card-title">
               Data
             </div>
             <div className="card-body">
