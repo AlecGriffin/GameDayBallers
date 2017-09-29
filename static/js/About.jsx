@@ -199,6 +199,9 @@ export default class About extends React.Component {
                 <li>
                   <a href="https://trello.com/b/ePPWWAuD/swe-project" className="card-link">Trello Link</a>
                 </li>
+                <li>
+                  <a href="https://utexas.box.com/s/u0t43jc0jag4qg1xbpl2cpixg3ofhbsi" className="card-link">Technical Report Link</a>
+                </li>
               </ul>
             </div>
           </div>
