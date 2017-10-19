@@ -9,12 +9,13 @@ export default class Player_Grid extends Component {
 
   RenderPlayerThumbnail(link, player_name, img_source){
     return(
-      <Link to= 'players/lebronjames'>
+      <Link to= {link}>
         <Player_Thumbnail name={player_name} src={img_source}/>
       </Link>
     );
   }
 
+  // Use this method to generate Thumbnails when future API is created
   RenderPlayerThumbnails(){
     var result = [];
     for(let i = 0; i < 9; i++){

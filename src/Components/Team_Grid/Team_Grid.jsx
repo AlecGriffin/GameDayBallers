@@ -5,15 +5,28 @@ import { Link } from 'react-router-dom';
 
 
 export default class Team_Grid extends Component {
+  RenderTeamThumbnail(link, Team_name, img_source){
+    return(
+      <Link to= {link}>
+        <Team_Thumbnail name={Team_name} src={img_source}/>
+      </Link>
+    );
+  }
+
+  // Use this method to generate Thumbnails when future API is created
+  RenderTeamThumbnails(){
+    var result = [];
+    for(let i = 0; i < 9; i++){
+      result.push(this.RenderTeamThumbnail('/teams/sanantoniospurs', 'San Antonio Spurs', 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/San_Antonio_Spurs.svg/400px-San_Antonio_Spurs.svg.png' ));
+    }
+    return result;
+  }
+
   render(){
     return(
           <Grid>
             <Row>
-              <Link to='/teams/sanantoniospurs'>
-                <Team_Thumbnail name="San Antonio Spurs" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/San_Antonio_Spurs.svg/400px-San_Antonio_Spurs.svg.png"/>
-              </Link>
-              <Team_Thumbnail name="San Antonio Spurs" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/San_Antonio_Spurs.svg/400px-San_Antonio_Spurs.svg.png"/>
-              <Team_Thumbnail name="San Antonio Spurs" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/San_Antonio_Spurs.svg/400px-San_Antonio_Spurs.svg.png"/>
+              {this.RenderTeamThumbnails()}
             </Row>
           </Grid>
     );
