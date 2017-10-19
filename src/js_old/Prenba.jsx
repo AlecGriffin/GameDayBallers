@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getPreNba } from '../json/pre_nba_data.js';
-import { getPlayer } from '../json/player_data.js';
+import { getPreNba } from '../../json_old/pre_nba_data.js';
+import { getPlayer } from '../../json_old/player_data.js';
 
 export default class PreNba extends React.Component {
   render() {
