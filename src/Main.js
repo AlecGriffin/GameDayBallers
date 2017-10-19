@@ -6,7 +6,7 @@ import Header from './Components/Header/Header.jsx';
 import Teams from './Components/Teams/Teams.jsx';
 import Players from './Components/Players/Players.jsx';
 import Coaches from './Components/Coaches/Coaches.jsx';
-import PreNBA from './Components/PreNBA/PreNBA.jsx';
+import PreNBA_Container from './Components/PreNBA_Container/PreNBA_Container.jsx';
 import PlayerRouter from './Components/PlayerRouter/PlayerRouter.jsx';
 
 export default class Main extends Component {
@@ -20,7 +20,7 @@ export default class Main extends Component {
             <Route path='/players' component={PlayerRouter}/>
             <Route exact path='/teams' component={Teams}/>
             <Route exact path='/coaches' component={Coaches}/>
-            <Route exact path='/pre-NBA' component={PreNBA}/>
+            <Route exact path='/pre-NBA' component={PreNBA_Container}/>
           </Switch>
         </main>
       );

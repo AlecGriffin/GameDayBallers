@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 
-export default class PreNBA extends Component {
+export default class Team extends Component {
   render(){
     return(
       <Col xs={6} md={4}>
