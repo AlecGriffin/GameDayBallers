@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Carousel, Row} from 'react-bootstrap';
+import {Carousel, Row, Col} from 'react-bootstrap';
 import { Timeline } from 'react-twitter-widgets';
 
 export default class Home extends Component {
@@ -22,22 +22,24 @@ export default class Home extends Component {
             <p class="lead">I hope you are ready to ball.</p>
 
             <Row>
+              <Col md={9}>
               <Carousel>
                 <Carousel.Item>
-                <img  alt="900x500" src="https://cdn.vox-cdn.com/uploads/chorus_image/image/56042635/632531402.0.jpg"/>
+                  <img  alt="900x500" src="https://cdn.vox-cdn.com/uploads/chorus_image/image/56042635/632531402.0.jpg"/>
                 </Carousel.Item>
 
                 <Carousel.Item>
-                <img  alt="900x500" src="http://www.fbschool.org/_assets/images/basketball.jpg"/>
+                  <img  alt="900x500" src="http://www.fbschool.org/_assets/images/basketball.jpg"/>
                 </Carousel.Item>
 
                 <Carousel.Item>
-                <img  alt="900x500" src="https://cdn.nba.net/nba-drupal-prod/styles/landscape/s3/2017-08/victor-oladipo-africa.jpg?itok=kmfNF8l8"/>
+                  <img  alt="900x500" src="https://cdn.nba.net/nba-drupal-prod/styles/landscape/s3/2017-08/victor-oladipo-africa.jpg?itok=kmfNF8l8"/>
                 </Carousel.Item>
               </Carousel>
-              <div class="tweets-container col-md-3">
+              </Col>
+              <Col md={3}>
                 {timeline}
-              </div>
+              </Col>
             </Row>
           </div>
     );

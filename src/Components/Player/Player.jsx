@@ -1,8 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { getPlayer } from '../../json_old/player_data.js';
-import {Row, Col, Table} from 'react-bootstrap';
+import { Row, Col, Table } from 'react-bootstrap';
+import Sound from 'react-sound';
+import lebron_james_audio_file from './lebron_james_vine.wav';
 
 export default class Player extends Component {
+
+  playSound () {
+    const audio = new Audio(lebron_james_audio_file)
+    // audio.play()
+  }
+
   render(){
 
     var url = window.location.href;
@@ -13,8 +21,10 @@ export default class Player extends Component {
     var pastTeams = player.past_teams.map((team) =>
       <li key={team.toLowerCase().replace(/\s+/g, '')}>
         <a>{team}</a>
+
       </li>
     );
+
     var recognitions = player.recognitions.map((rec) =>
     <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
       {rec}
@@ -51,9 +61,14 @@ export default class Player extends Component {
         </div>);
     }
 
+
+
     return(
+
       <div id="main" className={"main " + player.team_color}>
+
         <Row>
+          {this.playSound()}
           <Col md={4}>
             <div className="card image-card">
               <div className="card-title">
