@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { getPlayer } from '../../json_old/player_data.js';
+import {Row, Col, Table} from 'react-bootstrap';
 
 export default class Player extends Component {
   render(){
@@ -52,8 +53,8 @@ export default class Player extends Component {
 
     return(
       <div id="main" className={"main " + player.team_color}>
-        <div className="row">
-          <div className="col-md-4">
+        <Row>
+          <Col md={4}>
             <div className="card image-card">
               <div className="card-title">
                 { player.name } #{ player.jersey_number }
@@ -84,15 +85,16 @@ export default class Player extends Component {
                 </ul>
               </div>
             </div>
-          </div>
-          <div className="col-md-8">
+          </Col>
+
+          <Col md={8}>
             <div className="card">
               <div className="card-title">
                 Career Stats
               </div>
               <div className="card-body card-table">
-                <div className="row">
-                  <table className="tbl first-half col-sm-6">
+                <Row>
+                  <Table className="tbl first-half col-sm-6">
                     <thead className="table-head">
                       <tr>
                         <th>MPG</th>
@@ -109,8 +111,10 @@ export default class Player extends Component {
                         <td>{ player.career_stats.free_throw_percentage }</td>
                       </tr>
                     </tbody>
-                  </table>
-                  <table className="tbl second-half col-sm-6">
+                  </Table>
+
+
+                  <Table className="tbl second-half col-sm-6">
                     <thead className="table-head">
                       <tr>
                         <th>PPG</th>
@@ -127,20 +131,20 @@ export default class Player extends Component {
                         <td>{ player.career_stats.blocks_per_game }</td>
                       </tr>
                     </tbody>
-                  </table>
-                </div>
+                  </Table>
+                </Row>
               </div>
             </div>
-            <div className="row">
-              <div className="col-lg-6">
+            <Row>
+              <Col lg={6}>
                 { recognitionsCard }
-              </div>
-              <div className="col-lg-6">
+              </Col>
+              <Col lg={6}>
                 { pastTeamsCard }
-              </div>
-            </div>
-          </div>
-        </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getCoach } from '../../json_old/coach_data.js';
 import ReactDOM from 'react-dom';
+import {Row, Col} from 'react-bootstrap';
 
 export default class Team extends Component {
   render() {
@@ -61,8 +62,8 @@ export default class Team extends Component {
 
     return (
       <div className={ "main " + coach.team_color }>
-        <div className="row">
-          <div className="col-md-4">
+        <Row>
+          <Col md={4}>
             <div className="card image-card full-image">
               <div className="card-title">
                 <img src={coach.image_url}/>
@@ -86,9 +87,9 @@ export default class Team extends Component {
             </div>
             { recognitionsCard }
             { pastTeamsCard }
-          </div>
+          </Col>
 
-          <div className="col-md-8">
+          <Col md={8}>
             <div className="card grid-card">
               <div className="card-title">
                 Players
@@ -102,9 +103,9 @@ export default class Team extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </Col>
 
-        </div>
+        </Row>
       </div>
     );
   }

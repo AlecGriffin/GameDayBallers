@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { getPreNba } from '../../json_old/pre_nba_data.js';
 import { getPlayer } from '../../json_old/player_data.js';
+import {Row, Col} from 'react-bootstrap';
 
 export default class Player extends Component {
   render() {
@@ -27,8 +28,8 @@ export default class Player extends Component {
 
     return (
       <div className="main">
-        <div className="row">
-          <div className="col-md-4">
+        <Row>
+          <Col md={4}>
             <div className="card image-card white-card">
               <div className="card-title">
                 <img src={preNba.logo}/>
@@ -53,9 +54,9 @@ export default class Player extends Component {
                 <b>{preNba.mascot}</b>
               </div>
             </div>
-          </div>
+          </Col>
 
-          <div className="col-md-8">
+          <Col md={8}>
             <div className="card grid-card">
               <div className="card-title">
                 Players
@@ -82,8 +83,8 @@ export default class Player extends Component {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     );
   }

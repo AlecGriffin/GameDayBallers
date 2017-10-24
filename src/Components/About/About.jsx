@@ -1,160 +1,151 @@
 import React, {Component} from 'react';
 import '../../css/main.css';
+import Person_Thumbnail from './Person_Thumbnail.jsx';
+import { Grid, Row, Col, Image, Thumbnail, Clearfix } from 'react-bootstrap';
+import axios from 'axios';
+
+var tools = [
+  "Google Cloud Platform",
+  "Flask",
+  "Bootstrap",
+  "Slack",
+  "Trello",
+  "Apiary",
+  "Planitpoker",
+  "Git/GitHub",
+  "Travis CI"
+]
+
+var Project_Members = {
+
+  "Alec":{
+    "name" : "Alec Griffin",
+    "img_src" : "https://avatars0.githubusercontent.com/u/8799789?v=4&s=460",
+    "about" : "Senior Computer Science major",
+    "responsibilities" : "Creating React elements, data collection",
+    "commits" :"0",
+    "issues" :"0",
+    "tests" :"0"
+  },
+
+  "Regan":{
+    "name":'Regan Brickman',
+    "img_src":'https://avatars1.githubusercontent.com/u/17559269?v=4&s=460',
+    "about":'Senior Computer Science major',
+    "responsibilities":'Final Report, Pre-NBA page',
+    "commits":'0',
+    "issues":'0',
+    "tests":'0'
+  },
+
+ "Andrew":{
+    "name": 'Andrew Duna',
+    "img_src":'https://avatars0.githubusercontent.com/u/14189687?v=4&s=460',
+    "about":'Senior Computer Science major',
+    "responsibilities":'Front-end, data collection',
+    "commits":'0',
+    "issues":'0',
+    "tests":'0'
+  },
+
+  "Vikram":{
+    "name":'Vikram Idury',
+    "img_src":'https://avatars3.githubusercontent.com/u/7564838?v=4&s=460',
+    "about":'Senior Computer Science major',
+    "responsibilities":'GCP setup, apiary documentation',
+    "commits":'0',
+    "issues":'0',
+    "tests":'0'
+  },
+
+  "Nihal":{
+      "name":'Nihal Dhamani',
+      "img_src":'https://avatars3.githubusercontent.com/u/20764557?v=4&s=460',
+      "about":'Senior Computer Science major',
+      "responsibilities":'Front-end, hosting setup',
+      "commits":'0',
+      "issues":'0',
+      "tests":'0'
+  }
+}
+
+function generateTools(){
+  var result = []
+  for(var t of tools){
+    result.push(
+      <Col sm={4} className="grid-element">
+        {t}
+      </Col>
+    )
+  }
+  return result
+}
+
+
+function generateThumbnail(person) {
+  return(
+    <Person_Thumbnail
+      name= {person.name}
+      img_src= {person.img_src}
+      about= {person.about}
+      responsibilities= {person.responsibilities}
+      commits= {person.commits}
+      issues= {person.issues}
+      tests= {person.tests}
+    />
+  );
+}
 
  export default class About extends Component {
+   constructor(props){
+     super(props);
+
+
+// axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/commits").then(response => {
+    //  axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors").then(response => {
+      //  this.setState({
+      //    Alec: response['data'][1]['total'],
+      //    Regan: response['data'],
+      //    Andrew: response['data'][2]['total'],
+      //    Vikram: response['data'],
+      //    Nihal: response['data'][0]['total']})
+      //  console.log(response)
+      //  console.log(this.state.Alec)
+    //  });
+
+   }
+
    render() {
+
      return(
        <div className="main">
-
        <div className="card display-card">
          <div className="card-body">
            <h3 className="display-3">Certified Ballers</h3>
          </div>
        </div>
 
-       <div className="row">
-         <div className="col-md-4">
-             <div className="card image-card full-image">
-               <div className="card-title">
-                 Alec Griffin
-                 <img src="https://avatars0.githubusercontent.com/u/8799789?v=4&s=460"/>
-               </div>
-               <div className="card-body">
-                 <ul>
-                   <li>
-                     <b>About: </b>Senior Computer Science major
-                   </li>
-                   <li>
-                     <b>Major Responsibilities: </b>Creating React elements, data collection
-                   </li>
-                   <li>
-                     <b>No. of Commits: </b> { 10 }
-                   </li>
-                   <li>
-                     <b>No. of Issues:</b> { 3 }
-                   </li>
-                   <li>
-                     <b>No. of Unit Tests:</b> { 0 }
-                   </li>
-                 </ul>
-               </div>
-             </div>
-         </div>
+       <Row>
+          <Col md={4}>
+               {generateThumbnail(Project_Members.Alec)}
+          </Col>
+           <Col md={4}>
+               {generateThumbnail(Project_Members.Regan)}
+           </Col>
+           <Col md={4}>
+               {generateThumbnail(Project_Members.Andrew)}
+           </Col>
+         </Row>
 
-         <div className="col-md-4">
-             <div className="card image-card full-image">
-               <div className="card-title">
-                 Regan Brickman
-                 <img src="https://avatars1.githubusercontent.com/u/17559269?v=4&s=460"/>
-               </div>
-               <div className="card-body">
-                 <ul>
-                   <li>
-                     <b>About: </b>Senior Computer Science major
-                   </li>
-                   <li>
-                     <b>Major Responsibilities: </b>Final Report, Pre-NBA page
-                   </li>
-                   <li>
-                     <b>No. of Commits: </b> { 2 }
-                   </li>
-                   <li>
-                     <b>No. of Issues:</b> { 3 }
-                   </li>
-                   <li>
-                     <b>No. of Unit Tests:</b> { 0 }
-                   </li>
-                 </ul>
-               </div>
-             </div>
-         </div>
-
-         <div className="col-md-4">
-             <div className="card image-card full-image">
-               <div className="card-title">
-                 Andrew Duna
-                 <img src="https://avatars0.githubusercontent.com/u/14189687?v=4&s=460"/>
-               </div>
-               <div className="card-body">
-                 <ul>
-                   <li>
-                     <b>About: </b>Senior Computer Science major
-                   </li>
-                   <li>
-                     <b>Major Responsibilities: </b>Front-end, data collection
-                   </li>
-                   <li>
-                     <b>No. of Commits: </b> { 20 }
-                   </li>
-                   <li>
-                     <b>No. of Issues:</b> { 3 }
-                   </li>
-                   <li>
-                     <b>No. of Unit Tests:</b> { 0 }
-                   </li>
-                 </ul>
-               </div>
-             </div>
-         </div>
-
-         <div className="col-md-2"></div>
-
-         <div className="col-md-4">
-             <div className="card image-card full-image">
-               <div className="card-title">
-                 Nihal Dhamani
-                 <img src="https://avatars3.githubusercontent.com/u/20764557?v=4&s=460"/>
-               </div>
-               <div className="card-body">
-                 <ul>
-                   <li>
-                     <b>About: </b>Junior Computer Science major
-                   </li>
-                   <li>
-                     <b>Major Responsibilities: </b>Front-end, hosting setup
-                   </li>
-                   <li>
-                     <b>No. of Commits: </b> { 10 }
-                   </li>
-                   <li>
-                     <b>No. of Issues:</b> { 3 }
-                   </li>
-                   <li>
-                     <b>No. of Unit Tests:</b> { 0 }
-                   </li>
-                 </ul>
-               </div>
-             </div>
-         </div>
-
-         <div className="col-md-4">
-             <div className="card image-card full-image">
-               <div className="card-title">
-                 Vikram Idury
-                 <img src="https://avatars3.githubusercontent.com/u/7564838?v=4&s=460"/>
-               </div>
-               <div className="card-body">
-                 <ul>
-                   <li>
-                     <b>About: </b>Junior Computer Science major
-                   </li>
-                   <li>
-                     <b>Major Responsibilities: </b>GCP setup, apiary documentation
-                   </li>
-                   <li>
-                     <b>No. of Commits: </b> { 2 }
-                   </li>
-                   <li>
-                     <b>No. of Issues:</b> { 4 }
-                   </li>
-                   <li>
-                     <b>No. of Unit Tests:</b> { 0 }
-                   </li>
-                 </ul>
-               </div>
-             </div>
-         </div>
-       </div>
+         <Row>
+           <Col md={2}></Col>
+           <Col md={4}>
+               {generateThumbnail(Project_Members.Nihal)}
+           </Col>
+           <Col md={4}>
+               {generateThumbnail(Project_Members.Vikram)}
+           </Col>
+       </Row>
 
          <div className="card display-card">
            <div className="card-body">
@@ -170,8 +161,8 @@ import '../../css/main.css';
              a link to the Apiary API
              a link to the GitHub Repo
              a link to the Trello --> */}
-         <div className="row">
-           <div className="col-sm-6">
+         <Row>
+           <Col sm={6}>
              <div className="card">
                <div className="card-title">
                  Project Stats
@@ -199,8 +190,9 @@ import '../../css/main.css';
                  </ul>
                </div>
              </div>
-           </div>
-           <div className="col-sm-6">
+           </Col>
+
+          <Col sm={6}>
              <div className="card">
                <div className="card-title">
                  Data
@@ -216,8 +208,8 @@ import '../../css/main.css';
                  </ul>
                </div>
              </div>
-           </div>
-         </div>
+           </Col>
+         </Row>
 
 
        {/* <!-- >data:
@@ -236,39 +228,12 @@ import '../../css/main.css';
            Tools
          </div>
          <div className="card-body tools">
-           <div className="row">
-             <div className="grid-element col-sm-4">
-               Google Cloud Platform
-             </div>
-             <div className="grid-element col-sm-4">
-               Flask
-             </div>
-             <div className="grid-element col-sm-4">
-               Bootstrap
-             </div>
-             <div className="grid-element col-sm-4">
-               Slack
-             </div>
-             <div className="grid-element col-sm-4">
-               Trello
-             </div>
-             <div className="grid-element col-sm-4">
-               Apiary
-             </div>
-             <div className="grid-element col-sm-4">
-               Planitpoker
-             </div>
-             <div className="grid-element col-sm-4">
-               Git/Github
-             </div>
-             <div className="grid-element col-sm-4">
-               Travis CI
-             </div>
-           </div>
+           <Row>
+             {generateTools()}
+           </Row>
 
          </div>
        </div>
-
        </div>
      );
    }

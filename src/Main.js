@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import About from './Components/About/About.jsx';
-// import About from './js_old/About.jsx';
 import Home from './Components/Home/Home.jsx';
 import Header from './Components/Header/Header.jsx';
 import TeamRouter from './Components/Routers/TeamRouter.jsx';

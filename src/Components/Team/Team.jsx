@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Timeline } from 'react-twitter-widgets'
 import { getTeam } from '../../json_old/team_data.js';
 import ReactDOM from 'react-dom';
+import {Row, Col} from 'react-bootstrap';
 
 export default class Team extends Component {
   render() {
@@ -55,8 +56,8 @@ export default class Team extends Component {
 
     return (
       <div className={"main " + team.color}>
-        <div className="row">
-          <div className="col-md-4">
+        <Row>
+          <Col md={4}>
             <div className="card image-card white-card">
               <div className="card-title">
                 <img src={team.logo_url}/>
@@ -79,18 +80,17 @@ export default class Team extends Component {
             <div className="card tweets-container">
               { timeline }
             </div>
-          </div>
+          </Col>
 
-            <div className="col-md-8">
+            <Col md={8}>
               <div className="card grid-card">
                 <div className="card-title">
                   Roster
                 </div>
                 <div className="card-body">
 
-                  <div className="row">
-                    <div className="col-sm-4"></div>
-                    <div className="col-sm-4 text-center">
+                  <Row>
+                    <Col mdOffset={4} sm={4} className="text-center">
                       <h3>Head Coach</h3>
                       <a href={ coachURL }>
                         <div className="card image-card full-image">
@@ -102,19 +102,19 @@ export default class Team extends Component {
                           </div>
                         </div>
                       </a>
-                    </div>
-                  </div>
+                    </Col>
+                  </Row>
 
                   <div className="roster-wrapper row">
-                    <h3 className="col-sm-12">Players</h3>
+                    <Col sm={12}><h3>Players</h3></Col>
                     <div className="roster row">
                       { roster }
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
       </div>
     );
   }
