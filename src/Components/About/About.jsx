@@ -23,9 +23,6 @@ var Project_Members = {
     "img_src" : "https://avatars0.githubusercontent.com/u/8799789?v=4&s=460",
     "about" : "Senior Computer Science major",
     "responsibilities" : "Creating React elements, data collection",
-    "commits" :"0",
-    "issues" :"0",
-    "tests" :"0"
   },
 
   "Regan":{
@@ -33,9 +30,6 @@ var Project_Members = {
     "img_src":'https://avatars1.githubusercontent.com/u/17559269?v=4&s=460',
     "about":'Senior Computer Science major',
     "responsibilities":'Final Report, Pre-NBA page',
-    "commits":'0',
-    "issues":'0',
-    "tests":'0'
   },
 
  "Andrew":{
@@ -43,9 +37,6 @@ var Project_Members = {
     "img_src":'https://avatars0.githubusercontent.com/u/14189687?v=4&s=460',
     "about":'Senior Computer Science major',
     "responsibilities":'Front-end, data collection',
-    "commits":'0',
-    "issues":'0',
-    "tests":'0'
   },
 
   "Vikram":{
@@ -53,9 +44,6 @@ var Project_Members = {
     "img_src":'https://avatars3.githubusercontent.com/u/7564838?v=4&s=460',
     "about":'Senior Computer Science major',
     "responsibilities":'GCP setup, apiary documentation',
-    "commits":'0',
-    "issues":'0',
-    "tests":'0'
   },
 
   "Nihal":{
@@ -63,9 +51,6 @@ var Project_Members = {
       "img_src":'https://avatars3.githubusercontent.com/u/20764557?v=4&s=460',
       "about":'Senior Computer Science major',
       "responsibilities":'Front-end, hosting setup',
-      "commits":'0',
-      "issues":'0',
-      "tests":'0'
   }
 }
 
@@ -82,16 +67,16 @@ function generateTools(){
 }
 
 
-function generateThumbnail(person) {
+function generateThumbnail(person, commits) {
   return(
     <Person_Thumbnail
       name= {person.name}
       img_src= {person.img_src}
       about= {person.about}
       responsibilities= {person.responsibilities}
-      commits= {person.commits}
-      issues= {person.issues}
-      tests= {person.tests}
+      commits= {commits}
+      issues= {0}
+      tests= {0}
     />
   );
 }
@@ -100,18 +85,35 @@ function generateThumbnail(person) {
    constructor(props){
      super(props);
 
+     // Set Initial State
+     this.state = {
+       Total_Commits: 0,
+       Alec_Commits: 0,
+       Regan_Commits: 0,
+       Andrew_Commits: 0,
+       Vikram_Commits: 0,
+       Nihal_Commits: 0,
+       Number_Of_Issues: 0
+     };
 
-// axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/commits").then(response => {
-    //  axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors").then(response => {
-      //  this.setState({
-      //    Alec: response['data'][1]['total'],
-      //    Regan: response['data'],
-      //    Andrew: response['data'][2]['total'],
-      //    Vikram: response['data'],
-      //    Nihal: response['data'][0]['total']})
-      //  console.log(response)
-      //  console.log(this.state.Alec)
-    //  });
+      // Get Individual Commits
+      axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors").then(response => {
+        var total = response['data'][0]['total'] + response['data'][1]['total'] + response['data'][2]['total']
+        this.setState({
+           Total_Commits: total,
+           Alec_Commits: response['data'][1]['total'],
+          //  Regan_Commits: response['data'][#]['total'],
+           Andrew_Commits: response['data'][2]['total'],
+          //  Vikram_Commits: response['data'][#]['total'],
+           Nihal_Commits: response['data'][0]['total']
+         })
+        });
+
+        axios.get("https://api.trello.com/1/lists/59cb1bf501fa898f2408415c/cards").then(response => {
+          this.setState({
+             Number_Of_Issues: response['data'].length
+           })
+        });
 
    }
 
@@ -127,23 +129,23 @@ function generateThumbnail(person) {
 
        <Row>
           <Col md={4}>
-               {generateThumbnail(Project_Members.Alec)}
+               {generateThumbnail(Project_Members.Alec, this.state.Alec_Commits)}
           </Col>
            <Col md={4}>
-               {generateThumbnail(Project_Members.Regan)}
+               {generateThumbnail(Project_Members.Regan, this.state.Regan_Commits)}
            </Col>
            <Col md={4}>
-               {generateThumbnail(Project_Members.Andrew)}
+               {generateThumbnail(Project_Members.Andrew, this.state.Andrew_Commits)}
            </Col>
          </Row>
 
          <Row>
            <Col md={2}></Col>
            <Col md={4}>
-               {generateThumbnail(Project_Members.Nihal)}
+               {generateThumbnail(Project_Members.Nihal, this.state.Nihal_Commits)}
            </Col>
            <Col md={4}>
-               {generateThumbnail(Project_Members.Vikram)}
+               {generateThumbnail(Project_Members.Vikram, this.state.Vikram_Commits)}
            </Col>
        </Row>
 
@@ -170,10 +172,10 @@ function generateThumbnail(person) {
                <div className="card-body">
                  <ul>
                    <li>
-                     <b>Total No. of Commits:</b> { 43 }
+                     <b>Total No. of Commits:</b> { this.state.Total_Commits }
                    </li>
                    <li>
-                     <b>Total No. of Issues:</b> { 16 }
+                     <b>Total No. of Issues:</b> { this.state.Number_Of_Issues }
                    </li>
                    <li>
                      <a href="http://docs.gamedayballers.apiary.io/" className="card-link">Apiary Link</a>
