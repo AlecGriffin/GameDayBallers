@@ -11,7 +11,7 @@ export default class PreNba extends React.Component {
 
 
     var players = preNba.players.map((player) =>
-    <div className="grid-element col-md-4 col-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+    <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
       <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
       </a>
@@ -19,7 +19,7 @@ export default class PreNba extends React.Component {
     );
 
     var players_teams = preNba.players.map((player) =>
-    <div className="grid-element col-md-4 col-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+    <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
       <a href={ "/teams/" + getPlayer(player.toLowerCase().replace(/\s+/g, '')).teamURL }>
         { getPlayer(player.toLowerCase().replace(/\s+/g, '')).team }
       </a>

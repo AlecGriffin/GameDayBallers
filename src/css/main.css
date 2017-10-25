@@ -63,7 +63,7 @@ html {
   background-color: #6C6C6C;
 }
 
-.main .card.image-card.white-card .card-title {
+.card.image-card.white-card .card-title {
   background-color: white;
 }
 
@@ -101,15 +101,15 @@ ul {
 }
 
 .tbl {
-  width: 100%;
+  text-align: center;
+  padding: 0;
 }
 
 .tbl thead tr th{
-  padding: 7px;
+  text-align: center;
 }
 
 .tbl tbody tr td {
-  padding: 7px;
 }
 
 .table-head {
@@ -122,8 +122,7 @@ ul {
 }
 
 nav.navbar a.navbar-brand {
-  font-family: 'Pacifico', cursive;
-  font-size: 24px;
+  font-family: 'Futura';
 }
 
 nav.navbar a.navbar-brand:hover {
@@ -141,11 +140,6 @@ a {
 
 .card-list {
   margin-top: 10px;
-}
-
-.table thead {
-  background-color: #a12020;
-  color: white;
 }
 
 .grid-element {
@@ -185,6 +179,14 @@ a {
   text-align: center;
   background-color: #582335;
   color: white;
+}
+
+.card.display-card .card-body {
+  padding-top: 8px;
+}
+
+.display-3 {
+  margin-top: 10px;
 }
 
 @media only screen and (max-width: 768px) {
