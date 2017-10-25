@@ -10,3 +10,12 @@ handlers:
 - url: /.*
   script: main.app
 # [END handlers]
+
+env_variables:
+    CLOUDSQL_CONNECTION_NAME: game-day-ballers-181000:us-central1:gamedayballersdb
+    CLOUDSQL_USER: root
+    CLOUDSQL_PASSWORD: HocAnNy1q44nOl9e
+
+libraries:
+- name: MySQLdb
+  version: "latest"
