@@ -1,70 +1,104 @@
-# -*- coding: latin-1 -*-
+# coding=utf-8
+import db_helper
+import players
 
-# Read the team data as json
-def read_json():
-    return {
-        "houstonrockets" : {
-            "name": "Houston Rockets",
-            "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Houston_Rockets.svg/400px-Houston_Rockets.svg.png ",
-            "city": "Houston",
-            "state": "Texas",
-            "country": "United States",
-            "arena": "Toyota Center",
-            "head_coach": "Mike D’Antoni",
-            "coach_img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Mike_D%27Antoni_2010.jpg/440px-Mike_D%27Antoni_2010.jpg",
-            "coachURL": "mikedantoni",
-            "color": "red",
-            "twitter_name": "HoustonRockets",
-            "current_roster": ["Ryan Anderson", "Trevor Ariza", "Tarik Black", "Bobby Brown", "Clint Capela", "Eric Gordon", "James Harden", "Demetrius Jackson", "Chris Johnson", "Shawn Long", "Luc Mbah a Moute", "Nenê", "Cameron Oliver", "Chunanu Onauku", "Chris Paul", "Tim Quarterman", "Isaiah Taylor", "P.J. Tucker", "Troy Williams", "Zhou Qi"],
-            "titles": {
-              "championships": ["1994", "1995"],
-              "conference_champs": ["1981", "1986", "1994", "1995"],
-              "division_champs": ["1977", "1986", "2010", "1993", "1994", "2017"]
-             }
-        }, 
-        "sanantoniospurs" : {
-            "name": "San Antonio Spurs",
-            "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/San_Antonio_Spurs.svg/400px-San_Antonio_Spurs.svg.png ",
-            "city": "San Antonio",
-            "state": "Texas",
-            "country": "United States",
-            "arena": "AT&T Center",
-            "head_coach": "Gregg Popovich",
-            "coach_img":"https://i.imgur.com/B1UfYJl.jpg",
-            "coachURL": "greggpopovich",
-            "color": "gray",
-            "twitter_name": "spurs",
-            "current_roster": ["LaMarcus Aldridge", "Kyle Anderson", "Dāvis Bertāns", "Amida Brimah", "Matt Costello", "Bryn Forbes", "Pau Gasol", "Rudy Gay"," Manu Ginóbili", "Danny Green", "Darrun Hilliard", "Joffery Lauvergne", "Kawhi Leonard", "Patty Mills", "Dejounte Murray", "Tony Parker", "Brandon Paul", "London Perrantes", "Derrick White"],
-            "titles": {
-              "championships": ["1999", "2003", "2005", "2007", "2014"],
-              "conference_champs": ["1999", "2003", "2005", "2007", "2013", "2014"],
-              "division_champs": ["2001", "2002", "2003", "2005", "2006", "2009", "2011", "2012", "2013", "2014", "2016", "2017"]
-            }
-        },
-        "clevelandcavaliers" : {
-            "name": "Cleveland Cavaliers",
-            "logo_url": "http://logos-download.com/wp-content/uploads/2016/04/Cleveland_Cavaliers_logo_logotype_emblem.png ",
-            "city": "Cleveland",
-            "state": "Ohio",
-            "country": "United States",
-            "arena": "Quicken Loans Arena",
-            "head_coach": "Tyronn Lue",
-            "coach_img":"http://image.news-herald.com/storyimage/HR/20170530/SPORTS/170539989/AR/0/AR-170539989.jpg&maxh=400&maxw=667",
-            "coachURL": "tyronnlue",
-            "color": "wine",
-            "twitter_name": "cavs",
-            "current_roster": ["José Calderón", "Jae Crowder", "Kay Felder", "Channing Frye", "Jeff Green", "John Holland", "LeBron James", "Richard Jefferson", "Kyle Korver", "Kevin Love", "Cedi Osman", "Kendrick Perkins", "Derrick Rose", "Iman Shumpert", "J.R. Smith", "Walter Tavares"," Isaiah Thomas", "Tristan Thompson", "Ante Žižić"],
-            "titles": {
-              "championships": ["2016"],
-              "conference_champs": ["2007", "2015", "2016", "2017"],
-              "division_champs": ["1976", "2009", "2010", "2015", "2016", "2017"]
-            }   
-        }
-    }
-    
+"""
+# SQL Schema
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| TeamID     | varchar(15)   | YES  |     | NULL    |       | 0
+| TeamCity   | varchar(25)   | YES  |     | NULL    |       | 1
+| TeamName   | varchar(25)   | YES  |     | NULL    |       | 2
+| Team       | varchar(50)   | YES  |     | NULL    |       | 3
+| TeamAPIID  | varchar(50)   | YES  |     | NULL    |       | 4
+| Conference | varchar(10)   | YES  |     | NULL    |       | 5
+| Division   | varchar(20)   | YES  |     | NULL    |       | 6
+| CoachID    | varchar(5)    | YES  |     | NULL    |       | 7
+| Roster     | varchar(2000) | YES  |     | NULL    |       | 8
+| Arena      | varchar(30)   | YES  |     | NULL    |       | 9
+| Titles     | varchar(1000) | YES  |     | NULL    |       | 10
+| ImageURL   | varchar(500)  | YES  |     | NULL    |       | 11
++------------+---------------+------+-----+---------+-------+ 
+"""
+# JSON Format
+"""
+{
+  "name": "San Antonio Spurs",
+  "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/San_Antonio_Spurs.svg/400px-San_Antonio_Spurs.svg.png ",
+  "city": "San Antonio",
+  "state": "Texas",
+  "country": "United States",
+  "arena:": "AT&T Center",
+  "head_coach": "Gregg Popovich",
+  "current_roster": [
+    "LaMarcus Aldridge",
+    "Kyle Anderson",
+    "Dāvis Bertāns",
+    "Amida Brimah",
+    "Matt Costello",
+    "Bryn Forbes",
+    "Pau Gasol",
+    "Rudy Gay",
+    " Manu Ginóbili",
+    "Danny Green",
+    "Darrun Hilliard",
+    "Joffery Lauvergne",
+    "Kawhi Leonard",
+    "Patty Mills",
+    "Dejounte Murray",
+    "Tony Parker",
+    "Brandon Paul",
+    "London Perrantes",
+    "Derrick White"
+  ]
+}
+"""
+
+# Returns brief meta-data for every team in the DB
 def list_teams():
-    return read_json()
+    with db_helper.db_connect() as db:
+        teams = []
+        for row in db.list_table("teams"):
+            teams.append(row_to_blurb(row))
+        return teams
 
+# For a given SQL row, convert into a meta-data "blurb"
+def row_to_blurb(row):
+    return {
+        "name": row[2],
+        "url": "/teams/" + row[4],
+        "image_url": row[11]
+    }
+
+# Get short meta-data for just one team
+def get_team(team_id):
+    with db_helper.db_connect() as db:
+        rows = db.get_row("teams", "TeamAPIID", team_id)
+        if len(rows) == 1:
+            return row_to_blurb(rows[0])
+        else:
+            return None
+
+# Get detailed information about a team
 def get_team_info(team_id):
-    return read_json()[team_id]
 
+    with db_helper.db_connect() as db:
+        rows = db.get_row("teams", "TeamAPIID", team_id)
+        if len(rows) == 1:
+            row = rows[0]
+            team = {
+                "name": row[3],
+                "logo_url": row[11],
+                "city": row[1],
+                "arena:": row[9],
+                "head_coach": "/coaches/%s"%(row[7]),
+                "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
+            }
+            return team
+        else:
+            return None
+
+if __name__ == '__main__':
+    print(list_teams())
+    print(get_team_info("sanantoniospurs"))
