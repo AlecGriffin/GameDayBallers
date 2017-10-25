@@ -108,7 +108,7 @@ function generateThumbnail(person, commits) {
         this.setState({
            Total_Commits: total,
            Alec_Commits: response['data'][2]['total'],
-          //  Regan_Commits: response['data'][#]['total'],
+          //      Regan_Commits: response['data'][#]['total'],
            Andrew_Commits: response['data'][3]['total'],
            Vikram_Commits: response['data'][0]['total'],
            Nihal_Commits: response['data'][1]['total']
