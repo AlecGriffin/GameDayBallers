@@ -8,7 +8,7 @@ export default class Person_Thumbnail extends Component{
       <div className="card image-card full-image">
         <div className="card-title">
           {this.props.name}
-          <img src={this.props.img_src}/>
+          <img src={this.props.img_src} alt="Certified Baller"/>
         </div>
         <div className="card-body">
           <ul>

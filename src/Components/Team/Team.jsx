@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Timeline } from 'react-twitter-widgets'
 import { getTeam } from '../../json_old/team_data.js';
-import ReactDOM from 'react-dom';
 import {Row, Col} from 'react-bootstrap';
 
 export default class Team extends Component {
@@ -20,7 +19,7 @@ export default class Team extends Component {
     );
 
     var titlesCard;
-    if (team.titles.championships.length != 0) {
+    if (team.titles.championships.length !== 0) {
       titlesCard = (
         <div className="card">
           <div className="card-title">
@@ -60,7 +59,7 @@ export default class Team extends Component {
           <Col md={4}>
             <div className="card image-card white-card">
               <div className="card-title">
-                <img src={team.logo_url}/>
+                <img src={team.logo_url} alt="Team Logo"/>
               </div>
               <div className="card-body">
                 <ul>
@@ -95,7 +94,7 @@ export default class Team extends Component {
                       <a href={ coachURL }>
                         <div className="card image-card full-image">
                           <div className="card-title">
-                            <img src={team.coach_img}/>
+                            <img src={team.coach_img} alt="Head Coach"/>
                           </div>
                           <div className="card-body">
                             {team.head_coach}

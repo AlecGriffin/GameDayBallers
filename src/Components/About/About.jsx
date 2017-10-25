@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../../css/main.css';
-import Person_Thumbnail from './Person_Thumbnail.jsx';
+import PersonThumbnail from './Person_Thumbnail.jsx';
 import { Grid, Row, Col, Image, Thumbnail, Clearfix } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -69,7 +69,7 @@ function generateTools(){
 
 function generateThumbnail(person, commits) {
   return(
-    <Person_Thumbnail
+    <PersonThumbnail
       name= {person.name}
       img_src= {person.img_src}
       about= {person.about}

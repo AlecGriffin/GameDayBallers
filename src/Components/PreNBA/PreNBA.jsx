@@ -4,6 +4,7 @@ import { getPlayer } from '../../json_old/player_data.js';
 import {Row, Col} from 'react-bootstrap';
 
 export default class Player extends Component {
+  
   render() {
     var url = window.location.href;
     var schoolName = url.split('/')[url.split('/').length - 1];
@@ -32,7 +33,7 @@ export default class Player extends Component {
           <Col md={4}>
             <div className="card image-card white-card">
               <div className="card-title">
-                <img src={preNba.logo}/>
+                <img src={preNba.logo} alt="logo"/>
               </div>
               <div className="card-body">
                 <ul>
@@ -48,7 +49,7 @@ export default class Player extends Component {
             <div className="card image-card full-image">
               <div className="card-title">
                 Mascot
-                <img src={preNba.mascot_img}/>
+                <img src={preNba.mascot_img} alt="mascot"/>
               </div>
               <div className="card-body">
                 <b>{preNba.mascot}</b>

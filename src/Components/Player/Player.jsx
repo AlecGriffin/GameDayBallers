@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { getPlayer } from '../../json_old/player_data.js';
 import { Row, Col, Table } from 'react-bootstrap';
-import Sound from 'react-sound';
+// import Sound from 'react-sound';
 import lebron_james_audio_file from './lebron_james_vine.wav';
 
 export default class Player extends Component {
 
   playSound () {
+
     const audio = new Audio(lebron_james_audio_file)
     // audio.play()
   }
@@ -32,7 +33,7 @@ export default class Player extends Component {
     );
 
     var pastTeamsCard;
-    if (player.past_teams.length != 0) {
+    if (player.past_teams.length !== 0) {
       pastTeamsCard = (
         <div className="card">
           <div className="card-title">
@@ -47,7 +48,7 @@ export default class Player extends Component {
     }
 
     var recognitionsCard;
-    if (player.recognitions.length != 0) {
+    if (player.recognitions.length !== 0) {
       recognitionsCard = (
         <div className="card">
           <div className="card-title">
@@ -73,7 +74,7 @@ export default class Player extends Component {
             <div className="card image-card">
               <div className="card-title">
                 { player.name } #{ player.jersey_number }
-                <img src={ player.image_url } />
+                <img src={ player.image_url } alt="Player"/>
               </div>
               <div className="card-body">
                 <ul>
@@ -150,6 +151,7 @@ export default class Player extends Component {
                 </Row>
               </div>
             </div>
+
             <Row>
               <Col lg={6}>
                 { recognitionsCard }

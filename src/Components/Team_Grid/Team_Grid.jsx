@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Team_Thumbnail from './Team_Thumbnail/Team_Thumbnail.jsx';
+import TeamThumbnail from './Team_Thumbnail/Team_Thumbnail.jsx';
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ export default class Team_Grid extends Component {
   RenderTeamThumbnail(link, Team_name, img_source){
     return(
       <Link to= {link}>
-        <Team_Thumbnail name={Team_name} src={img_source}/>
+        <TeamThumbnail name={Team_name} src={img_source}/>
       </Link>
     );
   }

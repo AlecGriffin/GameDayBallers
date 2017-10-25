@@ -30,7 +30,7 @@ export default class Team extends Component {
     );
 
     var pastTeamsCard;
-    if (coach.past_teams.length != 0) {
+    if (coach.past_teams.length !== 0) {
       pastTeamsCard = (
         <div className="card">
           <div className="card-title">
@@ -45,7 +45,7 @@ export default class Team extends Component {
     }
 
     var recognitionsCard;
-    if (coach.recognitions.length != 0) {
+    if (coach.recognitions.length !== 0) {
       recognitionsCard = (
         <div className="card">
           <div className="card-title">
