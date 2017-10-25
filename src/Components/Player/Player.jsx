@@ -109,44 +109,46 @@ export default class Player extends Component {
               </div>
               <div className="card-body card-table">
                 <Row>
-                  <Table className="tbl first-half col-sm-6">
-                    <thead className="table-head">
-                      <tr>
-                        <th>MPG</th>
-                        <th>FG%</th>
-                        <th>3P%</th>
-                        <th>FT%</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{ player.career_stats.minutes_per_game }</td>
-                        <td>{ player.career_stats.field_goal_percentage }</td>
-                        <td>{ player.career_stats.three_point_percentage }</td>
-                        <td>{ player.career_stats.free_throw_percentage }</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-
-
-                  <Table className="tbl second-half col-sm-6">
-                    <thead className="table-head">
-                      <tr>
-                        <th>PPG</th>
-                        <th>RPG</th>
-                        <th>APG</th>
-                        <th>BPG</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{ player.career_stats.points_per_game }</td>
-                        <td>{ player.career_stats.rebounds_per_game }</td>
-                        <td>{ player.career_stats.assists_per_game }</td>
-                        <td>{ player.career_stats.blocks_per_game }</td>
-                      </tr>
-                    </tbody>
-                  </Table>
+                  <div className="tbl col-sm-6">
+                    <Table responsive>
+                      <thead className="table-head">
+                        <tr>
+                          <th>MPG</th>
+                          <th>FG%</th>
+                          <th>3P%</th>
+                          <th>FT%</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{ player.career_stats.minutes_per_game }</td>
+                          <td>{ player.career_stats.field_goal_percentage }</td>
+                          <td>{ player.career_stats.three_point_percentage }</td>
+                          <td>{ player.career_stats.free_throw_percentage }</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </div>
+                  <div className="tbl col-sm-6">
+                    <Table responsive>
+                      <thead className="table-head">
+                        <tr>
+                          <th>PPG</th>
+                          <th>RPG</th>
+                          <th>APG</th>
+                          <th>BPG</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{ player.career_stats.points_per_game }</td>
+                          <td>{ player.career_stats.rebounds_per_game }</td>
+                          <td>{ player.career_stats.assists_per_game }</td>
+                          <td>{ player.career_stats.blocks_per_game }</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </div>
                 </Row>
               </div>
             </div>

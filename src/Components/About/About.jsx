@@ -124,7 +124,7 @@ function generateThumbnail(person, commits) {
        <div className="main">
        <div className="card display-card">
          <div className="card-body">
-           <h3 className="display-3">Certified Ballers</h3>
+           <h1 className="display-3">Certified Ballers</h1>
          </div>
        </div>
 
@@ -141,8 +141,7 @@ function generateThumbnail(person, commits) {
          </Row>
 
          <Row>
-           <Col md={2}></Col>
-           <Col md={4}>
+           <Col md={4} mdOffset={2}>
                {generateThumbnail(Project_Members.Nihal, this.state.Nihal_Commits)}
            </Col>
            <Col md={4}>

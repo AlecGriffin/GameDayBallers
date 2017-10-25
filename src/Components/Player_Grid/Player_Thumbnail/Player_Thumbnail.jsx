@@ -5,10 +5,15 @@ export default class Player_Thumbnail extends Component {
 
   render(){
     return(
-      <Col xs={6} md={4}>
-        <Thumbnail src={this.props.src} alt="242x200">
-          <h3>{this.props.name}</h3>
-        </Thumbnail>
+      <Col xs={6} md={4} className="text-center">
+          <div className="card image-card">
+            <div className="card-title">
+              <img src={this.props.src}/>
+            </div>
+            <div className="card-body">
+              {this.props.name}
+            </div>
+          </div>
       </Col>
     );
   }

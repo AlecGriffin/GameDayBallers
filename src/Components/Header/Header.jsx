@@ -6,13 +6,13 @@ import { LinkContainer } from 'react-router-bootstrap';
 export default class Header extends Component {
   render(){
     return(
-      <Navbar>
+      <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to='/'>Game Day Ballers</Link>
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
-        <Navbar.Toggle />
 
         <Navbar.Collapse>
           <Nav pullRight>

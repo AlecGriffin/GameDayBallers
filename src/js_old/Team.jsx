@@ -11,7 +11,7 @@ export default class Team extends React.Component {
     var coachURL = "/coaches/" + team.coachURL;
 
     var roster = team.current_roster.map((player) =>
-    <div className="grid-element col-md-4 col-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+    <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
       <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
       </a>
