@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getCoach } from '../../json_old/coach_data.js';
 import ReactDOM from 'react-dom';
 import {Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 export default class Team extends Component {
   render() {
@@ -9,9 +10,10 @@ export default class Team extends Component {
     var coachName = url.split('/')[url.split('/').length - 1];
     var coach = getCoach(coachName);
 
+
     var pastTeams = coach.past_teams.map((team) =>
       <li key={team.toLowerCase().replace(/\s+/g, '')}>
-        <a>{team}</a>
+        <Link to='/'>{team}</Link>
       </li>
     );
 
@@ -23,9 +25,9 @@ export default class Team extends Component {
 
     var roster = coach.current_roster.map((player) =>
     <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
+      <Link to={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
-      </a>
+      </Link>
     </div>
     );
 
@@ -74,7 +76,7 @@ export default class Team extends Component {
                     <b>{ coach.name }</b>
                   </li>
                   <li>
-                    <a href={ "/teams/" + coach.current_team.toLowerCase().replace(/\s+/g, '') }><b>{ coach.current_team }</b></a>
+                    <Link to={ "/teams/" + coach.current_team.toLowerCase().replace(/\s+/g, '') }><b>{ coach.current_team }</b></Link>
                   </li>
                   <li id="dob">
                     <b>Date of Birth: </b>{ coach.dob }

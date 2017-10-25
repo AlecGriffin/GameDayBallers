@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { getPlayer } from '../../json_old/player_data.js';
 import { Row, Col, Table } from 'react-bootstrap';
-// import Sound from 'react-sound';
 import lebron_james_audio_file from './lebron_james_vine.wav';
+import {Link} from 'react-router-dom';
 
 export default class Player extends Component {
 
@@ -18,11 +18,11 @@ export default class Player extends Component {
     var playerName = url.split('/')[url.split('/').length - 1];
     var player = getPlayer(playerName);
     var prenbaURL = "/pre-nba/" + player.prenbaURL;
+    var teamURL = "/teams/" + player.team.toLowerCase().replace(/\s+/g, '')
 
     var pastTeams = player.past_teams.map((team) =>
       <li key={team.toLowerCase().replace(/\s+/g, '')}>
-        <a>{team}</a>
-
+        <Link to='/'>{team}</Link>
       </li>
     );
 
@@ -79,9 +79,7 @@ export default class Player extends Component {
               <div className="card-body">
                 <ul>
                   <li>
-                    <a href={ "/teams/" + player.team.toLowerCase().replace(/\s+/g, '') }>
-                      <b>{ player.team }</b>
-                    </a>
+                    <Link to={ teamURL }><b>{ player.team }</b></Link>
                   </li>
                   <li>
                     <b>Position:</b> { player.position }
@@ -96,7 +94,7 @@ export default class Player extends Component {
                     <b>Date of Birth:</b> { player.dob }
                   </li>
                   <li>
-                    <b>Pre-NBA Career:</b> <a href={ prenbaURL }>{ player.prenba }</a>
+                    <b>Pre-NBA Career:</b> <Link to={ prenbaURL }>{ player.prenba }</Link>
                   </li>
                 </ul>
               </div>

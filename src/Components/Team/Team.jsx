@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Timeline } from 'react-twitter-widgets'
 import { getTeam } from '../../json_old/team_data.js';
 import {Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 export default class Team extends Component {
   render() {
@@ -12,9 +13,9 @@ export default class Team extends Component {
 
     var roster = team.current_roster.map((player) =>
     <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
+      <Link to={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
-      </a>
+      </Link>
     </div>
     );
 
@@ -91,7 +92,7 @@ export default class Team extends Component {
                   <Row>
                     <Col mdOffset={4} sm={4} className="text-center">
                       <h3>Head Coach</h3>
-                      <a href={ coachURL }>
+                      <Link to={ coachURL }>
                         <div className="card image-card full-image">
                           <div className="card-title">
                             <img src={team.coach_img} alt="Head Coach"/>
@@ -100,7 +101,7 @@ export default class Team extends Component {
                             {team.head_coach}
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </Col>
                   </Row>
 

@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { getPreNba } from '../../json_old/pre_nba_data.js';
 import { getPlayer } from '../../json_old/player_data.js';
 import {Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 export default class Player extends Component {
-  
+
   render() {
     var url = window.location.href;
     var schoolName = url.split('/')[url.split('/').length - 1];
@@ -13,17 +14,17 @@ export default class Player extends Component {
 
     var players = preNba.players.map((player) =>
     <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <a href={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
+      <Link to={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
-      </a>
+      </Link>
     </div>
     );
 
     var players_teams = preNba.players.map((player) =>
     <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <a href={ "/teams/" + getPlayer(player.toLowerCase().replace(/\s+/g, '')).teamURL }>
+      <Link to={ "/teams/" + getPlayer(player.toLowerCase().replace(/\s+/g, '')).teamURL }>
         { getPlayer(player.toLowerCase().replace(/\s+/g, '')).team }
-      </a>
+      </Link>
     </div>
     );
 
