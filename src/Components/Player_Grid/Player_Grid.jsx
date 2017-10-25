@@ -19,6 +19,7 @@ export default class Player_Grid extends Component {
 
   // Use this method to generate Thumbnails when future API is created
   RenderPlayerThumbnails(){
+    var result = []
     for(let i = 0; i < 9; i++){
       result.push(this.RenderPlayerThumbnail('players/lebronjames', 'Lebron James', 'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/2544.png' ));
     }

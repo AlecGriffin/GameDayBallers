@@ -1,11 +1,11 @@
-import React, {Component} from 'react'{}
+import React, {Component} from 'react'
 import Coach_Thumbnail from './Coach_Thumbnail/Coach_Thumbnail.jsx'
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 export default class Coach_Grid extends Component {
-  
+
   constructor(props){
     super(props)
     this.state = {}
