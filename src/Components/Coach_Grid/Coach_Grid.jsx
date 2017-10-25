@@ -4,6 +4,9 @@ import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 export default class Coach_Grid extends Component {
+
+
+
   RenderCoachThumbnail(link, Coach_name, img_source){
     return(
       <Link to= {link}>
@@ -20,6 +23,8 @@ export default class Coach_Grid extends Component {
     }
     return result;
   }
+
+
 
   render(){
     return(
