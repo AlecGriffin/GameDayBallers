@@ -93,19 +93,25 @@ function generateThumbnail(person, commits) {
        Andrew_Commits: 0,
        Vikram_Commits: 0,
        Nihal_Commits: 0,
-       Number_Of_Issues: 0
+       Number_Of_Issues: 0,
+       Number_Of_Tests: 0
      };
 
       // Get Total and Individual Commit Numbers (from Github)
       axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors").then(response => {
-        var total = response['data'][0]['total'] + response['data'][1]['total'] + response['data'][2]['total']
+        var total = response['data'][0]['total']
+        + response['data'][1]['total']
+        + response['data'][2]['total']
+        + response['data'][3]['total']
+        // + response['data'][4]['total']
+
         this.setState({
            Total_Commits: total,
-           Alec_Commits: response['data'][1]['total'],
+           Alec_Commits: response['data'][2]['total'],
           //  Regan_Commits: response['data'][#]['total'],
-           Andrew_Commits: response['data'][2]['total'],
-          //  Vikram_Commits: response['data'][#]['total'],
-           Nihal_Commits: response['data'][0]['total']
+           Andrew_Commits: response['data'][3]['total'],
+           Vikram_Commits: response['data'][0]['total'],
+           Nihal_Commits: response['data'][1]['total']
          })
         });
 
