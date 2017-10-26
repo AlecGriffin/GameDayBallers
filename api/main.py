@@ -6,7 +6,7 @@ import MySQLdb
 from models import teams, players, coaches, divisions
 
 # To get the sql dump in appropriate format
-# mysqldump --databases gamedayballersdb -uroot -p --hex-blob --skip-triggers --set-gtid-purged=OFF --default-character-set=utf8 > ballersexport_v2.sql
+# mysqldump --databases gamedayballersdb -uroot -p --hex-blob --skip-triggers --set-gtid-purged=OFF --default-character-set=utf8 > ballersexport_v3.sql
 
 app = Flask(__name__)
 

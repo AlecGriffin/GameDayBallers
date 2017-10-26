@@ -19,6 +19,7 @@ import players, coaches
 | Arena      | varchar(30)   | YES  |     | NULL    |       | 9
 | Titles     | varchar(1000) | YES  |     | NULL    |       | 10
 | ImageURL   | varchar(500)  | YES  |     | NULL    |       | 11
+| TeamColor  | varchar(30)   | YES  |     | NULL    |       | 12
 +------------+---------------+------+-----+---------+-------+ 
 """
 # JSON Format
@@ -82,8 +83,17 @@ def get_team(team_id):
             return None
 
 
+
 # Get detailed information about a team
 def get_team_info(team_id):
+
+    def get_titles(row):
+        titles = row.split(";")
+        return {
+            "championships": [i.strip() for i in titles[0].split(",")] if titles[0] else [],
+            "conference_champs": [i.strip() for i in titles[1].split(",")] if titles[1] else [],
+            "division_champs": [i.strip() for i in titles[2].split(",")] if titles[2] else [],
+        }
 
     with db_helper.db_connect() as db:
         rows = db.get_rows("teams", "TeamAPIID", team_id)
@@ -95,11 +105,8 @@ def get_team_info(team_id):
                 "city": row[1],
                 "arena": row[9],
                 "head_coach": coaches.get_coach_by_number(row[7]),
-                "titles": {
-                    "championships": [],
-                    "conference_champs": [],
-                    "division_champs": [],
-                },
+                "color": row[12],
+                "titles": get_titles(row[10]),
                 "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
             }
             return team
@@ -108,4 +115,4 @@ def get_team_info(team_id):
 
 if __name__ == '__main__':
     print(list_teams())
-    print(get_team_info("sanantoniospurs"))
+    print(get_team_info("laclippers"))
