@@ -1,17 +1,13 @@
-from flask import Flask
-from flask import Response
-from flask import jsonify
-import os
-import MySQLdb
+from flask import Flask, Response, jsonify
+from datetime import timedelta
+from flask import make_response, request, current_app
+from functools import update_wrapper
 from models import teams, players, coaches, prenba
 
 # mysqldump --databases gamedayballersdb -uroot -p --hex-blob --skip-triggers --set-gtid-purged=OFF --default-character-set=utf8 > ballersexport.sql
 
 app = Flask(__name__)
 
-from datetime import timedelta
-from flask import make_response, request, current_app
-from functools import update_wrapper
 
 # Snippet copied from http://flask.pocoo.org/snippets/56/
 def crossdomain(origin=None, methods=None, headers=None,
