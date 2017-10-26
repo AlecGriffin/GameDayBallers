@@ -172,7 +172,7 @@ export default class Player extends Component {
                       </tbody>
                     </Table>
                   </Col>
-                  <Col sm={6} className="tbl">
+                  <Col sm={6} className="tbl second-half">
                     <Table responsive>
                       <thead className="table-head">
                         <tr>
