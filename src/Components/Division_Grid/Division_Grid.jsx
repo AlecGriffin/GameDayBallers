@@ -11,7 +11,8 @@ export default class Division_Grid extends Component {
       divisions: [{
         'image_url': '',
         'name': '',
-        'url' : ''}],
+        'url' : ''
+      }],
     }
 
     var url = "https://api-dot-game-day-ballers-181000.appspot.com/divisions/"

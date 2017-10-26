@@ -5,6 +5,7 @@ import { getPlayer } from '../../json_old/player_data.js';
 import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
 
 export default class Division extends Component {
   constructor(props){
@@ -24,17 +25,23 @@ export default class Division extends Component {
             "image_url": "",
             "name": "",
             "url": ""
-          }]
-      }
+          }],
+      },
+      "division_loaded" : false,
+      "team_reports" : [],
+      need_team_reports: true
     }
 
     var url = window.location.href;
     var division_url = 'https://api-dot-game-day-ballers-181000.appspot.com/divisions/' + url.split('/')[url.split('/').length - 1]
     axios.get(division_url).then(response => {
       this.setState({
-        division : response['data']
+        division : response['data'],
+        division_loaded : true
       })
     })
+
+    // this.getAxiosPromisesAllPlayers()
   }
 
   RenderTeamThumbnail(link, Team_name, img_source){
@@ -54,8 +61,68 @@ export default class Division extends Component {
     return result;
   }
 
-  render() {
+//////
 
+  getAxiosPromisesAllPlayers(){
+    // console.log("Loaded:" + this.state.division_loaded);
+    if(this.state.division_loaded){
+      // console.log("start");
+      // console.log(this.state.division.teams);
+      var promises = []
+      for(let i = 0; i < this.state.division.teams.length; i++){
+        var team = this.state.division.teams[i]
+        var url = 'https://api-dot-game-day-ballers-181000.appspot.com' + team.url
+        promises.push(axios.get(url))
+        // console.log(team.url)
+      }
+      // console.log("end");
+      return promises
+    }
+  }
+
+  getPlayers(){
+    // console.log("Loaded:" + this.state.division_loaded);
+    if(this.state.division_loaded){
+      // console.log("Before");
+      axios.all(this.getAxiosPromisesAllPlayers()).then((response) =>{
+
+        this.setState({
+          need_team_reports: false,
+          team_reports : response
+        })
+        console.log(response);
+        // console.log("All Players Aquired!");
+      })
+      // console.log("After");
+    }
+  }
+
+  RenderPlayerThumbnail(link, player_name, img_source){
+    return(
+      <Link to= {link}>
+        <PlayerThumbnail name={player_name} src={img_source}/>
+      </Link>
+    );
+  }
+
+  RenderPlayerThumbnails(){
+    var result = []
+    for(let i = 0; i < this.state.team_reports.length; i++){
+      for(let j = 0; j < this.state.team_reports[i].data.current_roster.length ; j++){
+        var player = this.state.team_reports[i].data.current_roster[j]
+        result.push(this.RenderPlayerThumbnail(player.url, player.name, player.image_url));
+      }
+    }
+    return result;
+  }
+
+
+  render() {
+    if(this.state.need_team_reports){
+        this.getPlayers()
+    }
+
+    // this.getPlayers()
     // MUST BE CHANGED
     /*var players = this.state.division.players.map((player) =>
     <Col md={4} xs={6} className="grid-element" key={player.toLowerCase().replace(/\s+/g, '')}>
@@ -139,6 +206,7 @@ export default class Division extends Component {
             <div className="card-title">
               Players
             </div>
+            {this.RenderPlayerThumbnails()}
             <div className="card-body">
 
               <div className="roster-wrapper">
