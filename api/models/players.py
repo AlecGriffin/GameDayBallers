@@ -70,7 +70,7 @@ def row_to_blurb(row):
 # Get short meta-data for just one player
 def get_player(player_id):
     with db_helper.db_connect() as db:
-        rows = db.get_row("players", "PlayerAPIID", player_id)
+        rows = db.get_rows("players", "PlayerAPIID", player_id)
         if len(rows) == 1:
             return row_to_blurb(rows[0])
         else:
@@ -92,7 +92,7 @@ def get_player_info(player_id):
         }
 
     with db_helper.db_connect() as db:
-        rows = db.get_row("players", "PlayerAPIID", player_id)
+        rows = db.get_rows("players", "PlayerAPIID", player_id)
         if len(rows) == 1:
             row = rows[0]
             player = {

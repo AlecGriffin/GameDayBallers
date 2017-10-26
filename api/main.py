@@ -1,12 +1,14 @@
-from flask import Flask, Response, jsonify
 from datetime import timedelta
-from flask import make_response, request, current_app
+from flask import make_response, request, current_app, Flask, Response, jsonify
 from functools import update_wrapper
-from models import teams, players, coaches, prenba
+import os
+import MySQLdb
+from models import teams, players, coaches, divisions
 
 # mysqldump --databases gamedayballersdb -uroot -p --hex-blob --skip-triggers --set-gtid-purged=OFF --default-character-set=utf8 > ballersexport.sql
 
 app = Flask(__name__)
+
 
 
 # Snippet copied from http://flask.pocoo.org/snippets/56/
@@ -88,13 +90,13 @@ def list_teams():
 def get_team_by_id(team_id):
     return jsonify(teams.get_team_info(team_id))
     
-@app.route('/pre-nba/', methods=['GET'])
+@app.route('/divisions/', methods=['GET'])
 @crossdomain(origin='*')
-def list_prenba():
-    return jsonify(prenba.list_prenba())
+def list_divisions():
+    return jsonify(divisions.list_divisions())
     
-@app.route('/pre-nba/<pre_nba_id>', methods=['GET'])
+@app.route('/divisions/<division_id>', methods=['GET'])
 @crossdomain(origin='*')
-def get_prenba_by_id(pre_nba_id):
-    return jsonify(prenba.get_prenba_info(pre_nba_id))
+def get_division_by_id(division_id):
+    return jsonify(divisions.get_division_info(division_id))
 

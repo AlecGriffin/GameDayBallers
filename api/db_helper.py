@@ -56,7 +56,7 @@ class DB:
         return self.cur.fetchall()
 
     # returns row where id name matches provided id
-    def get_row(self, table, id, row_id):
+    def get_rows(self, table, id, row_id):
         self.cur.execute("SELECT * FROM %s WHERE %s = '%s'"%(table, id, row_id))
         return self.cur.fetchall()
 
@@ -65,7 +65,7 @@ def main():
     with db_connect("localhost", "root", None, "gamedayballersdb") as db:
         for row in db.list_table("players"):
             print row
-        print(db.get_row("players", "PLAYERAPIID", "fake"))
+        print(db.get_rows("players", "PLAYERAPIID", "fake"))
 
 if __name__ == '__main__':
     main()

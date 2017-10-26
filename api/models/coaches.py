@@ -81,7 +81,15 @@ def row_to_blurb(row):
 # Get short meta-data for just one coach
 def get_coach(coach_id):
     with db_helper.db_connect() as db:
-        rows = db.get_row("coaches", "CoachAPIID", coach_id)
+        rows = db.get_rows("coaches", "CoachAPIID", coach_id)
+        if len(rows) == 1:
+            return row_to_blurb(rows[0])
+        else:
+            return None
+
+def get_coach_by_number(coach_id):
+    with db_helper.db_connect() as db:
+        rows = db.get_rows("coaches", "CoachID", coach_id)
         if len(rows) == 1:
             return row_to_blurb(rows[0])
         else:
@@ -91,7 +99,7 @@ def get_coach(coach_id):
 def get_coach_info(coach_id):
 
     with db_helper.db_connect() as db:
-        rows = db.get_row("coaches", "CoachAPIID", coach_id)
+        rows = db.get_rows("coaches", "CoachAPIID", coach_id)
         if len(rows) == 1:
             row = rows[0]
             coach = {
