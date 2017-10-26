@@ -1,2 +1,3 @@
+module: default
 runtime: nodejs
 env: flex

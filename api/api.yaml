@@ -1,0 +1,21 @@
+service: api
+runtime: python27
+api_version: 1
+threadsafe: true
+
+# [START handlers]
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  script: main.app
+# [END handlers]
+
+env_variables:
+    CLOUDSQL_CONNECTION_NAME: game-day-ballers-181000:us-central1:gamedayballersdb
+    CLOUDSQL_USER: root
+    CLOUDSQL_PASSWORD: HocAnNy1q44nOl9e
+
+libraries:
+- name: MySQLdb
+  version: "latest"
