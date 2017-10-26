@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
 import { Timeline } from 'react-twitter-widgets'
 import { getTeam } from '../../json_old/team_data.js';
 import {Row, Col} from 'react-bootstrap';
@@ -39,6 +40,23 @@ export default class Team extends Component {
         console.log(this.state.team)
       })
 
+  }
+
+  RenderPlayerThumbnail(link, player_name, img_source){
+    return(
+      <Link to= {link}>
+        <PlayerThumbnail name={player_name} src={img_source}/>
+      </Link>
+    );
+  }
+
+  RenderPlayerThumbnails(){
+    var result = []
+    for(let i = 0; i < this.state.team.current_roster.length; i++){
+      var player = this.state.team.current_roster[i]
+      result.push(this.RenderPlayerThumbnail(player.url, player.name, player.image_url));
+    }
+    return result;
   }
 
   render() {
@@ -140,9 +158,9 @@ export default class Team extends Component {
 
                   <div className="roster-wrapper row">
                     <Col sm={12}><h3>Players</h3></Col>
-                    <div className="roster row">
-                      { roster }
-                    </div>
+                    <Row className="roster row">
+                      { this.RenderPlayerThumbnails() }
+                    </Row>
                   </div>
                 </div>
               </div>
