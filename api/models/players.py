@@ -1,9 +1,11 @@
 # coding=utf-8
 import db_helper
 import teams
+from collections import Counter
 
 # SQL schema:
 """
+# Players:
 +--------------+---------------+------+-----+---------+-------+
 | Field        | Type          | Null | Key | Default | Extra |
 +--------------+---------------+------+-----+---------+-------+
@@ -22,6 +24,15 @@ import teams
 | CareerStats  | varchar(1000) | YES  |     | NULL    |       | 12
 | ImageURL     | varchar(500)  | YES  |     | NULL    |       | 13
 +--------------+---------------+------+-----+---------+-------+
+# Awards:
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| Player | varchar(60)  | YES  |     | NULL    |       |
+| Award  | varchar(500) | YES  |     | NULL    |       |
+| Year   | varchar(30)  | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+
 """
 # Player JSON example:
 """
@@ -76,6 +87,20 @@ def get_player(player_id):
         else:
             return None
 
+def get_awards_for_player(player_id):
+    with db_helper.db_connect() as db:
+        rows = db.get_rows("awards", "Player", player_id)
+        if len(rows) > 0:
+            awards = []
+            for k, v in Counter([row[1] for row in rows]).items():
+                if v == 1:
+                    awards.append(k)
+                else:
+                    awards.append(k + " x " + str(v))
+            return awards
+        else:
+            return []
+
 # Get detailed information about a player
 def get_player_info(player_id):
     def get_career_stats(stats_line):
@@ -106,7 +131,7 @@ def get_player_info(player_id):
               "weight": row[7],
               "prenba": row[9],
               "career_stats": get_career_stats(row[12]),
-              "recognitions": []
+              "recognitions": get_awards_for_player(player_id)
             }
             return player
         else:
@@ -116,4 +141,4 @@ def get_player_info(player_id):
 
 if __name__ == '__main__':
     print(list_players())
-    print(get_player_info("tylerdorsey"))
+    print(get_player_info("paulgeorge"))
