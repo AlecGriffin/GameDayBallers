@@ -81,7 +81,7 @@ def get_division_info(prenba_id):
               "inauguralSeason": row[2],
               "divChamp": row[5],
               "mostDivTitles": row[6],
-              "rivalries": [rivalry for rivalry in row[3].split(",")],
+              "rivalries": [rivalry for rivalry in row[7].split(",")],
               "imageURL": row[8]
             }
             return division
