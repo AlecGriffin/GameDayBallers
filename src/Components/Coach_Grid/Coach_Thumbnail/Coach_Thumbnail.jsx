@@ -10,7 +10,7 @@ export default class Coach_Thumbnail extends Component {
 
   render(){
     return(
-      <Col xs={6} sm={4} className="text-center">
+      <div className="text-center">
           <div className="card image-card full-image">
             <div className="card-title">
               <img onError={this.addDefaultSrc} src={this.props.src} alt='No Image Found'/>
@@ -19,7 +19,7 @@ export default class Coach_Thumbnail extends Component {
               {this.props.name}
             </div>
           </div>
-      </Col>
+      </div>
     );
   }
 }

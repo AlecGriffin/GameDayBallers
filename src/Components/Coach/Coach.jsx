@@ -28,7 +28,8 @@ export default class Team extends Component {
         "dob": "",
         "image_url": "",
         "name": "",
-        "recognitions": []
+        "recognitions": [],
+        "past_teams": []
       }
     }
 
@@ -68,17 +69,19 @@ export default class Team extends Component {
   render() {
     var coach = this.state.coach;
 
-    // var pastTeams = coach.past_teams.map((team) =>
-    //   <li key={team.toLowerCase().replace(/\s+/g, '')}>
-    //     <Link to='/'>{team}</Link>
-    //   </li>
-    // );
+     var pastTeams = coach.past_teams.map((team) =>
+       <li key={team.toLowerCase().replace(/\s+/g, '')}>
+         {/*<Link to="/teams/">*/}
+           { team }
+         {/*</Link>*/}
+       </li>
+     );
 
-    // var recognitions = coach.recognitions.map((rec) =>
-    // <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
-    //   {rec}
-    // </li>
-    // );
+     var recognitions = coach.recognitions.map((rec) =>
+     <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+       {rec}
+     </li>
+     );
 
     var roster = coach.current_roster.map((player) =>
     <Col md={4} xs={6} className="grid-element" key={player.name.toLowerCase().replace(/\s+/g, '')}>
@@ -88,44 +91,12 @@ export default class Team extends Component {
     </Col>
     );
 
-    // var pastTeamsCard;
-    // if (coach.past_teams.length !== 0) {
-    //   pastTeamsCard = (
-    //     <div className="card">
-    //       <div className="card-title">
-    //         Past Teams Coached
-    //       </div>
-    //       <div className="card-body card-list">
-    //         <ul>
-    //           { pastTeams }
-    //         </ul>
-    //       </div>
-    //     </div>);
-    // }
-
-    // var recognitionsCard;
-    // if (coach.recognitions.length !== 0) {
-    //   recognitionsCard = (
-    //     <div className="card">
-    //       <div className="card-title">
-    //         Recognitions
-    //       </div>
-    //       <div className="card-body card-list">
-    //         <ul>
-    //           { recognitions }
-    //         </ul>
-    //       </div>
-    //     </div>);
-    // }
-
-
     return (
       <div className={ "main " + coach.team_color }>
         <Row>
           <Col sm={4}>
             <div className="card image-card full-image">
               <div className="card-title">
-                {/* <img src={coach.image_url}/> */}
                 <img onError={this.addDefaultSrc} src={coach.image_url} alt='No Image Found'/>
               </div>
               <div className="card-body">
@@ -145,8 +116,26 @@ export default class Team extends Component {
                 </ul>
               </div>
             </div>
-            {/* { recognitionsCard }
-            { pastTeamsCard } */}
+            <div className="card">
+                <div className="card-title">
+                  Recognitions
+                </div>
+                <div className="card-body card-list">
+                  <ul>
+                    { recognitions }
+                  </ul>
+                </div>
+            </div>
+            <div className="card">
+              <div className="card-title">
+                Past Teams
+              </div>
+              <div className="card-body card-list">
+                <ul>
+                  { pastTeams }
+                </ul>
+              </div>
+            </div>
           </Col>
 
           <Col sm={8}>

@@ -196,6 +196,9 @@ function generateThumbnail(person, commits) {
                    <li>
                      <a href="https://utexas.box.com/s/u0t43jc0jag4qg1xbpl2cpixg3ofhbsi" className="card-link">Technical Report Link</a>
                    </li>
+                   <li>
+                     <a href="https://utexas.box.com/s/sbbyc59801wdpftua4sp2eqbe9nkd0i3" className="card-link">UML Diagram</a>
+                   </li>
                  </ul>
                </div>
              </div>
@@ -207,6 +210,7 @@ function generateThumbnail(person, commits) {
                  Data
                </div>
                <div className="card-body">
+                 <h3>Data Sources</h3>
                  <ul>
                    <li>
                        <a href="https://github.com/seemethere/nba_py/wiki/stats.nba.com-Endpoint-Documentation" className="card-link">Python API for NBA.com</a>
@@ -215,6 +219,10 @@ function generateThumbnail(person, commits) {
                      <a href="https://www.mysportsfeeds.com/data-feeds/" className="card-link">www.mysportsfeeds.com</a>
                    </li>
                  </ul>
+                 <h3>Scraping</h3>
+                 <p>
+                   How we scraped our data
+                 </p>
                </div>
              </div>
            </Col>

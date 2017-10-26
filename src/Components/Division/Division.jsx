@@ -116,6 +116,16 @@ export default class Division extends Component {
     return result;
   }
 
+  GetTeamName(url){
+    var result = "";
+    for(let i = 0; i < this.state.division.teams.length; i++){
+      if (this.state.division.teams[i].url.replace("/teams/","") == url) {
+        return this.state.division.teams[i].name;
+      }
+    }
+    return url;
+  }
+
 
   render() {
     if(this.state.need_team_reports){
@@ -162,16 +172,16 @@ export default class Division extends Component {
                   <b>{ this.state.division.name } Division</b>
                 </li>
                 <li>
-                  {this.state.division.conference} Conference
+                  <b>{this.state.division.conference} Conference</b>
                 </li>
                 <li>
-                  Inaugural Season: {this.state.division.inauguralSeason}
+                  <b>Inaugural Season:</b> {this.state.division.inauguralSeason}
                 </li>
                 <li>
-                  Most Recent Division Champion: {this.state.division.divChamp}
+                  <b>Most Recent Division Champion:</b> {this.GetTeamName(this.state.division.divChamp)}
                 </li>
                 <li>
-                  Team with the Most Division Titles: {this.state.division.mostDivTitles}
+                  <b>Team with the Most Division Titles:</b> {this.GetTeamName(this.state.division.mostDivTitles)}
                 </li>
               </ul>
             </div>

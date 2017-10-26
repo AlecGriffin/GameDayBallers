@@ -37,10 +37,11 @@ export default class Coach_Grid extends Component {
   }
 
   // Use this method to generate Thumbnails when future API is created
-  RenderCoachThumbnails(){
+  RenderCoachThumbnails(x, y){
     var result = []
-    for(let i = 0; i < this.state.coaches.length; i++){
+    for(let i = x; i <= y && i < this.state.coaches.length; i++){
       var coach = this.state.coaches[i]
+      console.log(coach);
       result.push(this.RenderCoachThumbnail(coach.url, coach.name, coach.image_url));
     }
     return result;
@@ -53,7 +54,15 @@ export default class Coach_Grid extends Component {
       <div className="main">
         <Grid>
           <Row>
-            {this.RenderCoachThumbnails()}
+            <Col xs={6} sm={4}>
+              {this.RenderCoachThumbnails(0, 9)}
+            </Col>
+            <Col xs={6} sm={4}>
+              {this.RenderCoachThumbnails(10, 19)}
+            </Col>
+            <Col xs={6} sm={4}>
+              {this.RenderCoachThumbnails(20, 29)}
+            </Col>
           </Row>
         </Grid>
       </div>

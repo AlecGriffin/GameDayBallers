@@ -13,7 +13,7 @@ export default class Team extends Component {
     super(props)
     this.state = {
     team : {
-      "arena:": "",
+      "arena": "",
       "city": "",
       "current_roster": [
         {
@@ -57,6 +57,10 @@ export default class Team extends Component {
       result.push(this.RenderPlayerThumbnail(player.url, player.name, player.image_url));
     }
     return result;
+  }
+
+  addDefaultSrc(ev){
+    ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
   }
 
   render() {
@@ -146,7 +150,7 @@ export default class Team extends Component {
                       <Link to={ this.state.team.head_coach.url }>
                         <div className="card image-card full-image">
                           <div className="card-title">
-                            {team.head_coach.image_url}
+                            <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt='No Image Found'/>
                           </div>
                           <div className="card-body">
                             {team.head_coach.name}

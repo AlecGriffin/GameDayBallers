@@ -47,12 +47,14 @@ export default class Player extends Component {
       })
       console.log(this.state.player);
     })
+
   }
 
   playSound () {
-
-    const audio = new Audio(lebron_james_audio_file)
-    // audio.play()
+    if (this.state.player.player == "LeBron James") {
+      const audio = new Audio(lebron_james_audio_file)
+      audio.play()
+    }
   }
 
 
@@ -75,52 +77,19 @@ export default class Player extends Component {
     //   </li>
     // );
 
-    // var recognitions = this.state.player.recognitions.map((rec) =>
-    // <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
-    //   {rec}
-    // </li>
-    // );
-
-    // var pastTeamsCard;
-    // if (this.state.player.past_teams.length !== 0) {
-    //   pastTeamsCard = (
-    //     <div className="card">
-    //       <div className="card-title">
-    //         Previous Teams
-    //       </div>
-    //       <div className="card-body text-center">
-    //         <ul>
-    //           { pastTeams }
-    //         </ul>
-    //       </div>
-    //     </div>);
-    // }
-
-    // var recognitionsCard;
-    // console.log(this.state.player.recognitions.length);
-    // if (this.state.player.recognitions.length !== 0) {
-    //   recognitionsCard = (
-    //     <div className="card">
-    //       <div className="card-title">
-    //         Recognitions
-    //       </div>
-    //       <div className="card-body card-list">
-    //         <ul>
-    //           { recognitions }
-    //         </ul>
-    //       </div>
-    //     </div>);
-    // }
-
-
+     var recognitions = this.state.player.recognitions.map((rec) =>
+     <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+       {rec}
+     </li>
+     );
 
     return(
 
       <div id="main" className={"main " + player.team_color}>
 
         <Row>
-          {this.playSound()}
           <Col sm={4}>
+            {this.playSound()}
             <div className="card image-card">
               <div className="card-title">
                 { this.state.player['player'] } #{ this.state.player['jersey_number']}
@@ -204,10 +173,28 @@ export default class Player extends Component {
 
              <Row>
               <Col lg={6}>
-                {/* { recognitionsCard } */}
+                <div className="card">
+                  <div className="card-title">
+                    Recognitions
+                  </div>
+                  <div className="card-body card-list">
+                    <ul>
+                      { recognitions }
+                    </ul>
+                  </div>
+                </div>
               </Col>
               <Col lg={6}>
-                {/* { pastTeamsCard } */}
+                <div className="card">
+                  <div className="card-title">
+                    Previous Teams
+                  </div>
+                  <div className="card-body text-center">
+                    <ul>
+                      {/*{ pastTeams }*/}
+                    </ul>
+                  </div>
+                </div>
               </Col>
             </Row>
           </Col>

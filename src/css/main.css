@@ -9,7 +9,10 @@ html {
 }
 
 #home-background {
-  background-image: url("http://andrewduna.com/Photos/24.jpg");
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('http://andrewduna.com/Photos/24.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size:  cover;
+  -o-background-size: cover;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
