@@ -28,8 +28,8 @@ export default class Header extends Component {
               <NavItem eventKey={3} >Coaches</NavItem>
             </LinkContainer>
 
-            <LinkContainer to='/pre-nba'>
-              <NavItem eventKey={4} >Pre-NBA</NavItem>
+            <LinkContainer to='/divisions'>
+              <NavItem eventKey={4} >Divisions</NavItem>
             </LinkContainer>
 
             <LinkContainer to='/about'>

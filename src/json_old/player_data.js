@@ -9,8 +9,8 @@ var james_harden = {
     "height": "6” 5’",
     "weight": "220",
     "country": "United States",
-    "prenba": "Arizona State",
-    "prenbaURL": "arizonastate",
+    "Division": "Arizona State",
+    "DivisionURL": "arizonastate",
     "debut": "",
     "team_color": "red",
     "career_stats": {
@@ -47,8 +47,8 @@ var kawhi_leonard = {
     "height": "6” 7’",
     "weight": "230",
     "country": "United States",
-    "prenba": "San Diego State",
-    "prenbaURL": "sandiegostate",
+    "Division": "San Diego State",
+    "DivisionURL": "sandiegostate",
     "debut": "",
     "team_color": "gray",
     "career_stats": {
@@ -87,8 +87,8 @@ var lebron_james = {
       "height": " 6” 8’",
       "weight": "250",
       "country": "United States",
-      "prenba": "St. Vincent-St. Mary HS (OH)",
-      "prenbaURL": "stvincentstmary",
+      "Division": "St. Vincent-St. Mary HS (OH)",
+      "DivisionURL": "stvincentstmary",
       "debut": "2003",
       "team_color": "wine",
       "career_stats": {

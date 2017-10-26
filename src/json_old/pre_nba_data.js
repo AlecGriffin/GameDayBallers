@@ -34,7 +34,7 @@ var st_vincent = {
 };
 
 
-export function getPreNba(schoolName) {
+export function getDivision(schoolName) {
   switch (schoolName) {
     case "arizonastate":
       return arizona_state;

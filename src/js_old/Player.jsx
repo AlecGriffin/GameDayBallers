@@ -7,7 +7,7 @@ export default class Player extends React.Component {
     var url = window.location.href;
     var playerName = url.split('/')[url.split('/').length - 1];
     var player = getPlayer(playerName);
-    var prenbaURL = "/pre-nba/" + player.prenbaURL;
+    var DivisionURL = "/pre-nba/" + player.DivisionURL;
 
     var pastTeams = player.past_teams.map((team) =>
       <li key={team.toLowerCase().replace(/\s+/g, '')}>
@@ -79,7 +79,7 @@ export default class Player extends React.Component {
                     <b>Date of Birth:</b> { player.dob }
                   </li>
                   <li>
-                    <b>Pre-NBA Career:</b> <a href={ prenbaURL }>{ player.prenba }</a>
+                    <b>Pre-NBA Career:</b> <a href={ DivisionURL }>{ player.Division }</a>
                   </li>
                 </ul>
               </div>

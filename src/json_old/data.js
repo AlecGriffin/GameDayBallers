@@ -9,8 +9,8 @@ james_harden = {
     "height": "6” 5’",
     "weight": "220",
     "country": "United States",
-    "prenba": "Arizona State",
-    "prenbaURL": "arizonastate",
+    "Division": "Arizona State",
+    "DivisionURL": "arizonastate",
     "debut": "",
     "career_stats": {
       "minutes_per_game": "33.6",
@@ -46,8 +46,8 @@ kawhi_leonard = {
     "height": "6” 7’",
     "weight": "230",
     "country": "United States",
-    "prenba": "San Diego State",
-    "prenbaURL": "sandiegostate",
+    "Division": "San Diego State",
+    "DivisionURL": "sandiegostate",
     "debut": "",
     "career_stats": {
       "minutes_per_game": "30.6",
@@ -85,8 +85,8 @@ lebron_james = {
       "height": " 6” 8’",
       "weight": "250",
       "country": "United States",
-      "prenba": "St. Vincent-St. Mary HS (OH)",
-      "prenbaURL": "stvincentstmary",
+      "Division": "St. Vincent-St. Mary HS (OH)",
+      "DivisionURL": "stvincentstmary",
       "debut": "2003",
       "career_stats": {
         "minutes_per_game": "38.9",

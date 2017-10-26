@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom';
-import PreNBA from '../PreNBA/PreNBA.jsx';
-import PreNBA_Grid from '../PreNBA_Grid/PreNBA_Grid.jsx';
+import Division from '../Division/Division.jsx';
+import Division_Grid from '../Division_Grid/Division_Grid.jsx';
 
- const PreNBARouter = () => (
+ const DivisionRouter = () => (
   <Switch>
-    <Route exact path='/pre-nba' component={PreNBA_Grid}/>
-    <Route path='/pre-nba/:name' component={PreNBA}/>
+    <Route exact path='/divisions' component={Division_Grid}/>
+    <Route path='/divisions/:name' component={Division}/>
   </Switch>
  );
-export default PreNBARouter;
+export default DivisionRouter;

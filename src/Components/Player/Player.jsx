@@ -28,7 +28,7 @@ export default class Player extends Component {
         "jersey_number": 0,
         "player": "",
         "position": "",
-        "prenba": "",
+        "Division": "",
         "recognitions": [],
         "team": {
           "image_url": "",
@@ -60,7 +60,7 @@ export default class Player extends Component {
     var url = window.location.href;
     // var playerName = url.split('/')[url.split('/').length - 1];
     var player = this.state.player
-    // var prenbaURL = "/pre-nba/" + player.prenbaURL;
+    // var DivisionURL = "/division/" + player.DivisionURL;
     // var teamURL = "/teams/" + player.team.toLowerCase().replace(/\s+/g, '')
 
     // var pastTeams = this.state.player.past_teams.map((team) =>
@@ -138,7 +138,7 @@ export default class Player extends Component {
                     <b>Date of Birth:</b> { player['dob'] }
                   </li>
                   <li>
-                    {/* <b>Pre-NBA Career:</b> <Link to={ prenbaURL }>{ player.prenba }</Link> */}
+                    {/* <b>Pre-NBA Career:</b> <Link to={ DivisionURL }>{ player.Division }</Link> */}
                   </li>
                 </ul>
               </div>

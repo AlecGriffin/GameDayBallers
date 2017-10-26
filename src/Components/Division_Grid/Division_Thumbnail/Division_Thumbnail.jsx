@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 
-export default class PreNBA_Thumbnail extends Component {
+export default class Division_Thumbnail extends Component {
   render(){
     return(
       <Col xs={6} sm={4} className="text-center">
