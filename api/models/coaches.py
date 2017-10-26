@@ -26,7 +26,6 @@ import teams
   "image_url": "http://image.news-herald.com/storyimage/HR/20170530/SPORTS/170539989/AR/0/AR-170539989.jpg&maxh=400&maxw=667 ",
   "dob": "",
   "current_team": "San Antonio Spurs",
-  "country_of_origin": "United States",
   "win_loss_percentage": "69.4",
   "current_roster": [
     "LaMarcus Aldridge",
@@ -103,12 +102,14 @@ def get_coach_info(coach_id):
         if len(rows) == 1:
             row = rows[0]
             coach = {
-              "name": row[1],
-              "image_url": row[9],
-              "dob": row[4],
-              "current_team": teams.get_team(row[3]),
-              "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
-              "recognitions": []
+                "name": row[1],
+                "image_url":row[9],
+                "dob": row[4],
+                "current_team": teams.get_team(row[3]),
+                "win_loss_percentage": row[5],
+                "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
+                "past_teams": [team for team in row[7].split(",")],
+                "recognitions": [award for award in row[6].split(";")]
             }
             return coach
         else:
