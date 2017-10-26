@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
 import { getCoach } from '../../json_old/coach_data.js';
 import ReactDOM from 'react-dom';
 import {Row, Col} from 'react-bootstrap';
@@ -38,6 +39,23 @@ export default class Team extends Component {
       })
       console.log(this.state.coach);
     })
+  }
+
+  RenderPlayerThumbnail(link, player_name, img_source){
+    return(
+      <Link to= {link}>
+        <PlayerThumbnail name={player_name} src={img_source}/>
+      </Link>
+    );
+  }
+
+  RenderPlayerThumbnails(){
+    var result = []
+    for(let i = 0; i < this.state.coach.current_roster.length; i++){
+      var player = this.state.coach.current_roster[i]
+      result.push(this.RenderPlayerThumbnail(player.url, player.name, player.image_url));
+    }
+    return result;
   }
 
 
@@ -127,13 +145,13 @@ export default class Team extends Component {
           <Col sm={8}>
             <div className="card grid-card">
               <div className="card-title">
-                Players
+                Roster
               </div>
               <div className="card-body">
 
                 <div className="roster-wrapper row">
                   <div className="roster row">
-                    { roster }
+                    { this.RenderPlayerThumbnails() }
                   </div>
                 </div>
               </div>

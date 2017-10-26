@@ -146,10 +146,10 @@ export default class Team extends Component {
                       <Link to={ this.state.team.head_coach.url }>
                         <div className="card image-card full-image">
                           <div className="card-title">
-                            <img src={team.coach_img} alt="Head Coach"/>
+                            {team.head_coach.image_url}
                           </div>
                           <div className="card-body">
-                            {team.head_coach.image_url}
+                            {team.head_coach.name}
                           </div>
                         </div>
                       </Link>
