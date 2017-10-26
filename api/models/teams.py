@@ -71,6 +71,7 @@ def row_to_blurb(row):
         "image_url": row[11]
     }
 
+
 # Get short meta-data for just one team
 def get_team(team_id):
     with db_helper.db_connect() as db:
@@ -79,6 +80,7 @@ def get_team(team_id):
             return row_to_blurb(rows[0])
         else:
             return None
+
 
 # Get detailed information about a team
 def get_team_info(team_id):
@@ -91,8 +93,13 @@ def get_team_info(team_id):
                 "name": row[3],
                 "logo_url": row[11],
                 "city": row[1],
-                "arena:": row[9],
+                "arena": row[9],
                 "head_coach": coaches.get_coach_by_number(row[7]),
+                "titles": {
+                    "championships": [],
+                    "conference_champs": [],
+                    "division_champs": [],
+                },
                 "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
             }
             return team
