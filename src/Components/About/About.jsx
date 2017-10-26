@@ -99,26 +99,27 @@ function generateThumbnail(person, commits) {
 
       // Get Total and Individual Commit Numbers (from Github)
       axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors").then(response => {
-        var total = response['data'][0]['total']
-        + response['data'][1]['total']
-        + response['data'][2]['total']
-        + response['data'][3]['total']
-        // + response['data'][4]['total']
+
+        let sum = 0
+        response.data.map((member)=>{
+          sum += member['total']
+        })
+
 
         this.setState({
-           Total_Commits: total,
-           Alec_Commits: response['data'][2]['total'],
+           Total_Commits: sum,
+           Alec_Commits: response.data[2].total,
           //      Regan_Commits: response['data'][#]['total'],
-           Andrew_Commits: response['data'][3]['total'],
-           Vikram_Commits: response['data'][0]['total'],
-           Nihal_Commits: response['data'][1]['total']
+           Andrew_Commits: response.data[3].total,
+           Vikram_Commits: response.data[0].total,
+           Nihal_Commits: response.data[1].total
          })
         });
 
         // Get Total and Individual Commit Numbers (from Github)
         axios.get("https://api.trello.com/1/lists/59cb1bf501fa898f2408415c/cards").then(response => {
           this.setState({
-             Number_Of_Issues: response['data'].length
+             Number_Of_Issues: response.data.length
            })
         });
 
