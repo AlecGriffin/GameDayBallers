@@ -12,7 +12,7 @@ export default class Team extends Component {
   constructor(props){
     super(props)
     this.state = {
-    'team' : {
+    team : {
       "arena:": "",
       "city": "",
       "current_roster": [
