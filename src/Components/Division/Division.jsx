@@ -9,10 +9,10 @@ export default class Division extends Component {
   render() {
     var url = window.location.href;
     var divisionName = url.split('/')[url.split('/').length - 1];
-    var division = getdivision(divisionName);
+    var division = getDivision(divisionName);
 
-/*
-    var players = division.players.map((player) =>
+    // MUST BE CHANGED
+    /*var players = division.players.map((player) =>
     <Col md={4} xs={6} className="grid-element" key={player.toLowerCase().replace(/\s+/g, '')}>
       <Link to={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
@@ -20,22 +20,22 @@ export default class Division extends Component {
     </Col>
     );
 
-    var players_teams = division.players.map((player) =>
+    var teams = division.players.map((player) =>
     <Col md={4} xs={6} className="grid-element" key={player.toLowerCase().replace(/\s+/g, '')}>
       <Link to={ "/teams/" + getPlayer(player.toLowerCase().replace(/\s+/g, '')).teamURL }>
         { getPlayer(player.toLowerCase().replace(/\s+/g, '')).team }
       </Link>
     </Col>
-    );
+    );*/
 
 
   var rivalries = division.rivalries.map((rivalry) =>
     <li>
-      Inaugural Season: {rivalry}
+      {rivalry}
     </li>
   );
 
-*/
+
     return (
       <div className="main">
         <Row>
@@ -64,7 +64,7 @@ export default class Division extends Component {
                 </ul>
               </div>
             </div>
-            <div className="card image-card white-card">
+            <div className="card">
               <div className="card-title">
                 Notable Rivalries
               </div>
@@ -85,7 +85,7 @@ export default class Division extends Component {
 
                 <div className="roster-wrapper">
                   <div className="roster row">
-                    { teams }
+
                   </div>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default class Division extends Component {
 
                 <div className="roster-wrapper">
                   <div className="roster row">
-                    { players }
+
                   </div>
                 </div>
               </div>

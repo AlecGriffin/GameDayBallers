@@ -4,10 +4,10 @@ import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default class Division_Grid extends Component {
-  RenderDivisionThumbnail(link, Division_name, img_source){
+  RenderDivisionThumbnail(link, division_name, img_source){
     return(
       <Link to= {link}>
-        <Division_Thumbnail name={Division_name} src={img_source}/>
+        <Division_Thumbnail name={division_name} src={img_source}/>
       </Link>
     );
   }
@@ -16,7 +16,7 @@ export default class Division_Grid extends Component {
   RenderDivisionThumbnails(){
     var result = [];
     for(let i = 0; i < 9; i++){
-      result.push(this.RenderDivisionThumbnail('/division/atlantic', 'Atlantic', 'https://imgur.com/CWOmrZE' ));
+      result.push(this.RenderDivisionThumbnail('/divisions/atlantic', 'Atlantic', 'https://imgur.com/CWOmrZE' ));
     }
     return result;
   }

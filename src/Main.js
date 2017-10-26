@@ -19,7 +19,7 @@ export default class Main extends Component {
             <Route path='/players' component={PlayerRouter}/>
             <Route path='/teams' component={TeamRouter}/>
             <Route path='/coaches' component={CoachRouter}/>
-            <Route path='/pre-NBA' component={DivisionRouter}/>
+            <Route path='/divisions' component={DivisionRouter}/>
           </Switch>
         </main>
       );
