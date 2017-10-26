@@ -8,12 +8,31 @@ export default class Coach_Grid extends Component {
 
   constructor(props){
     super(props)
-    this.state = {}
-    var url = " "
-    axios.get(url).then(response => {
+    // this.state = {}
+    // var url = "/coaches/ " // FIXME: Change this to the actual API URL
+    // var coaches = []
+    // axios.get(url).then(response => {
+    //   coaches
+    // })
 
+    this.state = {
+      coaches: [  {
+        "image_url": "",
+        "name": "",
+        "url": ""
+      }],
+    }
+
+
+    var url = "https://api-dot-game-day-ballers-181000.appspot.com/coaches/"
+
+    axios.get(url).then(response => {
+      this.setState({
+        coaches : response['data']
+      })
     })
   }
+
 
 
   RenderCoachThumbnail(link, Coach_name, img_source){
@@ -26,9 +45,10 @@ export default class Coach_Grid extends Component {
 
   // Use this method to generate Thumbnails when future API is created
   RenderCoachThumbnails(){
-    var result = [];
-    for(let i = 0; i < 9; i++){
-      result.push(this.RenderCoachThumbnail('/coaches/tyronnlue', 'Tyronn Lue', 'http://image.news-herald.com/storyimage/HR/20170530/SPORTS/170539989/AR/0/AR-170539989.jpg&maxh=400&maxw=667' ));
+    var result = []
+    for(let i = 0; i < this.state.coaches.length; i++){
+      var coach = this.state.coaches[i]
+      result.push(this.RenderCoachThumbnail(coach.url, coach.name, coach.image_url));
     }
     return result;
   }
@@ -37,11 +57,13 @@ export default class Coach_Grid extends Component {
 
   render(){
     return(
-      <Grid>
-        <Row>
-          {this.RenderCoachThumbnails()}
-        </Row>
-      </Grid>
+      <div className="main">
+        <Grid>
+          <Row>
+            {this.RenderCoachThumbnails()}
+          </Row>
+        </Grid>
+      </div>
     );
   }
 }

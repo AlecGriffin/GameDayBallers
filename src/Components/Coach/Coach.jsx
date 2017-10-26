@@ -3,69 +3,102 @@ import { getCoach } from '../../json_old/coach_data.js';
 import ReactDOM from 'react-dom';
 import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+
 
 export default class Team extends Component {
-  render() {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      'coach' : {
+        "current_roster": [
+          {
+            "image_url": "",
+            "name": "",
+            "url": ""
+          }
+        ],
+        "current_team": {
+          "image_url": "",
+          "name": "",
+          "url": ""
+        },
+        "dob": "",
+        "image_url": "",
+        "name": "",
+        "recognitions": []
+      }
+    }
     var url = window.location.href;
-    var coachName = url.split('/')[url.split('/').length - 1];
-    var coach = getCoach(coachName);
+    var coach_url = 'https://api-dot-game-day-ballers-181000.appspot.com/coaches/' + url.split('/')[url.split('/').length - 1]
+    axios.get(coach_url).then(response => {
+      this.setState({
+        coach : response['data']
+      })
+      console.log(this.state.coach);
+    })
+  }
 
 
-    var pastTeams = coach.past_teams.map((team) =>
-      <li key={team.toLowerCase().replace(/\s+/g, '')}>
-        <Link to='/'>{team}</Link>
-      </li>
-    );
+  render() {
+    var coach = this.state.coach;
 
-    var recognitions = coach.recognitions.map((rec) =>
-    <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
-      {rec}
-    </li>
-    );
+    // var pastTeams = coach.past_teams.map((team) =>
+    //   <li key={team.toLowerCase().replace(/\s+/g, '')}>
+    //     <Link to='/'>{team}</Link>
+    //   </li>
+    // );
+
+    // var recognitions = coach.recognitions.map((rec) =>
+    // <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+    //   {rec}
+    // </li>
+    // );
 
     var roster = coach.current_roster.map((player) =>
-    <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
-      <Link to={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
-        { player }
+    <Col md={4} xs={6} className="grid-element" key={player.name.toLowerCase().replace(/\s+/g, '')}>
+      <Link to={player.url}>
+        { player.name }
       </Link>
-    </div>
+    </Col>
     );
 
-    var pastTeamsCard;
-    if (coach.past_teams.length !== 0) {
-      pastTeamsCard = (
-        <div className="card">
-          <div className="card-title">
-            Past Teams Coached
-          </div>
-          <div class="card-body card-list">
-            <ul>
-              { pastTeams }
-            </ul>
-          </div>
-        </div>);
-    }
+    // var pastTeamsCard;
+    // if (coach.past_teams.length !== 0) {
+    //   pastTeamsCard = (
+    //     <div className="card">
+    //       <div className="card-title">
+    //         Past Teams Coached
+    //       </div>
+    //       <div className="card-body card-list">
+    //         <ul>
+    //           { pastTeams }
+    //         </ul>
+    //       </div>
+    //     </div>);
+    // }
 
-    var recognitionsCard;
-    if (coach.recognitions.length !== 0) {
-      recognitionsCard = (
-        <div className="card">
-          <div className="card-title">
-            Recognitions
-          </div>
-          <div class="card-body card-list">
-            <ul>
-              { recognitions }
-            </ul>
-          </div>
-        </div>);
-    }
+    // var recognitionsCard;
+    // if (coach.recognitions.length !== 0) {
+    //   recognitionsCard = (
+    //     <div className="card">
+    //       <div className="card-title">
+    //         Recognitions
+    //       </div>
+    //       <div className="card-body card-list">
+    //         <ul>
+    //           { recognitions }
+    //         </ul>
+    //       </div>
+    //     </div>);
+    // }
 
 
     return (
       <div className={ "main " + coach.team_color }>
         <Row>
-          <Col md={4}>
+          <Col sm={4}>
             <div className="card image-card full-image">
               <div className="card-title">
                 <img src={coach.image_url}/>
@@ -76,7 +109,7 @@ export default class Team extends Component {
                     <b>{ coach.name }</b>
                   </li>
                   <li>
-                    <Link to={ "/teams/" + coach.current_team.toLowerCase().replace(/\s+/g, '') }><b>{ coach.current_team }</b></Link>
+                    <Link to={ coach.current_team.url }><b>{ coach.current_team.name }</b></Link>
                   </li>
                   <li id="dob">
                     <b>Date of Birth: </b>{ coach.dob }
@@ -87,11 +120,11 @@ export default class Team extends Component {
                 </ul>
               </div>
             </div>
-            { recognitionsCard }
-            { pastTeamsCard }
+            {/* { recognitionsCard }
+            { pastTeamsCard } */}
           </Col>
 
-          <Col md={8}>
+          <Col sm={8}>
             <div className="card grid-card">
               <div className="card-title">
                 Players

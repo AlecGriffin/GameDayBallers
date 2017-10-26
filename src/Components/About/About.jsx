@@ -135,22 +135,22 @@ function generateThumbnail(person, commits) {
        </div>
 
        <Row>
-          <Col md={4}>
+          <Col sm={4}>
                {generateThumbnail(Project_Members.Alec, this.state.Alec_Commits)}
           </Col>
-           <Col md={4}>
+           <Col sm={4}>
                {generateThumbnail(Project_Members.Regan, this.state.Regan_Commits)}
            </Col>
-           <Col md={4}>
+           <Col sm={4}>
                {generateThumbnail(Project_Members.Andrew, this.state.Andrew_Commits)}
            </Col>
          </Row>
 
          <Row>
-           <Col md={4} mdOffset={2}>
+           <Col sm={4} smOffset={2}>
                {generateThumbnail(Project_Members.Nihal, this.state.Nihal_Commits)}
            </Col>
-           <Col md={4}>
+           <Col sm={4}>
                {generateThumbnail(Project_Members.Vikram, this.state.Vikram_Commits)}
            </Col>
        </Row>

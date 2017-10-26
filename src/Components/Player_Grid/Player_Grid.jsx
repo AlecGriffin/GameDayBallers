@@ -4,8 +4,26 @@ import PlayerThumbnail from './Player_Thumbnail/Player_Thumbnail.jsx';
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import PaginationAdvanced from '../Pagination/PaginationAdvanced.jsx';
+import axios from 'axios';
 
 export default class Player_Grid extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      players: [{
+        'image_url': '',
+         'name': '',
+          'url' : ''}],
+    }
+
+    var url = "https://api-dot-game-day-ballers-181000.appspot.com/players/"
+
+    axios.get(url).then(response => {
+      this.setState({
+        players : response['data']
+      })
+    })
+  }
 
 
 
@@ -20,8 +38,9 @@ export default class Player_Grid extends Component {
   // Use this method to generate Thumbnails when future API is created
   RenderPlayerThumbnails(){
     var result = []
-    for(let i = 0; i < 9; i++){
-      result.push(this.RenderPlayerThumbnail('players/lebronjames', 'Lebron James', 'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/2544.png' ));
+    for(let i = 0; i < this.state.players.length; i++){
+      var player = this.state.players[i]
+      result.push(this.RenderPlayerThumbnail(player.url, player.name, player.image_url ));
     }
     return result;
   }
@@ -29,15 +48,17 @@ export default class Player_Grid extends Component {
 
   render(){
     return(
-      <Grid>
-        <Row>
-          {this.RenderPlayerThumbnails()}
-        </Row>
-        {/* <Col mdOffset={4} md={6}>
-          <PaginationAdvanced num_items={9} max_items={10}/>
-        </Col> */}
+      <div className="main">
+        <Grid>
+          <Row>
+            {this.RenderPlayerThumbnails()}
+          </Row>
+          {/* <Col mdOffset={4} md={6}>
+            <PaginationAdvanced num_items={9} max_items={10}/>
+          </Col> */}
 
-      </Grid>
+        </Grid>
+      </div>
     );
   }
 }

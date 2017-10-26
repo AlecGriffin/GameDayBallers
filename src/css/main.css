@@ -5,11 +5,27 @@ html {
 .main {
   width: 95%;
   margin: auto;
-  margin-top: 25px;
+  margin-top: 60px;
 }
 
-.carousel-container {
-  padding-top: 30px;
+#home-background {
+  background-image: url("http://andrewduna.com/Photos/24.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.home-title {
+  text-align: center;
+  font-family: 'Futura';
+  margin-top: 40vh;
+  color: white;
 }
 
 .tweets-container {
@@ -103,6 +119,7 @@ ul {
 .tbl {
   text-align: center;
   padding: 0;
+  height: 80px;
 }
 
 .tbl thead tr th{
@@ -110,6 +127,10 @@ ul {
 }
 
 .tbl tbody tr td {
+}
+
+.second-half {
+  right: 1px;
 }
 
 .table-head {
@@ -127,6 +148,10 @@ nav.navbar a.navbar-brand {
 
 nav.navbar a.navbar-brand:hover {
   color: black;
+}
+
+.navbar .container {
+  width: 95%;
 }
 
 a {

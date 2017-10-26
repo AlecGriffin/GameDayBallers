@@ -13,25 +13,25 @@ export default class Player extends Component {
 
 
     var players = preNba.players.map((player) =>
-    <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+    <Col md={4} xs={6} className="grid-element" key={player.toLowerCase().replace(/\s+/g, '')}>
       <Link to={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
         { player }
       </Link>
-    </div>
+    </Col>
     );
 
     var players_teams = preNba.players.map((player) =>
-    <div className="grid-element col-md-4 col-xs-6" key={player.toLowerCase().replace(/\s+/g, '')}>
+    <Col md={4} xs={6} className="grid-element" key={player.toLowerCase().replace(/\s+/g, '')}>
       <Link to={ "/teams/" + getPlayer(player.toLowerCase().replace(/\s+/g, '')).teamURL }>
         { getPlayer(player.toLowerCase().replace(/\s+/g, '')).team }
       </Link>
-    </div>
+    </Col>
     );
 
     return (
       <div className="main">
         <Row>
-          <Col md={4}>
+          <Col sm={4}>
             <div className="card image-card white-card">
               <div className="card-title">
                 <img src={preNba.logo} alt="logo"/>
@@ -58,7 +58,7 @@ export default class Player extends Component {
             </div>
           </Col>
 
-          <Col md={8}>
+          <Col sm={8}>
             <div className="card grid-card">
               <div className="card-title">
                 Players

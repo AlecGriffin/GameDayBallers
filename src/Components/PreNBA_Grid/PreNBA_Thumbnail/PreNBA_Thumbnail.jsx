@@ -4,7 +4,7 @@ import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 export default class PreNBA_Thumbnail extends Component {
   render(){
     return(
-      <Col xs={6} md={4} className="text-center">
+      <Col xs={6} sm={4} className="text-center">
           <div className="card image-card white-card">
             <div className="card-title">
               <img src={this.props.src}/>

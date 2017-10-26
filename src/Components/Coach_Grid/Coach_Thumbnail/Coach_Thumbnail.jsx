@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 export default class Coach_Thumbnail extends Component {
   render(){
     return(
-      <Col xs={6} md={4} className="text-center">
+      <Col xs={6} sm={4} className="text-center">
           <div className="card image-card full-image">
             <div className="card-title">
               <img src={this.props.src}/>

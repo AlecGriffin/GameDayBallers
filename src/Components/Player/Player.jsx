@@ -3,8 +3,51 @@ import { getPlayer } from '../../json_old/player_data.js';
 import { Row, Col, Table } from 'react-bootstrap';
 import lebron_james_audio_file from './lebron_james_vine.wav';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+
 
 export default class Player extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      player : {
+        "career_stats": {
+          "assists_per_game": "0",
+          "blocks_per_game": "0",
+          "field_goal_percentage": "0",
+          "free_throw_percentage": "0",
+          "minutes_per_game": "0",
+          "points_per_game": "0",
+          "rebounds_per_game": "0",
+          "three_point_percentage": "0"
+        },
+        "dob": "0",
+        "height": "0",
+        "image_url": "",
+        "jersey_number": 0,
+        "player": "",
+        "position": "",
+        "prenba": "",
+        "recognitions": [],
+        "team": {
+          "image_url": "",
+          "name": "",
+          "url": ""
+        },
+        "weight": 0
+      }
+    }
+
+    var url = window.location.href;
+    var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + url.split('/')[url.split('/').length - 1]
+    axios.get(player_url).then(response => {
+      this.setState({
+        player : response['data']
+      })
+      console.log(this.state.player);
+    })
+  }
 
   playSound () {
 
@@ -15,52 +58,53 @@ export default class Player extends Component {
   render(){
 
     var url = window.location.href;
-    var playerName = url.split('/')[url.split('/').length - 1];
-    var player = getPlayer(playerName);
-    var prenbaURL = "/pre-nba/" + player.prenbaURL;
-    var teamURL = "/teams/" + player.team.toLowerCase().replace(/\s+/g, '')
+    // var playerName = url.split('/')[url.split('/').length - 1];
+    var player = this.state.player
+    // var prenbaURL = "/pre-nba/" + player.prenbaURL;
+    // var teamURL = "/teams/" + player.team.toLowerCase().replace(/\s+/g, '')
 
-    var pastTeams = player.past_teams.map((team) =>
-      <li key={team.toLowerCase().replace(/\s+/g, '')}>
-        <Link to='/'>{team}</Link>
-      </li>
-    );
+    // var pastTeams = this.state.player.past_teams.map((team) =>
+    //   <li key={team.toLowerCase().replace(/\s+/g, '')}>
+    //     <Link to='/'>{team}</Link>
+    //   </li>
+    // );
 
-    var recognitions = player.recognitions.map((rec) =>
-    <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
-      {rec}
-    </li>
-    );
+    // var recognitions = this.state.player.recognitions.map((rec) =>
+    // <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
+    //   {rec}
+    // </li>
+    // );
 
-    var pastTeamsCard;
-    if (player.past_teams.length !== 0) {
-      pastTeamsCard = (
-        <div className="card">
-          <div className="card-title">
-            Previous Teams
-          </div>
-          <div className="card-body text-center">
-            <ul>
-              { pastTeams }
-            </ul>
-          </div>
-        </div>);
-    }
+    // var pastTeamsCard;
+    // if (this.state.player.past_teams.length !== 0) {
+    //   pastTeamsCard = (
+    //     <div className="card">
+    //       <div className="card-title">
+    //         Previous Teams
+    //       </div>
+    //       <div className="card-body text-center">
+    //         <ul>
+    //           { pastTeams }
+    //         </ul>
+    //       </div>
+    //     </div>);
+    // }
 
-    var recognitionsCard;
-    if (player.recognitions.length !== 0) {
-      recognitionsCard = (
-        <div className="card">
-          <div className="card-title">
-            Recognitions
-          </div>
-          <div className="card-body card-list">
-            <ul>
-              { recognitions }
-            </ul>
-          </div>
-        </div>);
-    }
+    // var recognitionsCard;
+    // console.log(this.state.player.recognitions.length);
+    // if (this.state.player.recognitions.length !== 0) {
+    //   recognitionsCard = (
+    //     <div className="card">
+    //       <div className="card-title">
+    //         Recognitions
+    //       </div>
+    //       <div className="card-body card-list">
+    //         <ul>
+    //           { recognitions }
+    //         </ul>
+    //       </div>
+    //     </div>);
+    // }
 
 
 
@@ -70,45 +114,45 @@ export default class Player extends Component {
 
         <Row>
           {this.playSound()}
-          <Col md={4}>
+          <Col sm={4}>
             <div className="card image-card">
               <div className="card-title">
-                { player.name } #{ player.jersey_number }
-                <img src={ player.image_url } alt="Player"/>
+                { this.state.player['player'] } #{ this.state.player['jersey_number']}
+                <img src={ this.state.player['image_url'] } alt="Player"/>
               </div>
               <div className="card-body">
                 <ul>
                   <li>
-                    <Link to={ teamURL }><b>{ player.team }</b></Link>
+                    <Link to={ this.state.player['team']['url'] }><b>{ this.state.player['team']['name'] }</b></Link>
                   </li>
                   <li>
-                    <b>Position:</b> { player.position }
+                    <b>Position:</b> { this.state.player['position'] }
                   </li>
                   <li>
-                    <b>Height:</b> { player.height }
+                    <b>Height:</b> { this.state.player['height'] }
                   </li>
                   <li>
-                    <b>Weight:</b> { player.weight }
+                    <b>Weight:</b> { this.state.player['weight'] }
                   </li>
                   <li>
-                    <b>Date of Birth:</b> { player.dob }
+                    <b>Date of Birth:</b> { player['dob'] }
                   </li>
                   <li>
-                    <b>Pre-NBA Career:</b> <Link to={ prenbaURL }>{ player.prenba }</Link>
+                    {/* <b>Pre-NBA Career:</b> <Link to={ prenbaURL }>{ player.prenba }</Link> */}
                   </li>
                 </ul>
               </div>
             </div>
           </Col>
 
-          <Col md={8}>
+          <Col sm={8}>
             <div className="card">
               <div className="card-title">
                 Career Stats
               </div>
               <div className="card-body card-table">
                 <Row>
-                  <div className="tbl col-sm-6">
+                  <Col sm={6} className="tbl">
                     <Table responsive>
                       <thead className="table-head">
                         <tr>
@@ -127,8 +171,8 @@ export default class Player extends Component {
                         </tr>
                       </tbody>
                     </Table>
-                  </div>
-                  <div className="tbl col-sm-6">
+                  </Col>
+                  <Col sm={6} className="tbl">
                     <Table responsive>
                       <thead className="table-head">
                         <tr>
@@ -147,20 +191,21 @@ export default class Player extends Component {
                         </tr>
                       </tbody>
                     </Table>
-                  </div>
+                  </Col>
                 </Row>
               </div>
             </div>
 
-            <Row>
+             <Row>
               <Col lg={6}>
-                { recognitionsCard }
+                {/* { recognitionsCard } */}
               </Col>
               <Col lg={6}>
-                { pastTeamsCard }
+                {/* { pastTeamsCard } */}
               </Col>
             </Row>
           </Col>
+
         </Row>
       </div>
     );

@@ -23,11 +23,13 @@ export default class PreNBA_Grid extends Component {
 
   render(){
     return(
-      <Grid>
-        <Row>
-          {this.RenderPreNBAThumbnails()}
-        </Row>
-      </Grid>
+      <div className="main">
+        <Grid>
+          <Row>
+            {this.RenderPreNBAThumbnails()}
+          </Row>
+        </Grid>
+      </div>
     );
   }
 }
