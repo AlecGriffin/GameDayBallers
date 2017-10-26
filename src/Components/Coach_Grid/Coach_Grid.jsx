@@ -8,12 +8,6 @@ export default class Coach_Grid extends Component {
 
   constructor(props){
     super(props)
-    // this.state = {}
-    // var url = "/coaches/ " // FIXME: Change this to the actual API URL
-    // var coaches = []
-    // axios.get(url).then(response => {
-    //   coaches
-    // })
 
     this.state = {
       coaches: [  {
@@ -25,7 +19,6 @@ export default class Coach_Grid extends Component {
 
 
     var url = "https://api-dot-game-day-ballers-181000.appspot.com/coaches/"
-
     axios.get(url).then(response => {
       this.setState({
         coaches : response['data']

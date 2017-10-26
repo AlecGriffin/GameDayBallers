@@ -55,6 +55,12 @@ export default class Player extends Component {
     // audio.play()
   }
 
+
+  addDefaultSrc(ev){
+    ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
+  }
+
+
   render(){
 
     var url = window.location.href;
@@ -118,7 +124,7 @@ export default class Player extends Component {
             <div className="card image-card">
               <div className="card-title">
                 { this.state.player['player'] } #{ this.state.player['jersey_number']}
-                <img src={ this.state.player['image_url'] } alt="Player"/>
+                <img onError={this.addDefaultSrc} src={this.state.player['image_url']} alt='No Image Found'/>
               </div>
               <div className="card-body">
                 <ul>

@@ -8,16 +8,12 @@ export default class Player_Thumbnail extends Component {
 
 
   render(){
-    // var image_url = this.props.src
-    // if(this.props.src === null || this.props.src === '')
-    //   image_url = "http://via.placeholder.com/250x190"
-
     return(
       <Col xs={6} sm={4} className="text-center">
           <div className="card image-card">
             <div className="card-title">
 
-              <img onError={this.addDefaultSrc} className="img-responsive" src={this.props.src} alt='Wtf'/>
+              <img onError={this.addDefaultSrc} className="img-responsive" src={this.props.src} alt='No Image Found'/>
 
             </div>
             <div className="card-body">
