@@ -70,18 +70,6 @@ html {
   border-radius: 3px 3px 0 0;
 }
 
-.main.wine .card .card-title{
-  background-color: #582335;
-}
-
-.main.red .card .card-title{
-  background-color: #A12020;
-}
-
-.main.gray .card .card-title{
-  background-color: #6C6C6C;
-}
-
 .card.image-card.white-card .card-title {
   background-color: white;
 }

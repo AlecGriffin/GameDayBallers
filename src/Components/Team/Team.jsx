@@ -12,24 +12,29 @@ export default class Team extends Component {
   constructor(props){
     super(props)
     this.state = {
-    team : {
-      "arena": "",
-      "city": "",
-      "current_roster": [
-        {
-          "image_url": "",
+      team : {
+        "arena": "",
+        "city": "",
+        "current_roster": [
+          {
+            "image_url": "",
+            "name": "",
+            "url": ""
+          }],
+          "head_coach": {
+            "image_url": "",
+            "name": "",
+            "url": ""
+          },
+          "logo_url": "",
           "name": "",
-          "url": ""
-        }],
-      "head_coach": {
-        "image_url": "",
-        "name": "",
-        "url": ""
-      },
-      "logo_url": "",
-      "name": ""
+          "titles": {
+            "championships": [],
+            "conference_champs": [],
+            "division_champs": []
+          }
+        }
       }
-    }
 
       var url = window.location.href;
       var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + url.split('/')[url.split('/').length - 1]
@@ -63,8 +68,20 @@ export default class Team extends Component {
     ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
   }
 
+  getColor() {
+    if (this.state.team.color != "" && this.state.team.color != null) {
+      return this.state.team.color;
+    } else {
+      return "gray";
+    }
+  }
+
   render() {
     var team = this.state.team
+
+    var cardTitleStyle = {
+      backgroundColor: this.getColor()
+    };
 
     var roster = team.current_roster.map((player) =>
     <Col md={4} xs={6} className="grid-element" key={player.name.toLowerCase().replace(/\s+/g, '')}>
@@ -73,29 +90,6 @@ export default class Team extends Component {
       </Link>
     </Col>
     );
-
-    // var titlesCard;
-    // if (team.titles.championships.length !== 0) {
-    //   titlesCard = (
-    //     <div className="card">
-    //       <div className="card-title">
-    //         Championship Titles
-    //       </div>
-    //       <div className="card-body">
-    //         <ul className="card-list">
-    //           <li>
-    //             <b>Championship: </b> { team.titles.championships.join(', ') }
-    //           </li>
-    //           <li>
-    //             <b>Conference: </b> { team.titles.conference_champs.join(', ') }
-    //           </li>
-    //           <li>
-    //             <b>Division: </b> { team.titles.division_champs.join(', ') }
-    //           </li>
-    //         </ul>
-    //       </div>
-    //     </div>);
-    // }
 
     // var timeline =  (
     //   <Timeline
@@ -131,7 +125,24 @@ export default class Team extends Component {
                 </ul>
               </div>
             </div>
-            {/* { titlesCard } */}
+            <div className="card">
+              <div className="card-title" style={cardTitleStyle}>
+                Championship Titles
+              </div>
+              <div className="card-body">
+                <ul className="card-list">
+                  <li>
+                    <b>Championship: </b> { team.titles.championships.join(', ') }
+                  </li>
+                  <li>
+                    <b>Conference: </b> { team.titles.conference_champs.join(', ') }
+                  </li>
+                  <li>
+                    <b>Division: </b> { team.titles.division_champs.join(', ') }
+                  </li>
+                </ul>
+              </div>
+            </div>
             {/* <div className="card tweets-container">
               { timeline }
             </div> */}
@@ -139,7 +150,7 @@ export default class Team extends Component {
 
             <Col sm={8}>
               <div className="card grid-card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
                   Roster
                 </div>
                 <div className="card-body">

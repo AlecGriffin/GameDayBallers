@@ -36,34 +36,64 @@ export default class Player extends Component {
           "url": ""
         },
         "weight": 0
-      }
+      },
+      "player_loaded" : false,
+      "coach": {
+        "name": "",
+        "url": ""
+      },
+      "need_coach": true
     }
 
     var url = window.location.href;
     var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + url.split('/')[url.split('/').length - 1]
     axios.get(player_url).then(response => {
       this.setState({
-        player : response['data']
+        player : response['data'],
+        player_loaded : true
       })
       console.log(this.state.player);
     })
+  }
 
+  getAxiosPromisesCoach() {
+    if(this.state.player_loaded){
+      var promises = [];
+      promises.push(axios.get('https://api-dot-game-day-ballers-181000.appspot.com' + this.state.player.team.url));
+      }
+      return promises
+    }
+
+  getCoach() {
+    if(this.state.player_loaded){
+      // console.log("Before");
+      axios.all(this.getAxiosPromisesCoach()).then((response) =>{
+
+        this.setState({
+          need_coach: false,
+          coach: response[0].data.head_coach
+        })
+        // console.log("All Players Aquired!");
+      })
+      // console.log("After");
+    }
   }
 
   playSound () {
     if (this.state.player.player == "LeBron James") {
-      const audio = new Audio(lebron_james_audio_file)
-      audio.play()
+      const audio = new Audio(lebron_james_audio_file);
+      audio.play();
     }
   }
 
-
   addDefaultSrc(ev){
-    ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
+    ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found';
   }
 
-
   render(){
+    if (this.state.need_coach) {
+      this.getCoach();
+    }
 
     var url = window.location.href;
     // var playerName = url.split('/')[url.split('/').length - 1];
@@ -99,6 +129,9 @@ export default class Player extends Component {
                 <ul>
                   <li>
                     <Link to={ this.state.player['team']['url'] }><b>{ this.state.player['team']['name'] }</b></Link>
+                  </li>
+                  <li>
+                    <b>Coached by:</b> <Link to={ this.state.coach.url }>{ this.state.coach.name }</Link>
                   </li>
                   <li>
                     <b>Position:</b> { this.state.player['position'] }
@@ -184,18 +217,18 @@ export default class Player extends Component {
                   </div>
                 </div>
               </Col>
-              <Col lg={6}>
+              {/*<Col lg={6}>
                 <div className="card">
                   <div className="card-title">
                     Previous Teams
                   </div>
                   <div className="card-body text-center">
                     <ul>
-                      {/*{ pastTeams }*/}
+                      { pastTeams }
                     </ul>
                   </div>
                 </div>
-              </Col>
+              </Col>*/}
             </Row>
           </Col>
 

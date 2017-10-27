@@ -22,35 +22,45 @@ var Project_Members = {
     "name" : "Alec Griffin",
     "img_src" : "https://avatars0.githubusercontent.com/u/8799789?v=4&s=460",
     "about" : "Senior Computer Science major",
-    "responsibilities" : "Creating React elements, data collection",
+    "responsibilities" : "React Front-End, Data Collection",
+    "issues": "7",
+    "tests": "0"
   },
 
   "Regan":{
     "name":'Regan Brickman',
     "img_src":'https://avatars1.githubusercontent.com/u/17559269?v=4&s=460',
     "about":'Senior Computer Science major',
-    "responsibilities":'Final Report, Pre-NBA page',
+    "responsibilities":'Technical Report, User Stories, React Front-End',
+    "issues": "8",
+    "tests": "0"
   },
 
  "Andrew":{
     "name": 'Andrew Duna',
     "img_src":'https://avatars0.githubusercontent.com/u/14189687?v=4&s=460',
     "about":'Senior Computer Science major',
-    "responsibilities":'Front-end, data collection',
+    "responsibilities":'CSS, React Front-End, Data Collection, UI Design',
+    "issues": "6",
+    "tests": "0"
   },
 
   "Vikram":{
     "name":'Vikram Idury',
     "img_src":'https://avatars3.githubusercontent.com/u/7564838?v=4&s=460',
     "about":'Senior Computer Science major',
-    "responsibilities":'GCP setup, apiary documentation',
+    "responsibilities":'GCP Setup, API Setup, Apiary Documentation',
+    "issues": "8",
+    "tests": "0"
   },
 
   "Nihal":{
       "name":'Nihal Dhamani',
       "img_src":'https://avatars3.githubusercontent.com/u/20764557?v=4&s=460',
       "about":'Senior Computer Science major',
-      "responsibilities":'Front-end, hosting setup',
+      "responsibilities":'React Front-End, Domain Setup, SQL Database, Data Collection',
+      "issues": "8",
+      "tests": "10"
   }
 }
 
@@ -75,8 +85,8 @@ function generateThumbnail(person, commits) {
       about= {person.about}
       responsibilities= {person.responsibilities}
       commits= {commits}
-      issues= {0}
-      tests= {0}
+      issues= {person.issues}
+      tests= {person.tests}
     />
   );
 }
@@ -129,6 +139,17 @@ function generateThumbnail(person, commits) {
 
      return(
        <div className="main">
+         <div className="card display-card">
+           <div className="card-body">
+             <h1 className="display-3">About</h1>
+           </div>
+         </div>
+         <div className="card card-white">
+           <div className="card-body">
+             <p>Gameday Ballers is a web application whose purpose is to organize useful information about the NBA and make the information easy to access. The application can be used to find stats on all basketball teams, players, coaches, and divisions. Our group members are interested in and keep up with the NBA, therefore we felt this would be an appropriate topic for our project and one we would be excited about implementing.</p>
+             <p>Gameday Ballers is intended for anyone interested in the NBA. Whether an expert seeking to learn more, a Fantasty Basketball enthusiast trying to keep up with their players, or a newbie wanting to get acquainted with the league, Game Day Ballers has a plethora of information about the league, and it's divisions, teams, coaches, and players.</p>
+           </div>
+         </div>
        <div className="card display-card">
          <div className="card-body">
            <h1 className="display-3">Certified Ballers</h1>
@@ -140,7 +161,7 @@ function generateThumbnail(person, commits) {
                {generateThumbnail(Project_Members.Alec, this.state.Alec_Commits)}
           </Col>
            <Col sm={4}>
-               {generateThumbnail(Project_Members.Regan, this.state.Regan_Commits)}
+               {generateThumbnail(Project_Members.Regan, 9 + this.state.Regan_Commits)}
            </Col>
            <Col sm={4}>
                {generateThumbnail(Project_Members.Andrew, this.state.Andrew_Commits)}
@@ -152,7 +173,7 @@ function generateThumbnail(person, commits) {
                {generateThumbnail(Project_Members.Nihal, this.state.Nihal_Commits)}
            </Col>
            <Col sm={4}>
-               {generateThumbnail(Project_Members.Vikram, this.state.Vikram_Commits)}
+               {generateThumbnail(Project_Members.Vikram, 9 + this.state.Vikram_Commits)}
            </Col>
        </Row>
 
@@ -179,7 +200,7 @@ function generateThumbnail(person, commits) {
                <div className="card-body">
                  <ul>
                    <li>
-                     <b>Total No. of Commits:</b> { this.state.Total_Commits }
+                     <b>Total No. of Commits:</b> { 18 + this.state.Total_Commits }
                    </li>
                    <li>
                      <b>Total No. of Issues:</b> { this.state.Number_Of_Issues }
@@ -194,12 +215,22 @@ function generateThumbnail(person, commits) {
                      <a href="https://trello.com/b/ePPWWAuD/swe-project" className="card-link">Trello Link</a>
                    </li>
                    <li>
-                     <a href="https://utexas.box.com/s/u0t43jc0jag4qg1xbpl2cpixg3ofhbsi" className="card-link">Technical Report Link</a>
+                     <a href="https://utexas.box.com/s/y4vmxoo5yewy0pax8x99tpcwh0l1f1s4" className="card-link">Technical Report Link</a>
                    </li>
                    <li>
                      <a href="https://utexas.box.com/s/sbbyc59801wdpftua4sp2eqbe9nkd0i3" className="card-link">UML Diagram</a>
                    </li>
                  </ul>
+               </div>
+             </div>
+             <div className="card">
+               <div className="card-title">
+                 Tools
+               </div>
+               <div className="card-body tools">
+                 <Row>
+                   {generateTools()}
+                 </Row>
                </div>
              </div>
            </Col>
@@ -221,7 +252,7 @@ function generateThumbnail(person, commits) {
                  </ul>
                  <h3>Scraping</h3>
                  <p>
-                   How we scraped our data
+                   Most of our data was scraped from the NBA stats api by following the endpoint documentation. Our MySQL database has six tables including players, coaches, teams, divisions, awards, and prenba. The basic framework for the database was created by iterating over the 30 different teams, getting the basic team information which included information about the head coach and roster, and building the coach and roster tables through the information parsed. The 30 teams produced 498 different player entries, 30 head coach entries, 6 division entries, 160 prenba entries, and 1403 award entries. All the data that we weren’t able to find from the NBA stats API, we found in the MySportsFeeds API. This site provides real time and up to date sports information for not only the NBA, but also all the other major sports. The scraping from this website was pretty straight forward as it included a variety of different feeds to choose from. All of the data we found from MySportsFeeds was used to update the missing data fields we had after we finished with the NBA stats api.
                  </p>
                </div>
              </div>
@@ -240,17 +271,7 @@ function generateThumbnail(person, commits) {
            describe their use
            special focus on optional tools that were not required --> */}
 
-       <div className="card">
-         <div className="card-title">
-           Tools
-         </div>
-         <div className="card-body tools">
-           <Row>
-             {generateTools()}
-           </Row>
 
-         </div>
-       </div>
        </div>
      );
    }

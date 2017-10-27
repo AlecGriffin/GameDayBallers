@@ -35,9 +35,9 @@ export default class Team_Grid extends Component {
   }
 
   // Use this method to generate Thumbnails when future API is created
-  RenderTeamThumbnails(){
+  RenderTeamThumbnails(x, y){
     var result = [];
-    for(let i = 0; i < this.state.teams.length; i++){
+    for(let i = x; i <= y && i < this.state.teams.length; i++){
       var team = this.state.teams[i]
       result.push(this.RenderTeamThumbnail(team.url, team.name, team.image_url ));
     }
@@ -49,7 +49,15 @@ export default class Team_Grid extends Component {
       <div className="main">
           <Grid>
             <Row>
-              {this.RenderTeamThumbnails()}
+              <Col xs={6} sm={4}>
+                {this.RenderTeamThumbnails(0, 9)}
+              </Col>
+              <Col xs={6} sm={4}>
+                {this.RenderTeamThumbnails(10, 19)}
+              </Col>
+              <Col xs={6} sm={4}>
+                {this.RenderTeamThumbnails(20, 29)}
+              </Col>
             </Row>
           </Grid>
       </div>
