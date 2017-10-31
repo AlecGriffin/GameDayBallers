@@ -4,6 +4,7 @@ import { Row, Col, Table } from 'react-bootstrap';
 import lebron_james_audio_file from './lebron_james_vine.wav';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../Loading/Loading.jsx'
 
 
 export default class Player extends Component {
@@ -54,6 +55,8 @@ export default class Player extends Component {
       })
       console.log(this.state.player);
     })
+
+
   }
 
   getAxiosPromisesCoach() {
@@ -66,16 +69,13 @@ export default class Player extends Component {
 
   getCoach() {
     if(this.state.player_loaded){
-      // console.log("Before");
       axios.all(this.getAxiosPromisesCoach()).then((response) =>{
 
         this.setState({
           need_coach: false,
           coach: response[0].data.head_coach
         })
-        // console.log("All Players Aquired!");
       })
-      // console.log("After");
     }
   }
 
@@ -83,6 +83,7 @@ export default class Player extends Component {
     if (this.state.player.player == "LeBron James") {
       const audio = new Audio(lebron_james_audio_file);
       audio.play();
+
     }
   }
 
@@ -113,127 +114,130 @@ export default class Player extends Component {
      </li>
      );
 
-    return(
 
-      <div id="main" className={"main " + player.team_color}>
+      if(!this.state.player_loaded){
+        return(<Loading/>);
+      }else{
+        return(
+        <div id="main" className={"main " + player.team_color}>
 
-        <Row>
-          <Col sm={4}>
-            {this.playSound()}
-            <div className="card image-card">
-              <div className="card-title">
-                { this.state.player['player'] } #{ this.state.player['jersey_number']}
-                <img onError={this.addDefaultSrc} src={this.state.player['image_url']} alt='No Image Found'/>
-              </div>
-              <div className="card-body">
-                <ul>
-                  <li>
-                    <Link to={ this.state.player['team']['url'] }><b>{ this.state.player['team']['name'] }</b></Link>
-                  </li>
-                  <li>
-                    <b>Coached by:</b> <Link to={ this.state.coach.url }>{ this.state.coach.name }</Link>
-                  </li>
-                  <li>
-                    <b>Position:</b> { this.state.player['position'] }
-                  </li>
-                  <li>
-                    <b>Height:</b> { this.state.player['height'] }
-                  </li>
-                  <li>
-                    <b>Weight:</b> { this.state.player['weight'] }
-                  </li>
-                  <li>
-                    <b>Date of Birth:</b> { player['dob'] }
-                  </li>
-                  <li>
-                    {/* <b>Pre-NBA Career:</b> <Link to={ DivisionURL }>{ player.Division }</Link> */}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Col>
-
-          <Col sm={8}>
-            <div className="card">
-              <div className="card-title">
-                Career Stats
-              </div>
-              <div className="card-body card-table">
-                <Row>
-                  <Col sm={6} className="tbl">
-                    <Table responsive>
-                      <thead className="table-head">
-                        <tr>
-                          <th>MPG</th>
-                          <th>FG%</th>
-                          <th>3P%</th>
-                          <th>FT%</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>{ player.career_stats.minutes_per_game }</td>
-                          <td>{ player.career_stats.field_goal_percentage }</td>
-                          <td>{ player.career_stats.three_point_percentage }</td>
-                          <td>{ player.career_stats.free_throw_percentage }</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                  <Col sm={6} className="tbl second-half">
-                    <Table responsive>
-                      <thead className="table-head">
-                        <tr>
-                          <th>PPG</th>
-                          <th>RPG</th>
-                          <th>APG</th>
-                          <th>BPG</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>{ player.career_stats.points_per_game }</td>
-                          <td>{ player.career_stats.rebounds_per_game }</td>
-                          <td>{ player.career_stats.assists_per_game }</td>
-                          <td>{ player.career_stats.blocks_per_game }</td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row>
-              </div>
-            </div>
-
-             <Row>
-              <Col lg={6}>
-                <div className="card">
-                  <div className="card-title">
-                    Recognitions
-                  </div>
-                  <div className="card-body card-list">
-                    <ul>
-                      { recognitions }
-                    </ul>
-                  </div>
+          <Row>
+            <Col sm={4}>
+              {this.playSound()}
+              <div className="card image-card">
+                <div className="card-title">
+                  { this.state.player['player'] } #{ this.state.player['jersey_number']}
+                  <img onError={this.addDefaultSrc} src={this.state.player['image_url']} alt='No Image Found'/>
                 </div>
-              </Col>
-              {/*<Col lg={6}>
-                <div className="card">
-                  <div className="card-title">
-                    Previous Teams
-                  </div>
-                  <div className="card-body text-center">
-                    <ul>
-                      { pastTeams }
-                    </ul>
-                  </div>
+                <div className="card-body">
+                  <ul>
+                    <li>
+                      <Link to={ this.state.player['team']['url'] }><b>{ this.state.player['team']['name'] }</b></Link>
+                    </li>
+                    <li>
+                      <b>Coached by:</b> <Link to={ this.state.coach.url }>{ this.state.coach.name }</Link>
+                    </li>
+                    <li>
+                      <b>Position:</b> { this.state.player['position'] }
+                    </li>
+                    <li>
+                      <b>Height:</b> { this.state.player['height'] }
+                    </li>
+                    <li>
+                      <b>Weight:</b> { this.state.player['weight'] }
+                    </li>
+                    <li>
+                      <b>Date of Birth:</b> { player['dob'] }
+                    </li>
+                    <li>
+                      {/* <b>Pre-NBA Career:</b> <Link to={ DivisionURL }>{ player.Division }</Link> */}
+                    </li>
+                  </ul>
                 </div>
-              </Col>*/}
-            </Row>
-          </Col>
+              </div>
+            </Col>
 
-        </Row>
-      </div>
-    );
+            <Col sm={8}>
+              <div className="card">
+                <div className="card-title">
+                  Career Stats
+                </div>
+                <div className="card-body card-table">
+                  <Row>
+                    <Col sm={6} className="tbl">
+                      <Table responsive>
+                        <thead className="table-head">
+                          <tr>
+                            <th>MPG</th>
+                            <th>FG%</th>
+                            <th>3P%</th>
+                            <th>FT%</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{ player.career_stats.minutes_per_game }</td>
+                            <td>{ player.career_stats.field_goal_percentage }</td>
+                            <td>{ player.career_stats.three_point_percentage }</td>
+                            <td>{ player.career_stats.free_throw_percentage }</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Col>
+                    <Col sm={6} className="tbl second-half">
+                      <Table responsive>
+                        <thead className="table-head">
+                          <tr>
+                            <th>PPG</th>
+                            <th>RPG</th>
+                            <th>APG</th>
+                            <th>BPG</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{ player.career_stats.points_per_game }</td>
+                            <td>{ player.career_stats.rebounds_per_game }</td>
+                            <td>{ player.career_stats.assists_per_game }</td>
+                            <td>{ player.career_stats.blocks_per_game }</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+
+               <Row>
+                <Col lg={6}>
+                  <div className="card">
+                    <div className="card-title">
+                      Recognitions
+                    </div>
+                    <div className="card-body card-list">
+                      <ul>
+                        { recognitions }
+                      </ul>
+                    </div>
+                  </div>
+                </Col>
+                {/*<Col lg={6}>
+                  <div className="card">
+                    <div className="card-title">
+                      Previous Teams
+                    </div>
+                    <div className="card-body text-center">
+                      <ul>
+                        { pastTeams }
+                      </ul>
+                    </div>
+                  </div>
+                </Col>*/}
+              </Row>
+            </Col>
+          </Row>
+        </div>
+      );
+      }
   }
 }

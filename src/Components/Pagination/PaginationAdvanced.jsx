@@ -6,16 +6,16 @@ export default class PaginationAdvanced extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      activePage: 1,
-    }
+    // this.state = {
+    //   activePage: 1,
+    // }
   }
 
-  handleSelect(eventKey) {
-    this.setState({
-      activePage: eventKey,
-    });
-  }
+  // handleSelect(eventKey) {
+  //   this.setState({
+  //     activePage: eventKey,
+  //   });
+  // }
 
   render() {
     return (
@@ -28,8 +28,8 @@ export default class PaginationAdvanced extends Component {
         boundaryLinks
         items={this.props.num_items}
         maxButtons={this.props.max_items}
-        activePage={this.state.activePage}
-        onSelect={this.handleSelect}
+        activePage={this.props.activePage}
+        onSelect={this.props.onSelect}
       />
     );
   }

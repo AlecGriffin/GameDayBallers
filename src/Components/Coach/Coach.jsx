@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../Loading/Loading.jsx'
 
 
 export default class Team extends Component {
@@ -30,7 +31,9 @@ export default class Team extends Component {
         "name": "",
         "recognitions": [],
         "past_teams": []
-      }
+      },
+      "current_Page": 0,
+      "data_loaded": false
     }
 
 
@@ -38,9 +41,9 @@ export default class Team extends Component {
     var coach_url = 'https://api-dot-game-day-ballers-181000.appspot.com/coaches/' + url.split('/')[url.split('/').length - 1]
     axios.get(coach_url).then(response => {
       this.setState({
-        coach : response['data']
+        coach : response.data,
+        data_loaded: true
       })
-      console.log(this.state.coach);
     })
   }
 
@@ -91,71 +94,77 @@ export default class Team extends Component {
     </Col>
     );
 
-    return (
-      <div className={ "main " + coach.team_color }>
-        <Row>
-          <Col sm={4}>
-            <div className="card image-card full-image">
-              <div className="card-title">
-                <img onError={this.addDefaultSrc} src={coach.image_url} alt='No Image Found'/>
-              </div>
-              <div className="card-body">
-                <ul>
-                  <li>
-                    <b>{ coach.name }</b>
-                  </li>
-                  <li>
-                    <Link to={ coach.current_team.url }><b>{ coach.current_team.name }</b></Link>
-                  </li>
-                  <li id="dob">
-                    <b>Date of Birth: </b>{ coach.dob }
-                  </li>
-                  <li id="winloss">
-                    <b>Win/Loss Percentage: </b>{ coach.win_loss_percentage }
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="card">
+
+    if(!this.state.data_loaded){
+      return(<Loading/>);
+    }else{
+      return (
+        <div className={ "main " + coach.team_color }>
+          <Row>
+            <Col sm={4}>
+              <div className="card image-card full-image">
                 <div className="card-title">
-                  Recognitions
+                  <img onError={this.addDefaultSrc} src={coach.image_url} alt='No Image Found'/>
+                </div>
+                <div className="card-body">
+                  <ul>
+                    <li>
+                      <b>{ coach.name }</b>
+                    </li>
+                    <li>
+                      <Link to={ coach.current_team.url }><b>{ coach.current_team.name }</b></Link>
+                    </li>
+                    <li id="dob">
+                      <b>Date of Birth: </b>{ coach.dob }
+                    </li>
+                    <li id="winloss">
+                      <b>Win/Loss Percentage: </b>{ coach.win_loss_percentage }
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="card">
+                  <div className="card-title">
+                    Recognitions
+                  </div>
+                  <div className="card-body card-list">
+                    <ul>
+                      { recognitions }
+                    </ul>
+                  </div>
+              </div>
+              <div className="card">
+                <div className="card-title">
+                  Past Teams
                 </div>
                 <div className="card-body card-list">
                   <ul>
-                    { recognitions }
+                    { pastTeams }
                   </ul>
                 </div>
-            </div>
-            <div className="card">
-              <div className="card-title">
-                Past Teams
               </div>
-              <div className="card-body card-list">
-                <ul>
-                  { pastTeams }
-                </ul>
-              </div>
-            </div>
-          </Col>
+            </Col>
 
-          <Col sm={8}>
-            <div className="card grid-card">
-              <div className="card-title">
-                Roster
-              </div>
-              <div className="card-body">
+            <Col sm={8}>
+              <div className="card grid-card">
+                <div className="card-title">
+                  Roster
+                </div>
+                <div className="card-body">
 
-                <div className="roster-wrapper row">
-                  <div className="roster row">
-                    { this.RenderPlayerThumbnails() }
+                  <div className="roster-wrapper row">
+                    <div className="roster row">
+                      { this.RenderPlayerThumbnails() }
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Col>
+            </Col>
 
-        </Row>
-      </div>
-    );
+          </Row>
+        </div>
+      );
+    }
+
   }
 }

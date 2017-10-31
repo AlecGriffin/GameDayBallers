@@ -5,6 +5,8 @@ import { getTeam } from '../../json_old/team_data.js';
 import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../Loading/Loading.jsx'
+
 
 
 export default class Team extends Component {
@@ -33,14 +35,16 @@ export default class Team extends Component {
             "conference_champs": [],
             "division_champs": []
           }
-        }
+        },
+        data_loaded: false
       }
 
       var url = window.location.href;
       var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + url.split('/')[url.split('/').length - 1]
       axios.get(team_url).then(response => {
         this.setState({
-          team : response['data']
+          team : response['data'],
+          data_loaded: true
         })
         console.log(this.state.team)
       })
@@ -103,85 +107,90 @@ export default class Team extends Component {
     //     }}/>
     //   );
 
-    return (
-      <div className={"main " + team.color}>
-        <Row>
-          <Col sm={4}>
-            <div className="card image-card white-card">
-              <div className="card-title">
-                <img src={team.logo_url} alt="Team Logo"/>
-              </div>
-              <div className="card-body">
-                <ul>
-                  <li>
-                    <b>{ team.name }</b>
-                  </li>
-                  <li>
-                    <b>{ team.city }</b>
-                  </li>
-                  <li>
-                    <b>Arena: </b>{ team.arena }
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="card">
-              <div className="card-title" style={cardTitleStyle}>
-                Championship Titles
-              </div>
-              <div className="card-body">
-                <ul className="card-list">
-                  <li>
-                    <b>Championship: </b> { team.titles.championships.join(', ') }
-                  </li>
-                  <li>
-                    <b>Conference: </b> { team.titles.conference_champs.join(', ') }
-                  </li>
-                  <li>
-                    <b>Division: </b> { team.titles.division_champs.join(', ') }
-                  </li>
-                </ul>
-              </div>
-            </div>
-            {/* <div className="card tweets-container">
-              { timeline }
-            </div> */}
-          </Col>
-
-            <Col sm={8}>
-              <div className="card grid-card">
-                <div className="card-title" style={cardTitleStyle}>
-                  Roster
+    if(!this.state.data_loaded){
+      return(<Loading/>);
+    }else{
+      return (
+        <div className={"main " + team.color}>
+          <Row>
+            <Col sm={4}>
+              <div className="card image-card white-card">
+                <div className="card-title">
+                  <img src={team.logo_url} alt="Team Logo"/>
                 </div>
                 <div className="card-body">
-
-                  <Row>
-                    <Col mdOffset={4} sm={4} className="text-center">
-                      <h3>Head Coach</h3>
-                      <Link to={ this.state.team.head_coach.url }>
-                        <div className="card image-card full-image">
-                          <div className="card-title">
-                            <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt='No Image Found'/>
-                          </div>
-                          <div className="card-body">
-                            {team.head_coach.name}
-                          </div>
-                        </div>
-                      </Link>
-                    </Col>
-                  </Row>
-
-                  <div className="roster-wrapper row">
-                    <Col sm={12}><h3>Players</h3></Col>
-                    <Row className="roster row">
-                      { this.RenderPlayerThumbnails() }
-                    </Row>
-                  </div>
+                  <ul>
+                    <li>
+                      <b>{ team.name }</b>
+                    </li>
+                    <li>
+                      <b>{ team.city }</b>
+                    </li>
+                    <li>
+                      <b>Arena: </b>{ team.arena }
+                    </li>
+                  </ul>
                 </div>
               </div>
+              <div className="card">
+                <div className="card-title" style={cardTitleStyle}>
+                  Championship Titles
+                </div>
+                <div className="card-body">
+                  <ul className="card-list">
+                    <li>
+                      <b>Championship: </b> { team.titles.championships.join(', ') }
+                    </li>
+                    <li>
+                      <b>Conference: </b> { team.titles.conference_champs.join(', ') }
+                    </li>
+                    <li>
+                      <b>Division: </b> { team.titles.division_champs.join(', ') }
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              {/* <div className="card tweets-container">
+                { timeline }
+              </div> */}
             </Col>
-          </Row>
-      </div>
-    );
+
+              <Col sm={8}>
+                <div className="card grid-card">
+                  <div className="card-title" style={cardTitleStyle}>
+                    Roster
+                  </div>
+                  <div className="card-body">
+
+                    <Row>
+                      <Col mdOffset={4} sm={4} className="text-center">
+                        <h3>Head Coach</h3>
+                        <Link to={ this.state.team.head_coach.url }>
+                          <div className="card image-card full-image">
+                            <div className="card-title">
+                              <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt='No Image Found'/>
+                            </div>
+                            <div className="card-body">
+                              {team.head_coach.name}
+                            </div>
+                          </div>
+                        </Link>
+                      </Col>
+                    </Row>
+
+                    <div className="roster-wrapper row">
+                      <Col sm={12}><h3>Players</h3></Col>
+                      <Row className="roster row">
+                        { this.RenderPlayerThumbnails() }
+                      </Row>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+        </div>
+      );
+    }
+
   }
 }

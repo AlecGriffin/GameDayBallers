@@ -6,6 +6,7 @@ import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
+import Loading from '../Loading/Loading.jsx'
 
 export default class Division extends Component {
   constructor(props){
@@ -28,6 +29,7 @@ export default class Division extends Component {
           }],
       },
       "division_loaded" : false,
+      "data_loaded" : false,
       "team_reports" : [],
       need_team_reports: true
     }
@@ -88,12 +90,11 @@ export default class Division extends Component {
 
         this.setState({
           need_team_reports: false,
-          team_reports : response
+          team_reports : response,
+          data_loaded: true
         })
         console.log(response);
-        // console.log("All Players Aquired!");
       })
-      // console.log("After");
     }
   }
 
@@ -157,87 +158,91 @@ export default class Division extends Component {
     </li>
   );
 
-
-  return (
-    <div className="main">
-      <Row>
-        <Col sm={4}>
-          <div className="card image-card white-card">
-            <div className="card-title">
-              <img src={this.state.division.imageURL} alt="logo"/>
-            </div>
-            <div className="card-body">
-              <ul>
-                <li>
-                  <b>{ this.state.division.name } Division</b>
-                </li>
-                <li>
-                  <b>{this.state.division.conference} Conference</b>
-                </li>
-                <li>
-                  <b>Inaugural Season:</b> {this.state.division.inauguralSeason}
-                </li>
-                <li>
-                  <b>Most Recent Division Champion:</b> {this.GetTeamName(this.state.division.divChamp)}
-                </li>
-                <li>
-                  <b>Team with the Most Division Titles:</b> {this.GetTeamName(this.state.division.mostDivTitles)}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-title">
-              Notable Rivalries
-            </div>
-            <div className="card-body">
-              <ul>
-                { rivalries }
-              </ul>
-            </div>
-          </div>
-        </Col>
-
-        <Col sm={8}>
-          <div className="card grid-card">
-            <div className="card-title">
-              Teams
-            </div>
-            <div className="card-body">
-
-              <div className="roster-wrapper">
-                <Row class="roster">
-                  <Col xs={6} sm={4}>
-                    {this.RenderTeamThumbnails(0, 1)}
-                  </Col>
-                  <Col xs={6} sm={4}>
-                    {this.RenderTeamThumbnails(2, 3)}
-                  </Col>
-                  <Col xs={6} sm={4}>
-                    {this.RenderTeamThumbnails(4, 4)}
-                  </Col>
-                </Row>
+  if(!this.state.data_loaded){
+    return(<Loading/>);
+  }else{
+    return (
+      <div className="main">
+        <Row>
+          <Col sm={4}>
+            <div className="card image-card white-card">
+              <div className="card-title">
+                <img src={this.state.division.imageURL} alt="logo"/>
+              </div>
+              <div className="card-body">
+                <ul>
+                  <li>
+                    <b>{ this.state.division.name } Division</b>
+                  </li>
+                  <li>
+                    <b>{this.state.division.conference} Conference</b>
+                  </li>
+                  <li>
+                    <b>Inaugural Season:</b> {this.state.division.inauguralSeason}
+                  </li>
+                  <li>
+                    <b>Most Recent Division Champion:</b> {this.GetTeamName(this.state.division.divChamp)}
+                  </li>
+                  <li>
+                    <b>Team with the Most Division Titles:</b> {this.GetTeamName(this.state.division.mostDivTitles)}
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
-          <div className="card grid-card">
-            <div className="card-title">
-              Players
+            <div className="card">
+              <div className="card-title">
+                Notable Rivalries
+              </div>
+              <div className="card-body">
+                <ul>
+                  { rivalries }
+                </ul>
+              </div>
             </div>
-            {this.RenderPlayerThumbnails()}
-            <div className="card-body">
+          </Col>
 
-              <div className="roster-wrapper">
-                <div className="roster row">
+          <Col sm={8}>
+            <div className="card grid-card">
+              <div className="card-title">
+                Teams
+              </div>
+              <div className="card-body">
 
+                <div className="roster-wrapper">
+                  <Row class="roster">
+                    <Col xs={6} sm={4}>
+                      {this.RenderTeamThumbnails(0, 1)}
+                    </Col>
+                    <Col xs={6} sm={4}>
+                      {this.RenderTeamThumbnails(2, 3)}
+                    </Col>
+                    <Col xs={6} sm={4}>
+                      {this.RenderTeamThumbnails(4, 4)}
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </div>
-          </div>
+            <div className="card grid-card">
+              <div className="card-title">
+                Players
+              </div>
+              {this.RenderPlayerThumbnails()}
+              <div className="card-body">
 
-        </Col>
-      </Row>
-    </div>
-  );
+                <div className="roster-wrapper">
+                  <div className="roster row">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+
 }
 }

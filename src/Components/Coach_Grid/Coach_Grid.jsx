@@ -3,6 +3,8 @@ import Coach_Thumbnail from './Coach_Thumbnail/Coach_Thumbnail.jsx'
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../Loading/Loading.jsx';
+import PaginationAdvanced from '../Pagination/PaginationAdvanced.jsx';
 
 export default class Coach_Grid extends Component {
 
@@ -15,13 +17,15 @@ export default class Coach_Grid extends Component {
         "name": "",
         "url": ""
       }],
+      data_loaded: false
     }
 
 
     var url = "https://api-dot-game-day-ballers-181000.appspot.com/coaches/"
     axios.get(url).then(response => {
       this.setState({
-        coaches : response['data']
+        coaches : response['data'],
+        data_loaded : true
       })
     })
   }
@@ -50,22 +54,30 @@ export default class Coach_Grid extends Component {
 
 
   render(){
-    return(
-      <div className="main">
-        <Grid>
-          <Row>
-            <Col xs={6} sm={4}>
-              {this.RenderCoachThumbnails(0, 9)}
-            </Col>
-            <Col xs={6} sm={4}>
-              {this.RenderCoachThumbnails(10, 19)}
-            </Col>
-            <Col xs={6} sm={4}>
-              {this.RenderCoachThumbnails(20, 29)}
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
+
+    if(!this.state.data_loaded){
+      return(<Loading/>);
+    }else{
+      return(
+        <div className="main">
+          <Grid>
+            <Row>
+              {/* <PaginationAdvanced num_items={Math.ceil(this.state.num_players_total / this.state.num_players_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect.bind(this)}/> */}
+            </Row>
+            <Row>
+              <Col xs={6} sm={4}>
+                {this.RenderCoachThumbnails(0, 9)}
+              </Col>
+              <Col xs={6} sm={4}>
+                {this.RenderCoachThumbnails(10, 19)}
+              </Col>
+              <Col xs={6} sm={4}>
+                {this.RenderCoachThumbnails(20, 29)}
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      );
+    }
   }
 }
