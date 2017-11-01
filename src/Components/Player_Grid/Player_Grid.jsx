@@ -32,7 +32,7 @@ export default class Player_Grid extends Component {
 
     this.handleSelect = this.handleSelect.bind(this)
     this.sortByName = this.sortByName.bind(this)
-    this.sortByTeamName = this.sortByTeamName.bind(this)
+    // this.sortByTeamName = this.sortByTeamName.bind(this)
   }
 
   RenderPlayerThumbnail(link, player_name, img_source){
@@ -67,24 +67,24 @@ export default class Player_Grid extends Component {
 
   sortByName(){
     this.setState({
-      players: this.state.players.sort((player1, player2) => {
-        var player1Name = player1.name.toLowerCase()
-        var player2Name = player2.name.toLowerCase()
-        return player1Name > player2Name ? 1 : -1
+      players: this.state.players.sort((n1, n2) => {
+        var name1 = n1.name.toLowerCase()
+        var name2 = n2.name.toLowerCase()
+        return name1 > name2 ? 1 : -1
       })
     });
   }
 
-  sortByTeamName(){
-    this.setState({
-      players: this.state.players.sort((player1, player2) => {
-        var player1Name = player1.name.toLowerCase()
-        var player2Name = player2.name.toLowerCase()
-
-        return player1Name > player2Name ? 1 : -1
-      })
-    });
-  }
+  // sortByTeamName(){
+  //   this.setState({
+  //     players: this.state.players.sort((player1, player2) => {
+  //       var player1Name = player1.name.toLowerCase()
+  //       var player2Name = player2.name.toLowerCase()
+  //
+  //       return player1Name > player2Name ? 1 : -1
+  //     })
+  //   });
+  // }
 
   render(){
     if(!this.state.data_loaded){
@@ -111,7 +111,7 @@ export default class Player_Grid extends Component {
               </DropdownButton>
               <DropdownButton title="Sort By">
                 <MenuItem eventKey="1" onClick={this.sortByName}>Player Name</MenuItem>
-                <MenuItem eventKey="2" onClick={this.sortByTeamName}>Team Name</MenuItem>
+                {/* <MenuItem eventKey="2" onClick={this.sortByTeamName}>Team Name</MenuItem> */}
                 <MenuItem eventKey="3">MPG</MenuItem>
                 <MenuItem eventKey="4">FG%</MenuItem>
                 <MenuItem eventKey="5">3P%</MenuItem>
@@ -136,23 +136,5 @@ export default class Player_Grid extends Component {
       );
 
     }
-    /*
-    <ButtonToolbar>
-
-      <Button bsStyle="primary" onClick={this.sortByName}>Player Name</Button>
-
-      <Button bsStyle="success" onClick={this.sortByTeamName}>Team Name</Button>
-
-      <Button bsStyle="info">Position</Button>
-
-      <Button bsStyle="danger">MPG</Button>
-      <Button bsStyle="danger">FG%</Button>
-      <Button bsStyle="danger">3P%</Button>
-      <Button bsStyle="danger">FT%</Button>
-      <Button bsStyle="danger">PPG</Button>
-      <Button bsStyle="danger">RPG</Button>
-      <Button bsStyle="danger">APG</Button>
-      <Button bsStyle="danger">BPG</Button>
-    </ButtonToolbar> */
   }
 }
