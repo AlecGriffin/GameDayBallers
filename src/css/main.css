@@ -205,6 +205,53 @@ a {
   margin-top: 10px;
 }
 
+.paginate {
+  text-align: center;
+}
+
+.paginate .pagination .active a {
+  background-color: #FF8B00;
+  border-color: #FF8B00;
+  color: white;
+}
+
+.controls .paginate .pagination {
+  margin: 0;
+}
+
+.controls .paginate {
+  text-align: left;
+}
+
+.paginate .pagination .active a:hover {
+  color: white;
+}
+
+.paginate .pagination a {
+  color: #565656;
+}
+
+.paginate .pagination a:hover {
+  color: #FF8B00;
+}
+
+.paginate .pagination .disabled a {
+  color: gray;
+}
+
+.controls {
+  width: 93%;
+  margin: auto;
+}
+
+.controls .sort-and-filter {
+  text-align: right;
+}
+
+.controls .sort-and-filter .dropdown {
+  margin-left: 15px;
+}
+
 @media only screen and (max-width: 768px) {
   .tweets-container {
     display: none;

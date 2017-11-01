@@ -22,8 +22,6 @@ export default class PaginationAdvanced extends Component {
       <Pagination
         prev
         next
-        first
-        last
         ellipsis
         boundaryLinks
         items={this.props.num_items}
