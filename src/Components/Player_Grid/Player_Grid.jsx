@@ -16,9 +16,10 @@ export default class Player_Grid extends Component {
          'name': '',
           'url' : ''}],
       activePage: 1,
-      num_players_to_show: 50,
+      num_players_to_show: 10,
       data_loaded: false
     }
+
 
     var url = "https://api-dot-game-day-ballers-181000.appspot.com/players/"
 

@@ -210,3 +210,13 @@ a {
     display: none;
   }
 }
+
+.tool {
+  background-color: red;
+  border-radius: 50%;
+}
+
+.team-logo.image-card .card-title img {
+  height: 180px;
+  width: auto;
+}

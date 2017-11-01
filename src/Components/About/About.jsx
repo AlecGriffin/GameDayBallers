@@ -3,6 +3,8 @@ import '../../css/main.css';
 import PersonThumbnail from './Person_Thumbnail.jsx';
 import { Grid, Row, Col, Image, Thumbnail, Clearfix } from 'react-bootstrap';
 import axios from 'axios';
+import github from '../../images/github.png'
+import Tool_Thumbnail from './Tool_Thumbnail.jsx'
 
 var tools = [
   "Google Cloud Platform",
@@ -68,9 +70,11 @@ function generateTools(){
   var result = []
   for(var t of tools){
     result.push(
+      // <Tool_Thumbnail src={github} name={t}/>
       <Col sm={4} className="grid-element">
         {t}
       </Col>
+
     )
   }
   return result
@@ -270,8 +274,6 @@ function generateThumbnail(person, commits) {
            tools used
            describe their use
            special focus on optional tools that were not required --> */}
-
-
        </div>
      );
    }

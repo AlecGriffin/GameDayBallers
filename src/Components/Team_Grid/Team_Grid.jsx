@@ -40,10 +40,10 @@ export default class Team_Grid extends Component {
   }
 
   // Use this method to generate Thumbnails when future API is created
-  RenderTeamThumbnails(x, y){
+  RenderTeamThumbnails(){
     var result = [];
-    
-    for(let i = x; i <= y && i < this.state.teams.length; i++){
+
+    for(let i = 0; i < this.state.teams.length; i++){
       var team = this.state.teams[i]
       result.push(this.RenderTeamThumbnail(team.url, team.name, team.image_url ));
     }
@@ -61,15 +61,7 @@ export default class Team_Grid extends Component {
                 {/* <PaginationAdvanced num_items={Math.ceil(this.state.num_players_total / this.state.num_players_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect.bind(this)}/> */}
               </Row>
               <Row>
-                <Col xs={6} sm={4}>
-                  {this.RenderTeamThumbnails(0, 9)}
-                </Col>
-                <Col xs={6} sm={4}>
-                  {this.RenderTeamThumbnails(10, 19)}
-                </Col>
-                <Col xs={6} sm={4}>
-                  {this.RenderTeamThumbnails(20, 29)}
-                </Col>
+                  {this.RenderTeamThumbnails()}
               </Row>
             </Grid>
         </div>
