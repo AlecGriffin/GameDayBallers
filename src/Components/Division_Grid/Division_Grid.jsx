@@ -120,6 +120,9 @@ export default class Division_Grid extends Component {
               {this.RenderDivisionThumbnails()}
             </Row>
           </Grid>
+          <Row xs={6} className="paginate">
+            <PaginationAdvanced num_items={Math.ceil(this.state.divisions.length / this.state.num_divisions_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+          </Row>
         </div>
       );
     }

@@ -118,6 +118,9 @@ export default class Coach_Grid extends Component {
                 {this.RenderCoachThumbnails()}
             </Row>
           </Grid>
+          <Row xs={6} className="paginate">
+            <PaginationAdvanced num_items={Math.ceil(this.state.coaches.length / this.state.num_coaches_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+          </Row>
         </div>
       );
     }
