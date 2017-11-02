@@ -267,6 +267,7 @@ a {
 .team-logo.image-card .card-title img {
   height: 180px;
   width: auto;
+  max-width: 100%;
 }
 
 .grow {

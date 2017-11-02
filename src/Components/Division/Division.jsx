@@ -54,9 +54,9 @@ export default class Division extends Component {
     );
   }
 
-  RenderTeamThumbnails(x, y){
+  RenderTeamThumbnails(){
     var result = [];
-    for(let i = x; i <= y && i < this.state.division.teams.length; i++){
+    for(let i = 0; i < this.state.division.teams.length; i++){
       var team = this.state.division.teams[i]
       result.push(this.RenderTeamThumbnail(team.url, team.name, team.image_url ));
     }
@@ -210,15 +210,7 @@ export default class Division extends Component {
 
                 <div className="roster-wrapper">
                   <Row class="roster">
-                    <Col xs={6} sm={4}>
-                      {this.RenderTeamThumbnails(0, 1)}
-                    </Col>
-                    <Col xs={6} sm={4}>
-                      {this.RenderTeamThumbnails(2, 3)}
-                    </Col>
-                    <Col xs={6} sm={4}>
-                      {this.RenderTeamThumbnails(4, 4)}
-                    </Col>
+                      {this.RenderTeamThumbnails()}
                   </Row>
                 </div>
               </div>
