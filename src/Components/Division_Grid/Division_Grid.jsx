@@ -64,7 +64,7 @@ export default class Division_Grid extends Component {
 // <------------ Comparator Functions ------------>
   sortByName(){
     this.setState({
-      players: this.state.players.sort((n1, n2) => {
+      players: this.state.divisions.sort((n1, n2) => {
         var name1 = n1.name.toLowerCase()
         var name2 = n2.name.toLowerCase()
         return name1 > name2 ? 1 : -1

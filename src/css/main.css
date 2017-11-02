@@ -68,6 +68,7 @@ html {
   text-align: center;
   color: white;
   border-radius: 3px 3px 0 0;
+
 }
 
 .card.image-card.white-card .card-title {
@@ -266,4 +267,11 @@ a {
 .team-logo.image-card .card-title img {
   height: 180px;
   width: auto;
+}
+
+.grow {
+  transition: all .05s linear;
+}
+.grow:hover {
+  transform: scale(1.05);
 }
