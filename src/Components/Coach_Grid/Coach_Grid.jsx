@@ -35,6 +35,15 @@ export default class Coach_Grid extends Component {
     this.sortByName = this.sortByName.bind(this)
   }
 
+
+    handleSelect(eventKey) {
+      console.log("Set Active Page To: " + eventKey);
+      this.setState({
+        activePage: eventKey,
+      });
+    }
+
+// <------------ Thumbnail Generation ------------>
   RenderCoachThumbnail(link, Coach_name, img_source){
     return(
       <Link to= {link}>
@@ -43,7 +52,7 @@ export default class Coach_Grid extends Component {
     );
   }
 
-  // Use this method to generate Thumbnails when future API is created
+
   RenderCoachThumbnails(){
     var result = []
     var upperBound = this.state.activePage * this.state.num_coaches_to_show
@@ -55,14 +64,10 @@ export default class Coach_Grid extends Component {
     }
     return result;
   }
+// <----------------------###---------------------->
 
-  handleSelect(eventKey) {
-    console.log("Set Active Page To: " + eventKey);
-    this.setState({
-      activePage: eventKey,
-    });
-  }
 
+// <------------ Comparator Functions ------------>
   sortByName(){
     this.setState({
       players: this.state.coaches.sort((n1, n2) => {
@@ -72,7 +77,7 @@ export default class Coach_Grid extends Component {
       })
     });
   }
-
+// <----------------------###---------------------->
 
 
   render(){
@@ -102,14 +107,6 @@ export default class Coach_Grid extends Component {
               <DropdownButton title="Sort By">
                 <MenuItem eventKey="1" onClick={this.sortByName}>Coach Name</MenuItem>
                 {/* <MenuItem eventKey="2" onClick={this.sortByTeamName}>Team Name</MenuItem> */}
-                <MenuItem eventKey="3">MPG</MenuItem>
-                <MenuItem eventKey="4">FG%</MenuItem>
-                <MenuItem eventKey="5">3P%</MenuItem>
-                <MenuItem eventKey="6">FT%</MenuItem>
-                <MenuItem eventKey="7">PPG</MenuItem>
-                <MenuItem eventKey="8">RPG</MenuItem>
-                <MenuItem eventKey="9">APG</MenuItem>
-                <MenuItem eventKey="10">BPG</MenuItem>
               </DropdownButton>
             </Col>
           </Row>

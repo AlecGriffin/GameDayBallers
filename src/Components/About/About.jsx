@@ -66,15 +66,24 @@ var Project_Members = {
   }
 }
 
+var scrapingText =
+<p>
+  Most of our data was scraped from the NBA stats api by following the endpoint documentation. Our MySQL database has six tables including players, coaches, teams, divisions, awards, and prenba. The basic framework for the database was created by iterating over the 30 different teams, getting the basic team information which included information about the head coach and roster, and building the coach and roster tables through the information parsed. The 30 teams produced 498 different player entries, 30 head coach entries, 6 division entries, 160 prenba entries, and 1403 award entries. All the data that we weren’t able to find from the NBA stats API, we found in the MySportsFeeds API. This site provides real time and up to date sports information for not only the NBA, but also all the other major sports. The scraping from this website was pretty straight forward as it included a variety of different feeds to choose from. All of the data we found from MySportsFeeds was used to update the missing data fields we had after we finished with the NBA stats api.
+</p>
+
+var aboutText =
+<div>
+  <p>Gameday Ballers is a web application whose purpose is to organize useful information about the NBA and make the information easy to access. The application can be used to find stats on all basketball teams, players, coaches, and divisions. Our group members are interested in and keep up with the NBA, therefore we felt this would be an appropriate topic for our project and one we would be excited about implementing.</p>
+  <p>Gameday Ballers is intended for anyone interested in the NBA. Whether an expert seeking to learn more, a Fantasty Basketball enthusiast trying to keep up with their players, or a newbie wanting to get acquainted with the league, Game Day Ballers has a plethora of information about the league, and it's divisions, teams, coaches, and players.</p>
+</div>
+
 function generateTools(){
   var result = []
   for(var t of tools){
     result.push(
-      // <Tool_Thumbnail src={github} name={t}/>
       <Col sm={4} className="grid-element">
         {t}
       </Col>
-
     )
   }
   return result
@@ -150,8 +159,7 @@ function generateThumbnail(person, commits) {
          </div>
          <div className="card card-white">
            <div className="card-body">
-             <p>Gameday Ballers is a web application whose purpose is to organize useful information about the NBA and make the information easy to access. The application can be used to find stats on all basketball teams, players, coaches, and divisions. Our group members are interested in and keep up with the NBA, therefore we felt this would be an appropriate topic for our project and one we would be excited about implementing.</p>
-             <p>Gameday Ballers is intended for anyone interested in the NBA. Whether an expert seeking to learn more, a Fantasty Basketball enthusiast trying to keep up with their players, or a newbie wanting to get acquainted with the league, Game Day Ballers has a plethora of information about the league, and it's divisions, teams, coaches, and players.</p>
+             {aboutText}
            </div>
          </div>
        <div className="card display-card">
@@ -187,14 +195,6 @@ function generateThumbnail(person, commits) {
            </div>
          </div>
 
-
-         {/* <!-- stats:
-             total no. of commits
-             total no. of issues
-             total no. of unit tests
-             a link to the Apiary API
-             a link to the GitHub Repo
-             a link to the Trello --> */}
          <Row>
            <Col sm={6}>
              <div className="card">
@@ -255,25 +255,11 @@ function generateThumbnail(person, commits) {
                    </li>
                  </ul>
                  <h3>Scraping</h3>
-                 <p>
-                   Most of our data was scraped from the NBA stats api by following the endpoint documentation. Our MySQL database has six tables including players, coaches, teams, divisions, awards, and prenba. The basic framework for the database was created by iterating over the 30 different teams, getting the basic team information which included information about the head coach and roster, and building the coach and roster tables through the information parsed. The 30 teams produced 498 different player entries, 30 head coach entries, 6 division entries, 160 prenba entries, and 1403 award entries. All the data that we weren’t able to find from the NBA stats API, we found in the MySportsFeeds API. This site provides real time and up to date sports information for not only the NBA, but also all the other major sports. The scraping from this website was pretty straight forward as it included a variety of different feeds to choose from. All of the data we found from MySportsFeeds was used to update the missing data fields we had after we finished with the NBA stats api.
-                 </p>
+                 {scrapingText}
                </div>
              </div>
            </Col>
          </Row>
-
-
-       {/* <!-- >data:
-           links to the data sources
-           description of how each was scraped --> */}
-
-
-
-       {/* <!-- ->tools:
-           tools used
-           describe their use
-           special focus on optional tools that were not required --> */}
        </div>
      );
    }

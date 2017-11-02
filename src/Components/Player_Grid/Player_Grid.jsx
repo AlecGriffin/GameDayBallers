@@ -32,15 +32,6 @@ export default class Player_Grid extends Component {
 
     this.handleSelect = this.handleSelect.bind(this)
     this.sortByName = this.sortByName.bind(this)
-    // this.sortByTeamName = this.sortByTeamName.bind(this)
-  }
-
-  RenderPlayerThumbnail(link, player_name, img_source){
-    return(
-      <Link to= {link}>
-        <PlayerThumbnail name={player_name} src={img_source}/>
-      </Link>
-    );
   }
 
   handleSelect(eventKey) {
@@ -50,7 +41,16 @@ export default class Player_Grid extends Component {
     });
   }
 
-  // Use this method to generate Thumbnails when future API is created
+
+// <------------ Thumbnail Generation ------------>
+  RenderPlayerThumbnail(link, player_name, img_source){
+    return(
+      <Link to= {link}>
+        <PlayerThumbnail name={player_name} src={img_source}/>
+      </Link>
+    );
+  }
+
   RenderPlayerThumbnails(){
     var result = []
 
@@ -63,8 +63,10 @@ export default class Player_Grid extends Component {
     }
     return result;
   }
+// <----------------------###---------------------->
 
 
+// <------------ Comparator Functions ------------>
   sortByName(){
     this.setState({
       players: this.state.players.sort((n1, n2) => {
@@ -74,17 +76,7 @@ export default class Player_Grid extends Component {
       })
     });
   }
-
-  // sortByTeamName(){
-  //   this.setState({
-  //     players: this.state.players.sort((player1, player2) => {
-  //       var player1Name = player1.name.toLowerCase()
-  //       var player2Name = player2.name.toLowerCase()
-  //
-  //       return player1Name > player2Name ? 1 : -1
-  //     })
-  //   });
-  // }
+// <----------------------###---------------------->
 
   render(){
     if(!this.state.data_loaded){
@@ -134,7 +126,6 @@ export default class Player_Grid extends Component {
           </Row>
         </div>
       );
-
     }
   }
 }
