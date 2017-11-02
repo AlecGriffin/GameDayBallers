@@ -20,8 +20,8 @@ export default class Home extends Component {
       <div className="main">
         <div id="home-background"></div>
           <div className="home-title">
-            <h1 className="display-3">WELCOME TO GAME DAY BALLERS</h1>
-            <h2>I hope you are ready to ball.</h2>
+            {/*<h1 className="display-3">WELCOME TO GAME DAY BALLERS</h1>
+            <h2>I hope you are ready to ball.</h2>*/}
           </div>
         </div>
     );
