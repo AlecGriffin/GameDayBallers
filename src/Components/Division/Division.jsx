@@ -91,7 +91,7 @@ export default class Division extends Component {
 
   RenderPlayerThumbnail(link, player_name, img_source){
     return(
-      <Link to= {link}>
+      <Link key={player_name} to= {link}>
         <PlayerThumbnail name={player_name} src={img_source}/>
       </Link>
     );

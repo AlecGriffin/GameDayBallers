@@ -79,9 +79,10 @@ var aboutText =
 
 function generateTools(){
   var result = []
+
   for(var t of tools){
     result.push(
-      <Col sm={4} className="grid-element">
+      <Col key={t} sm={4} className="grid-element">
         {t}
       </Col>
     )
@@ -119,33 +120,36 @@ function generateThumbnail(person, commits) {
        Number_Of_Issues: 0,
        Number_Of_Tests: 0
      };
+   }
 
-      // Get Total and Individual Commit Numbers (from Github)
-      axios.get("https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors").then(response => {
+   componentDidMount(){
 
-        let sum = 0
-        response.data.map((member)=>{
-          sum += member['total']
+     // Get Total and Individual Commit Numbers (from Github)
+     var githubCommitsURL = "https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors"
+     axios.get(githubCommitsURL).then(response => {
+
+       let sum = 0
+       response.data.map((member)=>{
+         sum += member['total']
+       })
+
+       this.setState({
+          Total_Commits: sum,
+          Alec_Commits: response.data[2].total,
+          //  Regan_Commits: response['data'][#]['total'],
+          Andrew_Commits: response.data[3].total,
+          Vikram_Commits: response.data[0].total,
+          Nihal_Commits: response.data[1].total
         })
+       });
 
-
-        this.setState({
-           Total_Commits: sum,
-           Alec_Commits: response.data[2].total,
-          //      Regan_Commits: response['data'][#]['total'],
-           Andrew_Commits: response.data[3].total,
-           Vikram_Commits: response.data[0].total,
-           Nihal_Commits: response.data[1].total
-         })
-        });
-
-        // Get Total and Individual Commit Numbers (from Github)
-        axios.get("https://api.trello.com/1/lists/59cb1bf501fa898f2408415c/cards").then(response => {
-          this.setState({
-             Number_Of_Issues: response.data.length
-           })
-        });
-
+      //  Get number of issues on Trello
+       var trelloIssuesUrl = "https://api.trello.com/1/lists/59cb1bf501fa898f2408415c/cards"
+       axios.get(trelloIssuesUrl).then(response => {
+         this.setState({
+            Number_Of_Issues: response.data.length
+          })
+       });
    }
 
    render() {

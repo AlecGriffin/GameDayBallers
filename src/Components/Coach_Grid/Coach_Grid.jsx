@@ -49,7 +49,7 @@ export default class Coach_Grid extends Component {
 // <------------ Thumbnail Generation ------------>
   RenderCoachThumbnail(link, Coach_name, img_source){
     return(
-      <Link to= {link}>
+      <Link key={Coach_name} to= {link}>
         <Coach_Thumbnail name={Coach_name} src={img_source}/>
       </Link>
     );

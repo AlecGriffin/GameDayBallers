@@ -25,7 +25,7 @@ export default class Player_Grid extends Component {
   }
 
   componentDidMount(){
-    
+
     var url = "https://api-dot-game-day-ballers-181000.appspot.com/players/"
     axios.get(url).then(response => {
       this.setState({
@@ -46,7 +46,7 @@ export default class Player_Grid extends Component {
 // <------------ Thumbnail Generation ------------>
   RenderPlayerThumbnail(link, player_name, img_source){
     return(
-      <Link to= {link}>
+      <Link key={player_name} to= {link}>
         <PlayerThumbnail name={player_name} src={img_source}/>
       </Link>
     );

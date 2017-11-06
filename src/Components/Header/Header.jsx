@@ -6,15 +6,17 @@ import { LinkContainer } from 'react-router-bootstrap';
 export default class Header extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      textInput : ""
-    }
-    this.focusTextInput = this.focusTextInput.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+    // console.log(this.inputNode.value);
   }
 
-  focusTextInput(event){
-    this.setState({textInput: event.target.value});
-    console.log(this.textInput)
+  handleClick(event){
+    console.log(this.inputNode.value)
+  }
+
+  handleKeyPress(event){
+    console.log(this.inputNode.value)
   }
 
   render(){
@@ -30,9 +32,16 @@ export default class Header extends Component {
         <Navbar.Collapse>
           <Navbar.Form pullLeft>
             <FormGroup>
-              <FormControl type="text" placeholder="Search" value={this.state.textInput} onChange={this.focusTextInput}/>
+              {/*
+                * CODE: inputRef={node=> this.inputNode = node
+                *
+                * This code creates a reference to the
+                * <input></input> component contained by the FormControl component.
+                * Access the text within the search box using: this.inputNode.value
+                */}
+              <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node} onKeyUp={this.handleKeyPress}/>
               {' '}
-              <Button onClick={this.focusTextInput} type="submit">Search</Button>
+              <Button onClick={this.handleClick} type="submit">Search</Button>
             </FormGroup>
           </Navbar.Form>
 

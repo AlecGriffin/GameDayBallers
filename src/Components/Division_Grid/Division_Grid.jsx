@@ -46,7 +46,7 @@ export default class Division_Grid extends Component {
 // <------------ Thumbnail Generation ------------>
   RenderDivisionThumbnail(link, division_name, img_source){
     return(
-      <Link to= {link}>
+      <Link key={division_name} to= {link}>
         <Division_Thumbnail name={division_name} src={img_source}/>
       </Link>
     );

@@ -48,7 +48,7 @@ export default class Team_Grid extends Component {
 // <------------ Thumbnail Generation ------------>
   RenderTeamThumbnail(link, Team_name, img_source){
     return(
-      <Link to= {link}>
+      <Link key={Team_name} to= {link}>
         <TeamThumbnail name={Team_name} src={img_source}/>
       </Link>
     );

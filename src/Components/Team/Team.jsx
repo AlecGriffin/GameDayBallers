@@ -60,11 +60,11 @@ export default class Team extends Component {
       })
     })
 
-    var spursTeamId = 'K8vZ9171ov0'
-    var apiKey = 'GEX5MsoeYIOj3pdBJmxmauKcXIADiO8P'
-    axios.get().then(response => {
-
-    })
+    // var spursTeamId = 'K8vZ9171ov0'
+    // var apiKey = 'GEX5MsoeYIOj3pdBJmxmauKcXIADiO8P'
+    // axios.get().then(response => {
+    //
+    // })
 
 
 
@@ -108,7 +108,7 @@ export default class Team extends Component {
 
   RenderPlayerThumbnail(link, player_name, img_source){
     return(
-      <Link to= {link}>
+      <Link key={player_name} to= {link}>
         <PlayerThumbnail name={player_name} src={img_source}/>
       </Link>
     );
