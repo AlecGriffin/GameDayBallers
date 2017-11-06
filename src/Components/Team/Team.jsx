@@ -126,7 +126,7 @@ export default class Team extends Component {
   }
 
   render() {
-    var team = this.state.team
+    var team = this.state.team;
 
     var cardTitleStyle = {
       backgroundColor: this.getColor()
@@ -195,6 +195,14 @@ export default class Team extends Component {
                   </ul>
                 </div>
               </div>
+              <div className="card youtube-card">
+                <div className="card-title" style={cardTitleStyle}>
+                  Videos
+                </div>
+                <div className="card-body">
+                  {this.state.youtube_data_loaded && this.renderYoutube()}
+                </div>
+              </div>
               {/* <div className="card tweets-container">
                 { timeline }
               </div> */}
@@ -233,7 +241,6 @@ export default class Team extends Component {
                 </div>
               </Col>
             </Row>
-            {this.state.youtube_data_loaded && this.renderYoutube()}
         </div>
       );
     }

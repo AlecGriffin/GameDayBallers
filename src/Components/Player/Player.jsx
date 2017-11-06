@@ -260,9 +260,23 @@ export default class Player extends Component {
                   </div>
                 </Col>*/}
               </Row>
+              <Row>
+                <Col xs={12}>
+                  <div className="card youtube-card">
+                    <div className="card-title">
+                      Videos
+                    </div>
+                    <div className="card-body">
+                      {this.state.youtube_data_loaded && this.renderYoutube()}
+                    </div>
+                  </div>
+                </Col>
+
+
+              </Row>
             </Col>
           </Row>
-            {this.state.youtube_data_loaded && this.renderYoutube()}
+
         </div>
       );
       }
