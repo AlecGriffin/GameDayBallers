@@ -59,6 +59,16 @@ export default class Team extends Component {
         youtube_data_loaded : true,
       })
     })
+
+    var spursTeamId = 'K8vZ9171ov0'
+    var apiKey = 'GEX5MsoeYIOj3pdBJmxmauKcXIADiO8P'
+    axios.get().then(response => {
+
+    })
+
+
+
+
   }
 
   getYouTubeData(){
