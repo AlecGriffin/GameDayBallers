@@ -5,6 +5,7 @@ import lebron_james_audio_file from './lebron_james_vine.wav';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx'
+import YouTube from 'react-youtube'
 
 
 export default class Player extends Component {
@@ -43,40 +44,69 @@ export default class Player extends Component {
         "name": "",
         "url": ""
       },
-      "need_coach": true
+      youtube: [],
+      youtube_data_loaded: false,
     }
+  }
 
+  componentDidMount(){
+
+    // Handle Aquiring Data from RESTful API
     var url = window.location.href;
     var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + url.split('/')[url.split('/').length - 1]
     axios.get(player_url).then(response => {
       this.setState({
-        player : response['data'],
-        player_loaded : true
+        player : response.data,
       })
-      console.log(this.state.player);
-    })
 
-
+      return axios.all([
+        axios.get('https://api-dot-game-day-ballers-181000.appspot.com' + this.state.player.team.url),
+        this.getYouTubeData()
+      ])
+    }).then(axios.spread((coach, youtube) => {
+      this.setState({
+        coach: coach.data.head_coach,
+        player_loaded : true,
+        youtube : youtube.data.items,
+        youtube_data_loaded : true,
+      })
+    }))
   }
 
-  getAxiosPromisesCoach() {
-    if(this.state.player_loaded){
-      var promises = [];
-      promises.push(axios.get('https://api-dot-game-day-ballers-181000.appspot.com' + this.state.player.team.url));
+  getYouTubeData(){
+    var maxResults = '1'
+    var part = 'snippet'
+    var API_KEY = 'AIzaSyB_0ID-n-g31_B0GKkquWh5Kn7WBJPh4rM'
+    var searchTopic = this.state.player.player
+    console.log(searchTopic);
+
+    var youtube_URL = "https://www.googleapis.com/youtube/v3/search?q=" + searchTopic + "&maxResults=" + maxResults + "&part=" + part + "&key=" + API_KEY
+    return axios.get(youtube_URL)
+  }
+
+  renderYoutube(){
+
+    const opts = {
+      height: '540',
+      width: '720',
+      playerVars: {
+        autoplay: 0,
+        showinfo: 0,
       }
-      return promises
     }
 
-  getCoach() {
-    if(this.state.player_loaded){
-      axios.all(this.getAxiosPromisesCoach()).then((response) =>{
-
-        this.setState({
-          need_coach: false,
-          coach: response[0].data.head_coach
-        })
-      })
+    function _onReady(event) {
+      // access to player in all event handlers via event.target
+      event.target.pauseVideo();
     }
+
+    return (
+      <YouTube
+          videoId={this.state.youtube[0].id.videoId}
+          opts={opts}
+          onReady={this._onReady}
+        />
+    )
   }
 
   playSound () {
@@ -92,9 +122,6 @@ export default class Player extends Component {
   }
 
   render(){
-    if (this.state.need_coach) {
-      this.getCoach();
-    }
 
     var url = window.location.href;
     // var playerName = url.split('/')[url.split('/').length - 1];
@@ -113,7 +140,6 @@ export default class Player extends Component {
        {rec}
      </li>
      );
-
 
       if(!this.state.player_loaded){
         return(<Loading/>);
@@ -236,6 +262,7 @@ export default class Player extends Component {
               </Row>
             </Col>
           </Row>
+            {this.state.youtube_data_loaded && this.renderYoutube()}
         </div>
       );
       }

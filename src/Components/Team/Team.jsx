@@ -6,6 +6,7 @@ import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx'
+import YouTube from 'react-youtube'
 
 
 
@@ -36,8 +37,20 @@ export default class Team extends Component {
             "division_champs": []
           }
         },
-        data_loaded: false
+        data_loaded: false,
+        youtube_data_loaded: false,
+        youtube: []
       }
+
+      // var url = window.location.href;
+      // var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + url.split('/')[url.split('/').length - 1]
+      // axios.get(team_url).then(response => {
+      //   this.setState({
+      //     team : response['data'],
+      //     data_loaded: true
+      //   })
+      //   console.log(this.state.team)
+      // })
 
       var url = window.location.href;
       var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + url.split('/')[url.split('/').length - 1]
@@ -46,9 +59,50 @@ export default class Team extends Component {
           team : response['data'],
           data_loaded: true
         })
-        console.log(this.state.team)
+
+        return this.getYouTubeData()
+      }).then(youtube => {
+        this.setState({
+          youtube : youtube.data.items,
+          youtube_data_loaded : true,
+        })
       })
 
+  }
+
+  getYouTubeData(){
+    var maxResults = '1'
+    var part = 'snippet'
+    var API_KEY = 'AIzaSyB_0ID-n-g31_B0GKkquWh5Kn7WBJPh4rM'
+    var searchTopic = this.state.team.name + 'highlights'
+    console.log(searchTopic);
+
+    var youtube_URL = "https://www.googleapis.com/youtube/v3/search?q=" + searchTopic + "&maxResults=" + maxResults + "&part=" + part + "&key=" + API_KEY
+    return axios.get(youtube_URL)
+  }
+
+  renderYoutube(){
+    const opts = {
+      height: '540',
+      width: '720',
+      playerVars: {
+        autoplay: 0,
+        showinfo: 0,
+      }
+    }
+
+    function _onReady(event) {
+      // access to player in all event handlers via event.target
+      event.target.pauseVideo();
+    }
+
+    return (
+      <YouTube
+          videoId={this.state.youtube[0].id.videoId}
+          opts={opts}
+          onReady={this._onReady}
+        />
+    )
   }
 
   RenderPlayerThumbnail(link, player_name, img_source){
@@ -188,6 +242,7 @@ export default class Team extends Component {
                 </div>
               </Col>
             </Row>
+            {this.state.youtube_data_loaded && this.renderYoutube()}
         </div>
       );
     }

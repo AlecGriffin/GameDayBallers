@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/pingpong.css';
+import './css/loading.css';
 
 export default class Loading extends Component {
   render(){

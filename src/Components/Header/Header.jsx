@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 export default class Header extends Component {
@@ -15,6 +15,14 @@ export default class Header extends Component {
         </Navbar.Header>
 
         <Navbar.Collapse>
+          <Navbar.Form pullLeft>
+            <FormGroup>
+              <FormControl type="text" placeholder="Search" />
+            </FormGroup>
+            {' '}
+            <Button type="submit">Search</Button>
+          </Navbar.Form>
+
           <Nav pullRight>
             <LinkContainer to='/players'>
               <NavItem eventKey={1} >Players</NavItem>

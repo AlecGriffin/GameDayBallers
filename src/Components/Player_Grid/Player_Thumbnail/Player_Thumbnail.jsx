@@ -21,6 +21,6 @@ export default class Player_Thumbnail extends Component {
             </div>
           </div>
       </Col>
-    );
+    )
   }
 }

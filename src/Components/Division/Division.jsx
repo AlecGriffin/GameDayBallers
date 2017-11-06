@@ -41,9 +41,14 @@ export default class Division extends Component {
         division : response['data'],
         division_loaded : true
       })
+      return axios.all(this.getAxiosPromisesAllPlayers())
+    }).then(response => {
+      this.setState({
+        need_team_reports: false,
+        team_reports : response,
+        data_loaded: true
+      })
     })
-
-    // this.getAxiosPromisesAllPlayers()
   }
 
   RenderTeamThumbnail(link, Team_name, img_source){
@@ -75,26 +80,8 @@ export default class Division extends Component {
         var team = this.state.division.teams[i]
         var url = 'https://api-dot-game-day-ballers-181000.appspot.com' + team.url
         promises.push(axios.get(url))
-        // console.log(team.url)
       }
-      // console.log("end");
       return promises
-    }
-  }
-
-  getPlayers(){
-    // console.log("Loaded:" + this.state.division_loaded);
-    if(this.state.division_loaded){
-      // console.log("Before");
-      axios.all(this.getAxiosPromisesAllPlayers()).then((response) =>{
-
-        this.setState({
-          need_team_reports: false,
-          team_reports : response,
-          data_loaded: true
-        })
-        console.log(response);
-      })
     }
   }
 
@@ -129,9 +116,6 @@ export default class Division extends Component {
 
 
   render() {
-    if(this.state.need_team_reports){
-        this.getPlayers()
-    }
 
     // this.getPlayers()
     // MUST BE CHANGED

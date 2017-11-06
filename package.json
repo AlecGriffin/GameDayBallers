@@ -12,7 +12,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.0.14",
     "react-sound": "^0.8.0",
-    "react-twitter-widgets": "^1.7.1"
+    "react-twitter-widgets": "^1.7.1",
+    "react-youtube": "^7.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
