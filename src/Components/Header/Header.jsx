@@ -4,6 +4,19 @@ import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, But
 import { LinkContainer } from 'react-router-bootstrap';
 
 export default class Header extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      textInput : ""
+    }
+    this.focusTextInput = this.focusTextInput.bind(this)
+  }
+
+  focusTextInput(event){
+    this.setState({textInput: event.target.value});
+    console.log(this.textInput)
+  }
+
   render(){
     return(
       <Navbar fixedTop collapseOnSelect>
@@ -17,10 +30,10 @@ export default class Header extends Component {
         <Navbar.Collapse>
           <Navbar.Form pullLeft>
             <FormGroup>
-              <FormControl type="text" placeholder="Search" />
+              <FormControl type="text" placeholder="Search" value={this.state.textInput} onChange={this.focusTextInput}/>
+              {' '}
+              <Button onClick={this.focusTextInput} type="submit">Search</Button>
             </FormGroup>
-            {' '}
-            <Button type="submit">Search</Button>
           </Navbar.Form>
 
           <Nav pullRight>
