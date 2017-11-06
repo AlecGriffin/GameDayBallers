@@ -22,6 +22,11 @@ export default class Coach_Grid extends Component {
       activePage: 1
     }
 
+    this.handleSelect = this.handleSelect.bind(this)
+    this.sortByName = this.sortByName.bind(this)
+  }
+
+  componentDidMount(){
 
     var url = "https://api-dot-game-day-ballers-181000.appspot.com/coaches/"
     axios.get(url).then(response => {
@@ -30,10 +35,8 @@ export default class Coach_Grid extends Component {
         data_loaded : true
       })
     })
-
-    this.handleSelect = this.handleSelect.bind(this)
-    this.sortByName = this.sortByName.bind(this)
   }
+
 
 
     handleSelect(eventKey) {

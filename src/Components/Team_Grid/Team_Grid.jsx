@@ -22,17 +22,19 @@ export default class Team_Grid extends Component {
       activePage: 1
     }
 
-    var url = "https://api-dot-game-day-ballers-181000.appspot.com/teams/"
+    this.handleSelect = this.handleSelect.bind(this)
+    this.sortByName = this.sortByName.bind(this)
+  }
 
+  componentDidMount(){
+
+    var url = "https://api-dot-game-day-ballers-181000.appspot.com/teams/"
     axios.get(url).then(response => {
       this.setState({
         teams : response['data'],
         data_loaded: true
       })
     })
-
-    this.handleSelect = this.handleSelect.bind(this)
-    this.sortByName = this.sortByName.bind(this)
   }
 
   handleSelect(eventKey) {

@@ -34,6 +34,10 @@ export default class Division extends Component {
       need_team_reports: true
     }
 
+
+  }
+
+  componentDidMount(){
     var url = window.location.href;
     var division_url = 'https://api-dot-game-day-ballers-181000.appspot.com/divisions/' + url.split('/')[url.split('/').length - 1]
     axios.get(division_url).then(response => {

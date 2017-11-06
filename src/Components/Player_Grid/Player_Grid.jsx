@@ -20,18 +20,19 @@ export default class Player_Grid extends Component {
       data_loaded: false
     }
 
+    this.handleSelect = this.handleSelect.bind(this)
+    this.sortByName = this.sortByName.bind(this)
+  }
 
+  componentDidMount(){
+    
     var url = "https://api-dot-game-day-ballers-181000.appspot.com/players/"
-
     axios.get(url).then(response => {
       this.setState({
         players : response.data,
         data_loaded: true
       })
     })
-
-    this.handleSelect = this.handleSelect.bind(this)
-    this.sortByName = this.sortByName.bind(this)
   }
 
   handleSelect(eventKey) {

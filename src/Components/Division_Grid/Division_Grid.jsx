@@ -20,8 +20,13 @@ export default class Division_Grid extends Component {
       activePage: 1
     }
 
-    var url = "https://api-dot-game-day-ballers-181000.appspot.com/divisions/"
+    this.handleSelect = this.handleSelect.bind(this)
+    this.sortByName = this.sortByName.bind(this)
+  }
 
+  componentDidMount(){
+
+    var url = "https://api-dot-game-day-ballers-181000.appspot.com/divisions/"
     axios.get(url).then(response => {
       this.setState({
         divisions : response['data'],
@@ -29,8 +34,6 @@ export default class Division_Grid extends Component {
 
       })
     })
-    this.handleSelect = this.handleSelect.bind(this)
-    this.sortByName = this.sortByName.bind(this)
   }
 
   handleSelect(eventKey) {

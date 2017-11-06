@@ -41,33 +41,24 @@ export default class Team extends Component {
         youtube_data_loaded: false,
         youtube: []
       }
+  }
 
-      // var url = window.location.href;
-      // var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + url.split('/')[url.split('/').length - 1]
-      // axios.get(team_url).then(response => {
-      //   this.setState({
-      //     team : response['data'],
-      //     data_loaded: true
-      //   })
-      //   console.log(this.state.team)
-      // })
-
-      var url = window.location.href;
-      var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + url.split('/')[url.split('/').length - 1]
-      axios.get(team_url).then(response => {
-        this.setState({
-          team : response['data'],
-          data_loaded: true
-        })
-
-        return this.getYouTubeData()
-      }).then(youtube => {
-        this.setState({
-          youtube : youtube.data.items,
-          youtube_data_loaded : true,
-        })
+  componentDidMount(){
+    var url = window.location.href;
+    var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + url.split('/')[url.split('/').length - 1]
+    axios.get(team_url).then(response => {
+      this.setState({
+        team : response['data'],
+        data_loaded: true
       })
 
+      return this.getYouTubeData()
+    }).then(youtube => {
+      this.setState({
+        youtube : youtube.data.items,
+        youtube_data_loaded : true,
+      })
+    })
   }
 
   getYouTubeData(){
