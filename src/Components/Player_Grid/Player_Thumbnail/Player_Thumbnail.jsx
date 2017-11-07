@@ -8,7 +8,7 @@ export default class Player_Thumbnail extends Component {
 
   render(){
     return(
-      <Col xs={6} sm={4} className="text-center">
+      <Col xs={6} md={4} className="text-center">
           <div className="card image-card">
             <div className="card-title">
               <div className="overlay">
@@ -20,7 +20,7 @@ export default class Player_Thumbnail extends Component {
 
             </div>
             <div className="card-body">
-              {this.props.name}
+              <p>{this.props.name}</p>
             </div>
           </div>
       </Col>
