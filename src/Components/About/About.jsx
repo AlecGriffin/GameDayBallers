@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../../css/main.css';
 import PersonThumbnail from './Person_Thumbnail.jsx';
 import { Grid, Row, Col, Image, Thumbnail, Clearfix } from 'react-bootstrap';
 import axios from 'axios';

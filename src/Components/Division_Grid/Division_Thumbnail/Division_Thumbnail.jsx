@@ -5,7 +5,7 @@ export default class Division_Thumbnail extends Component {
   render(){
     return(
       <Col xs={6} sm={4} className="text-center">
-          <div className="card image-card white-card">
+          <div className="card thumbnail-card image-card white-card">
             <div className="card-title">
               <div className="overlay">
                 <div className="overlay-info">

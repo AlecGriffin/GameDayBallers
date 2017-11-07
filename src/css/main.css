@@ -47,10 +47,6 @@ html {
   text-align: center;
 }
 
-.img-container img {
-  width: 100%;
-}
-
 .info ul {
   list-style: none;
   padding: 0;
@@ -107,8 +103,16 @@ html {
 }
 
 .card .card-body {
+  padding: 16px 24px 8px 24px;
+}
+
+.card.thumbnail-card .card-body {
   padding: 10px 12px 0px 12px;
   min-height: 50px;
+}
+
+.card-body.image-body img {
+  width: 100%;
 }
 
 .card .card-table {
@@ -267,7 +271,7 @@ a {
 
 .youtube-card .card-body iframe {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;

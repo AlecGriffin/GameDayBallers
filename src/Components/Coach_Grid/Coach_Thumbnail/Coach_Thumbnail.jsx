@@ -23,7 +23,7 @@ export default class Coach_Thumbnail extends Component {
 
     return(
         <Col xs={6} sm={4} className="text-center">
-            <div className="card image-card full-image">
+            <div className="card thumbnail-card image-card full-image">
               <div style = {coach_image_style} className="card-title">
                 <div className="overlay">
                   <div className="overlay-info">
