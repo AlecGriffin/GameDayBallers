@@ -104,15 +104,16 @@ export default class Player_Grid extends Component {
               </DropdownButton>
               <DropdownButton title="Sort By">
                 <MenuItem eventKey="1" onClick={this.sortByName}>Player Name</MenuItem>
-                {/* <MenuItem eventKey="2" onClick={this.sortByTeamName}>Team Name</MenuItem> */}
-                <MenuItem eventKey="3">MPG</MenuItem>
-                <MenuItem eventKey="4">FG%</MenuItem>
-                <MenuItem eventKey="5">3P%</MenuItem>
-                <MenuItem eventKey="6">FT%</MenuItem>
-                <MenuItem eventKey="7">PPG</MenuItem>
-                <MenuItem eventKey="8">RPG</MenuItem>
-                <MenuItem eventKey="9">APG</MenuItem>
-                <MenuItem eventKey="10">BPG</MenuItem>
+                <MenuItem eventKey="2">Height</MenuItem>
+                <MenuItem eventKey="3">Age</MenuItem>
+                <MenuItem eventKey="4">MPG</MenuItem>
+                <MenuItem eventKey="5">FG%</MenuItem>
+                <MenuItem eventKey="6">3P%</MenuItem>
+                <MenuItem eventKey="7">FT%</MenuItem>
+                <MenuItem eventKey="8">PPG</MenuItem>
+                <MenuItem eventKey="9">RPG</MenuItem>
+                <MenuItem eventKey="10">APG</MenuItem>
+                <MenuItem eventKey="11">BPG</MenuItem>
               </DropdownButton>
             </Col>
           </Row>

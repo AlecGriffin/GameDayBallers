@@ -99,17 +99,14 @@ export default class Coach_Grid extends Component {
                 <MenuItem eventKey="1">Any</MenuItem>
                 <MenuItem eventKey="2">All The Teams</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Position">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Positions</MenuItem>
-              </DropdownButton>
               <DropdownButton title="Division">
                 <MenuItem eventKey="1">Any</MenuItem>
                 <MenuItem eventKey="2">All The Divisions</MenuItem>
               </DropdownButton>
               <DropdownButton title="Sort By">
                 <MenuItem eventKey="1" onClick={this.sortByName}>Coach Name</MenuItem>
-                {/* <MenuItem eventKey="2" onClick={this.sortByTeamName}>Team Name</MenuItem> */}
+                <MenuItem eventKey="2">Win/Loss Percentage</MenuItem>
+                <MenuItem eventKey="3">Age</MenuItem>
               </DropdownButton>
             </Col>
           </Row>

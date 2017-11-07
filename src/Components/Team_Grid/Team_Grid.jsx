@@ -92,21 +92,14 @@ export default class Team_Grid extends Component {
               <PaginationAdvanced num_items={Math.ceil(this.state.teams.length / this.state.num_teams_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect}/>
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title="Team">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Teams</MenuItem>
-              </DropdownButton>
-              <DropdownButton title="Position">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Positions</MenuItem>
-              </DropdownButton>
               <DropdownButton title="Division">
                 <MenuItem eventKey="1">Any</MenuItem>
                 <MenuItem eventKey="2">All The Divisions</MenuItem>
               </DropdownButton>
               <DropdownButton title="Sort By">
                 <MenuItem eventKey="1" onClick={this.sortByName}>Team Name</MenuItem>
-                {/* <MenuItem eventKey="2" onClick={this.sortByTeamName}></MenuItem> */}
+                <MenuItem eventKey="2" >Number of Titles</MenuItem>
+                <MenuItem eventKey="3" >Number of Players</MenuItem>
               </DropdownButton>
             </Col>
           </Row>
