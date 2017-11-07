@@ -75,6 +75,11 @@ def row_to_blurb(row):
     return {
         "name": row[1],
         "url": "/players/" + row[2],
+        "team": teams.get_team(row[3]),
+        "position": row[5],
+        "dob": row[8],
+        "height": row[6],
+        "weight": row[7],
         "image_url": row[13]
     }
 
