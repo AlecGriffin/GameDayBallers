@@ -7,6 +7,11 @@ export default class Division_Thumbnail extends Component {
       <Col xs={6} sm={4} className="text-center">
           <div className="card image-card white-card">
             <div className="card-title">
+              <div className="overlay">
+                <div className="overlay-info">
+                  {this.props.name}
+                </div>
+              </div>
               <img src={this.props.src}/>
             </div>
             <div className="card-body">

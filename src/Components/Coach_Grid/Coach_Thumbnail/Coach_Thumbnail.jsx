@@ -24,6 +24,11 @@ export default class Coach_Thumbnail extends Component {
         <Col xs={6} sm={4} className="text-center">
             <div className="card image-card full-image team-logo">
               <div style = {coach_image_style} className="card-title">
+                <div className="overlay">
+                  <div className="overlay-info">
+                    {this.props.name}
+                  </div>
+                </div>
                 {/* <div style = {coach_image_style} className="card-title">
                 <img style = {coach_image_style} onError={this.addDefaultSrc} src={this.props.src} alt='No Image Found'/> */}
               </div>
