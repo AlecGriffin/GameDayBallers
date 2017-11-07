@@ -6,7 +6,7 @@ import MySQLdb
 from models import teams, players, coaches, divisions
 
 # To get the sql dump in appropriate format
-# mysqldump --databases gamedayballersdb -uroot -p --hex-blob --skip-triggers --set-gtid-purged=OFF --default-character-set=utf8 > ballersexport_v3.sql
+# mysqldump --databases gamedayballersdb -uroot -p --hex-blob --skip-triggers --set-gtid-purged=OFF --default-character-set=utf8 > ballersexport_v2.sql
 
 app = Flask(__name__)
 
@@ -60,7 +60,7 @@ def home():
     resp = Response("GamedayBallers API is up and running!")
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
-    
+
 @app.route('/players/', methods=['GET'])
 @crossdomain(origin='*')
 def list_players():
@@ -80,7 +80,7 @@ def list_coaches():
 @crossdomain(origin='*')
 def get_coach_by_id(coach_id):
     return jsonify(coaches.get_coach_info(coach_id))
-    
+
 @app.route('/teams/', methods=['GET'])
 @crossdomain(origin='*')
 def list_teams():
@@ -90,14 +90,13 @@ def list_teams():
 @crossdomain(origin='*')
 def get_team_by_id(team_id):
     return jsonify(teams.get_team_info(team_id))
-    
+
 @app.route('/divisions/', methods=['GET'])
 @crossdomain(origin='*')
 def list_divisions():
     return jsonify(divisions.list_divisions())
-    
+
 @app.route('/divisions/<division_id>', methods=['GET'])
 @crossdomain(origin='*')
 def get_division_by_id(division_id):
     return jsonify(divisions.get_division_info(division_id))
-

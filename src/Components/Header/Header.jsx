@@ -7,7 +7,6 @@ export default class Header extends Component {
   constructor(props){
     super(props)
     this.handleClick = this.handleClick.bind(this)
-    this.handleKeyPress = this.handleKeyPress.bind(this)
     // console.log(this.inputNode.value);
   }
 
@@ -15,9 +14,6 @@ export default class Header extends Component {
     console.log(this.inputNode.value)
   }
 
-  handleKeyPress(event){
-    console.log(this.inputNode.value)
-  }
 
   render(){
     return(
@@ -39,9 +35,11 @@ export default class Header extends Component {
                 * <input></input> component contained by the FormControl component.
                 * Access the text within the search box using: this.inputNode.value
                 */}
-              <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node} onKeyUp={this.handleKeyPress}/>
+              <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node}/>
               {' '}
-              <Button onClick={this.handleClick} type="submit">Search</Button>
+              <LinkContainer to='/search'>
+                <Button onClick={this.handleClick} type="submit">Search</Button>
+              </LinkContainer>
             </FormGroup>
           </Navbar.Form>
 
