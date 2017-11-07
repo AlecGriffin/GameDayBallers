@@ -6,18 +6,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 export default class Header extends Component {
   constructor(props){
     super(props)
-    this.handleClick = this.handleClick.bind(this)
-    // console.log(this.inputNode.value);
+    this.updateInput = this.updateInput.bind(this)
 
     this.state = {
       search: ''
     }
   }
 
-  handleClick(event){
-    // console.log(this.inputNode.value);
-    // // return this.inputNode.value
-    // // + this.inputNode.value
+  //update state to new input text value
+  updateInput(event){
     this.setState({
       search: this.inputNode.value
     })
@@ -44,7 +41,7 @@ export default class Header extends Component {
                 * <input></input> component contained by the FormControl component.
                 * Access the text within the search box using: this.inputNode.value
                 */}
-              <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node} onKeyUp={this.handleClick}/>
+              <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node} onKeyUp={this.updateInput}/>
               {' '}
               <LinkContainer to={'/search/' + this.state.search}>
                 <Button type="submit">Search</Button>

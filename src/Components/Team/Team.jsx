@@ -70,7 +70,7 @@ export default class Team extends Component {
     var maxResults = '1'
     var part = 'snippet'
     var API_KEY = 'AIzaSyB_0ID-n-g31_B0GKkquWh5Kn7WBJPh4rM'
-    var searchTopic = this.state.team.name + 'highlights'
+    var searchTopic = this.state.team.name + ' highlights'
     console.log(searchTopic);
 
     var youtube_URL = "https://www.googleapis.com/youtube/v3/search?q=" + searchTopic + "&maxResults=" + maxResults + "&part=" + part + "&key=" + API_KEY
@@ -128,6 +128,12 @@ export default class Team extends Component {
     } else {
       return "gray";
     }
+  }
+
+  getMapURL() {
+    var tag = this.state.team.arena.split(' ').join('+')
+        + "," + this.state.team.city.split(', ').join('+').split(' ').join('+');
+    return "https://www.google.com/maps/embed/v1/place?key=AIzaSyAPYwFB1-8M2oNmnMvUtONjqU-hBRdxOfI&q=" + tag;
   }
 
   render() {
@@ -208,6 +214,19 @@ export default class Team extends Component {
                   {this.state.youtube_data_loaded && this.renderYoutube()}
                 </div>
               </div>
+              <div className="card map-card">
+                <div className="card-title" style={cardTitleStyle}>
+                  Arena
+                </div>
+                <div className="card-body">
+                  <iframe
+                    width="100%"
+                    height="300"
+                    frameborder="0" style={{ border: 0 }}
+                    src={this.getMapURL()}>
+                  </iframe>
+                </div>
+              </div>
               {/* <div className="card tweets-container">
                 { timeline }
               </div> */}
@@ -221,11 +240,16 @@ export default class Team extends Component {
                   <div className="card-body">
 
                     <Row>
-                      <Col mdOffset={4} sm={4} className="text-center">
+                      <Col smOffset={3} sm={6} mdOffset={4} md={4} className="text-center">
                         <h3>Head Coach</h3>
                         <Link to={ this.state.team.head_coach.url }>
                           <div className="card image-card full-image">
                             <div className="card-title">
+                              <div className="overlay">
+                                <div className="overlay-info">
+                                  {this.state.team.head_coach.name}
+                                </div>
+                              </div>
                               <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt='No Image Found'/>
                             </div>
                             <div className="card-body">
