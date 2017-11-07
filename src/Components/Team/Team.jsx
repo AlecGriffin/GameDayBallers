@@ -65,10 +65,6 @@ export default class Team extends Component {
     // axios.get().then(response => {
     //
     // })
-
-
-
-
   }
 
   getYouTubeData(){

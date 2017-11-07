@@ -269,6 +269,35 @@ a {
   overflow: hidden;
 }
 
+.overlay {
+  position: absolute;
+  padding: 5px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+  transition: background, opacity 0.5s ease;
+  -webkit-transition: background, opacity 0.5s ease;
+}
+
+.overlay .overlay-info {
+  margin-top: 50px;
+  transition: margin-top 0.5s ease;
+  -webkit-transition: margin-top 0.5s ease;
+}
+
+.image-card .card-title:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, .7);
+  opacity: 1;
+}
+
+.image-card .card-title:hover .overlay .overlay-info {
+  margin-top: 10px;
+}
+
 @media only screen and (max-width: 768px) {
   .tweets-container {
     display: none;

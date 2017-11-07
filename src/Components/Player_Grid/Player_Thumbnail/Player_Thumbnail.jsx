@@ -6,13 +6,16 @@ export default class Player_Thumbnail extends Component {
     ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
   }
 
-
   render(){
     return(
       <Col xs={6} sm={4} className="text-center">
           <div className="card image-card">
             <div className="card-title">
-
+              <div className="overlay">
+                <div className="overlay-info">
+                  {this.props.name}
+                </div>
+              </div>
               <img onError={this.addDefaultSrc} src={this.props.src} alt='Wtf'/ >
 
             </div>
