@@ -10,6 +10,10 @@ import Loading from '../Loading/Loading.jsx'
 
 export default class Search extends Component {
   render(){
-    return 0
+    return (
+      <div className='main'>
+          <p>Hello</p>
+      </div>
+    )
   }
 }

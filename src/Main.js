@@ -8,6 +8,7 @@ import CoachRouter from './Components/Routers/CoachRouter.jsx';
 import DivisionRouter from './Components/Routers/DivisionRouter.jsx';
 import PlayerRouter from './Components/Routers/PlayerRouter.jsx';
 import SearchRouter from './Components/Routers/SearchRouter.jsx';
+import Search from './Components/Search/Search.jsx'
 
 export default class Main extends Component {
   render () {
@@ -21,7 +22,7 @@ export default class Main extends Component {
             <Route path='/teams' component={TeamRouter}/>
             <Route path='/coaches' component={CoachRouter}/>
             <Route path='/divisions' component={DivisionRouter}/>
-            <Route path='/search' component={SearchRouter}/>
+            <Route path='/search/:searchTopic' component={Search}/>
           </Switch>
         </main>
       );
