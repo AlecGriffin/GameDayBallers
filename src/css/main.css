@@ -9,7 +9,7 @@ html {
 }
 
 #home-background {
-  background: url('https://i.imgur.com/6hjjuM8.jpg');
+  background: url('https://i.imgur.com/ZsdqpnY.jpg');
   -webkit-background-size: cover;
   -moz-background-size:  cover;
   -o-background-size: cover;
@@ -29,6 +29,17 @@ html {
   font-family: 'Futura';
   margin-top: 40vh;
   color: white;
+}
+
+.home-logo {
+  width: 22%;
+  margin: auto;
+  text-align: center;
+}
+
+.home-logo img {
+  width: 100%;
+
 }
 
 .tweets-container {
@@ -301,6 +312,10 @@ a {
 @media only screen and (max-width: 768px) {
   .tweets-container {
     display: none;
+  }
+
+  .home-logo {
+    width: 40%;
   }
 }
 

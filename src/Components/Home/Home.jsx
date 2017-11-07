@@ -19,11 +19,63 @@ export default class Home extends Component {
     return(
       <div className="main">
         <div id="home-background"></div>
-          <div className="home-title">
-            {/*<h1 className="display-3">WELCOME TO GAME DAY BALLERS</h1>
-            <h2>I hope you are ready to ball.</h2>*/}
-          </div>
+        <div className="home-logo">
+          <img src="https://i.imgur.com/ptTJXyw.png"></img>
         </div>
+        <Row>
+          <Col sm={3} xs={6} className="text-center">
+            <a href="/players">
+              <div className="card image-card">
+                <div className="card-title">
+                </div>
+                <div className="card-body">
+                  Players
+                </div>
+              </div>
+            </a>
+          </Col>
+          <Col sm={3} xs={6} className="text-center">
+            <a href="/teams">
+              <div className="card image-card">
+                <div className="card-title">
+
+                </div>
+                <div className="card-body">
+                  Teams
+                </div>
+              </div>
+            </a>
+          </Col>
+          <Col sm={3} xs={6} className="text-center">
+            <a href="/coaches">
+              <div className="card image-card">
+                <div className="card-title">
+
+                </div>
+                <div className="card-body">
+                  Coaches
+                </div>
+              </div>
+            </a>
+          </Col>
+          <Col sm={3} xs={6} className="text-center">
+            <a href="/divisions">
+            <div className="card image-card">
+              <div className="card-title">
+
+              </div>
+              <div className="card-body">
+                Divisions
+              </div>
+            </div>
+            </a>
+          </Col>
+
+        </Row>
+
+        {/*<h1 className="display-3">WELCOME TO GAME DAY BALLERS</h1>
+        <h2>I hope you are ready to ball.</h2>*/}
+      </div>
     );
 
     /*
