@@ -44,10 +44,10 @@ export default class Header extends Component {
                 * <input></input> component contained by the FormControl component.
                 * Access the text within the search box using: this.inputNode.value
                 */}
-              <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node}/>
+              <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node} onKeyUp={this.handleClick}/>
               {' '}
               <LinkContainer to={'/search/' + this.state.search}>
-                <Button onClick={this.handleClick} type="submit">Search</Button>
+                <Button type="submit">Search</Button>
               </LinkContainer>
             </FormGroup>
           </Navbar.Form>
