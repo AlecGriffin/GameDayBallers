@@ -17,12 +17,13 @@ export default class Coach_Thumbnail extends Component {
       height: 200,
       backgroundImage: `url(${this.props.src})`,
       backgroundSize: 'cover',
+      backgroundPosition: 'center top',
       backgroundRepeat: 'no-repeat'
     }
 
     return(
         <Col xs={6} sm={4} className="text-center">
-            <div className="card image-card full-image team-logo">
+            <div className="card image-card full-image">
               <div style = {coach_image_style} className="card-title">
                 <div className="overlay">
                   <div className="overlay-info">
