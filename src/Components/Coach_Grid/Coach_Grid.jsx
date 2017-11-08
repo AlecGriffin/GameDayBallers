@@ -113,29 +113,29 @@ export default class Coach_Grid extends Component {
       case 'Name':
         console.log('Name');
         return ((p1, p2) => {
-          var result = p1.name.localeCompare(p2.name)
-          return this.state.order === 'Descending' ? result * -1 : result
+          var result = p2.name.localeCompare(p1.name)
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
       case 'Win/Loss%':
         console.log('Win/Loss%');
         return ((p1, p2) => {
           var result = parseFloat(p2.win_loss_percentage) - parseFloat(p1.win_loss_percentage)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
       case 'Age':
         console.log('Age');
         return ((p1, p2) => {
           var result = Date.parse(p2.dob) - Date.parse(p1.dob)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
       Default:
         console.log('Default');
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
   }

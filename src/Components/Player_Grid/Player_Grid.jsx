@@ -116,8 +116,8 @@ export default class Player_Grid extends Component {
       case 'Name':
         console.log('Name');
         return ((p1, p2) => {
-          var result = p1.name.localeCompare(p2.name)
-          return this.state.order === 'Descending' ? result * -1 : result
+          var result = p2.name.localeCompare(p1.name)
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
       case 'Height':
@@ -125,70 +125,70 @@ export default class Player_Grid extends Component {
         return ((p1, p2) => {
           // TODO: Broken due to the format being: 7-0 for 7 feet tall
           var result = parseFloat(p2.height) - parseFloat(p1.height)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
       case 'Age':
         console.log('Age');
         return ((p1, p2) => {
           var result = Date.parse(p2.dob) - Date.parse(p1.dob)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
       case 'MPG':
         console.log('MPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.minutes_per_game) - parseFloat(p1.career_stats.minutes_per_game)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
         })
         break;
       case 'FG%':
         console.log('FG%');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.field_goal_percentage) - parseFloat(p1.career_stats.field_goal_percentage)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
       case '3P%':
         console.log('3P%');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.three_point_percentage) - parseFloat(p1.career_stats.three_point_percentage)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
       case 'FT%':
         console.log('FT%');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.free_throw_percentage) - parseFloat(p1.career_stats.free_throw_percentage)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
       case 'PPG':
         console.log('PPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.points_per_game) - parseFloat(p1.career_stats.points_per_game)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
       case 'RPG':
         console.log('RPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.rebounds_per_game) - parseFloat(p1.career_stats.rebounds_per_game)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
       case 'APG':
         console.log('APG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.assists_per_game) - parseFloat(p1.career_stats.assists_per_game)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
       case 'BPG':
         console.log('BPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.blocks_per_game) - parseFloat(p1.career_stats.blocks_per_game)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
 
@@ -196,7 +196,7 @@ export default class Player_Grid extends Component {
         console.log('Default');
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
-          return this.state.order === 'Descending' ? result * -1 : result
+          return this.state.order === 'Ascending' ? result * -1 : result
       })
       break;
   }
