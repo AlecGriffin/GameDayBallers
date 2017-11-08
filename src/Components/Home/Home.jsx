@@ -48,31 +48,24 @@ buildTime(d) {
       var gameDate = new Date(Date.parse(game.gdte))
       var today = new Date()
       var weekFromNow = new Date()
-      weekFromNow.setDate(today.getDate() + 2)
+      weekFromNow.setDate(today.getDate() + 1)
 
       if(gameDate >= today && gameDate <= weekFromNow){
 
         return (
-
-              <div className="card image-card">
-                <div className="card-title">
-                  {/* <div className="overlay">
-                    <div className="overlay-info">
-                      {game.h.tc} {game.h.tn} vs. {game.v.tc} {game.v.tn}
-                    </div>
-                  </div> */}
-                  <img  onError={this.addDefaultSrc} src={this.props.src} alt='No Image Found'/>
-
-                </div>
-                <div className="card-body">
-                  <p><strong>{game.h.tc} {game.h.tn} vs. {game.v.tc} {game.v.tn}</strong></p>
-                  <p><strong>Location:</strong> {game.an}</p>
-                  <p><strong>Date:</strong> {(new Date(Date.parse(game.gdte))).toDateString()} </p>
-                  {/* <p><strong>Time:</strong> {(new Date(game.etm)).getHours() - 12}:{(new Date(game.etm)).getMinutes()}pm ET</p> */}
-                  <p><strong>Time:</strong> {this.buildTime(new Date(game.etm))} ET</p>
-                </div>
+          <Col sm={6}>
+            <div className="card image-card">
+              <div className="card-title">
+                {game.h.tc} {game.h.tn} vs. {game.v.tc} {game.v.tn}
               </div>
-
+              <div className="card-body text-left">
+                <p><strong>Location:</strong> {game.an}</p>
+                <p><strong>Date:</strong> {(new Date(Date.parse(game.gdte))).toDateString()} </p>
+                {/* <p><strong>Time:</strong> {(new Date(game.etm)).getHours() - 12}:{(new Date(game.etm)).getMinutes()}pm ET</p> */}
+                <p><strong>Time:</strong> {this.buildTime(new Date(game.etm))} ET</p>
+              </div>
+            </div>
+          </Col>
         )
       }
     })
@@ -96,18 +89,23 @@ buildTime(d) {
         <div className="home-logo">
           <img src="https://i.imgur.com/ptTJXyw.png"></img>
         </div>
-
         <Row>
-          <Col xs={6} md={4}>
-            <h1>Daily Games:</h1>
+          <Col sm={8} className="text-center">
+            <div className="card grid-card">
+              <div className="card-title" style={{backgroundColor: '#f18521'}}>
+                Today's Games
+              </div>
+              <div className="card-body">
+                <Row>
+                  {games}
+                </Row>
+              </div>
+            </div>
           </Col>
-        </Row>
-        <Row>
-          <Col xs={6} md={4} className="text-center">
-            {games}
-          </Col>
-          <Col xs={6} md={4}>
-            {timeline}
+          <Col sm={4}>
+            <div className="tweets-container">
+              {timeline}
+            </div>
           </Col>
         </Row>
 

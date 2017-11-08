@@ -155,6 +155,7 @@ function generateThumbnail(person, commits) {
 
      return(
        <div className="main">
+         <div id="home-background"></div>
          <div className="card display-card">
            <div className="card-body">
              <h1 className="display-3">About</h1>
