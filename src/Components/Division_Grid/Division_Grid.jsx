@@ -19,7 +19,8 @@ export default class Division_Grid extends Component {
       num_divisions_to_show: 10,
       activePage: 1,
       order: "Ascending",
-      sortBy: "Name"
+      sortBy: "Name",
+      needToSort: false
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -40,7 +41,6 @@ export default class Division_Grid extends Component {
   }
 
   handleSelect(eventKey) {
-    console.log("Set Active Page To: " + eventKey);
     this.setState({
       activePage: eventKey,
     });
@@ -58,7 +58,15 @@ export default class Division_Grid extends Component {
   // Use this method to generate Thumbnails when future API is created
   RenderDivisionThumbnails(){
     var result = [];
-    var divisions = this.state.divisions.sort(this.determineSort())
+    var divisions = this.state.divisions
+
+    if(this.state.needToSort){
+      divisions.sort(this.determineSort())
+      this.setState({
+        needToSort: false
+      })
+    }
+
     for(let i = 0; i < this.state.divisions.length; i++){
       var division = divisions[i]
       result.push(this.RenderDivisionThumbnail(division.url, division.name, division.image_url ));
@@ -68,13 +76,15 @@ export default class Division_Grid extends Component {
 
   handleOrder(evt) {
     this.setState({
-      order: evt
+      order: evt,
+      needToSort: true
     });
   }
 
   handleSortType(evt){
     this.setState({
-      sortBy: evt
+      sortBy: evt,
+      needToSort: true
     });
   }
 

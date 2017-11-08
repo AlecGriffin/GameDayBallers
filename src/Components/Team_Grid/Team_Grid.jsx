@@ -26,7 +26,8 @@ export default class Team_Grid extends Component {
       num_teams_to_show: 12,
       activePage: 1,
       order: "Ascending",
-      sortBy: "Name"
+      sortBy: "Name",
+      needToSort: false
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -67,7 +68,14 @@ export default class Team_Grid extends Component {
 
     var upperBound = this.state.activePage * this.state.num_teams_to_show
     var lowerBound = upperBound - this.state.num_teams_to_show
-    var teams = this.state.teams.sort(this.determineSort())
+    var teams = this.state.teams
+
+    if(this.state.needToSort){
+      teams.sort(this.determineSort())
+      this.setState({
+        needToSort: false
+      })
+    }
 
     for(let i = lowerBound; i < this.state.teams.length && i < upperBound; i++){
       var team = teams[i]
@@ -121,13 +129,15 @@ export default class Team_Grid extends Component {
 
   handleOrder(evt) {
     this.setState({
-      order: evt
+      order: evt,
+      needToSort: true
     });
   }
 
   handleSortType(evt){
     this.setState({
-      sortBy: evt
+      sortBy: evt,
+      needToSort: true
     });
   }
 

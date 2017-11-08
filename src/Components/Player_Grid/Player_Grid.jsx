@@ -35,7 +35,8 @@ export default class Player_Grid extends Component {
       num_players_to_show: 12,
       data_loaded: false,
       sortBy: 'Name',
-      order: 'Ascending'
+      order: 'Ascending',
+      needToSort: false
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -84,7 +85,15 @@ export default class Player_Grid extends Component {
 
     var upperBound = this.state.activePage * this.state.num_players_to_show
     var lowerBound = upperBound - this.state.num_players_to_show
-    var players = this.state.players.sort(this.determineSort())
+    var players = this.state.players
+
+    if(this.state.needToSort){
+      players.sort(this.determineSort())
+      this.setState({
+        needToSort: false
+      })
+    }
+
 
     // //Print Array for Testing:
     // players.forEach((e, i, a)=>{
@@ -215,13 +224,15 @@ export default class Player_Grid extends Component {
 
   handleOrder(evt) {
     this.setState({
-      order: evt
+      order: evt,
+      needToSort: true
     });
   }
 
   handleSortType(evt){
     this.setState({
-      sortBy: evt
+      sortBy: evt,
+      needToSort: true
     });
   }
 

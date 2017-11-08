@@ -24,7 +24,8 @@ export default class Coach_Grid extends Component {
       num_coaches_to_show: 12,
       activePage: 1,
       order: "Ascending",
-      sortBy: "Name"
+      sortBy: "Name",
+      needToSort: false
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -72,7 +73,16 @@ export default class Coach_Grid extends Component {
     var upperBound = this.state.activePage * this.state.num_coaches_to_show
     var lowerBound = upperBound - this.state.num_coaches_to_show
 
-    var coaches = this.state.coaches.sort(this.determineSort())
+    var coaches = this.state.coaches
+    if(this.state.needToSort){
+      coaches.sort(this.determineSort())
+      this.setState({
+        needToSort: false
+      })
+    }
+
+
+
     for(let i = lowerBound; (i < this.state.coaches.length) && (i < upperBound); i++){
       var coach = coaches[i]
       result.push(this.RenderCoachThumbnail(coach));
@@ -83,13 +93,15 @@ export default class Coach_Grid extends Component {
   //Will handle asc/desc toggle
   handleOrder(evt) {
     this.setState({
-      order: evt
+      order: evt,
+      needToSort: true
     });
   }
 
   handleSortType(evt){
     this.setState({
-      sortBy: evt
+      sortBy: evt,
+      needToSort: true
     });
   }
 
