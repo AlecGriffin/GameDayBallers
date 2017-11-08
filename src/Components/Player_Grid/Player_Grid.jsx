@@ -13,10 +13,26 @@ export default class Player_Grid extends Component {
     this.state = {
       players: [{
         'image_url': '',
-         'name': '',
-          'url' : ''}],
+        'name': '',
+        'url' : '',
+        'career_stats': {
+          'assists_per_game': '',
+          'blocks_per_game': '',
+          'field_goal_percentage': '',
+          'free_throw_percentage': '',
+          'minutes_per_game': '',
+          'points_per_game': '',
+          'rebounds_per_game': '',
+          'three_point_percentage': ''
+        },
+        'dob': '',
+        'height': '',
+        'jersey_number':'',
+        'position':'',
+        'weight':''
+        }],
       activePage: 1,
-      num_players_to_show: 10,
+      num_players_to_show: 12,
       data_loaded: false
     }
 
@@ -26,13 +42,15 @@ export default class Player_Grid extends Component {
 
   componentDidMount(){
 
-    var url = "https://api-dot-game-day-ballers-181000.appspot.com/players/"
+    var url = "http://api.gamedayballers.me/players_full/";
     axios.get(url).then(response => {
       this.setState({
         players : response.data,
         data_loaded: true
       })
+
     })
+    console.log("data_loaded");
   }
 
   handleSelect(eventKey) {
@@ -44,10 +62,12 @@ export default class Player_Grid extends Component {
 
 
 // <------------ Thumbnail Generation ------------>
-  RenderPlayerThumbnail(link, player_name, img_source){
+  RenderPlayerThumbnail(player){
     return(
-      <Link key={player_name} to= {link}>
-        <PlayerThumbnail name={player_name} src={img_source}/>
+      <Link key={player.name } to= {player.url}>
+        <PlayerThumbnail overlay={true} name={player.name} src={player.image_url}
+          position={player.position} dob={player.dob} height={player.height}
+          jerseyNumber={player.jersey_number} weight={player.weight}/>
       </Link>
     );
   }
@@ -60,7 +80,7 @@ export default class Player_Grid extends Component {
 
     for(let i = lowerBound; (i < this.state.players.length) && (i < upperBound); i++){
       var player = this.state.players[i]
-      result.push(this.RenderPlayerThumbnail(player.url, player.name, player.image_url ));
+      result.push(this.RenderPlayerThumbnail(player));
     }
     return result;
   }

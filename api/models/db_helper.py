@@ -31,7 +31,7 @@ class db_connect:
             #
             else:
                 db = MySQLdb.connect(
-                    host='localhost', user="root", db="gamedayballersdb")
+                    host='localhost', user="root", passwd="password", db="gamedayballersdb")
 
             return db
 
@@ -62,7 +62,7 @@ class DB:
 
 # Test that the classes are working
 def main():
-    with db_connect("localhost", "root", None, "gamedayballersdb") as db:
+    with db_connect() as db:
         for row in db.list_table("players"):
             print row
         print(db.get_rows("players", "PLAYERAPIID", "fake"))
