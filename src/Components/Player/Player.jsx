@@ -204,7 +204,7 @@ export default class Player extends Component {
                   <Row>
                     <Col sm={6} className="tbl">
                       <Table responsive>
-                        <thead className="table-head">
+                        <thead>
                           <tr>
                             <th>MPG</th>
                             <th>FG%</th>
@@ -224,7 +224,7 @@ export default class Player extends Component {
                     </Col>
                     <Col sm={6} className="tbl second-half">
                       <Table responsive>
-                        <thead className="table-head">
+                        <thead>
                           <tr>
                             <th>PPG</th>
                             <th>RPG</th>
