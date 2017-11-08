@@ -19,11 +19,14 @@ export default class Coach_Grid extends Component {
       }],
       data_loaded: false,
       num_coaches_to_show: 10,
-      activePage: 1
+      activePage: 1,
+      order: "Ascending",
+      sortBy: "Name"
     }
 
     this.handleSelect = this.handleSelect.bind(this)
     this.sortByName = this.sortByName.bind(this)
+    this.handleOrder = this.handleOrder.bind(this)
   }
 
   componentDidMount(){
@@ -36,7 +39,6 @@ export default class Coach_Grid extends Component {
       })
     })
   }
-
 
 
     handleSelect(eventKey) {
@@ -61,8 +63,9 @@ export default class Coach_Grid extends Component {
     var upperBound = this.state.activePage * this.state.num_coaches_to_show
     var lowerBound = upperBound - this.state.num_coaches_to_show
 
+    var coaches = this.state.coaches.sort(this.sortByName())
     for(let i = lowerBound; (i < this.state.coaches.length) && (i < upperBound); i++){
-      var coach = this.state.coaches[i]
+      var coach = coaches[i]
       result.push(this.RenderCoachThumbnail(coach.url, coach.name, coach.image_url));
     }
     return result;
@@ -71,16 +74,52 @@ export default class Coach_Grid extends Component {
 
 
 // <------------ Comparator Functions ------------>
-  sortByName(){
-    this.setState({
-      players: this.state.coaches.sort((n1, n2) => {
-        var name1 = n1.name.toLowerCase()
-        var name2 = n2.name.toLowerCase()
-        return name1 > name2 ? 1 : -1
-      })
-    });
+  // sortByName(){
+  //   this.setState({
+  //     nkjnsdfkjn: this.state.coaches.sort((n1, n2) => {
+  //       var name1 = n1.name.toLowerCase()
+  //       var name2 = n2.name.toLowerCase()
+  //       if(this.state.order === "Descending")
+  //         return name1 < name2 ? 1 : -1
+  //       else
+  //         return name1 > name2 ? 1 : -1
+  //       // return name1 < name2
+  //     })
+  //
+  //   });
+  // }
+
+  sortByName(name1, name2){
+    var name1 = n1.name.toLowerCase()
+    var name2 = n2.name.toLowerCase()
+    if(this.state.order === "Descending")
+      return name1 < name2 ? 1 : -1
+    else
+      return name1 > name2 ? 1 : -1
   }
+
+  // sortByName2(evt){
+  //   console.log(evt)
+  //   this.setState({
+  //     players: this.state.coaches.sort((n1, n2) => {
+  //       var name1 = n1.name.toLowerCase()
+  //       var name2 = n2.name.toLowerCase()
+  //       if(evt === "Descending")
+  //         return name1 < name2 ? 1 : -1
+  //       else
+  //         return name1 > name2 ? 1 : -1
+  //     })
+  //   });
+  // }
 // <----------------------###---------------------->
+
+  //Will handle asc/desc toggle
+  handleOrder(evt) {
+    this.setState({
+      order: evt
+    });
+    this.sortByName()
+  }
 
 
   render(){
@@ -107,6 +146,10 @@ export default class Coach_Grid extends Component {
                 <MenuItem eventKey="1" onClick={this.sortByName}>Coach Name</MenuItem>
                 <MenuItem eventKey="2">Win/Loss Percentage</MenuItem>
                 <MenuItem eventKey="3">Age</MenuItem>
+              </DropdownButton>
+              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+                <MenuItem eventKey="Ascending">Ascending</MenuItem>
+                <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>
             </Col>
           </Row>

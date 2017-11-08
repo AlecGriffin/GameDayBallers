@@ -66,6 +66,11 @@ def home():
 def list_players():
     return jsonify(players.list_players())
 
+@app.route('/players_full/', methods=['GET'])
+@crossdomain(origin='*')
+def list_players_full():
+    return jsonify(players.list_players_full())
+
 @app.route('/players/<player_id>', methods=['GET'])
 @crossdomain(origin='*')
 def get_player_by_id(player_id):

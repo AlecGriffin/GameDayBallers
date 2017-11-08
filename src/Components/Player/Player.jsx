@@ -181,6 +181,18 @@ export default class Player extends Component {
                   </ul>
                 </div>
               </div>
+
+              <div className="card">
+                <div className="card-title">
+                  { this.state.player['team']['name'] }
+                </div>
+                <Link to={ this.state.player['team']['url'] }>
+                  <div className="card-body image-body">
+                    <img src={ this.state.player['team']['image_url'] }/>
+                  </div>
+                </Link>
+              </div>
+
             </Col>
 
             <Col sm={8}>
@@ -192,7 +204,7 @@ export default class Player extends Component {
                   <Row>
                     <Col sm={6} className="tbl">
                       <Table responsive>
-                        <thead className="table-head">
+                        <thead>
                           <tr>
                             <th>MPG</th>
                             <th>FG%</th>
@@ -212,7 +224,7 @@ export default class Player extends Component {
                     </Col>
                     <Col sm={6} className="tbl second-half">
                       <Table responsive>
-                        <thead className="table-head">
+                        <thead>
                           <tr>
                             <th>PPG</th>
                             <th>RPG</th>
@@ -271,8 +283,6 @@ export default class Player extends Component {
                     </div>
                   </div>
                 </Col>
-
-
               </Row>
             </Col>
           </Row>
