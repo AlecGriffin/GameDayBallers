@@ -63,6 +63,13 @@ def list_teams():
         for row in db.list_table("teams"):
             teams.append(row_to_blurb(row))
         return teams
+    
+def list_teams_full():
+    with db_helper.db_connect() as db:
+        teams = []
+        for row in db.list_table("teams"):
+            teams.append(row_to_detailblurb(row))
+        return teams
 
 # For a given SQL row, convert into a meta-data "blurb"
 def row_to_blurb(row):
@@ -70,8 +77,20 @@ def row_to_blurb(row):
         "name": row[3],
         "url": "/teams/" + row[4],
         "image_url": row[11]
+        
     }
 
+# For a given SQL row, convert into a more detailed meta-data "blurb"
+def row_to_detailblurb(row):
+    return {
+          "name": row[3],
+          "url": "/teams/" + row[4],
+          "image_url": row[11],
+          "city": row[1],
+          "arena": row[9],
+          "division": row[5],
+          "conference": row[6]
+    }
 
 # Get short meta-data for just one team
 def get_team(team_id):
@@ -107,6 +126,8 @@ def get_team_info(team_id):
                 "head_coach": coaches.get_coach_by_number(row[7]),
                 "color": row[12],
                 "titles": get_titles(row[10]),
+                "division": row[5],
+                "conference": row[6],
                 "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
             }
             return team
