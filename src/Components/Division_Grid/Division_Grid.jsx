@@ -58,8 +58,9 @@ export default class Division_Grid extends Component {
   // Use this method to generate Thumbnails when future API is created
   RenderDivisionThumbnails(){
     var result = [];
+    var divisions = this.state.divisions.sort(this.determineSort())
     for(let i = 0; i < this.state.divisions.length; i++){
-      var division = this.state.divisions[i]
+      var division = divisions[i]
       result.push(this.RenderDivisionThumbnail(division.url, division.name, division.image_url ));
     }
     return result;
@@ -77,6 +78,29 @@ export default class Division_Grid extends Component {
     });
   }
 
+  determineSort(){
+    var order = this.state.order
+    var sortBy = this.state.sortBy
+
+    switch (sortBy) {
+      case 'Name':
+        console.log('Name');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+      Default:
+        console.log('Default');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+      break;
+
+    }
+  }
+
   render(){
     if(!this.state.data_loaded){
       return(<Loading/>);
@@ -92,9 +116,13 @@ export default class Division_Grid extends Component {
                 <MenuItem eventKey="1">Any</MenuItem>
                 <MenuItem eventKey="2">The two conferences</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By">
-                <MenuItem eventKey="1" onClick={this.sortByName}>Division Name</MenuItem>
-                <MenuItem eventKey="2">Inaugural Season</MenuItem>
+              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+                <MenuItem eventKey="Name">Division Name</MenuItem>
+                <MenuItem eventKey="InauguralSeason">Inaugural Season</MenuItem>
+              </DropdownButton>
+              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+                <MenuItem eventKey="Ascending">Ascending</MenuItem>
+                <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>
             </Col>
           </Row>

@@ -62,6 +62,12 @@ export default class Coach_Grid extends Component {
 
 
   RenderCoachThumbnails(){
+    console.log(' ');
+    console.log('Render Thumbnail:');
+    console.log('--' + this.state.order);
+    console.log('--' + this.state.sortBy);
+    console.log(' ');
+
     var result = []
     var upperBound = this.state.activePage * this.state.num_coaches_to_show
     var lowerBound = upperBound - this.state.num_coaches_to_show
@@ -116,9 +122,12 @@ export default class Coach_Grid extends Component {
         })
         break;
       Default:
-
-      break;
-
+        console.log('Default');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
   }
 }
 
@@ -159,6 +168,7 @@ export default class Coach_Grid extends Component {
             </Row>
           </Grid>
           <Row xs={6} className="paginate">
+
             <PaginationAdvanced num_items={Math.ceil(this.state.coaches.length / this.state.num_coaches_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
           </Row>
         </div>

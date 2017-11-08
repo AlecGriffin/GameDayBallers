@@ -74,6 +74,12 @@ export default class Player_Grid extends Component {
   }
 
   RenderPlayerThumbnails(){
+    console.log(' ');
+    console.log('Render Thumbnail:');
+    console.log('--' + this.state.order);
+    console.log('--' + this.state.sortBy);
+    console.log(' ');
+
     var result = []
 
     var upperBound = this.state.activePage * this.state.num_players_to_show
@@ -84,7 +90,8 @@ export default class Player_Grid extends Component {
     // players.forEach((e, i, a)=>{
     //   console.log(e.career_stats.minutes_per_game);
     // })
-
+    console.log(lowerBound);
+    console.log(upperBound);
     for(let i = lowerBound; (i < this.state.players.length) && (i < upperBound); i++){
       var player = this.state.players[i]
       result.push(this.RenderPlayerThumbnail(player));
@@ -267,6 +274,8 @@ export default class Player_Grid extends Component {
             </Row>
           </Grid>
           <Row className="paginate">
+            {/* <PaginationAdvanced num_items={Math.ceil(this.state.teams.length / this.state.num_teams_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect}/> */}
+
             <PaginationAdvanced num_items={Math.ceil(this.state.players.length / this.state.num_players_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
           </Row>
         </div>
