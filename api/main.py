@@ -108,6 +108,11 @@ def get_team_by_id(team_id):
 def list_divisions():
     return jsonify(divisions.list_divisions())
 
+@app.route('/divisions_full/', methods=['GET'])
+@crossdomain(origin='*')
+def list_divisions_full():
+    return jsonify(divisions.list_divisions_full())
+
 @app.route('/divisions/<division_id>', methods=['GET'])
 @crossdomain(origin='*')
 def get_division_by_id(division_id):

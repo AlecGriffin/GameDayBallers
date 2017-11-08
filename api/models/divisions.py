@@ -50,11 +50,30 @@ def list_divisions():
             divisions.append(row_to_blurb(row))
         return divisions
 
+# Returns brief meta-data for every team in the DB
+def list_divisions_full():
+    with db_helper.db_connect() as db:
+        divisions = []
+        for row in db.list_table("divisions"):
+            divisions.append(row_to_detailblurb(row))
+        return divisions
+
 # For a given SQL row, convert into a meta-data "blurb"
 def row_to_blurb(row):
     return {
         "name": row[0],
         "url": "/divisions/" + row[9],
+        "image_url": row[8]
+    }
+
+def row_to_detailblurb(row):
+    return {
+        "name": row[0],
+        "url": "/divisions/" + row[9],
+        "conference": row[1],
+        "inauguralSeason": row[2],
+        "divChamp": row[5],
+        "mostDivTitles": row[6],
         "image_url": row[8]
     }
 
