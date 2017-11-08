@@ -5,7 +5,6 @@ import { Grid, Row, Col, Image, Thumbnail, Clearfix } from 'react-bootstrap';
 import axios from 'axios';
 import github from '../../images/github.png'
 import Tool_Thumbnail from './Tool_Thumbnail.jsx'
-import calendarData from '../../NBA_Calendar_Data/calendar_data.json'
 
 var tools = [
   "Google Cloud Platform",
@@ -124,7 +123,6 @@ function generateThumbnail(person, commits) {
    }
 
    componentDidMount(){
-     console.log(calendarData);
 
      // Get Total and Individual Commit Numbers (from Github)
      var githubCommitsURL = "https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors"

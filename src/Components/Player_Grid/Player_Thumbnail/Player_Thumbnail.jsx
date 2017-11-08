@@ -16,7 +16,7 @@ export default class Player_Thumbnail extends Component {
                   {this.props.name}
                 </div>
               </div>
-              <img onError={this.addDefaultSrc} src={this.props.src} alt='Wtf'/ >
+              <img onError={this.addDefaultSrc} src={this.props.src} alt='No Image'/>
 
             </div>
             <div className="card-body">
