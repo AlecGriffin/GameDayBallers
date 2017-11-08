@@ -19,53 +19,60 @@ export default class Home extends Component {
     ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
   }
 
+addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+buildTime(d) {
+      var x = document.getElementById("demo");
+      var h = d.getHours() - 12
+      var m = this.addZero(d.getMinutes());
+      var s = this.addZero(d.getSeconds());
+      return (h + ":" + m)
+  }
+
 
 
   render(){
     // var gameDate = calendarData.lscd[3].mscd.g[0].gdte
     // console.log(gameDate);
     //
-    // var dateObject = new Date(Date.parse(gameDate));
+
     // console.log(dateObject.toDateString());
 
-    <h1>Upcoming Games:</h1>
     var games = calendarData.lscd[2].mscd.g.map( (game) => {
+
       var gameDate = new Date(Date.parse(game.gdte))
       var today = new Date()
+      var weekFromNow = new Date()
+      weekFromNow.setDate(today.getDate() + 2)
 
-      var today = new Date()
+      if(gameDate >= today && gameDate <= weekFromNow){
 
-      // <Col>
-      //
-      // </Col>
-      console.log('Today: ' + today);
-      console.log('Game Date: ' + gameDate);
-      console.log(today.getTime() >= gameDate.getTime());
-      // The today date is after the game date!
-      var dateInAWeek = today.setDate(today.getDate() + 7)
-      console.log('Date in a Week: ' + dateInAWeek);
-      if(dateInAWeek > gameDate.getTime() && today.getTime() > gameDate.getTime()){
         return (
-          <Col xs={6} md={4} className="text-center">
+
               <div className="card image-card">
                 <div className="card-title">
-                  <div className="overlay">
+                  {/* <div className="overlay">
                     <div className="overlay-info">
                       {game.h.tc} {game.h.tn} vs. {game.v.tc} {game.v.tn}
                     </div>
-                  </div>
+                  </div> */}
                   <img  onError={this.addDefaultSrc} src={this.props.src} alt='No Image Found'/>
 
                 </div>
                 <div className="card-body">
-                  <p>{game.h.tc} {game.h.tn} vs. {game.v.tc} {game.v.tn}</p>
-                  <p>Location: {game.an}</p>
-                  <p>Date: {(new Date(Date.parse(game.gdte))).toDateString()} </p>
-
-                  <p>Time: {game.etm}</p>
+                  <p><strong>{game.h.tc} {game.h.tn} vs. {game.v.tc} {game.v.tn}</strong></p>
+                  <p><strong>Location:</strong> {game.an}</p>
+                  <p><strong>Date:</strong> {(new Date(Date.parse(game.gdte))).toDateString()} </p>
+                  {/* <p><strong>Time:</strong> {(new Date(game.etm)).getHours() - 12}:{(new Date(game.etm)).getMinutes()}pm ET</p> */}
+                  <p><strong>Time:</strong> {this.buildTime(new Date(game.etm))} ET</p>
                 </div>
               </div>
-          </Col>
+
         )
       }
     })
@@ -79,7 +86,7 @@ export default class Home extends Component {
         }}
         options={{
           username: 'TwitterDev',
-          height: '400'
+          height: '800'
         }}/>
       );
 
@@ -90,9 +97,18 @@ export default class Home extends Component {
           <img src="https://i.imgur.com/ptTJXyw.png"></img>
         </div>
 
-        <h1>Upcoming Games This Week:</h1>
         <Row>
+          <Col xs={6} md={4}>
+            <h1>Daily Games:</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} md={4} className="text-center">
             {games}
+          </Col>
+          <Col xs={6} md={4}>
+            {timeline}
+          </Col>
         </Row>
 
 
