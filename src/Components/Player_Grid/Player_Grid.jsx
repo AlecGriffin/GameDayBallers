@@ -131,10 +131,8 @@ export default class Player_Grid extends Component {
       case 'Age':
         console.log('Age');
         return ((p1, p2) => {
-          // TODO: NEED TO CALCULATE AGES
-          // var result = parseFloat(p2.career_stats.win_loss_percentage) - parseFloat(p1.career_stats.win_loss_percentage)
-          // return this.state.order === 'Descending' ? result * -1 : result
-          return false
+          var result = Date.parse(p2.dob) - Date.parse(p1.dob)
+          return this.state.order === 'Descending' ? result * -1 : result
         })
         break;
       case 'MPG':

@@ -9,7 +9,13 @@ export default class Division_Thumbnail extends Component {
             <div className="card-title">
               <div className="overlay">
                 <div className="overlay-info">
-                  {this.props.name}
+                  <h2 class="overlay-info-title">{this.props.name}</h2>
+                  <div className="overlay-info-body">
+                    <p><b>Conference: </b> {this.props.conference}</p>
+                    <p><b>Inaugural Season: </b>{this.props.inauguralseason}</p>
+                    <p><b>Division Champion: </b> {this.props.divchamp}</p>
+                    <p><b>Most Division Titles: </b> {this.props.mostdivtitles}</p>
+                  </div>
                 </div>
               </div>
               <img src={this.props.src}/>
