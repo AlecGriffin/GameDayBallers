@@ -62,6 +62,21 @@ from collections import Counter
 }
 """
 
+def get_career_stats(stats_line):
+    if not stats_line:
+        return
+    stats_list = stats_line.split(",")
+    return {
+        "minutes_per_game": stats_list[0],
+        "field_goal_percentage": stats_list[1],
+        "three_point_percentage": stats_list[2],
+        "free_throw_percentage": stats_list[3],
+        "points_per_game": stats_list[4],
+        "rebounds_per_game": stats_list[5],
+        "assists_per_game": stats_list[6],
+        "blocks_per_game": stats_list[7]
+    }
+
 # Returns brief meta-data for every player in the DB
 def list_players():
     with db_helper.db_connect() as db:
@@ -70,17 +85,32 @@ def list_players():
             players.append(row_to_blurb(row))
         return players
 
+def list_players_full():
+    with db_helper.db_connect() as db:
+        players = []
+        for row in db.list_table("players"):
+            players.append(row_to_detailblurb(row))
+        return players
+
 # For a given SQL row, convert into a meta-data "blurb"
 def row_to_blurb(row):
     return {
         "name": row[1],
         "url": "/players/" + row[2],
-        "team": teams.get_team(row[3]),
-        "position": row[5],
-        "dob": row[8],
-        "height": row[6],
-        "weight": row[7],
         "image_url": row[13]
+    }
+
+# For a given SQL row, convert into a more detialed meta-data "blurb"
+def row_to_detailblurb(row):
+    return {
+          "name": row[1],
+          "jersey_number": row[4],
+          "image_url": row[13],
+          "position": row[5],
+          "dob": row[8],
+          "height": row[6],
+          "weight": row[7],
+          "career_stats": get_career_stats(row[12])
     }
 
 # Get short meta-data for just one player
@@ -108,19 +138,6 @@ def get_awards_for_player(player_id):
 
 # Get detailed information about a player
 def get_player_info(player_id):
-    def get_career_stats(stats_line):
-        stats_list = stats_line.split(",")
-        return {
-            "minutes_per_game": stats_list[0],
-            "field_goal_percentage": stats_list[1],
-            "three_point_percentage": stats_list[2],
-            "free_throw_percentage": stats_list[3],
-            "points_per_game": stats_list[4],
-            "rebounds_per_game": stats_list[5],
-            "assists_per_game": stats_list[6],
-            "blocks_per_game": stats_list[7]
-        }
-
     with db_helper.db_connect() as db:
         rows = db.get_rows("players", "PlayerAPIID", player_id)
         if len(rows) == 1:
@@ -141,7 +158,6 @@ def get_player_info(player_id):
             return player
         else:
             return None
-
 
 
 if __name__ == '__main__':
