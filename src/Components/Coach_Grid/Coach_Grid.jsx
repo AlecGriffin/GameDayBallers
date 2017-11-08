@@ -63,64 +63,25 @@ export default class Coach_Grid extends Component {
     var upperBound = this.state.activePage * this.state.num_coaches_to_show
     var lowerBound = upperBound - this.state.num_coaches_to_show
 
-    var coaches = this.state.coaches.sort(this.sortByName())
+    var coaches = this.state.coaches.sort(this.sortByName)
     for(let i = lowerBound; (i < this.state.coaches.length) && (i < upperBound); i++){
       var coach = coaches[i]
       result.push(this.RenderCoachThumbnail(coach.url, coach.name, coach.image_url));
     }
     return result;
   }
-// <----------------------###---------------------->
 
-
-// <------------ Comparator Functions ------------>
-  // sortByName(){
-  //   this.setState({
-  //     nkjnsdfkjn: this.state.coaches.sort((n1, n2) => {
-  //       var name1 = n1.name.toLowerCase()
-  //       var name2 = n2.name.toLowerCase()
-  //       if(this.state.order === "Descending")
-  //         return name1 < name2 ? 1 : -1
-  //       else
-  //         return name1 > name2 ? 1 : -1
-  //       // return name1 < name2
-  //     })
-  //
-  //   });
-  // }
-
-  sortByName(name1, name2){
-    var name1 = n1.name.toLowerCase()
-    var name2 = n2.name.toLowerCase()
-    if(this.state.order === "Descending")
-      return name1 < name2 ? 1 : -1
-    else
-      return name1 > name2 ? 1 : -1
+  sortByName(coach1, coach2){
+    var result = coach1.name.localeCompare(coach2.name)
+    return this.state.order === 'Descending' ? result * -1 : result
   }
-
-  // sortByName2(evt){
-  //   console.log(evt)
-  //   this.setState({
-  //     players: this.state.coaches.sort((n1, n2) => {
-  //       var name1 = n1.name.toLowerCase()
-  //       var name2 = n2.name.toLowerCase()
-  //       if(evt === "Descending")
-  //         return name1 < name2 ? 1 : -1
-  //       else
-  //         return name1 > name2 ? 1 : -1
-  //     })
-  //   });
-  // }
-// <----------------------###---------------------->
 
   //Will handle asc/desc toggle
   handleOrder(evt) {
     this.setState({
       order: evt
     });
-    this.sortByName()
   }
-
 
   render(){
 
