@@ -27,6 +27,7 @@ export default class Coach_Grid extends Component {
     this.handleSelect = this.handleSelect.bind(this)
     this.sortByName = this.sortByName.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
+    this.handleSortType = this.handleSortType.bind(this)
   }
 
   componentDidMount(){
@@ -42,7 +43,6 @@ export default class Coach_Grid extends Component {
 
 
     handleSelect(eventKey) {
-      console.log("Set Active Page To: " + eventKey);
       this.setState({
         activePage: eventKey,
       });
@@ -72,7 +72,16 @@ export default class Coach_Grid extends Component {
   }
 
   sortByName(coach1, coach2){
-    var result = coach1.name.localeCompare(coach2.name)
+    var sortType = this.state.sortBy
+      var result = false
+    if (sortType === 'Name') {
+      result = coach1.name.localeCompare(coach2.name)
+      console.log(sortType);
+    }else if (sortType === 'win/loss') {
+      // result = coach1.name.localeCompare(coach2.name)
+      console.log(sortType);
+    }
+
     return this.state.order === 'Descending' ? result * -1 : result
   }
 
@@ -81,6 +90,14 @@ export default class Coach_Grid extends Component {
     this.setState({
       order: evt
     });
+    console.log(this.state.order);
+  }
+
+  handleSortType(evt){
+    this.setState({
+      sortBy: evt
+    });
+    console.log(this.state.sortBy);
   }
 
   render(){
@@ -103,10 +120,10 @@ export default class Coach_Grid extends Component {
                 <MenuItem eventKey="1">Any</MenuItem>
                 <MenuItem eventKey="2">All The Divisions</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By">
-                <MenuItem eventKey="1" onClick={this.sortByName}>Coach Name</MenuItem>
-                <MenuItem eventKey="2">Win/Loss Percentage</MenuItem>
-                <MenuItem eventKey="3">Age</MenuItem>
+              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+                <MenuItem eventKey="name" >Coach Name</MenuItem>
+                <MenuItem eventKey="win/loss" >Win/Loss Percentage</MenuItem>
+                <MenuItem eventKey="age" >Age</MenuItem>
               </DropdownButton>
               <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
                 <MenuItem eventKey="Ascending">Ascending</MenuItem>
