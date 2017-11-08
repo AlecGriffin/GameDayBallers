@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Division_Thumbnail from './Division_Thumbnail/Division_Thumbnail.jsx'
+import DivisionThumbnail from './Division_Thumbnail/Division_Thumbnail.jsx'
 import { Grid, Row, Col, Image, Thumbnail, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -13,6 +13,10 @@ export default class Division_Grid extends Component {
       divisions: [{
         'image_url': '',
         'name': '',
+        'div_champ': '',
+        'conference': '',
+        'most_div_titles': '',
+        'inaugural_season': '',
         'url' : ''
       }],
       data_loaded: false,
@@ -30,7 +34,7 @@ export default class Division_Grid extends Component {
 
   componentDidMount(){
 
-    var url = "https://api-dot-game-day-ballers-181000.appspot.com/divisions/"
+    var url = "http://api.gamedayballers.me/divisions_full/";
     axios.get(url).then(response => {
       this.setState({
         divisions : response['data'],
@@ -47,10 +51,13 @@ export default class Division_Grid extends Component {
   }
 
 // <------------ Thumbnail Generation ------------>
-  RenderDivisionThumbnail(link, division_name, img_source){
+  RenderDivisionThumbnail(division){
     return(
-      <Link key={division_name} to= {link}>
-        <Division_Thumbnail name={division_name} src={img_source}/>
+      <Link key={division.name} to= {division.url}>
+        <DivisionThumbnail name={division.name} src={division.image_url}
+          divchamp={division.div_champ} conference={division.conference}
+          mostdivtitles={division.most_div_titles}
+          inauguralseason={division.inaugural_season}/>
       </Link>
     );
   }
@@ -69,7 +76,7 @@ export default class Division_Grid extends Component {
 
     for(let i = 0; i < this.state.divisions.length; i++){
       var division = divisions[i]
-      result.push(this.RenderDivisionThumbnail(division.url, division.name, division.image_url ));
+      result.push(this.RenderDivisionThumbnail(division));
     }
     return result;
   }
