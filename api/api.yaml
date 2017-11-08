@@ -9,6 +9,8 @@ handlers:
   static_dir: static
 - url: /.*
   script: main.app
+  http_headers:
+    Access-Control-Allow-Origin: api.gamedayballers.me
 # [END handlers]
 
 env_variables:
