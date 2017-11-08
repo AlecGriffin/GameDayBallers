@@ -7,10 +7,11 @@ threadsafe: true
 handlers:
 - url: /static
   static_dir: static
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 - url: /.*
   script: main.app
-  http_headers:
-    Access-Control-Allow-Origin: api.gamedayballers.me
+
 # [END handlers]
 
 env_variables:
