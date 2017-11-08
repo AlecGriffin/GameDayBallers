@@ -56,7 +56,7 @@ export default class Coach_Grid extends Component {
     return(
       <Link key={coach.name } to= {coach.url}>
         <CoachThumbnail overlay={true} name={coach.name} src={coach.image_url}
-          dob={coach.dob} winloss ={coach.win_loss_percentage} team = {coach.current_team.name}/>
+          dob={coach.dob} winloss ={coach.win_loss_percentage} team = {coach.current_team}/>
         </Link>
       );
     }

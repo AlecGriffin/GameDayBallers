@@ -90,7 +90,7 @@ def row_to_detailblurb(row):
         "name": row[1],
         "url": "/coaches/" + row[2],
         "dob": row[4],
-        "current_team": teams.get_team(row[3]),
+        "current_team": row[11],
         "win_loss_percentage": row[5],
         "image_url": row[9]
     }

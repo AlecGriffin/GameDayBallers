@@ -111,7 +111,7 @@ def row_to_detailblurb(row):
           "dob": row[8],
           "height": row[6],
           "weight": row[7],
-          "team": row[3],
+          "team": row[15],
           "career_stats": get_career_stats(row[12])
     }
 
