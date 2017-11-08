@@ -28,7 +28,6 @@ export default class Coach_Grid extends Component {
     }
 
     this.handleSelect = this.handleSelect.bind(this)
-    this.sortByName = this.sortByName.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
     this.handleSortType = this.handleSortType.bind(this)
   }
@@ -45,12 +44,7 @@ export default class Coach_Grid extends Component {
   }
 
 
-<<<<<<< HEAD
-    handleSelect(eventKey) {
-=======
   handleSelect(eventKey) {
-      console.log("Set Active Page To: " + eventKey);
->>>>>>> 753e33ada35a4ef70b90da321447347003a433a6
       this.setState({
         activePage: eventKey,
       });
@@ -72,7 +66,7 @@ export default class Coach_Grid extends Component {
     var upperBound = this.state.activePage * this.state.num_coaches_to_show
     var lowerBound = upperBound - this.state.num_coaches_to_show
 
-    var coaches = this.state.coaches.sort(this.sortByName)
+    var coaches = this.state.coaches.sort(this.determineSort())
     for(let i = lowerBound; (i < this.state.coaches.length) && (i < upperBound); i++){
       var coach = coaches[i]
       result.push(this.RenderCoachThumbnail(coach));
@@ -80,34 +74,53 @@ export default class Coach_Grid extends Component {
     return result;
   }
 
-  sortByName(coach1, coach2){
-    var sortType = this.state.sortBy
-      var result = false
-    if (sortType === 'Name') {
-      result = coach1.name.localeCompare(coach2.name)
-      console.log(sortType);
-    }else if (sortType === 'win/loss') {
-      // result = coach1.name.localeCompare(coach2.name)
-      console.log(sortType);
-    }
-
-    return this.state.order === 'Descending' ? result * -1 : result
-  }
-
   //Will handle asc/desc toggle
   handleOrder(evt) {
     this.setState({
       order: evt
     });
-    console.log(this.state.order);
   }
 
   handleSortType(evt){
     this.setState({
       sortBy: evt
     });
-    console.log(this.state.sortBy);
   }
+
+  determineSort(){
+    var order = this.state.order
+    var sortBy = this.state.sortBy
+
+    switch (sortBy) {
+      case 'Name':
+        console.log('Name');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+      case 'Win/Loss%':
+        console.log('Win/Loss%');
+        return ((p1, p2) => {
+          var result = parseFloat(p2.win_loss_percentage) - parseFloat(p1.win_loss_percentage)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+      case 'Age':
+        console.log('Age');
+        return ((p1, p2) => {
+          // TODO: NEED TO CALCULATE AGES
+          // var result = parseFloat(p2.career_stats.win_loss_percentage) - parseFloat(p1.career_stats.win_loss_percentage)
+          // return this.state.order === 'Descending' ? result * -1 : result
+          return false
+        })
+        break;
+      Default:
+
+      break;
+
+  }
+}
 
   render(){
 
@@ -130,9 +143,9 @@ export default class Coach_Grid extends Component {
                 <MenuItem eventKey="2">All The Divisions</MenuItem>
               </DropdownButton>
               <DropdownButton title="Sort By" onSelect={this.handleSortType}>
-                <MenuItem eventKey="name" >Coach Name</MenuItem>
-                <MenuItem eventKey="win/loss" >Win/Loss Percentage</MenuItem>
-                <MenuItem eventKey="age" >Age</MenuItem>
+                <MenuItem eventKey="Name" >Coach Name</MenuItem>
+                <MenuItem eventKey="Win/Loss%" >Win/Loss Percentage</MenuItem>
+                <MenuItem eventKey="Age" >Age</MenuItem>
               </DropdownButton>
               <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
                 <MenuItem eventKey="Ascending">Ascending</MenuItem>

@@ -24,11 +24,14 @@ export default class Team_Grid extends Component {
         }],
       data_loaded: false,
       num_teams_to_show: 12,
-      activePage: 1
+      activePage: 1,
+      order: "Ascending",
+      sortBy: "Name"
     }
 
     this.handleSelect = this.handleSelect.bind(this)
-    this.sortByName = this.sortByName.bind(this)
+    this.handleOrder = this.handleOrder.bind(this)
+    this.handleSortType = this.handleSortType.bind(this)
   }
 
   componentDidMount(){
@@ -49,8 +52,6 @@ export default class Team_Grid extends Component {
     });
   }
 
-
-// <------------ Thumbnail Generation ------------>
   RenderTeamThumbnail(team){
     return(
       <Link key={team.name } to= {team.url}>
@@ -73,20 +74,18 @@ export default class Team_Grid extends Component {
     }
     return result;
   }
-  // <----------------------###---------------------->
 
-
-// <------------ Comparator Functions ------------>
-  sortByName(){
+  handleOrder(evt) {
     this.setState({
-      players: this.state.teams.sort((n1, n2) => {
-        var name1 = n1.name.toLowerCase()
-        var name2 = n2.name.toLowerCase()
-        return name1 > name2 ? 1 : -1
-      })
+      order: evt
     });
   }
-// <----------------------###---------------------->
+
+  handleSortType(evt){
+    this.setState({
+      sortBy: evt
+    });
+  }
 
   render(){
     if(!this.state.data_loaded){

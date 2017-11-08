@@ -39,7 +39,6 @@ export default class Player_Grid extends Component {
     }
 
     this.handleSelect = this.handleSelect.bind(this)
-    this.sortByName = this.sortByName.bind(this)
     this.handleSortType = this.handleSortType.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
   }
@@ -57,7 +56,6 @@ export default class Player_Grid extends Component {
   }
 
   handleSelect(eventKey) {
-    console.log("Set Active Page To: " + eventKey);
     this.setState({
       activePage: eventKey,
     });
@@ -109,8 +107,18 @@ export default class Player_Grid extends Component {
       case 'Height':
         console.log('Height');
         return ((p1, p2) => {
-          var result = parseFloat(p2.career_stats.minutes_per_game) - parseFloat(p1.career_stats.minutes_per_game)
+          // TODO: Broken due to the format being: 7-0 for 7 feet tall
+          var result = parseFloat(p2.height) - parseFloat(p1.height)
           return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+      case 'Age':
+        console.log('Age');
+        return ((p1, p2) => {
+          // TODO: NEED TO CALCULATE AGES
+          // var result = parseFloat(p2.career_stats.win_loss_percentage) - parseFloat(p1.career_stats.win_loss_percentage)
+          // return this.state.order === 'Descending' ? result * -1 : result
+          return false
         })
         break;
       case 'MPG':
@@ -179,11 +187,6 @@ export default class Player_Grid extends Component {
       break;
   }
 }
-
-  sortByName(pName1, pName2){
-    var result = pName1.name.localeCompare(pName2.name)
-    return this.state.order === 'Descending' ? result * -1 : result
-  }
 
   calculateAge(birthday) { // birthday is a date
       var ageDifMs = Date.now() - birthday.getTime();
