@@ -20,7 +20,7 @@ import players, coaches
 | Titles     | varchar(1000) | YES  |     | NULL    |       | 10
 | ImageURL   | varchar(500)  | YES  |     | NULL    |       | 11
 | TeamColor  | varchar(30)   | YES  |     | NULL    |       | 12
-+------------+---------------+------+-----+---------+-------+ 
++------------+---------------+------+-----+---------+-------+
 """
 # JSON Format
 """
@@ -63,7 +63,7 @@ def list_teams():
         for row in db.list_table("teams"):
             teams.append(row_to_blurb(row))
         return teams
-    
+
 def list_teams_full():
     with db_helper.db_connect() as db:
         teams = []
@@ -77,7 +77,7 @@ def row_to_blurb(row):
         "name": row[3],
         "url": "/teams/" + row[4],
         "image_url": row[11]
-        
+
     }
 
 # For a given SQL row, convert into a more detailed meta-data "blurb"
@@ -88,8 +88,8 @@ def row_to_detailblurb(row):
           "image_url": row[11],
           "city": row[1],
           "arena": row[9],
-          "division": row[5],
-          "conference": row[6]
+          "division": row[6],
+          "conference": row[5]
     }
 
 # Get short meta-data for just one team
@@ -125,6 +125,7 @@ def get_team_info(team_id):
                 "arena": row[9],
                 "head_coach": coaches.get_coach_by_number(row[7]),
                 "color": row[12],
+                "twitter": row[13],
                 "titles": get_titles(row[10]),
                 "division": row[5],
                 "conference": row[6],

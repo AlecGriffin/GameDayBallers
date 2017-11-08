@@ -107,6 +107,7 @@ def get_coach_info(coach_id):
                 "dob": row[4],
                 "current_team": teams.get_team(row[3]),
                 "win_loss_percentage": row[5],
+                "color": row[10],
                 "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
                 "past_teams": [team for team in row[7].split(",")],
                 "recognitions": [award for award in row[6].split(";")]
