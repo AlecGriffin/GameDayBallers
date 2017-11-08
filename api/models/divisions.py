@@ -71,9 +71,9 @@ def row_to_detailblurb(row):
         "name": row[0],
         "url": "/divisions/" + row[9],
         "conference": row[1],
-        "inaugural_season": row[2],
-        "div_champ": row[5],
-        "most_div_titles": row[6],
+        "inaugural_season": row[2].replace("Season", ""),
+        "div_champ": row[11],
+        "most_div_titles": row[10],
         "image_url": row[8]
     }
 
