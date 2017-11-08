@@ -70,9 +70,21 @@ export default class Team extends Component {
     ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
   }
 
+  getColor() {
+    if (this.state.coach.color != "" && this.state.coach.color != null) {
+      return this.state.coach.color;
+    } else {
+      return "gray";
+    }
+  }
+
 
   render() {
     var coach = this.state.coach;
+
+    var cardTitleStyle = {
+      backgroundColor: this.getColor()
+    };
 
      var pastTeams = coach.past_teams.map((team) =>
        <li key={team.toLowerCase().replace(/\s+/g, '')}>
@@ -126,7 +138,7 @@ export default class Team extends Component {
                 </div>
               </div>
               <div className="card">
-                  <div className="card-title">
+                  <div className="card-title" style={cardTitleStyle}>
                     Recognitions
                   </div>
                   <div className="card-body card-list">
@@ -136,7 +148,7 @@ export default class Team extends Component {
                   </div>
               </div>
               <div className="card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
                   Past Teams
                 </div>
                 <div className="card-body card-list">
@@ -149,7 +161,7 @@ export default class Team extends Component {
 
             <Col sm={8}>
               <div className="card grid-card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
                   Roster
                 </div>
                 <div className="card-body">

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Coach_Thumbnail from './Coach_Thumbnail/Coach_Thumbnail.jsx'
+import CoachThumbnail from './Coach_Thumbnail/Coach_Thumbnail.jsx'
 import { Grid, Row, Col, Image, Thumbnail, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -15,10 +15,13 @@ export default class Coach_Grid extends Component {
       coaches: [  {
         "image_url": "",
         "name": "",
-        "url": ""
+        "url": "",
+        "win_loss_percentage": "",
+        "current_team": "",
+        "dob": "",
       }],
       data_loaded: false,
-      num_coaches_to_show: 10,
+      num_coaches_to_show: 12,
       activePage: 1,
       order: "Ascending",
       sortBy: "Name"
@@ -32,7 +35,7 @@ export default class Coach_Grid extends Component {
 
   componentDidMount(){
 
-    var url = "https://api-dot-game-day-ballers-181000.appspot.com/coaches/"
+    var url = "http://api.gamedayballers.me/coaches_full/"
     axios.get(url).then(response => {
       this.setState({
         coaches : response['data'],
@@ -42,20 +45,26 @@ export default class Coach_Grid extends Component {
   }
 
 
+<<<<<<< HEAD
     handleSelect(eventKey) {
+=======
+  handleSelect(eventKey) {
+      console.log("Set Active Page To: " + eventKey);
+>>>>>>> 753e33ada35a4ef70b90da321447347003a433a6
       this.setState({
         activePage: eventKey,
       });
     }
 
 // <------------ Thumbnail Generation ------------>
-  RenderCoachThumbnail(link, Coach_name, img_source){
+  RenderCoachThumbnail(coach){
     return(
-      <Link key={Coach_name} to= {link}>
-        <Coach_Thumbnail name={Coach_name} src={img_source}/>
-      </Link>
-    );
-  }
+      <Link key={coach.name } to= {coach.url}>
+        <CoachThumbnail overlay={true} name={coach.name} src={coach.image_url}
+          dob={coach.dob} winloss ={coach.win_loss_percentage} team = {coach.current_team}/>
+        </Link>
+      );
+    }
 
 
   RenderCoachThumbnails(){
@@ -66,7 +75,7 @@ export default class Coach_Grid extends Component {
     var coaches = this.state.coaches.sort(this.sortByName)
     for(let i = lowerBound; (i < this.state.coaches.length) && (i < upperBound); i++){
       var coach = coaches[i]
-      result.push(this.RenderCoachThumbnail(coach.url, coach.name, coach.image_url));
+      result.push(this.RenderCoachThumbnail(coach));
     }
     return result;
   }

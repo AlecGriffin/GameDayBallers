@@ -250,6 +250,8 @@ ul {
 @media only screen and (max-width: 768px) {
   .tweets-container {
     display: none; }
+  .map-card {
+    display: none; }
   .home-logo {
     width: 40%; } }
 

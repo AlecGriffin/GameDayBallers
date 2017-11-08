@@ -118,33 +118,26 @@ export default class Division extends Component {
     return url;
   }
 
+  getColor() {
+    if (this.state.division.conference == "Eastern") {
+      return "#157BE1";
+    } else if (this.state.division.conference == "Western") {
+      return "#E11515";
+    } else {
+      return "gray";
+    }
+  }
 
   render() {
-
-    // this.getPlayers()
-    // MUST BE CHANGED
-    /*var players = this.state.division.players.map((player) =>
-    <Col md={4} xs={6} className="grid-element" key={player.toLowerCase().replace(/\s+/g, '')}>
-    <Link to={ "/players/" + player.toLowerCase().replace(/\s+/g, '') }>
-    { player }
-    </Link>
-    </Col>
-    );
-
-    var teams = this.state.division.players.map((player) =>
-    <Col md={4} xs={6} className="grid-element" key={player.toLowerCase().replace(/\s+/g, '')}>
-    <Link to={ "/teams/" + getPlayer(player.toLowerCase().replace(/\s+/g, '')).teamURL }>
-    { getPlayer(player.toLowerCase().replace(/\s+/g, '')).team }
-    </Link>
-    </Col>
-    );*/
-
-
     var rivalries = this.state.division.rivalries.map((rivalry) =>
     <li key={rivalry.toLowerCase().replace(/\s+/g, '')}>
       <b>{rivalry}</b>
     </li>
   );
+
+  var cardTitleStyle = {
+    backgroundColor: this.getColor()
+  };
 
   if(!this.state.data_loaded){
     return(<Loading/>);
@@ -178,7 +171,7 @@ export default class Division extends Component {
               </div>
             </div>
             <div className="card">
-              <div className="card-title">
+              <div className="card-title" style={cardTitleStyle}>
                 Notable Rivalries
               </div>
               <div className="card-body">
@@ -191,7 +184,7 @@ export default class Division extends Component {
 
           <Col sm={8}>
             <div className="card grid-card">
-              <div className="card-title">
+              <div className="card-title" style={cardTitleStyle}>
                 Teams
               </div>
               <div className="card-body">
@@ -204,7 +197,7 @@ export default class Division extends Component {
               </div>
             </div>
             <div className="card grid-card">
-              <div className="card-title">
+              <div className="card-title" style={cardTitleStyle}>
                 Players
               </div>
               {this.RenderPlayerThumbnails()}
