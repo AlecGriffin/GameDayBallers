@@ -45,12 +45,11 @@ export default class Player_Grid extends Component {
     var url = "http://api.gamedayballers.me/players_full/";
     axios.get(url).then(response => {
       this.setState({
-        players : response.data,
+        players : response['data'],
         data_loaded: true
       })
 
     })
-    console.log("data_loaded");
   }
 
   handleSelect(eventKey) {

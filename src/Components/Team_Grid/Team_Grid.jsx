@@ -15,10 +15,15 @@ export default class Team_Grid extends Component {
     this.state = {
       teams: [{
         'image_url': '',
-         'name': '',
-          'url' : ''}],
+        'name': '',
+        'url' : '',
+        'arena': '',
+        'city': '',
+        'conference': '',
+        'division': ''
+        }],
       data_loaded: false,
-      num_teams_to_show: 10,
+      num_teams_to_show: 12,
       activePage: 1
     }
 
@@ -28,7 +33,7 @@ export default class Team_Grid extends Component {
 
   componentDidMount(){
 
-    var url = "https://api-dot-game-day-ballers-181000.appspot.com/teams/"
+    var url = "http://api.gamedayballers.me/teams_full/"
     axios.get(url).then(response => {
       this.setState({
         teams : response['data'],
@@ -46,23 +51,25 @@ export default class Team_Grid extends Component {
 
 
 // <------------ Thumbnail Generation ------------>
-  RenderTeamThumbnail(link, Team_name, img_source){
+  RenderTeamThumbnail(team){
     return(
-      <Link key={Team_name} to= {link}>
-        <TeamThumbnail name={Team_name} src={img_source}/>
-      </Link>
-    );
-  }
-
+      <Link key={team.name } to= {team.url}>
+        <TeamThumbnail overlay={true} name={team.name} src={team.image_url}
+          city={team.city} arena={team.arena} conference={team.conference}
+          division={team.division}/>
+        </Link>
+      );
+    }
   // Use this method to generate Thumbnails when future API is created
   RenderTeamThumbnails(){
     var result = [];
 
     var upperBound = this.state.activePage * this.state.num_teams_to_show
     var lowerBound = upperBound - this.state.num_teams_to_show
+
     for(let i = lowerBound; i < this.state.teams.length && i < upperBound; i++){
       var team = this.state.teams[i]
-      result.push(this.RenderTeamThumbnail(team.url, team.name, team.image_url ));
+      result.push(this.RenderTeamThumbnail(team));
     }
     return result;
   }

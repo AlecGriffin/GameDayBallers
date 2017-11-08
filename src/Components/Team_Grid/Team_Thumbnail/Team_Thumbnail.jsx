@@ -9,7 +9,13 @@ export default class Team_Thumbnail extends Component {
             <div className="card-title">
               <div className="overlay">
                 <div className="overlay-info">
-                  {this.props.name}
+                  <h2 class="overlay-info-title">{this.props.name}</h2>
+                  <div className="overlay-info-body">
+                    <p><b>City: </b>{this.props.city}</p>
+                    <p><b>Arena: </b> {this.props.arena}</p>
+                    <p><b>Conference: </b> {this.props.conference}</p>
+                    <p><b>Division: </b> {this.props.division}</p>
+                  </div>
                 </div>
               </div>
               <img src={this.props.src}/>

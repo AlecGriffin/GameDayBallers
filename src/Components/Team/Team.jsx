@@ -18,6 +18,8 @@ export default class Team extends Component {
       team : {
         "arena": "",
         "city": "",
+        "conference": "",
+        "division": "",
         "current_roster": [
           {
             "image_url": "",
@@ -44,7 +46,7 @@ export default class Team extends Component {
   }
 
   componentDidMount(){
-    var team_url = 'https://api-dot-game-day-ballers-181000.appspot.com/teams/' + this.props.match.params.name
+    var team_url = 'http://api.gamedayballers.me/teams/' + this.props.match.params.name
     axios.get(team_url).then(response => {
       this.setState({
         team : response['data'],
@@ -184,6 +186,12 @@ export default class Team extends Component {
                     </li>
                     <li>
                       <b>Arena: </b>{ team.arena }
+                    </li>
+                    <li>
+                      <b>Conference: </b>{ team.conference }
+                    </li>
+                    <li>
+                      <b>Division: </b>{ team.division }
                     </li>
                   </ul>
                 </div>
