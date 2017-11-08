@@ -100,17 +100,18 @@ def row_to_blurb(row):
         "image_url": row[13]
     }
 
-# For a given SQL row, convert into a more detialed meta-data "blurb"
+# For a given SQL row, convert into a more detailed meta-data "blurb"
 def row_to_detailblurb(row):
     return {
           "name": row[1],
           "jersey_number": row[4],
+          "url": "/players/" + row[2],
           "image_url": row[13],
           "position": row[5],
           "dob": row[8],
           "height": row[6],
           "weight": row[7],
-          "url": "/players/" + row[2],
+          "team": row[3],
           "career_stats": get_career_stats(row[12])
     }
 

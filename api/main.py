@@ -91,6 +91,11 @@ def get_coach_by_id(coach_id):
 def list_teams():
     return jsonify(teams.list_teams())
 
+@app.route('/teams_full/', methods=['GET'])
+@crossdomain(origin='*')
+def list_teams_full():
+    return jsonify(teams.list_teams_full())
+
 @app.route('/teams/<team_id>', methods=['GET'])
 @crossdomain(origin='*')
 def get_team_by_id(team_id):
