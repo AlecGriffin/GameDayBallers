@@ -54,7 +54,7 @@ export default class Player extends Component {
 
     // Handle Aquiring Data from RESTful API
     var url = window.location.href;
-    var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + url.split('/')[url.split('/').length - 1]
+    var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + this.props.match.params.name
     axios.get(player_url).then(response => {
       this.setState({
         player : response.data,
@@ -132,9 +132,8 @@ export default class Player extends Component {
 
   render(){
 
-    var url = window.location.href;
+    // var url = window.location.href;
     // var playerName = url.split('/')[url.split('/').length - 1];
-    var player = this.state.player
     // var DivisionURL = "/division/" + player.DivisionURL;
     // var teamURL = "/teams/" + player.team.toLowerCase().replace(/\s+/g, '')
 
@@ -143,6 +142,8 @@ export default class Player extends Component {
     //     <Link to='/'>{team}</Link>
     //   </li>
     // );
+
+    var player = this.state.player
 
     var cardTitleStyle = {
       backgroundColor: this.getColor()

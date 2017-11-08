@@ -39,8 +39,8 @@ export default class Team extends Component {
   }
 
   componentDidMount(){
-    var url = window.location.href;
-    var coach_url = 'https://api-dot-game-day-ballers-181000.appspot.com/coaches/' + url.split('/')[url.split('/').length - 1]
+
+    var coach_url = 'https://api-dot-game-day-ballers-181000.appspot.com/coaches/' + this.props.match.params.name
     axios.get(coach_url).then(response => {
       this.setState({
         coach : response.data,
