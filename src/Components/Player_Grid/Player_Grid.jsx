@@ -26,6 +26,7 @@ export default class Player_Grid extends Component {
           'three_point_percentage': ''
         },
         'dob': '',
+        'team': '',
         'height': '',
         'jersey_number':'',
         'position':'',
@@ -68,7 +69,7 @@ export default class Player_Grid extends Component {
     return(
       <Link key={player.name } to= {player.url}>
         <PlayerThumbnail overlay={true} name={player.name} src={player.image_url}
-          position={player.position} dob={player.dob} height={player.height}
+          team={player.team} position={player.position} dob={player.dob} height={player.height}
           jerseyNumber={player.jersey_number} weight={player.weight}/>
       </Link>
     );
