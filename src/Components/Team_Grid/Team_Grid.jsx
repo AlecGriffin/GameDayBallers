@@ -26,7 +26,8 @@ export default class Team_Grid extends Component {
       num_teams_to_show: 12,
       activePage: 1,
       order: "Ascending",
-      sortBy: "Name"
+      sortBy: "Name",
+      needToSort: false
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -67,23 +68,76 @@ export default class Team_Grid extends Component {
 
     var upperBound = this.state.activePage * this.state.num_teams_to_show
     var lowerBound = upperBound - this.state.num_teams_to_show
+    var teams = this.state.teams
+
+    if(this.state.needToSort){
+      teams.sort(this.determineSort())
+      this.setState({
+        needToSort: false
+      })
+    }
 
     for(let i = lowerBound; i < this.state.teams.length && i < upperBound; i++){
-      var team = this.state.teams[i]
+      var team = teams[i]
       result.push(this.RenderTeamThumbnail(team));
     }
     return result;
   }
 
+  determineSort(){
+    var order = this.state.order
+    var sortBy = this.state.sortBy
+
+    switch (sortBy) {
+      case 'Name':
+        console.log('Name');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+      case 'Conference':
+        console.log('Name');
+        return ((p1, p2) => {
+          var result = p1.conference.localeCompare(p2.conference)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+        case 'Division':
+          console.log('Name');
+          return ((p1, p2) => {
+            var result = p1.division.localeCompare(p2.division)
+            return this.state.order === 'Descending' ? result * -1 : result
+          })
+          break;
+      case 'numTitles':
+        console.log('numTitles');
+        return ((p1, p2) => {
+          var result = parseFloat(p2.win_loss_percentage) - parseFloat(p1.win_loss_percentage)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+      Default:
+        console.log('Name');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+  }
+}
+
   handleOrder(evt) {
     this.setState({
-      order: evt
+      order: evt,
+      needToSort: true
     });
   }
 
   handleSortType(evt){
     this.setState({
-      sortBy: evt
+      sortBy: evt,
+      needToSort: true
     });
   }
 
@@ -102,10 +156,17 @@ export default class Team_Grid extends Component {
                 <MenuItem eventKey="1">Any</MenuItem>
                 <MenuItem eventKey="2">All The Divisions</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By">
-                <MenuItem eventKey="1" onClick={this.sortByName}>Team Name</MenuItem>
-                <MenuItem eventKey="2" >Number of Titles</MenuItem>
-                <MenuItem eventKey="3" >Number of Players</MenuItem>
+              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+                <MenuItem eventKey="Name">Team Name</MenuItem>
+                <MenuItem eventKey="Conference" >Conference</MenuItem>
+                <MenuItem eventKey="Division" >Division</MenuItem>
+                <MenuItem eventKey="numTitles" >Number of Titles</MenuItem>
+                <MenuItem eventKey="numPlayers" >Number of Players</MenuItem>
+
+              </DropdownButton>
+              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+                <MenuItem eventKey="Ascending">Ascending</MenuItem>
+                <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>
             </Col>
           </Row>

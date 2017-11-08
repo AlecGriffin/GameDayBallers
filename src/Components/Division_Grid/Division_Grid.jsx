@@ -19,7 +19,8 @@ export default class Division_Grid extends Component {
       num_divisions_to_show: 10,
       activePage: 1,
       order: "Ascending",
-      sortBy: "Name"
+      sortBy: "Name",
+      needToSort: false
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -40,7 +41,6 @@ export default class Division_Grid extends Component {
   }
 
   handleSelect(eventKey) {
-    console.log("Set Active Page To: " + eventKey);
     this.setState({
       activePage: eventKey,
     });
@@ -58,8 +58,17 @@ export default class Division_Grid extends Component {
   // Use this method to generate Thumbnails when future API is created
   RenderDivisionThumbnails(){
     var result = [];
+    var divisions = this.state.divisions
+
+    if(this.state.needToSort){
+      divisions.sort(this.determineSort())
+      this.setState({
+        needToSort: false
+      })
+    }
+
     for(let i = 0; i < this.state.divisions.length; i++){
-      var division = this.state.divisions[i]
+      var division = divisions[i]
       result.push(this.RenderDivisionThumbnail(division.url, division.name, division.image_url ));
     }
     return result;
@@ -67,14 +76,39 @@ export default class Division_Grid extends Component {
 
   handleOrder(evt) {
     this.setState({
-      order: evt
+      order: evt,
+      needToSort: true
     });
   }
 
   handleSortType(evt){
     this.setState({
-      sortBy: evt
+      sortBy: evt,
+      needToSort: true
     });
+  }
+
+  determineSort(){
+    var order = this.state.order
+    var sortBy = this.state.sortBy
+
+    switch (sortBy) {
+      case 'Name':
+        console.log('Name');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+        break;
+      Default:
+        console.log('Default');
+        return ((p1, p2) => {
+          var result = p1.name.localeCompare(p2.name)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
+      break;
+
+    }
   }
 
   render(){
@@ -92,9 +126,13 @@ export default class Division_Grid extends Component {
                 <MenuItem eventKey="1">Any</MenuItem>
                 <MenuItem eventKey="2">The two conferences</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By">
-                <MenuItem eventKey="1" onClick={this.sortByName}>Division Name</MenuItem>
-                <MenuItem eventKey="2">Inaugural Season</MenuItem>
+              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+                <MenuItem eventKey="Name">Division Name</MenuItem>
+                <MenuItem eventKey="InauguralSeason">Inaugural Season</MenuItem>
+              </DropdownButton>
+              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+                <MenuItem eventKey="Ascending">Ascending</MenuItem>
+                <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>
             </Col>
           </Row>
