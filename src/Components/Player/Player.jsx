@@ -79,7 +79,6 @@ export default class Player extends Component {
     var part = 'snippet'
     var API_KEY = 'AIzaSyB_0ID-n-g31_B0GKkquWh5Kn7WBJPh4rM'
     var searchTopic = this.state.player.player
-    console.log(searchTopic);
 
     var youtube_URL = "https://www.googleapis.com/youtube/v3/search?q=" + searchTopic + "&maxResults=" + maxResults + "&part=" + part + "&key=" + API_KEY
     return axios.get(youtube_URL)

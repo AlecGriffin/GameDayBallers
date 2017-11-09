@@ -59,6 +59,14 @@ export default class Team_Grid extends Component {
 
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.teams != nextProps.teams){
+      this.setState({
+        teams: nextProps.teams
+      })
+    }
+  }
+
   handleSelect(eventKey) {
     console.log("Set Active Page To: " + eventKey);
     this.setState({
