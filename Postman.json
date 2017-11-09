@@ -1,0 +1,247 @@
+{
+	"info": {
+		"name": "Gameday ballers",
+		"_postman_id": "f2f0e256-4422-72aa-62b2-b8bb424f0f02",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://api.gamedayballers.me/teams/atlantahawks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"arena\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.arena).to.equal(\"Philips Arena\");",
+							"})",
+							"",
+							"pm.test(\"city\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.city).to.equal(\"Atlanta, Georgia\");",
+							"})",
+							"",
+							"pm.test(\"color\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.color).to.equal(\"#BA0C2F\");",
+							"})",
+							"",
+							"pm.test(\"conference\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.conference).to.equal(\"Southeast\");",
+							"})",
+							"",
+							"pm.test(\"roster\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.current_roster[0].name).to.equal(\"Tyler Dorsey\");",
+							"})",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.gamedayballers.me/teams/atlantahawks",
+					"protocol": "http",
+					"host": [
+						"api",
+						"gamedayballers",
+						"me"
+					],
+					"path": [
+						"teams",
+						"atlantahawks"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.gamedayballers.me//players/malcolmdelaney",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"career stats\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.career_stats.assists_per_game).to.equal(\"2.6\");",
+							"})",
+							"",
+							"pm.test(\"color\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.color).to.equal(\"#BA0C2F\");",
+							"})",
+							"",
+							"pm.test(\"date of birth\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.dob).to.equal(\"MAR 11, 1989\");",
+							"})",
+							"",
+							"pm.test(\"weight\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.weight).to.equal(190);",
+							"})",
+							"",
+							"pm.test(\"jersey number\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.jersey_number).to.equal(5);",
+							"})",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.gamedayballers.me//players/malcolmdelaney",
+					"protocol": "http",
+					"host": [
+						"api",
+						"gamedayballers",
+						"me"
+					],
+					"path": [
+						"",
+						"players",
+						"malcolmdelaney"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.gamedayballers.me/coaches/stevekerr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"team color\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.color).to.equal(\"#003DA5\");",
+							"})",
+							"",
+							"pm.test(\"team player\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.current_roster[0].name).to.equal(\"Patrick McCaw\");",
+							"})",
+							"",
+							"pm.test(\"team\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.current_team.name).to.equal(\"Golden State Warriors\");",
+							"})",
+							"",
+							"pm.test(\"date of birth\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.dob).to.equal(\"August 26, 1959\");",
+							"})",
+							"",
+							"pm.test(\"coach name\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.equal(\"Steve Kerr\");",
+							"})",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.gamedayballers.me/coaches/stevekerr",
+					"protocol": "http",
+					"host": [
+						"api",
+						"gamedayballers",
+						"me"
+					],
+					"path": [
+						"coaches",
+						"stevekerr"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.gamedayballers.me/divisions/southeast",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"conference\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.conference).to.equal(\"Eastern\");",
+							"})",
+							"",
+							"pm.test(\"div champ\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.divChamp).to.equal(\"washingtonwizards\");",
+							"})",
+							"",
+							"pm.test(\"most div titles\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.mostDivTitles).to.equal(\"miamiheat\");",
+							"})",
+							"",
+							"pm.test(\"division name\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.equal(\"Southeast\");",
+							"})",
+							"",
+							"pm.test(\"team\", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.teams[2].name).to.equal(\"Miami Heat\");",
+							"})",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://api.gamedayballers.me/divisions/southeast",
+					"protocol": "http",
+					"host": [
+						"api",
+						"gamedayballers",
+						"me"
+					],
+					"path": [
+						"divisions",
+						"southeast"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
