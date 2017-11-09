@@ -40,7 +40,7 @@ export default class Team extends Component {
 
   componentDidMount(){
 
-    var coach_url = 'https://api-dot-game-day-ballers-181000.appspot.com/coaches/' + this.props.match.params.name
+    var coach_url = 'http://api.gamedayballers.me/coaches/' + this.props.match.params.name
     axios.get(coach_url).then(response => {
       this.setState({
         coach : response.data,

@@ -39,7 +39,7 @@ export default class Division extends Component {
 
   componentDidMount(){
     var url = window.location.href;
-    var division_url = 'https://api-dot-game-day-ballers-181000.appspot.com/divisions/' + this.props.match.params.name
+    var division_url = 'http://api.gamedayballers.me/divisions/' + this.props.match.params.name
     axios.get(division_url).then(response => {
       this.setState({
         division : response['data'],
@@ -82,7 +82,7 @@ export default class Division extends Component {
       var promises = []
       for(let i = 0; i < this.state.division.teams.length; i++){
         var team = this.state.division.teams[i]
-        var url = 'https://api-dot-game-day-ballers-181000.appspot.com' + team.url
+        var url = 'http://api.gamedayballers.me' + team.url
         promises.push(axios.get(url))
       }
       return promises
