@@ -137,6 +137,8 @@ export default class Search extends Component {
     })
   }
 
+
+
   render(){
 
     // Get search input text by url
@@ -144,6 +146,7 @@ export default class Search extends Component {
 
     return (
       <div className='main'>
+          <h1><strong>Search Results For: </strong>{inputText}</h1>
           <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
             <NavItem eventKey={'players'}  > Players</NavItem>
             <NavItem eventKey={'teams'}    > Teams</NavItem>
@@ -151,12 +154,27 @@ export default class Search extends Component {
             <NavItem eventKey={'divisions'}> Divisions</NavItem>
           </Nav>
 
-          <h1><strong>Search Results For: </strong>{inputText}</h1>
-          {this.state.dataLoaded && this.state.toDisplay === 'players' &&<PlayerGrid players={this.state.players}/>}
-          {this.state.dataLoaded && this.state.toDisplay === 'coaches' &&<CoachGrid coaches={this.state.coaches}/>}
-          {this.state.dataLoaded && this.state.toDisplay === 'teams' &&<TeamGrid teams={this.state.teams}/>}
-          {this.state.dataLoaded && this.state.toDisplay === 'divisions' &&<DivisionGrid divisions={this.state.divisions}/>}
+          {this.state.dataLoaded && this.state.toDisplay === 'players' && this.state.players.length > 0 &&<PlayerGrid players={this.state.players}/>}
+          {this.state.dataLoaded && this.state.toDisplay === 'coaches' && this.state.coaches.length > 0 &&<CoachGrid coaches={this.state.coaches}/>}
+          {this.state.dataLoaded && this.state.toDisplay === 'teams' && this.state.teams.length > 0 &&<TeamGrid teams={this.state.teams}/>}
+          {this.state.dataLoaded && this.state.toDisplay === 'divisions' && this.state.divisions.length > 0 &&<DivisionGrid divisions={this.state.divisions}/>}
 
+          {this.state.dataLoaded && this.state.toDisplay === 'players' && this.state.players.length <= 0
+          &&<div className="text-center">
+              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+            </div>}
+          {this.state.dataLoaded && this.state.toDisplay === 'coaches' && this.state.coaches.length <= 0
+          &&<div className="text-center">
+              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+            </div>}
+          {this.state.dataLoaded && this.state.toDisplay === 'teams' && this.state.teams.length <= 0
+          &&<div className="text-center">
+              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+            </div>}
+          {this.state.dataLoaded && this.state.toDisplay === 'divisions' && this.state.divisions.length <= 0
+          &&<div className="text-center">
+              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+            </div>}
 
 
 

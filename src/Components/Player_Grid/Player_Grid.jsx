@@ -357,7 +357,7 @@ export default class Player_Grid extends Component {
             </Row>
           </Grid>
           <Row className="paginate">
-            {this.paginationToDisplay}
+            {paginationToDisplay}
           </Row>
         </div>
       );
