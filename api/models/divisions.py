@@ -42,6 +42,16 @@ import players, teams
 }
 """
 
+def search_divisions(keyword):
+    with db_helper.db_connect() as db:
+        divisions = []
+        search_attrs = ["Division", "Conference", "InauguralSeason", "Teams",
+                        "Players", "DivChamp", "MostDivTitles", "Rivalries",
+                        "DivisionAPIID"]
+        for row in db.search_table("divisions", search_attrs, keyword):
+            divisions.append(row_to_blurb(row))
+        return divisions
+
 # Returns brief meta-data for every team in the DB
 def list_divisions():
     with db_helper.db_connect() as db:
@@ -109,4 +119,5 @@ def get_division_info(prenba_id):
 
 if __name__ == '__main__':
     print(list_divisions())
+    print(search_divisions("west"))
     print(get_division_info("atlantic"))

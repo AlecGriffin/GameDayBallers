@@ -55,6 +55,14 @@ import players, coaches
   ]
 }
 """
+def search_teams(keyword):
+    with db_helper.db_connect() as db:
+        teams = []
+        search_attrs = ["TeamID", "TeamCity", "TeamName", "Team", "TeamAPIID", "Conference",
+                        "Division", "CoachID", "Roster", "Arena", "Titles", "TeamColor"]
+        for row in db.search_table("teams", search_attrs, keyword):
+            teams.append(row_to_blurb(row))
+        return teams
 
 # Returns brief meta-data for every team in the DB
 def list_teams():
@@ -125,7 +133,7 @@ def get_team_info(team_id):
                 "arena": row[9],
                 "head_coach": coaches.get_coach_by_number(row[7]),
                 "color": row[12],
-                "twitter": row[13],
+                "twitter": row[13] if 13 in row else None,
                 "titles": get_titles(row[10]),
                 "division": row[5],
                 "conference": row[6],
@@ -137,4 +145,5 @@ def get_team_info(team_id):
 
 if __name__ == '__main__':
     print(list_teams())
+    print(search_teams("lebron"))
     print(get_team_info("laclippers"))
