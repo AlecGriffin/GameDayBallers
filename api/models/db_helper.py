@@ -31,7 +31,7 @@ class db_connect:
             #
             else:
                 db = MySQLdb.connect(
-                    host='localhost', user="root", passwd="password", db="gamedayballersdb")
+                    host='localhost', user="root",db="gamedayballersdb")
 
             return db
 
@@ -50,14 +50,21 @@ class DB:
     def __init__(self, cursor):
         self.cur = cursor
 
+    def search_table(self, table, attrs, keyword):
+        search_strings = ["%s LIKE '%%%s%%'"%(attr, keyword) for attr in attrs]
+        attr_string = " OR ".join(search_strings)
+        query_string = "SELECT * FROM %s WHERE %s;"% (table, attr_string)
+        self.cur.execute(query_string)
+        return self.cur.fetchall()
+
     # returns list of all entries in the provided table
     def list_table(self, table):
-        self.cur.execute("SELECT * FROM %s" % (table))
+        self.cur.execute("SELECT * FROM %s;" % (table))
         return self.cur.fetchall()
 
     # returns row where id name matches provided id
     def get_rows(self, table, id, row_id):
-        self.cur.execute("SELECT * FROM %s WHERE %s = '%s'"%(table, id, row_id))
+        self.cur.execute("SELECT * FROM %s WHERE %s = '%s';"%(table, id, row_id))
         return self.cur.fetchall()
 
 # Test that the classes are working

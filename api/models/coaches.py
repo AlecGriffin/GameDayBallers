@@ -61,6 +61,15 @@ import teams
 }
 """
 
+def search_coaches(keyword):
+    with db_helper.db_connect() as db:
+        coaches = []
+        search_attrs = ["CoachID", "Name", "CoachAPIID", "TeamID", "DOB", "WinLoss", "Recognitions",
+                        "PastTeams", "PlayersCoached"]
+        for row in db.search_table("coaches", search_attrs, keyword):
+            coaches.append(row_to_blurb(row))
+        return coaches
+
 # Returns brief meta-data for every coach in the DB
 def list_coaches():
     with db_helper.db_connect() as db:
@@ -125,7 +134,7 @@ def get_coach_info(coach_id):
                 "dob": row[4],
                 "current_team": teams.get_team(row[3]),
                 "win_loss_percentage": row[5],
-                "color": row[10],
+                "color": row[10] if 10 in row else None,
                 "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
                 "past_teams": [team for team in row[7].split(",")],
                 "recognitions": [award for award in row[6].split(";")]
@@ -138,4 +147,5 @@ def get_coach_info(coach_id):
 
 if __name__ == '__main__':
     print(list_coaches())
+    print(search_coaches("lebron"))
     print(get_coach_info("bradstevens"))

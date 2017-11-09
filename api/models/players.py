@@ -164,7 +164,7 @@ def get_player_info(player_id):
               "height": row[6],
               "weight": row[7],
               "prenba": row[9],
-              "color": row[14],
+              "color": row[14] if 14 in row else None,
               "career_stats": get_career_stats(row[12]),
               "recognitions": get_awards_for_player(player_id)
             }

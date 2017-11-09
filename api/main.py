@@ -59,6 +59,16 @@ def home():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
+@app.route('/search/<keyword>', methods=['GET'])
+@crossdomain(origin='*')
+def search_db(keyword):
+    return jsonify({
+        "players": players.search_players(keyword),
+        "teams": teams.search_teams(keyword),
+        "coaches": coaches.search_coaches(keyword),
+        "divisions": divisions.search_divisions(keyword)
+    })
+
 @app.route('/players/', methods=['GET'])
 @crossdomain(origin='*')
 def list_players():
