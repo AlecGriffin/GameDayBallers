@@ -41,7 +41,8 @@ export default class Player_Grid extends Component {
       positionFilter: 'Any Position',
       teamFilter: 'Any Team',
       updatePaginationAfterFiltering: false,
-      numFilteredPlayers: 0
+      numFilteredPlayers: 0,
+      searchText: ''
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -67,7 +68,6 @@ export default class Player_Grid extends Component {
         data_loaded: true
       })
     }
-
   }
 
   componentWillReceiveProps(nextProps){
@@ -89,7 +89,7 @@ export default class Player_Grid extends Component {
   RenderPlayerThumbnail(player){
     return(
       <Link key={player.name } to= {player.url}>
-        <PlayerThumbnail overlay={true} name={player.name} src={player.image_url}
+        <PlayerThumbnail search={this.props.search} overlay={true} name={player.name} src={player.image_url}
           team={player.team} position={player.position} dob={player.dob} height={player.height}
           jerseyNumber={player.jersey_number} weight={player.weight}/>
       </Link>

@@ -152,26 +152,26 @@ export default class Search extends Component {
             <NavItem eventKey={'divisions'}> Divisions</NavItem>
           </Nav>
 
-          {this.state.toDisplay === 'players' && this.state.players.length > 0 && <PlayerGrid players={this.state.players}/>}
-          {this.state.toDisplay === 'coaches' && this.state.coaches.length > 0 && <CoachGrid coaches={this.state.coaches}/>}
-          {this.state.toDisplay === 'teams' && this.state.teams.length > 0 && <TeamGrid teams={this.state.teams}/>}
-          {this.state.toDisplay === 'divisions' && this.state.divisions.length > 0 &&<DivisionGrid divisions={this.state.divisions}/>}
+          {this.state.toDisplay === 'players' && this.state.players.length > 0 && <PlayerGrid search={inputText} players={this.state.players}/>}
+          {this.state.toDisplay === 'coaches' && this.state.coaches.length > 0 && <CoachGrid search={inputText} coaches={this.state.coaches}/>}
+          {this.state.toDisplay === 'teams' && this.state.teams.length > 0 && <TeamGrid search={inputText} teams={this.state.teams}/>}
+          {this.state.toDisplay === 'divisions' && this.state.divisions.length > 0 &&<DivisionGrid search={inputText} divisions={this.state.divisions}/>}
 
           {this.state.toDisplay === 'players' && this.state.players.length <= 0
           &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+              <h3>Sorry, there are no player results for <strong>{inputText}</strong></h3>
             </div>}
           {this.state.toDisplay === 'coaches' && this.state.coaches.length <= 0
           &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+              <h3>Sorry, there are no coach results for <strong>{inputText}</strong></h3>
             </div>}
           {this.state.toDisplay === 'teams' && this.state.teams.length <= 0
           &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+              <h3>Sorry, there are no team results for <strong>{inputText}</strong></h3>
             </div>}
           {this.state.toDisplay === 'divisions' && this.state.divisions.length <= 0
           &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
+              <h3>Sorry, there are no division results for <strong>{inputText}</strong></h3>
             </div>}
 
       </div>
