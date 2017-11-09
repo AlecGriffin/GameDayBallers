@@ -68,7 +68,7 @@ export default class Division_Grid extends Component {
   RenderDivisionThumbnail(division){
     return(
       <Link key={division.name} to= {division.url}>
-        <DivisionThumbnail name={division.name} src={division.image_url}
+        <DivisionThumbnail overlay={true} name={division.name} src={division.image_url}
           divchamp={division.div_champ} conference={division.conference}
           mostdivtitles={division.most_div_titles}
           inauguralseason={division.inaugural_season}/>
