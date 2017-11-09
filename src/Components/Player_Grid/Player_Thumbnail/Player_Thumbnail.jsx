@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
+import Highlighter from 'react-highlight-words';
 
 export default class Player_Thumbnail extends Component {
   addDefaultSrc(ev){
@@ -8,15 +9,65 @@ export default class Player_Thumbnail extends Component {
 
   renderOverlay() {
     if (this.props.overlay) {
+      var search = "";
+      if (this.props.search != "" && this.props.search != null) {
+        search = this.props.search;
+      }
+
       return (<div className="overlay">
         <div className="overlay-info">
-          <h2 class="overlay-info-title">{this.props.name} #{this.props.jerseyNumber}</h2>
+            <h2 className='overlay-info-title'><Highlighter
+              highlightStyle={{ backgroundColor: '#f18521' }}
+              autoEscape={true}
+              searchWords={search.split(/\s/)}
+              textToHighlight={this.props.name + ' #' + this.props.jerseyNumber}
+              /></h2>
           <div className="overlay-info-body">
-            <p><b>Team: </b>{this.props.team}</p>
-            <p><b>Position: </b>{this.props.position}</p>
-            <p><b>Date of Birth: </b> {this.props.dob}</p>
-            <p><b>Height: </b> {this.props.height}</p>
-            <p><b>Weight: </b> {this.props.weight}</p>
+            <p>
+              <b>Team: </b>
+              <Highlighter
+              highlightStyle={{ backgroundColor: '#f18521' }}
+              autoEscape={true}
+              searchWords={search.split(/\s/)}
+              textToHighlight={this.props.team}
+              />
+            </p>
+            <p>
+              <b>Position: </b>
+              <Highlighter
+              highlightStyle={{ backgroundColor: '#f18521' }}
+              autoEscape={true}
+              searchWords={search.split(/\s/)}
+              textToHighlight={this.props.position}
+              />
+            </p>
+            <p>
+              <b>Date of Birth: </b>
+              <Highlighter
+              highlightStyle={{ backgroundColor: '#f18521' }}
+              autoEscape={true}
+              searchWords={search.split(/\s/)}
+              textToHighlight={this.props.dob}
+              />
+            </p>
+            <p>
+              <b>Height: </b>
+              <Highlighter
+              highlightStyle={{ backgroundColor: '#f18521' }}
+              autoEscape={true}
+              searchWords={search.split(/\s/)}
+              textToHighlight={'' + this.props.height}
+              />
+            </p>
+            <p>
+              <b>Weight: </b>
+              <Highlighter
+              highlightStyle={{ backgroundColor: '#f18521' }}
+              autoEscape={true}
+              searchWords={search.split(/\s/)}
+              textToHighlight={'' + this.props.weight}
+              />
+            </p>
           </div>
         </div>
       </div>);

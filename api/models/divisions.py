@@ -1,5 +1,7 @@
 import db_helper
-import players, teams
+import players, teams, coaches
+from search_index import divisions_index
+from flask import jsonify
 
 """
 +-----------------+---------------+------+-----+---------+-------+
@@ -42,15 +44,14 @@ import players, teams
 }
 """
 
-def search_divisions(keyword):
-    with db_helper.db_connect() as db:
-        divisions = []
-        search_attrs = ["Division", "Conference", "InauguralSeason", "Teams",
-                        "Players", "DivChamp", "MostDivTitles", "Rivalries",
-                        "DivisionAPIID"]
-        for row in db.search_table("divisions", search_attrs, keyword):
-            divisions.append(row_to_detailblurb(row))
-        return divisions
+def search_divisions(query):
+    divisions = []
+    for id in divisions_index.search_division_index(query):
+        with db_helper.db_connect() as db:
+            rows = db.get_rows("divisions", "DivisionAPIID", id)
+            if len(rows) == 1:
+                divisions.append(row_to_detailblurb(rows[0]))
+    return divisions
 
 # Returns brief meta-data for every team in the DB
 def list_divisions():
@@ -119,5 +120,5 @@ def get_division_info(prenba_id):
 
 if __name__ == '__main__':
     print(list_divisions())
-    print(search_divisions("west"))
+    print(search_divisions("southwest"))
     print(get_division_info("atlantic"))

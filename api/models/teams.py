@@ -1,6 +1,7 @@
 # coding=utf-8
 import db_helper
 import players, coaches
+from search_index import team_index
 
 """
 # SQL Schema
@@ -55,14 +56,14 @@ import players, coaches
   ]
 }
 """
-def search_teams(keyword):
-    with db_helper.db_connect() as db:
-        teams = []
-        search_attrs = ["TeamID", "TeamCity", "TeamName", "Team", "TeamAPIID", "Conference",
-                        "Division", "CoachID", "Roster", "Arena", "Titles", "TeamColor"]
-        for row in db.search_table("teams", search_attrs, keyword):
-            teams.append(row_to_detailblurb(row))
-        return teams
+def search_teams(query):
+    teams = []
+    for id in team_index.search_team_index(query):
+        with db_helper.db_connect() as db:
+            rows = db.get_rows("teams", "TeamAPIID", id)
+            if len(rows) == 1:
+                teams.append(row_to_detailblurb(rows[0]))
+    return teams
 
 # Returns brief meta-data for every team in the DB
 def list_teams():
@@ -145,5 +146,5 @@ def get_team_info(team_id):
 
 if __name__ == '__main__':
     print(list_teams())
-    print(search_teams("lebron"))
+    print(search_teams("james"))
     print(get_team_info("laclippers"))
