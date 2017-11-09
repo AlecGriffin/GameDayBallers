@@ -51,10 +51,12 @@ class DB:
         self.cur = cursor
 
     def search_table(self, table, attrs, keyword):
+        keywords = keyword.split(" ")
         search_strings = ["%s LIKE '%%%s%%'"%(attr, keyword) for attr in attrs]
         attr_string = " OR ".join(search_strings)
-        query_string = "SELECT * FROM %s WHERE %s;"% (table, attr_string)
+        query_string = "(SELECT * FROM %s WHERE %s);"% (table, attr_string)
         self.cur.execute(query_string)
+        self.cur.execute
         return self.cur.fetchall()
 
     # returns list of all entries in the provided table

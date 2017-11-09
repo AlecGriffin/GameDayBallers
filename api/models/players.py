@@ -175,5 +175,5 @@ def get_player_info(player_id):
 
 if __name__ == '__main__':
     print(list_players())
-    print(search_players("james"))
+    print(search_players("james cav"))
     print(get_player_info("paulgeorge"))
