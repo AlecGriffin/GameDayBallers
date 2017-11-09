@@ -49,7 +49,7 @@ def search_divisions(keyword):
                         "Players", "DivChamp", "MostDivTitles", "Rivalries",
                         "DivisionAPIID"]
         for row in db.search_table("divisions", search_attrs, keyword):
-            divisions.append(row_to_blurb(row))
+            divisions.append(row_to_detailblurb(row))
         return divisions
 
 # Returns brief meta-data for every team in the DB

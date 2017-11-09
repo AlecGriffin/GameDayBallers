@@ -61,7 +61,7 @@ def search_teams(keyword):
         search_attrs = ["TeamID", "TeamCity", "TeamName", "Team", "TeamAPIID", "Conference",
                         "Division", "CoachID", "Roster", "Arena", "Titles", "TeamColor"]
         for row in db.search_table("teams", search_attrs, keyword):
-            teams.append(row_to_blurb(row))
+            teams.append(row_to_detailblurb(row))
         return teams
 
 # Returns brief meta-data for every team in the DB

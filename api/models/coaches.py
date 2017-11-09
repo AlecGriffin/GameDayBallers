@@ -67,7 +67,7 @@ def search_coaches(keyword):
         search_attrs = ["CoachID", "Name", "CoachAPIID", "TeamID", "DOB", "WinLoss", "Recognitions",
                         "PastTeams", "PlayersCoached"]
         for row in db.search_table("coaches", search_attrs, keyword):
-            coaches.append(row_to_blurb(row))
+            coaches.append(row_to_detailblurb(row))
         return coaches
 
 # Returns brief meta-data for every coach in the DB

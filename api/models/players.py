@@ -84,7 +84,7 @@ def search_players(keyword):
                         "Height", "Weight", "DOB", "PreNBA", "Recognitions",
                         "PastTeams","CareerStats"]
         for row in db.search_table("players", search_attrs, keyword):
-            players.append(row_to_blurb(row))
+            players.append(row_to_detailblurb(row))
         return players
 
 # Returns brief meta-data for every player in the DB
