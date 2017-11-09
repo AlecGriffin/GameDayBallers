@@ -120,25 +120,9 @@ export default class Search extends Component {
     return result;
   }
 
-
-  // Render Everything
-  // RenderPlayerThumbnails(){
-  //   var result = []
-  //
-  //   var players = this.state.players
-  //   for(let i = 0; (i < ...); i++){
-  //     var player = this.state.players[i]
-  //     result.push(this.RenderPlayerThumbnail(player));
-  //   }
-  //   return result;
-  // }
-
   render(){
-    //get search input text by url
+    // Get search input text by url
     var inputText = this.props.match.params.searchTopic
-    // var splitResult = inputText.split("%20")
-    // var result = inputText.replace(/%20/g, " ")
-
 
     return (
       <div className='main'>

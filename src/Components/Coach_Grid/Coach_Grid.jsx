@@ -26,7 +26,9 @@ export default class Coach_Grid extends Component {
       order: "Ascending",
       sortBy: "Name",
       needToSort: false,
-      teamFilter: "Any Team"
+      teamFilter: "Any Team",
+      updatePaginationAfterFiltering: false,
+      numFilteredCoaches: 0
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -99,6 +101,14 @@ export default class Coach_Grid extends Component {
       var coach = fCoaches[i]
       result.push(this.RenderCoachThumbnail(coach));
     }
+
+    if(this.state.updatePaginationAfterFiltering){
+      this.setState({
+        numFilteredCoaches: fCoaches.length,
+        updatePaginationAfterFiltering: false
+      })
+    }
+
     return result;
   }
 
@@ -119,7 +129,8 @@ export default class Coach_Grid extends Component {
 
   handleTeamFilter(evt){
     this.setState({
-      teamFilter: evt
+      teamFilter: evt,
+      updatePaginationAfterFiltering: true
     });
   }
 
@@ -160,6 +171,17 @@ export default class Coach_Grid extends Component {
 }
 
   render(){
+    var numItemsToDisplay  = this.state.coaches.length
+    if (this.state.numFilteredCoaches > 0) {
+      numItemsToDisplay = this.state.numFilteredCoaches
+    }
+
+
+    var paginationToDisplay = (<PaginationAdvanced
+                                  num_items={Math.ceil(numItemsToDisplay / this.state.num_coaches_to_show)}
+                                  max_items={3}
+                                  activePage={this.state.activePage}
+                                  onSelect={this.handleSelect}/>)
 
     if(!this.state.data_loaded){
       return(<Loading/>);
@@ -168,7 +190,7 @@ export default class Coach_Grid extends Component {
         <div className="main">
           <Row className="controls">
             <Col xs={6} className="paginate">
-              <PaginationAdvanced num_items={Math.ceil(this.state.coaches.length / this.state.num_coaches_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+              {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
               <DropdownButton title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
@@ -221,8 +243,7 @@ export default class Coach_Grid extends Component {
             </Row>
           </Grid>
           <Row xs={6} className="paginate">
-
-            <PaginationAdvanced num_items={Math.ceil(this.state.coaches.length / this.state.num_coaches_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+            {paginationToDisplay}
           </Row>
         </div>
       );

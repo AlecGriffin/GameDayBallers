@@ -29,7 +29,9 @@ export default class Team_Grid extends Component {
       sortBy: "Name",
       needToSort: false,
       filter: "Any Division",
-      filteredCount: 0
+      filteredCount: 0,
+      updatePaginationAfterFiltering: false,
+      numFilteredTeams: 0
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -99,6 +101,14 @@ export default class Team_Grid extends Component {
       var string = "<MenuItem eventKey=\"" + team.name + "\">" + team.name + "</MenuItem>";
       console.log(string);
     }
+
+    if(this.state.updatePaginationAfterFiltering){
+      this.setState({
+        numFilteredTeams: fTeams.length,
+        updatePaginationAfterFiltering: false
+      })
+    }
+
     return result;
   }
 
@@ -160,11 +170,29 @@ export default class Team_Grid extends Component {
 
   handleFilter(evt){
     this.setState({
-      filter: evt
+      filter: evt,
+      updatePaginationAfterFiltering: true
     });
   }
 
   render(){
+    var numItemsToDisplay  = this.state.teams.length
+    if (this.state.numFilteredTeams > 0) {
+      numItemsToDisplay = this.state.numFilteredTeams
+    }
+
+
+    var paginationToDisplay = (<PaginationAdvanced
+                                  num_items={Math.ceil(numItemsToDisplay / this.state.num_teams_to_show)}
+                                  max_items={3}
+                                  activePage={this.state.activePage}
+                                  onSelect={this.handleSelect}/>)
+
+
+
+
+
+
     if(!this.state.data_loaded){
       return(<Loading/>);
     }else{
@@ -172,7 +200,7 @@ export default class Team_Grid extends Component {
         <div className="main">
           <Row className="controls">
             <Col xs={6} className="paginate">
-              <PaginationAdvanced num_items={Math.ceil(this.state.teams.length / this.state.num_teams_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+              {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
               <DropdownButton title={this.state.filter} onSelect={this.handleFilter}>
@@ -204,7 +232,7 @@ export default class Team_Grid extends Component {
             </Row>
           </Grid>
           <Row className="paginate">
-            <PaginationAdvanced num_items={Math.ceil(this.state.teams.length / this.state.num_teams_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+            {paginationToDisplay}
           </Row>
         </div>
       );

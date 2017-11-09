@@ -26,7 +26,9 @@ export default class Division_Grid extends Component {
       sortBy: "Name",
       needToSort: false,
       conferenceFilter: 'Any Conference',
-      seasonFilter: 'Any Inaugural Season'
+      seasonFilter: 'Any Inaugural Season',
+      updatePaginationAfterFiltering: false,
+      numFilteredDivisions: 0
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -108,6 +110,15 @@ export default class Division_Grid extends Component {
       var division = fDivisions[i]
       result.push(this.RenderDivisionThumbnail(division));
     }
+
+    if(this.state.updatePaginationAfterFiltering){
+      this.setState({
+        numFilteredDivisions: fDivisions.length,
+        updatePaginationAfterFiltering: false
+      })
+    }
+
+
     return result;
   }
 
@@ -127,13 +138,15 @@ export default class Division_Grid extends Component {
 
   handleConferenceFilter(evt){
     this.setState({
-      conferenceFilter: evt
+      conferenceFilter: evt,
+      updatePaginationAfterFiltering: true
     });
   }
 
   handleSeasonFilter(evt){
     this.setState({
-      seasonFilter: evt
+      seasonFilter: evt,
+      updatePaginationAfterFiltering: true
     });
   }
 
@@ -161,6 +174,18 @@ export default class Division_Grid extends Component {
   }
 
   render(){
+    var numItemsToDisplay  = this.state.divisions.length
+    if (this.state.numFilteredDivisions > 0) {
+      numItemsToDisplay = this.state.numFilteredDivisions
+    }
+
+
+    var paginationToDisplay = (<PaginationAdvanced
+                                  num_items={Math.ceil(numItemsToDisplay / this.state.num_divisions_to_show)}
+                                  max_items={3}
+                                  activePage={this.state.activePage}
+                                  onSelect={this.handleSelect}/>)
+
     if(!this.state.data_loaded){
       return(<Loading/>);
     }else{
@@ -168,7 +193,7 @@ export default class Division_Grid extends Component {
         <div className="main">
           <Row className="controls">
             <Col xs={6} className="paginate">
-              <PaginationAdvanced num_items={Math.ceil(this.state.divisions.length / this.state.num_divisions_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+              {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
               <DropdownButton title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
@@ -197,7 +222,7 @@ export default class Division_Grid extends Component {
             </Row>
           </Grid>
           <Row xs={6} className="paginate">
-            <PaginationAdvanced num_items={Math.ceil(this.state.divisions.length / this.state.num_divisions_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+            {paginationToDisplay}
           </Row>
         </div>
       );
