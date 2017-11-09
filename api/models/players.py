@@ -77,6 +77,16 @@ def get_career_stats(stats_line):
         "blocks_per_game": stats_list[7]
     }
 
+def search_players(keyword):
+    with db_helper.db_connect() as db:
+        players = []
+        search_attrs = ["PlayerAPIID", "Name", "TeamID", "JerseyNumber", "Position",
+                        "Height", "Weight", "DOB", "PreNBA", "Recognitions",
+                        "PastTeams","CareerStats"]
+        for row in db.search_table("players", search_attrs, keyword):
+            players.append(row_to_blurb(row))
+        return players
+
 # Returns brief meta-data for every player in the DB
 def list_players():
     with db_helper.db_connect() as db:
@@ -164,4 +174,5 @@ def get_player_info(player_id):
 
 if __name__ == '__main__':
     print(list_players())
+    print(search_players("james"))
     print(get_player_info("paulgeorge"))
