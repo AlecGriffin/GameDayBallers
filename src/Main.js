@@ -22,7 +22,7 @@ export default class Main extends Component {
             <Route path='/teams' component={TeamRouter}/>
             <Route path='/coaches' component={CoachRouter}/>
             <Route path='/divisions' component={DivisionRouter}/>
-            <Route path='/search/:searchTopic' component={Search}/>
+            <Route path='/search/' component={SearchRouter}/>
           </Switch>
         </main>
       );

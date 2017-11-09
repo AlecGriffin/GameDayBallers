@@ -20,83 +20,132 @@ export default class Search extends Component {
       players: [],
       coaches: [],
       teams: [],
-      divisions: [],
+      divisions: []
     }
   }
 
   componentDidMount(){
-    // var url = ''
-    // axios.get().then(()=>{
-    //
-    // })
-
+    console.log('Did Mount!');
+    var url = 'http://api.gamedayballers.me/search/' + this.props.match.params.searchTopic
+    axios.get(url).then(response =>{
+      this.setState({
+        players: response.data.players,
+        coaches: response.data.coaches,
+        teams: response.data.teams,
+        divisions: response.data.divisions
+      })
+    })
   }
 
-  RenderPlayerThumbnail(player){
+  componentDidUpdate(prevProps, prevState){
+    if(prevState !== this.state){
+      console.log('Did Update!');
+      var url = 'http://api.gamedayballers.me/search/' + this.props.match.params.searchTopic
+      axios.get(url).then(response =>{
+        this.setState({
+          players: response.data.players,
+          coaches: response.data.coaches,
+          teams: response.data.teams,
+          divisions: response.data.divisions
+        })
+      })
+    }
+  }
+
+  RenderPlayerThumbnail(link, player_name, img_source){
     return(
-      <Link key={player.name } to= {player.url}>
-        <PlayerThumbnail overlay={true} name={player.name} src={player.image_url}
-          team={player.team} position={player.position} dob={player.dob} height={player.height}
-          jerseyNumber={player.jersey_number} weight={player.weight}/>
+      <Link key={player_name} to= {link}>
+        <PlayerThumbnail name={player_name} src={img_source}/>
       </Link>
     );
   }
 
-  RenderCoachThumbnail(coach){
-    return(
-      <Link key={coach.name } to= {coach.url}>
-        <CoachThumbnail overlay={true} name={coach.name} src={coach.image_url}
-          dob={coach.dob} winloss ={coach.win_loss_percentage} team = {coach.current_team}/>
-        </Link>
-      );
+  RenderPlayerThumbnails(player){
+    var result = []
+    for(let i = 0; i < this.state.players.length; i++){
+      var player = this.state.players[i]
+      result.push(this.RenderPlayerThumbnail(player.url, player.name, player.image_url));
+    }
+    return result;
   }
 
-  RenderTeamThumbnail(team){
+  RenderCoachThumbnail(link, coach_name, img_source){
     return(
-      <Link key={team.name } to= {team.url}>
-        <TeamThumbnail overlay={true} name={team.name} src={team.image_url}
-          city={team.city} arena={team.arena} conference={team.conference}
-          division={team.division}/>
-        </Link>
-    );
-  }
-
-  RenderDivisionThumbnail(division){
-    return(
-      <Link key={division.name} to= {division.url}>
-        <DivisionThumbnail name={division.name} src={division.image_url}
-          divchamp={division.div_champ} conference={division.conference}
-          mostdivtitles={division.most_div_titles}
-          inauguralseason={division.inaugural_season}/>
+      <Link key={coach_name} to= {link}>
+        <CoachThumbnail name={coach_name} src={img_source}/>
       </Link>
     );
   }
 
+  RenderCoachThumbnails(coach){
+    var result = []
+    for(let i = 0; i < this.state.coaches.length; i++){
+      var coach = this.state.coaches[i]
+      result.push(this.RenderCoachThumbnail(coach.url, coach.name, coach.image_url));
+    }
+    return result;
+  }
 
-  // Render Everything
-  // RenderPlayerThumbnails(){
-  //   var result = []
-  //
-  //   var players = this.state.players
-  //   for(let i = 0; (i < ...); i++){
-  //     var player = this.state.players[i]
-  //     result.push(this.RenderPlayerThumbnail(player));
-  //   }
-  //   return result;
-  // }
+  RenderTeamThumbnail(link, team_name, img_source){
+    return(
+      <Link key={team_name} to= {link}>
+        <TeamThumbnail name={team_name} src={img_source}/>
+      </Link>
+    );
+  }
+
+  RenderTeamThumbnails(team){
+    var result = []
+    for(let i = 0; i < this.state.teams.length; i++){
+      var team = this.state.teams[i]
+      result.push(this.RenderTeamThumbnail(team.url, team.name, team.image_url));
+    }
+    return result;
+  }
+
+  RenderDivisionThumbnail(link, division_name, img_source){
+    return(
+      <Link key={division_name} to= {link}>
+        <DivisionThumbnail name={division_name} src={img_source}/>
+      </Link>
+    );
+  }
+
+  RenderDivisionThumbnails(division){
+    var result = []
+    for(let i = 0; i < this.state.divisions.length; i++){
+      var division = this.state.divisions[i]
+      result.push(this.RenderDivisionThumbnail(division.url, division.name, division.image_url));
+    }
+    return result;
+  }
 
   render(){
-    //get search input text by url
+    // Get search input text by url
     var inputText = this.props.match.params.searchTopic
-    var splitResult = inputText.split("%20")
-    var result = inputText.replace(/%20/g, " ")
-
 
     return (
       <div className='main'>
-          <p>{inputText}</p>
+          <h1><strong>Search Results For: </strong>{inputText}</h1>
+
+          <h2>Players:</h2>
           <Row>
-            {/* {this.RenderPlayerThumbnails()} */}
+            { this.RenderPlayerThumbnails()}
+          </Row>
+
+          <h2>Teams:</h2>
+          <Row>
+            { this.RenderTeamThumbnails()}
+          </Row>
+
+          <h2>Coaches:</h2>
+          <Row>
+            { this.RenderCoachThumbnails()}
+          </Row>
+
+          <h2>Divisions:</h2>
+          <Row>
+            { this.RenderDivisionThumbnails()}
           </Row>
       </div>
     )

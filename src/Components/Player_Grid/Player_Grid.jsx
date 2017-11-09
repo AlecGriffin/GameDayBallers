@@ -39,7 +39,9 @@ export default class Player_Grid extends Component {
       order: 'Ascending',
       needToSort: false,
       positionFilter: 'Any Position',
-      teamFilter: 'Any Team'
+      teamFilter: 'Any Team',
+      updatePaginationAfterFiltering: false,
+      numFilteredPlayers: 0
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -80,25 +82,11 @@ export default class Player_Grid extends Component {
   }
 
   RenderPlayerThumbnails(){
-    console.log(' ');
-    console.log('Render Thumbnail:');
-    console.log('--' + this.state.order);
-    console.log('--' + this.state.sortBy);
-    console.log(' ');
-
     var result = []
 
     var upperBound = this.state.activePage * this.state.num_players_to_show
     var lowerBound = upperBound - this.state.num_players_to_show
     var players = this.state.players
-
-
-    if(this.state.needToSort){
-      players.sort(this.determineSort())
-      this.setState({
-        needToSort: false
-      })
-    }
 
     var filteredByPosition = [];
     if (this.state.positionFilter !== "Any Position") {
@@ -120,26 +108,39 @@ export default class Player_Grid extends Component {
             filteredByTeam.push(player);
         }
       }
+
     } else {
       filteredByTeam = players;
     }
 
     var fPlayers = filteredByPosition.filter((n) => filteredByTeam.includes(n));
 
-    // //Print Array for Testing:
-    // players.forEach((e, i, a)=>{
-    //   console.log(e.career_stats.minutes_per_game);
-    // })
-    console.log(lowerBound);
-    console.log(upperBound);
+
+    // console.log(lowerBound);
+    // console.log(upperBound);
     for(let i = lowerBound; (i < fPlayers.length) && (i < upperBound); i++){
       var player = fPlayers[i];
       result.push(this.RenderPlayerThumbnail(player));
+    }
+
+    if(this.state.needToSort){
+      players.sort(this.determineSort())
+      this.setState({
+        needToSort: false
+      })
+    }
+
+    if(this.state.updatePaginationAfterFiltering){
+      this.setState({
+        numFilteredPlayers: fPlayers.length,
+        updatePaginationAfterFiltering: false
+      })
     }
     return result;
   }
 
   determineSort(){
+
     var order = this.state.order
     var sortBy = this.state.sortBy
 
@@ -249,17 +250,31 @@ export default class Player_Grid extends Component {
 
   handlePositionFilter(evt){
     this.setState({
-      positionFilter: evt
+      positionFilter: evt,
+      updatePaginationAfterFiltering: true
     });
   }
 
   handleTeamFilter(evt){
     this.setState({
-      teamFilter: evt
+      teamFilter: evt,
+      updatePaginationAfterFiltering: true
     });
   }
 
   render(){
+    var numItemsToDisplay  = this.state.players.length
+    if (this.state.numFilteredPlayers > 0) {
+      numItemsToDisplay = this.state.numFilteredPlayers
+    }
+
+
+    var paginationToDisplay = (<PaginationAdvanced
+                                  num_items={Math.ceil(numItemsToDisplay / this.state.num_players_to_show)}
+                                  max_items={3}
+                                  activePage={this.state.activePage}
+                                  onSelect={this.handleSelect}/>)
+
     if(!this.state.data_loaded){
       return(<Loading/>);
     }else{
@@ -267,7 +282,7 @@ export default class Player_Grid extends Component {
         <div className="main">
           <Row className="controls">
             <Col xs={6} className="paginate">
-              <PaginationAdvanced num_items={Math.ceil(this.state.players.length / this.state.num_players_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+              {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
               <DropdownButton title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
@@ -335,9 +350,7 @@ export default class Player_Grid extends Component {
             </Row>
           </Grid>
           <Row className="paginate">
-            {/* <PaginationAdvanced num_items={Math.ceil(this.state.teams.length / this.state.num_teams_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect}/> */}
-
-            <PaginationAdvanced num_items={Math.ceil(this.state.players.length / this.state.num_players_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
+            {this.paginationToDisplay}
           </Row>
         </div>
       );
