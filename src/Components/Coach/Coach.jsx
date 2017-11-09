@@ -149,6 +149,16 @@ export default class Team extends Component {
               </div>
               <div className="card">
                 <div className="card-title" style={cardTitleStyle}>
+                  { this.state.coach['current_team']['name'] }
+                </div>
+                <Link to={ this.state.coach['current_team']['url'] }>
+                  <div className="card-body image-body">
+                    <img src={ this.state.coach['current_team']['image_url'] }/>
+                  </div>
+                </Link>
+              </div>
+              <div className="card">
+                <div className="card-title" style={cardTitleStyle}>
                   Past Teams
                 </div>
                 <div className="card-body card-list">

@@ -37,12 +37,16 @@ export default class Player_Grid extends Component {
       data_loaded: false,
       sortBy: 'Name',
       order: 'Ascending',
-      needToSort: false
+      needToSort: false,
+      positionFilter: 'Any Position',
+      teamFilter: 'Any Team'
     }
 
     this.handleSelect = this.handleSelect.bind(this)
     this.handleSortType = this.handleSortType.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
+    this.handlePositionFilter = this.handlePositionFilter.bind(this)
+    this.handleTeamFilter = this.handleTeamFilter.bind(this)
   }
 
   componentDidMount(){
@@ -88,6 +92,7 @@ export default class Player_Grid extends Component {
     var lowerBound = upperBound - this.state.num_players_to_show
     var players = this.state.players
 
+
     if(this.state.needToSort){
       players.sort(this.determineSort())
       this.setState({
@@ -95,6 +100,31 @@ export default class Player_Grid extends Component {
       })
     }
 
+    var filteredByPosition = [];
+    if (this.state.positionFilter !== "Any Position") {
+      for (let i = 0; i < this.state.players.length; i++) {
+        var player = players[i];
+        if (player.position.includes(this.state.positionFilter)) {
+            filteredByPosition.push(player);
+        }
+      }
+    } else {
+      filteredByPosition = players;
+    }
+
+    var filteredByTeam = [];
+    if (this.state.teamFilter !== "Any Team") {
+      for (let i = 0; i < this.state.players.length; i++) {
+        var player = players[i];
+        if (player.team === this.state.teamFilter) {
+            filteredByTeam.push(player);
+        }
+      }
+    } else {
+      filteredByTeam = players;
+    }
+
+    var fPlayers = filteredByPosition.filter((n) => filteredByTeam.includes(n));
 
     // //Print Array for Testing:
     // players.forEach((e, i, a)=>{
@@ -102,8 +132,8 @@ export default class Player_Grid extends Component {
     // })
     console.log(lowerBound);
     console.log(upperBound);
-    for(let i = lowerBound; (i < this.state.players.length) && (i < upperBound); i++){
-      var player = this.state.players[i]
+    for(let i = lowerBound; (i < fPlayers.length) && (i < upperBound); i++){
+      var player = fPlayers[i];
       result.push(this.RenderPlayerThumbnail(player));
     }
     return result;
@@ -217,6 +247,18 @@ export default class Player_Grid extends Component {
     });
   }
 
+  handlePositionFilter(evt){
+    this.setState({
+      positionFilter: evt
+    });
+  }
+
+  handleTeamFilter(evt){
+    this.setState({
+      teamFilter: evt
+    });
+  }
+
   render(){
     if(!this.state.data_loaded){
       return(<Loading/>);
@@ -228,17 +270,44 @@ export default class Player_Grid extends Component {
               <PaginationAdvanced num_items={Math.ceil(this.state.players.length / this.state.num_players_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title="Team">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Teams</MenuItem>
+              <DropdownButton title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
+              <MenuItem eventKey="Any Team">Any Team</MenuItem>
+              <MenuItem eventKey="Atlanta Hawks">Atlanta Hawks</MenuItem>
+              <MenuItem eventKey="Boston Celtics">Boston Celtics</MenuItem>
+              <MenuItem eventKey="Brooklyn Nets">Brooklyn Nets</MenuItem>
+              <MenuItem eventKey="Charlotte Hornets">Charlotte Hornets</MenuItem>
+              <MenuItem eventKey="Chicago Bulls">Chicago Bulls</MenuItem>
+              <MenuItem eventKey="Cleveland Cavaliers">Cleveland Cavaliers</MenuItem>
+              <MenuItem eventKey="Dallas Mavericks">Dallas Mavericks</MenuItem>
+              <MenuItem eventKey="Denver Nuggets">Denver Nuggets</MenuItem>
+              <MenuItem eventKey="Detroit Pistons">Detroit Pistons</MenuItem>
+              <MenuItem eventKey="Golden State Warriors">Golden State Warriors</MenuItem>
+              <MenuItem eventKey="Houston Rockets">Houston Rockets</MenuItem>
+              <MenuItem eventKey="Indiana Pacers">Indiana Pacers</MenuItem>
+              <MenuItem eventKey="LA Clippers">LA Clippers</MenuItem>
+              <MenuItem eventKey="Los Angeles Lakers">Los Angeles Lakers</MenuItem>
+              <MenuItem eventKey="Memphis Grizzlies">Memphis Grizzlies</MenuItem>
+              <MenuItem eventKey="Miami Heat">Miami Heat</MenuItem>
+              <MenuItem eventKey="Milwaukee Bucks">Milwaukee Bucks</MenuItem>
+              <MenuItem eventKey="Minnesota Timberwolves">Minnesota Timberwolves</MenuItem>
+              <MenuItem eventKey="New Orleans Pelicans">New Orleans Pelicans</MenuItem>
+              <MenuItem eventKey="New York Knicks">New York Knicks</MenuItem>
+              <MenuItem eventKey="Oklahoma City Thunder">Oklahoma City Thunder</MenuItem>
+              <MenuItem eventKey="Orlando Magic">Orlando Magic</MenuItem>
+              <MenuItem eventKey="Philadelphia 76ers">Philadelphia 76ers</MenuItem>
+              <MenuItem eventKey="Phoenix Suns">Phoenix Suns</MenuItem>
+              <MenuItem eventKey="Portland Trail Blazers">Portland Trail Blazers</MenuItem>
+              <MenuItem eventKey="Sacramento Kings">Sacramento Kings</MenuItem>
+              <MenuItem eventKey="San Antonio Spurs">San Antonio Spurs</MenuItem>
+              <MenuItem eventKey="Toronto Raptors">Toronto Raptors</MenuItem>
+              <MenuItem eventKey="Utah Jazz">Utah Jazz</MenuItem>
+              <MenuItem eventKey="Washington Wizards">Washington Wizards</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Position">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Positions</MenuItem>
-              </DropdownButton>
-              <DropdownButton title="Division">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Divisions</MenuItem>
+              <DropdownButton title={this.state.positionFilter} onSelect={this.handlePositionFilter}>
+                <MenuItem eventKey="Any Position">Any Position</MenuItem>
+                <MenuItem eventKey="C">C</MenuItem>
+                <MenuItem eventKey="F">F</MenuItem>
+                <MenuItem eventKey="G">G</MenuItem>
               </DropdownButton>
               <DropdownButton title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Player Name</MenuItem>

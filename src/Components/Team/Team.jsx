@@ -255,11 +255,6 @@ export default class Team extends Component {
                         <Link to={ this.state.team.head_coach.url }>
                           <div className="card image-card full-image">
                             <div className="card-title">
-                              <div className="overlay">
-                                <div className="overlay-info">
-                                  {this.state.team.head_coach.name}
-                                </div>
-                              </div>
                               <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt='No Image Found'/>
                             </div>
                             <div className="card-body">

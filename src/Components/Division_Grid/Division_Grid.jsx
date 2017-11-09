@@ -24,12 +24,16 @@ export default class Division_Grid extends Component {
       activePage: 1,
       order: "Ascending",
       sortBy: "Name",
-      needToSort: false
+      needToSort: false,
+      conferenceFilter: 'Any Conference',
+      seasonFilter: 'Any Inaugural Season'
     }
 
     this.handleSelect = this.handleSelect.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
     this.handleSortType = this.handleSortType.bind(this)
+    this.handleConferenceFilter = this.handleConferenceFilter.bind(this)
+    this.handleSeasonFilter = this.handleSeasonFilter.bind(this)
   }
 
   componentDidMount(){
@@ -74,8 +78,34 @@ export default class Division_Grid extends Component {
       })
     }
 
-    for(let i = 0; i < this.state.divisions.length; i++){
-      var division = divisions[i]
+    var filteredByConference = [];
+    if (this.state.conferenceFilter !== "Any Conference") {
+      for (let i = 0; i < this.state.divisions.length; i++) {
+        var division = divisions[i];
+        if (division.conference === this.state.conferenceFilter) {
+            filteredByConference.push(division);
+        }
+      }
+    } else {
+      filteredByConference = divisions;
+    }
+
+    var filteredBySeason = [];
+    if (this.state.seasonFilter !== "Any Inaugural Season") {
+      for (let i = 0; i < this.state.divisions.length; i++) {
+        var division = divisions[i];
+        if (division.inaugural_season + "Season" === this.state.seasonFilter) {
+            filteredBySeason.push(division);
+        }
+      }
+    } else {
+      filteredBySeason = divisions;
+    }
+
+    var fDivisions = filteredByConference.filter((n) => filteredBySeason.includes(n));
+
+    for(let i = 0; i < fDivisions.length; i++){
+      var division = fDivisions[i]
       result.push(this.RenderDivisionThumbnail(division));
     }
     return result;
@@ -92,6 +122,18 @@ export default class Division_Grid extends Component {
     this.setState({
       sortBy: evt,
       needToSort: true
+    });
+  }
+
+  handleConferenceFilter(evt){
+    this.setState({
+      conferenceFilter: evt
+    });
+  }
+
+  handleSeasonFilter(evt){
+    this.setState({
+      seasonFilter: evt
     });
   }
 
@@ -129,9 +171,15 @@ export default class Division_Grid extends Component {
               <PaginationAdvanced num_items={Math.ceil(this.state.divisions.length / this.state.num_divisions_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title="Conference">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">The two conferences</MenuItem>
+              <DropdownButton title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
+                <MenuItem eventKey="Any Conference">Any Conference</MenuItem>
+                <MenuItem eventKey="Eastern">Eastern</MenuItem>
+                <MenuItem eventKey="Western">Western</MenuItem>
+              </DropdownButton>
+              <DropdownButton title={this.state.seasonFilter} onSelect={this.handleSeasonFilter}>
+                <MenuItem eventKey="Any Inaugural Season">Any Inaugural Season</MenuItem>
+                <MenuItem eventKey="1970-71 Season">1970-71 Season</MenuItem>
+                <MenuItem eventKey="2004-05 Season">2004-05 Season</MenuItem>
               </DropdownButton>
               <DropdownButton title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Division Name</MenuItem>

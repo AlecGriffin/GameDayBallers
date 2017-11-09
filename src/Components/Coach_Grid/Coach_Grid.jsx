@@ -25,12 +25,14 @@ export default class Coach_Grid extends Component {
       activePage: 1,
       order: "Ascending",
       sortBy: "Name",
-      needToSort: false
+      needToSort: false,
+      teamFilter: "Any Team"
     }
 
     this.handleSelect = this.handleSelect.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
     this.handleSortType = this.handleSortType.bind(this)
+    this.handleTeamFilter = this.handleTeamFilter.bind(this)
   }
 
   componentDidMount(){
@@ -43,8 +45,6 @@ export default class Coach_Grid extends Component {
       })
     })
   }
-
-
 
   handleSelect(eventKey) {
       this.setState({
@@ -82,10 +82,21 @@ export default class Coach_Grid extends Component {
       })
     }
 
+    var fCoaches = [];
 
+    if (this.state.teamFilter !== "Any Team") {
+      for (let i = 0; i < this.state.coaches.length; i++) {
+        var coach = coaches[i];
+        if (coach.current_team === this.state.teamFilter) {
+            fCoaches.push(coach);
+        }
+      }
+    } else {
+      fCoaches = coaches;
+    }
 
-    for(let i = lowerBound; (i < this.state.coaches.length) && (i < upperBound); i++){
-      var coach = coaches[i]
+    for(let i = lowerBound; (i < fCoaches.length) && (i < upperBound); i++){
+      var coach = fCoaches[i]
       result.push(this.RenderCoachThumbnail(coach));
     }
     return result;
@@ -103,6 +114,12 @@ export default class Coach_Grid extends Component {
     this.setState({
       sortBy: evt,
       needToSort: true
+    });
+  }
+
+  handleTeamFilter(evt){
+    this.setState({
+      teamFilter: evt
     });
   }
 
@@ -154,13 +171,38 @@ export default class Coach_Grid extends Component {
               <PaginationAdvanced num_items={Math.ceil(this.state.coaches.length / this.state.num_coaches_to_show)} max_items={3} activePage={this.state.activePage} onSelect={this.handleSelect}/>
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title="Team">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Teams</MenuItem>
-              </DropdownButton>
-              <DropdownButton title="Division">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Divisions</MenuItem>
+              <DropdownButton title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
+                <MenuItem eventKey="Any Team">Any Team</MenuItem>
+                <MenuItem eventKey="Atlanta Hawks">Atlanta Hawks</MenuItem>
+                <MenuItem eventKey="Boston Celtics">Boston Celtics</MenuItem>
+                <MenuItem eventKey="Brooklyn Nets">Brooklyn Nets</MenuItem>
+                <MenuItem eventKey="Charlotte Hornets">Charlotte Hornets</MenuItem>
+                <MenuItem eventKey="Chicago Bulls">Chicago Bulls</MenuItem>
+                <MenuItem eventKey="Cleveland Cavaliers">Cleveland Cavaliers</MenuItem>
+                <MenuItem eventKey="Dallas Mavericks">Dallas Mavericks</MenuItem>
+                <MenuItem eventKey="Denver Nuggets">Denver Nuggets</MenuItem>
+                <MenuItem eventKey="Detroit Pistons">Detroit Pistons</MenuItem>
+                <MenuItem eventKey="Golden State Warriors">Golden State Warriors</MenuItem>
+                <MenuItem eventKey="Houston Rockets">Houston Rockets</MenuItem>
+                <MenuItem eventKey="Indiana Pacers">Indiana Pacers</MenuItem>
+                <MenuItem eventKey="LA Clippers">LA Clippers</MenuItem>
+                <MenuItem eventKey="Los Angeles Lakers">Los Angeles Lakers</MenuItem>
+                <MenuItem eventKey="Memphis Grizzlies">Memphis Grizzlies</MenuItem>
+                <MenuItem eventKey="Miami Heat">Miami Heat</MenuItem>
+                <MenuItem eventKey="Milwaukee Bucks">Milwaukee Bucks</MenuItem>
+                <MenuItem eventKey="Minnesota Timberwolves">Minnesota Timberwolves</MenuItem>
+                <MenuItem eventKey="New Orleans Pelicans">New Orleans Pelicans</MenuItem>
+                <MenuItem eventKey="New York Knicks">New York Knicks</MenuItem>
+                <MenuItem eventKey="Oklahoma City Thunder">Oklahoma City Thunder</MenuItem>
+                <MenuItem eventKey="Orlando Magic">Orlando Magic</MenuItem>
+                <MenuItem eventKey="Philadelphia 76ers">Philadelphia 76ers</MenuItem>
+                <MenuItem eventKey="Phoenix Suns">Phoenix Suns</MenuItem>
+                <MenuItem eventKey="Portland Trail Blazers">Portland Trail Blazers</MenuItem>
+                <MenuItem eventKey="Sacramento Kings">Sacramento Kings</MenuItem>
+                <MenuItem eventKey="San Antonio Spurs">San Antonio Spurs</MenuItem>
+                <MenuItem eventKey="Toronto Raptors">Toronto Raptors</MenuItem>
+                <MenuItem eventKey="Utah Jazz">Utah Jazz</MenuItem>
+                <MenuItem eventKey="Washington Wizards">Washington Wizards</MenuItem>
               </DropdownButton>
               <DropdownButton title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name" >Coach Name</MenuItem>

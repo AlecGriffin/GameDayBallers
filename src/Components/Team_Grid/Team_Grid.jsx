@@ -27,12 +27,15 @@ export default class Team_Grid extends Component {
       activePage: 1,
       order: "Ascending",
       sortBy: "Name",
-      needToSort: false
+      needToSort: false,
+      filter: "Any Division",
+      filteredCount: 0
     }
 
     this.handleSelect = this.handleSelect.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
     this.handleSortType = this.handleSortType.bind(this)
+    this.handleFilter = this.handleFilter.bind(this)
   }
 
   componentDidMount(){
@@ -69,6 +72,7 @@ export default class Team_Grid extends Component {
     var upperBound = this.state.activePage * this.state.num_teams_to_show
     var lowerBound = upperBound - this.state.num_teams_to_show
     var teams = this.state.teams
+    var fTeams = []
 
     if(this.state.needToSort){
       teams.sort(this.determineSort())
@@ -77,15 +81,28 @@ export default class Team_Grid extends Component {
       })
     }
 
-    for(let i = lowerBound; i < this.state.teams.length && i < upperBound; i++){
-      var team = teams[i]
+    if (this.state.filter !== "Any Division") {
+      for (let i = 0; i < this.state.teams.length; i++) {
+        var team = teams[i];
+        if (team.division === this.state.filter) {
+            fTeams.push(team);
+
+        }
+      }
+    } else {
+      fTeams = teams
+    }
+
+    for(let i = lowerBound; i < fTeams.length && i < upperBound; i++){
+      var team = fTeams[i]
       result.push(this.RenderTeamThumbnail(team));
+      var string = "<MenuItem eventKey=\"" + team.name + "\">" + team.name + "</MenuItem>";
+      console.log(string);
     }
     return result;
   }
 
   determineSort(){
-    var order = this.state.order
     var sortBy = this.state.sortBy
 
     switch (sortBy) {
@@ -141,6 +158,12 @@ export default class Team_Grid extends Component {
     });
   }
 
+  handleFilter(evt){
+    this.setState({
+      filter: evt
+    });
+  }
+
   render(){
     if(!this.state.data_loaded){
       return(<Loading/>);
@@ -152,9 +175,14 @@ export default class Team_Grid extends Component {
               <PaginationAdvanced num_items={Math.ceil(this.state.teams.length / this.state.num_teams_to_show)} max_items={10} activePage={this.state.activePage} onSelect={this.handleSelect}/>
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title="Division">
-                <MenuItem eventKey="1">Any</MenuItem>
-                <MenuItem eventKey="2">All The Divisions</MenuItem>
+              <DropdownButton title={this.state.filter} onSelect={this.handleFilter}>
+                <MenuItem eventKey="Any Division">Any Division</MenuItem>
+                <MenuItem eventKey="Atlantic">Atlantic</MenuItem>
+                <MenuItem eventKey="Central">Central</MenuItem>
+                <MenuItem eventKey="Southeast">Southeast</MenuItem>
+                <MenuItem eventKey="Southwest">Southwest</MenuItem>
+                <MenuItem eventKey="Pacific">Pacific</MenuItem>
+                <MenuItem eventKey="Northwest">Northwest</MenuItem>
               </DropdownButton>
               <DropdownButton title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Team Name</MenuItem>
