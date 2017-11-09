@@ -54,14 +54,14 @@ export default class Player extends Component {
 
     // Handle Aquiring Data from RESTful API
     var url = window.location.href;
-    var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + this.props.match.params.name
+    var player_url = 'http://api.gamedayballers.me/players/' + this.props.match.params.name
     axios.get(player_url).then(response => {
       this.setState({
         player : response.data,
       })
 
       return axios.all([
-        axios.get('https://api-dot-game-day-ballers-181000.appspot.com' + this.state.player.team.url),
+        axios.get('http://api.gamedayballers.me' + this.state.player.team.url),
         this.getYouTubeData()
       ])
     }).then(axios.spread((coach, youtube) => {

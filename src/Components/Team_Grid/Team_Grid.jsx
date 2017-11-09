@@ -98,8 +98,6 @@ export default class Team_Grid extends Component {
     for(let i = lowerBound; i < fTeams.length && i < upperBound; i++){
       var team = fTeams[i]
       result.push(this.RenderTeamThumbnail(team));
-      var string = "<MenuItem eventKey=\"" + team.name + "\">" + team.name + "</MenuItem>";
-      console.log(string);
     }
 
     if(this.state.updatePaginationAfterFiltering){
