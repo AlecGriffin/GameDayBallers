@@ -12,6 +12,7 @@ export default class Player_Thumbnail extends Component {
         <div className="overlay-info">
           <h2 class="overlay-info-title">{this.props.name} #{this.props.jerseyNumber}</h2>
           <div className="overlay-info-body">
+            <p><b>Team: </b>{this.props.team}</p>
             <p><b>Position: </b>{this.props.position}</p>
             <p><b>Date of Birth: </b> {this.props.dob}</p>
             <p><b>Height: </b> {this.props.height}</p>

@@ -79,6 +79,11 @@ def get_player_by_id(player_id):
 def list_coaches():
     return jsonify(coaches.list_coaches())
 
+@app.route('/coaches_full/', methods=['GET'])
+@crossdomain(origin='*')
+def list_coaches_full():
+    return jsonify(coaches.list_coaches_full())
+
 @app.route('/coaches/<coach_id>', methods=['GET'])
 @crossdomain(origin='*')
 def get_coach_by_id(coach_id):
@@ -103,6 +108,11 @@ def get_team_by_id(team_id):
 @crossdomain(origin='*')
 def list_divisions():
     return jsonify(divisions.list_divisions())
+
+@app.route('/divisions_full/', methods=['GET'])
+@crossdomain(origin='*')
+def list_divisions_full():
+    return jsonify(divisions.list_divisions_full())
 
 @app.route('/divisions/<division_id>', methods=['GET'])
 @crossdomain(origin='*')

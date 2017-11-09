@@ -69,11 +69,29 @@ def list_coaches():
             players.append(row_to_blurb(row))
         return players
 
+def list_coaches_full():
+    with db_helper.db_connect() as db:
+        players = []
+        for row in db.list_table("coaches"):
+            players.append(row_to_detailblurb(row))
+        return players
+
 # For a given SQL row, convert into a meta-data "blurb"
 def row_to_blurb(row):
     return {
         "name": row[1],
         "url": "/coaches/" + row[2],
+        "image_url": row[9]
+    }
+
+# For a given SQL row, convert into a detailed meta-data "blurb"
+def row_to_detailblurb(row):
+    return {
+        "name": row[1],
+        "url": "/coaches/" + row[2],
+        "dob": row[4],
+        "current_team": row[11],
+        "win_loss_percentage": row[5],
         "image_url": row[9]
     }
 
@@ -107,6 +125,7 @@ def get_coach_info(coach_id):
                 "dob": row[4],
                 "current_team": teams.get_team(row[3]),
                 "win_loss_percentage": row[5],
+                "color": row[10],
                 "current_roster": [players.get_player(player_id) for player_id in row[8].split(",")],
                 "past_teams": [team for team in row[7].split(",")],
                 "recognitions": [award for award in row[6].split(";")]

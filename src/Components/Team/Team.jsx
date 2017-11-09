@@ -17,6 +17,8 @@ export default class Team extends Component {
     this.state = {
       team : {
         "arena": "",
+        "color":"",
+        "twitter":"",
         "city": "",
         "conference": "",
         "division": "",
@@ -153,23 +155,23 @@ export default class Team extends Component {
     </Col>
     );
 
-    // var timeline =  (
-    //   <Timeline
-    //     dataSource={{
-    //       sourceType: 'profile',
-    //       screenName: team.twitter_name
-    //     }}
-    //     options={{
-    //       username: 'TwitterDev',
-    //       height: '400'
-    //     }}/>
-    //   );
+    var timeline =  (
+      <Timeline
+        dataSource={{
+          sourceType: 'profile',
+          screenName: team.twitter
+        }}
+        options={{
+          username: 'TwitterDev',
+          height: '600'
+        }}/>
+      );
 
     if(!this.state.data_loaded){
       return(<Loading/>);
     }else{
       return (
-        <div className={"main " + team.color}>
+        <div className="main">
           <Row>
             <Col sm={4}>
               <div className="card image-card white-card">
@@ -222,6 +224,9 @@ export default class Team extends Component {
                   {this.state.youtube_data_loaded && this.renderYoutube()}
                 </div>
               </div>
+              <div className="card tweets-container">
+                { timeline }
+              </div>
               <div className="card map-card">
                 <div className="card-title" style={cardTitleStyle}>
                   Arena
@@ -235,9 +240,6 @@ export default class Team extends Component {
                   </iframe>
                 </div>
               </div>
-              {/* <div className="card tweets-container">
-                { timeline }
-              </div> */}
             </Col>
 
               <Col sm={8}>
@@ -253,11 +255,6 @@ export default class Team extends Component {
                         <Link to={ this.state.team.head_coach.url }>
                           <div className="card image-card full-image">
                             <div className="card-title">
-                              <div className="overlay">
-                                <div className="overlay-info">
-                                  {this.state.team.head_coach.name}
-                                </div>
-                              </div>
                               <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt='No Image Found'/>
                             </div>
                             <div className="card-body">

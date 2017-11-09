@@ -40,6 +40,7 @@ export default class Player extends Component {
         "weight": 0
       },
       "player_loaded" : false,
+      "color":"",
       "coach": {
         "name": "",
         "url": ""
@@ -53,7 +54,7 @@ export default class Player extends Component {
 
     // Handle Aquiring Data from RESTful API
     var url = window.location.href;
-    var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + url.split('/')[url.split('/').length - 1]
+    var player_url = 'https://api-dot-game-day-ballers-181000.appspot.com/players/' + this.props.match.params.name
     axios.get(player_url).then(response => {
       this.setState({
         player : response.data,
@@ -121,11 +122,18 @@ export default class Player extends Component {
     ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found';
   }
 
+  getColor() {
+    if (this.state.player.color != "" && this.state.player.color != null) {
+      return this.state.player.color;
+    } else {
+      return "gray";
+    }
+  }
+
   render(){
 
-    var url = window.location.href;
+    // var url = window.location.href;
     // var playerName = url.split('/')[url.split('/').length - 1];
-    var player = this.state.player
     // var DivisionURL = "/division/" + player.DivisionURL;
     // var teamURL = "/teams/" + player.team.toLowerCase().replace(/\s+/g, '')
 
@@ -134,6 +142,12 @@ export default class Player extends Component {
     //     <Link to='/'>{team}</Link>
     //   </li>
     // );
+
+    var player = this.state.player
+
+    var cardTitleStyle = {
+      backgroundColor: this.getColor()
+    };
 
      var recognitions = this.state.player.recognitions.map((rec) =>
      <li key={rec.toLowerCase().replace(/\s+/g, '').split('(')[0]}>
@@ -151,7 +165,7 @@ export default class Player extends Component {
             <Col sm={4}>
               {this.playSound()}
               <div className="card image-card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
                   { this.state.player['player'] } #{ this.state.player['jersey_number']}
                   <img onError={this.addDefaultSrc} src={this.state.player['image_url']} alt='No Image Found'/>
                 </div>
@@ -183,7 +197,7 @@ export default class Player extends Component {
               </div>
 
               <div className="card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
                   { this.state.player['team']['name'] }
                 </div>
                 <Link to={ this.state.player['team']['url'] }>
@@ -197,7 +211,7 @@ export default class Player extends Component {
 
             <Col sm={8}>
               <div className="card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
                   Career Stats
                 </div>
                 <div className="card-body card-table">
@@ -249,7 +263,7 @@ export default class Player extends Component {
                <Row>
                 <Col lg={6}>
                   <div className="card">
-                    <div className="card-title">
+                    <div className="card-title" style={cardTitleStyle}>
                       Recognitions
                     </div>
                     <div className="card-body card-list">
@@ -275,7 +289,7 @@ export default class Player extends Component {
               <Row>
                 <Col xs={12}>
                   <div className="card youtube-card">
-                    <div className="card-title">
+                    <div className="card-title" style={cardTitleStyle}>
                       Videos
                     </div>
                     <div className="card-body">

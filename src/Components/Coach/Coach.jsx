@@ -39,8 +39,8 @@ export default class Team extends Component {
   }
 
   componentDidMount(){
-    var url = window.location.href;
-    var coach_url = 'https://api-dot-game-day-ballers-181000.appspot.com/coaches/' + url.split('/')[url.split('/').length - 1]
+
+    var coach_url = 'https://api-dot-game-day-ballers-181000.appspot.com/coaches/' + this.props.match.params.name
     axios.get(coach_url).then(response => {
       this.setState({
         coach : response.data,
@@ -70,9 +70,21 @@ export default class Team extends Component {
     ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
   }
 
+  getColor() {
+    if (this.state.coach.color != "" && this.state.coach.color != null) {
+      return this.state.coach.color;
+    } else {
+      return "gray";
+    }
+  }
+
 
   render() {
     var coach = this.state.coach;
+
+    var cardTitleStyle = {
+      backgroundColor: this.getColor()
+    };
 
      var pastTeams = coach.past_teams.map((team) =>
        <li key={team.toLowerCase().replace(/\s+/g, '')}>
@@ -126,7 +138,7 @@ export default class Team extends Component {
                 </div>
               </div>
               <div className="card">
-                  <div className="card-title">
+                  <div className="card-title" style={cardTitleStyle}>
                     Recognitions
                   </div>
                   <div className="card-body card-list">
@@ -136,7 +148,17 @@ export default class Team extends Component {
                   </div>
               </div>
               <div className="card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
+                  { this.state.coach['current_team']['name'] }
+                </div>
+                <Link to={ this.state.coach['current_team']['url'] }>
+                  <div className="card-body image-body">
+                    <img src={ this.state.coach['current_team']['image_url'] }/>
+                  </div>
+                </Link>
+              </div>
+              <div className="card">
+                <div className="card-title" style={cardTitleStyle}>
                   Past Teams
                 </div>
                 <div className="card-body card-list">
@@ -149,7 +171,7 @@ export default class Team extends Component {
 
             <Col sm={8}>
               <div className="card grid-card">
-                <div className="card-title">
+                <div className="card-title" style={cardTitleStyle}>
                   Roster
                 </div>
                 <div className="card-body">

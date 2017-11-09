@@ -27,7 +27,12 @@ export default class Coach_Thumbnail extends Component {
               <div style = {coach_image_style} className="card-title">
                 <div className="overlay">
                   <div className="overlay-info">
-                    {this.props.name}
+                    <h2 class="overlay-info-title">{this.props.name}</h2>
+                    <div className="overlay-info-body">
+                      <p><b>Team: </b> {this.props.team}</p>
+                      <p><b>DOB: </b>{this.props.dob}</p>
+                      <p><b>Win/Loss Percentage: </b> {this.props.winloss}</p>
+                    </div>
                   </div>
                 </div>
                 {/* <div style = {coach_image_style} className="card-title">
