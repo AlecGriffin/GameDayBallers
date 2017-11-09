@@ -52,10 +52,7 @@ export default class Player_Grid extends Component {
   }
 
   componentDidMount(){
-    console.log('componentDidMount!');
-    // console.log(this.state.players);
-    console.log(this.props.players);
-    if(this.props.players === null){
+    if(typeof this.props.players === 'undefined'){
       var url = "http://api.gamedayballers.me/players_full/";
       axios.get(url).then(response => {
         this.setState({
@@ -65,8 +62,6 @@ export default class Player_Grid extends Component {
 
       })
     }else{
-      // console.log('Load PLayer List!');
-      // console.log(this.props.players);
       this.setState({
         players : this.props.players,
         data_loaded: true

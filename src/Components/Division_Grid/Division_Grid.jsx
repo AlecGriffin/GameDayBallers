@@ -39,7 +39,7 @@ export default class Division_Grid extends Component {
   }
 
   componentDidMount(){
-    if(this.props.divisions === null){
+    if(typeof this.props.divisions === 'undefined'){
       var url = "http://api.gamedayballers.me/divisions_full/";
       axios.get(url).then(response => {
         this.setState({

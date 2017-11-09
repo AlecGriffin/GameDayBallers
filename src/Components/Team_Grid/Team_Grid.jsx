@@ -41,7 +41,7 @@ export default class Team_Grid extends Component {
   }
 
   componentDidMount(){
-    if(this.props.teams === null){
+    if(typeof this.props.teams === 'undefined'){
       var url = "http://api.gamedayballers.me/teams_full/"
       axios.get(url).then(response => {
         this.setState({

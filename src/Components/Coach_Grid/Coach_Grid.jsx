@@ -38,7 +38,9 @@ export default class Coach_Grid extends Component {
   }
 
   componentDidMount(){
-    if(this.props.coaches === null){
+    console.log('this.props.coaches: ');
+    console.log(this.props.coaches);
+    if(typeof this.props.coaches === 'undefined'){
       var url = "http://api.gamedayballers.me/coaches_full/"
       axios.get(url).then(response => {
         this.setState({
