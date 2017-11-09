@@ -62,6 +62,7 @@ def home():
 @app.route('/search/<keyword>', methods=['GET'])
 @crossdomain(origin='*')
 def search_db(keyword):
+    keyword.replace("_", " ")
     return jsonify({
         "players": players.search_players(keyword),
         "teams": teams.search_teams(keyword),
@@ -128,3 +129,4 @@ def list_divisions_full():
 @crossdomain(origin='*')
 def get_division_by_id(division_id):
     return jsonify(divisions.get_division_info(division_id))
+

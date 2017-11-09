@@ -2,6 +2,7 @@
 import db_helper
 import players
 import teams
+from search_index import coach_index
 
 """
 +----------------+---------------+------+-----+---------+-------+
@@ -61,14 +62,14 @@ import teams
 }
 """
 
-def search_coaches(keyword):
-    with db_helper.db_connect() as db:
-        coaches = []
-        search_attrs = ["CoachID", "Name", "CoachAPIID", "TeamID", "DOB", "WinLoss", "Recognitions",
-                        "PastTeams", "PlayersCoached"]
-        for row in db.search_table("coaches", search_attrs, keyword):
-            coaches.append(row_to_detailblurb(row))
-        return coaches
+def search_coaches(query):
+    coaches = []
+    for id in coach_index.search_coach_index(query):
+        with db_helper.db_connect() as db:
+            rows = db.get_rows("coaches", "CoachAPIID", id)
+            if len(rows) == 1:
+                coaches.append(row_to_detailblurb(rows[0]))
+    return coaches
 
 # Returns brief meta-data for every coach in the DB
 def list_coaches():
