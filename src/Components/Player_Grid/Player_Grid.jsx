@@ -52,15 +52,27 @@ export default class Player_Grid extends Component {
   }
 
   componentDidMount(){
+    console.log('componentDidMount!');
+    // console.log(this.state.players);
+    console.log(this.props.players);
+    if(this.props.players === null){
+      var url = "http://api.gamedayballers.me/players_full/";
+      axios.get(url).then(response => {
+        this.setState({
+          players : response['data'],
+          data_loaded: true
+        })
 
-    var url = "http://api.gamedayballers.me/players_full/";
-    axios.get(url).then(response => {
+      })
+    }else{
+      // console.log('Load PLayer List!');
+      // console.log(this.props.players);
       this.setState({
-        players : response['data'],
+        players : this.props.players,
         data_loaded: true
       })
+    }
 
-    })
   }
 
   handleSelect(eventKey) {

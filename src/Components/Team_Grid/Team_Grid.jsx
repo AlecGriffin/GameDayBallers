@@ -41,14 +41,21 @@ export default class Team_Grid extends Component {
   }
 
   componentDidMount(){
-
-    var url = "http://api.gamedayballers.me/teams_full/"
-    axios.get(url).then(response => {
+    if(this.props.teams === null){
+      var url = "http://api.gamedayballers.me/teams_full/"
+      axios.get(url).then(response => {
+        this.setState({
+          teams : response['data'],
+          data_loaded: true
+        })
+      })
+    }else{
       this.setState({
-        teams : response['data'],
+        teams : this.props.teams,
         data_loaded: true
       })
-    })
+    }
+
   }
 
   handleSelect(eventKey) {

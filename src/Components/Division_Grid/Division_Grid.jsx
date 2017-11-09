@@ -39,15 +39,23 @@ export default class Division_Grid extends Component {
   }
 
   componentDidMount(){
+    if(this.props.divisions === null){
+      var url = "http://api.gamedayballers.me/divisions_full/";
+      axios.get(url).then(response => {
+        this.setState({
+          divisions : response['data'],
+          data_loaded: true
 
-    var url = "http://api.gamedayballers.me/divisions_full/";
-    axios.get(url).then(response => {
+        })
+      })
+    }else{
       this.setState({
-        divisions : response['data'],
+        divisions : this.props.divisions,
         data_loaded: true
 
       })
-    })
+    }
+
   }
 
   handleSelect(eventKey) {
