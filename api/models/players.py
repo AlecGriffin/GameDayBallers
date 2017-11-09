@@ -1,6 +1,7 @@
 # coding=utf-8
 import db_helper
 import teams
+from search_index import player_index
 from collections import Counter
 
 # SQL schema:
@@ -77,15 +78,14 @@ def get_career_stats(stats_line):
         "blocks_per_game": stats_list[7]
     }
 
-def search_players(keyword):
-    with db_helper.db_connect() as db:
-        players = []
-        search_attrs = ["PlayerAPIID", "Name", "TeamID", "JerseyNumber", "Position",
-                        "Height", "Weight", "DOB", "PreNBA", "Recognitions",
-                        "PastTeams","CareerStats"]
-        for row in db.search_table("players", search_attrs, keyword):
-            players.append(row_to_detailblurb(row))
-        return players
+def search_players(query):
+    players = []
+    for id in player_index.search_player_index(query):
+        with db_helper.db_connect() as db:
+            rows = db.get_rows("players", "PlayerAPIID", id)
+            if len(rows) == 1:
+                players.append(row_to_detailblurb(rows[0]))
+    return players
 
 # Returns brief meta-data for every player in the DB
 def list_players():
@@ -175,5 +175,6 @@ def get_player_info(player_id):
 
 if __name__ == '__main__':
     print(list_players())
-    print(search_players("james cav"))
     print(get_player_info("paulgeorge"))
+    print(search_players("james cavaliers"))
+
