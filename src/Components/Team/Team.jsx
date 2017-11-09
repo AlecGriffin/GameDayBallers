@@ -140,6 +140,24 @@ export default class Team extends Component {
     return "https://www.google.com/maps/embed/v1/place?key=AIzaSyAPYwFB1-8M2oNmnMvUtONjqU-hBRdxOfI&q=" + tag;
   }
 
+  renderTimeline() {
+    if (this.state.team.twitter != null) {
+      return (
+        <Timeline
+          dataSource={{
+            sourceType: 'profile',
+            screenName: this.state.team.twitter
+          }}
+          options={{
+            username: 'TwitterDev',
+            height: '600'
+          }}/>
+        );
+    } else {
+      return (<div></div>);
+    }
+  }
+
   render() {
     var team = this.state.team;
 
@@ -154,18 +172,6 @@ export default class Team extends Component {
       </Link>
     </Col>
     );
-
-    var timeline =  (
-      <Timeline
-        dataSource={{
-          sourceType: 'profile',
-          screenName: team.twitter
-        }}
-        options={{
-          username: 'TwitterDev',
-          height: '600'
-        }}/>
-      );
 
     if(!this.state.data_loaded){
       return(<Loading/>);
@@ -225,7 +231,7 @@ export default class Team extends Component {
                 </div>
               </div>
               <div className="card tweets-container">
-                { timeline }
+                { this.renderTimeline() }
               </div>
               <div className="card map-card">
                 <div className="card-title" style={cardTitleStyle}>

@@ -38,14 +38,26 @@ export default class Coach_Grid extends Component {
   }
 
   componentDidMount(){
-
-    var url = "http://api.gamedayballers.me/coaches_full/"
-    axios.get(url).then(response => {
-      this.setState({
-        coaches : response['data'],
-        data_loaded : true
+    console.log('this.props.coaches: ');
+    console.log(this.props.coaches);
+    if(typeof this.props.coaches === 'undefined'){
+      var url = "http://api.gamedayballers.me/coaches_full/"
+      axios.get(url).then(response => {
+        this.setState({
+          coaches : response['data'],
+          data_loaded : true
+        })
       })
-    })
+    }else{
+      var url = "http://api.gamedayballers.me/coaches_full/"
+      axios.get(url).then(response => {
+        this.setState({
+          coaches : this.props.coaches,
+          data_loaded : true
+        })
+      })
+    }
+
   }
 
   handleSelect(eventKey) {

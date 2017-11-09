@@ -4,6 +4,12 @@ import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx'
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button } from 'react-bootstrap';
+import PlayerGrid from '../Player_Grid/Player_Grid.jsx'
+import TeamGrid from '../Team_Grid/Team_Grid.jsx'
+import CoachGrid from '../Coach_Grid/Coach_Grid.jsx'
+import DivisionGrid from '../Division_Grid/Division_Grid.jsx'
+
 
 import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
 import TeamThumbnail from '../Team_Grid/Team_Thumbnail/Team_Thumbnail.jsx';
@@ -20,8 +26,11 @@ export default class Search extends Component {
       players: [],
       coaches: [],
       teams: [],
-      divisions: []
+      divisions: [],
+      dataLoaded: false
     }
+
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   componentDidMount(){
@@ -32,24 +41,26 @@ export default class Search extends Component {
         players: response.data.players,
         coaches: response.data.coaches,
         teams: response.data.teams,
-        divisions: response.data.divisions
+        divisions: response.data.divisions,
+        dataLoaded: true,
+        toDisplay: 'players'
       })
     })
   }
 
   componentDidUpdate(prevProps, prevState){
-    if(prevState !== this.state){
-      console.log('Did Update!');
+    // if(this.state.dataLoaded){
+      // console.log('Did Update!');
       var url = 'http://api.gamedayballers.me/search/' + this.props.match.params.searchTopic
       axios.get(url).then(response =>{
         this.setState({
           players: response.data.players,
           coaches: response.data.coaches,
           teams: response.data.teams,
-          divisions: response.data.divisions
+          divisions: response.data.divisions,
         })
       })
-    }
+    // }
   }
 
   RenderPlayerThumbnail(link, player_name, img_source){
@@ -120,15 +131,36 @@ export default class Search extends Component {
     return result;
   }
 
+  handleSelect(evt){
+    this.setState({
+      toDisplay: evt
+    })
+  }
+
   render(){
+
     // Get search input text by url
     var inputText = this.props.match.params.searchTopic
 
     return (
       <div className='main'>
-          <h1><strong>Search Results For: </strong>{inputText}</h1>
+          <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
+            <NavItem eventKey={'players'}  > Players</NavItem>
+            <NavItem eventKey={'teams'}    > Teams</NavItem>
+            <NavItem eventKey={'coaches'}  > Coaches</NavItem>
+            <NavItem eventKey={'divisions'}> Divisions</NavItem>
+          </Nav>
 
-          <h2>Players:</h2>
+          <h1><strong>Search Results For: </strong>{inputText}</h1>
+          {this.state.dataLoaded && this.state.toDisplay === 'players' &&<PlayerGrid players={this.state.players}/>}
+          {this.state.dataLoaded && this.state.toDisplay === 'coaches' &&<CoachGrid coaches={this.state.coaches}/>}
+          {this.state.dataLoaded && this.state.toDisplay === 'teams' &&<TeamGrid teams={this.state.teams}/>}
+          {this.state.dataLoaded && this.state.toDisplay === 'divisions' &&<DivisionGrid divisions={this.state.divisions}/>}
+
+
+
+
+          {/* <h2>Players:</h2>
           <Row>
             { this.RenderPlayerThumbnails()}
           </Row>
@@ -146,7 +178,7 @@ export default class Search extends Component {
           <h2>Divisions:</h2>
           <Row>
             { this.RenderDivisionThumbnails()}
-          </Row>
+          </Row> */}
       </div>
     )
   }

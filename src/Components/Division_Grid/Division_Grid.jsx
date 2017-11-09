@@ -39,15 +39,23 @@ export default class Division_Grid extends Component {
   }
 
   componentDidMount(){
+    if(typeof this.props.divisions === 'undefined'){
+      var url = "http://api.gamedayballers.me/divisions_full/";
+      axios.get(url).then(response => {
+        this.setState({
+          divisions : response['data'],
+          data_loaded: true
 
-    var url = "http://api.gamedayballers.me/divisions_full/";
-    axios.get(url).then(response => {
+        })
+      })
+    }else{
       this.setState({
-        divisions : response['data'],
+        divisions : this.props.divisions,
         data_loaded: true
 
       })
-    })
+    }
+
   }
 
   handleSelect(eventKey) {
@@ -60,7 +68,7 @@ export default class Division_Grid extends Component {
   RenderDivisionThumbnail(division){
     return(
       <Link key={division.name} to= {division.url}>
-        <DivisionThumbnail name={division.name} src={division.image_url}
+        <DivisionThumbnail overlay={true} name={division.name} src={division.image_url}
           divchamp={division.div_champ} conference={division.conference}
           mostdivtitles={division.most_div_titles}
           inauguralseason={division.inaugural_season}/>

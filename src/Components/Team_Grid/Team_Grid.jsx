@@ -28,8 +28,8 @@ export default class Team_Grid extends Component {
       order: "Ascending",
       sortBy: "Name",
       needToSort: false,
-      filter: "Any Division",
-      filteredCount: 0,
+      divisionFilter: "Any Division",
+      conferenceFilter: "Any Conference",
       updatePaginationAfterFiltering: false,
       numFilteredTeams: 0
     }
@@ -37,18 +37,26 @@ export default class Team_Grid extends Component {
     this.handleSelect = this.handleSelect.bind(this)
     this.handleOrder = this.handleOrder.bind(this)
     this.handleSortType = this.handleSortType.bind(this)
-    this.handleFilter = this.handleFilter.bind(this)
+    this.handleDivisionFilter = this.handleDivisionFilter.bind(this)
+    this.handleConferenceFilter = this.handleConferenceFilter.bind(this)
   }
 
   componentDidMount(){
-
-    var url = "http://api.gamedayballers.me/teams_full/"
-    axios.get(url).then(response => {
+    if(typeof this.props.teams === 'undefined'){
+      var url = "http://api.gamedayballers.me/teams_full/"
+      axios.get(url).then(response => {
+        this.setState({
+          teams : response['data'],
+          data_loaded: true
+        })
+      })
+    }else{
       this.setState({
-        teams : response['data'],
+        teams : this.props.teams,
         data_loaded: true
       })
-    })
+    }
+
   }
 
   handleSelect(eventKey) {
@@ -74,7 +82,7 @@ export default class Team_Grid extends Component {
     var upperBound = this.state.activePage * this.state.num_teams_to_show
     var lowerBound = upperBound - this.state.num_teams_to_show
     var teams = this.state.teams
-    var fTeams = []
+
 
     if(this.state.needToSort){
       teams.sort(this.determineSort())
@@ -83,23 +91,38 @@ export default class Team_Grid extends Component {
       })
     }
 
-    if (this.state.filter !== "Any Division") {
+    var filteredByDivision = []
+
+    if (this.state.divisionFilter !== "Any Division") {
       for (let i = 0; i < this.state.teams.length; i++) {
         var team = teams[i];
-        if (team.division === this.state.filter) {
-            fTeams.push(team);
+        if (team.division === this.state.divisionFilter) {
+            filteredByDivision.push(team);
+        }
+      }
+    } else {
+      filteredByDivision = teams
+    }
+
+    var filteredByConference = []
+
+    if (this.state.conferenceFilter !== "Any Conference") {
+      for (let i = 0; i < this.state.teams.length; i++) {
+        var team = teams[i];
+        if (team.conference === this.state.conferenceFilter) {
+            filteredByConference.push(team);
 
         }
       }
     } else {
-      fTeams = teams
+      filteredByConference = teams
     }
+
+    var fTeams = filteredByConference.filter((n) => filteredByDivision.includes(n));
 
     for(let i = lowerBound; i < fTeams.length && i < upperBound; i++){
       var team = fTeams[i]
       result.push(this.RenderTeamThumbnail(team));
-      var string = "<MenuItem eventKey=\"" + team.name + "\">" + team.name + "</MenuItem>";
-      console.log(string);
     }
 
     if(this.state.updatePaginationAfterFiltering){
@@ -168,15 +191,22 @@ export default class Team_Grid extends Component {
     });
   }
 
-  handleFilter(evt){
+  handleDivisionFilter(evt){
     this.setState({
-      filter: evt,
+      divisionFilter: evt,
+      updatePaginationAfterFiltering: true
+    });
+  }
+
+  handleConferenceFilter(evt){
+    this.setState({
+      conferenceFilter: evt,
       updatePaginationAfterFiltering: true
     });
   }
 
   render(){
-    var numItemsToDisplay  = this.state.teams.length
+    var numItemsToDisplay = this.state.teams.length
     if (this.state.numFilteredTeams > 0) {
       numItemsToDisplay = this.state.numFilteredTeams
     }
@@ -188,11 +218,6 @@ export default class Team_Grid extends Component {
                                   activePage={this.state.activePage}
                                   onSelect={this.handleSelect}/>)
 
-
-
-
-
-
     if(!this.state.data_loaded){
       return(<Loading/>);
     }else{
@@ -203,7 +228,12 @@ export default class Team_Grid extends Component {
               {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title={this.state.filter} onSelect={this.handleFilter}>
+              <DropdownButton title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
+                <MenuItem eventKey="Any Conference">Any Conference</MenuItem>
+                <MenuItem eventKey="East">East</MenuItem>
+                <MenuItem eventKey="West">West</MenuItem>
+              </DropdownButton>
+              <DropdownButton title={this.state.divisionFilter} onSelect={this.handleDivisionFilter}>
                 <MenuItem eventKey="Any Division">Any Division</MenuItem>
                 <MenuItem eventKey="Atlantic">Atlantic</MenuItem>
                 <MenuItem eventKey="Central">Central</MenuItem>
@@ -214,8 +244,6 @@ export default class Team_Grid extends Component {
               </DropdownButton>
               <DropdownButton title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Team Name</MenuItem>
-                <MenuItem eventKey="Conference" >Conference</MenuItem>
-                <MenuItem eventKey="Division" >Division</MenuItem>
                 <MenuItem eventKey="numTitles" >Number of Titles</MenuItem>
                 <MenuItem eventKey="numPlayers" >Number of Players</MenuItem>
 
