@@ -31,7 +31,8 @@ export default class Team_Grid extends Component {
       divisionFilter: "Any Division",
       conferenceFilter: "Any Conference",
       updatePaginationAfterFiltering: false,
-      numFilteredTeams: 0
+      numFilteredTeams: 0,
+      search: ''
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -77,7 +78,7 @@ export default class Team_Grid extends Component {
   RenderTeamThumbnail(team){
     return(
       <Link key={team.name } to= {team.url}>
-        <TeamThumbnail overlay={true} name={team.name} src={team.image_url}
+        <TeamThumbnail search={this.props.search} overlay={true} name={team.name} src={team.image_url}
           city={team.city} arena={team.arena} conference={team.conference}
           division={team.division}/>
         </Link>
