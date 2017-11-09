@@ -72,7 +72,7 @@ export default class Search extends Component {
   RenderCoachThumbnail(link, coach_name, img_source){
     return(
       <Link key={coach_name} to= {link}>
-        <PlayerThumbnail name={coach_name} src={img_source}/>
+        <CoachThumbnail name={coach_name} src={img_source}/>
       </Link>
     );
   }
@@ -89,7 +89,7 @@ export default class Search extends Component {
   RenderTeamThumbnail(link, team_name, img_source){
     return(
       <Link key={team_name} to= {link}>
-        <PlayerThumbnail name={team_name} src={img_source}/>
+        <TeamThumbnail name={team_name} src={img_source}/>
       </Link>
     );
   }
@@ -106,7 +106,7 @@ export default class Search extends Component {
   RenderDivisionThumbnail(link, division_name, img_source){
     return(
       <Link key={division_name} to= {link}>
-        <PlayerThumbnail name={division_name} src={img_source}/>
+        <DivisionThumbnail name={division_name} src={img_source}/>
       </Link>
     );
   }
@@ -115,7 +115,7 @@ export default class Search extends Component {
     var result = []
     for(let i = 0; i < this.state.divisions.length; i++){
       var division = this.state.divisions[i]
-      result.push(this.RenderPlayerThumbnail(division.url, division.name, division.image_url));
+      result.push(this.RenderDivisionThumbnail(division.url, division.name, division.image_url));
     }
     return result;
   }
