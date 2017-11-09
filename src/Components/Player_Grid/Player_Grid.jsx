@@ -70,6 +70,14 @@ export default class Player_Grid extends Component {
 
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.players != nextProps.players){
+      this.setState({
+        players: nextProps.players
+      })
+    }
+  }
+
   handleSelect(eventKey) {
     this.setState({
       activePage: eventKey,

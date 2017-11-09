@@ -55,7 +55,14 @@ export default class Division_Grid extends Component {
 
       })
     }
+  }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.divisions != nextProps.divisions){
+      this.setState({
+        divisions: nextProps.divisions
+      })
+    }
   }
 
   handleSelect(eventKey) {

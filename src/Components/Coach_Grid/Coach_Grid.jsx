@@ -38,8 +38,6 @@ export default class Coach_Grid extends Component {
   }
 
   componentDidMount(){
-    console.log('this.props.coaches: ');
-    console.log(this.props.coaches);
     if(typeof this.props.coaches === 'undefined'){
       var url = "http://api.gamedayballers.me/coaches_full/"
       axios.get(url).then(response => {
@@ -60,6 +58,14 @@ export default class Coach_Grid extends Component {
 
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.coaches != nextProps.coaches){
+      this.setState({
+        coaches: nextProps.coaches
+      })
+    }
+  }
+
   handleSelect(eventKey) {
       this.setState({
         activePage: eventKey,
@@ -78,12 +84,6 @@ export default class Coach_Grid extends Component {
 
 
   RenderCoachThumbnails(){
-    console.log(' ');
-    console.log('Render Thumbnail:');
-    console.log('--' + this.state.order);
-    console.log('--' + this.state.sortBy);
-    console.log(' ');
-
     var result = []
     var upperBound = this.state.activePage * this.state.num_coaches_to_show
     var lowerBound = upperBound - this.state.num_coaches_to_show

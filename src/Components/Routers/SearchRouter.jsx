@@ -4,7 +4,7 @@ import Search from '../Search/Search.jsx';
 
  const SearchRouter = () => (
   <Switch>
-    <Route path='/search/:searchTopic' component={Search}/>
+    <Route path='/search/:searchTopic' component={Search} />
   </Switch>
  );
 export default SearchRouter;

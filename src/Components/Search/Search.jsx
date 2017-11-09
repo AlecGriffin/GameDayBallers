@@ -22,12 +22,14 @@ export default class Search extends Component {
   constructor(props){
     super(props)
 
+    console.log('Constructor!');
     this.state = {
       players: [],
       coaches: [],
       teams: [],
       divisions: [],
-      dataLoaded: false
+      dataLoaded: false,
+      toDisplay: 'players',
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -42,16 +44,13 @@ export default class Search extends Component {
         coaches: response.data.coaches,
         teams: response.data.teams,
         divisions: response.data.divisions,
-        dataLoaded: true,
-        toDisplay: 'players'
       })
     })
   }
 
-  componentDidUpdate(prevProps, prevState){
-    // if(this.state.dataLoaded){
-      // console.log('Did Update!');
-      var url = 'http://api.gamedayballers.me/search/' + this.props.match.params.searchTopic
+  componentWillReceiveProps(nextProps){
+    if(this.props.match.params.searchTopic !== nextProps.match.params.searchTopic){
+      var url = 'http://api.gamedayballers.me/search/' + nextProps.match.params.searchTopic
       axios.get(url).then(response =>{
         this.setState({
           players: response.data.players,
@@ -60,7 +59,7 @@ export default class Search extends Component {
           divisions: response.data.divisions,
         })
       })
-    // }
+    }
   }
 
   RenderPlayerThumbnail(link, player_name, img_source){
@@ -140,7 +139,6 @@ export default class Search extends Component {
 
 
   render(){
-
     // Get search input text by url
     var inputText = this.props.match.params.searchTopic
 
@@ -154,49 +152,28 @@ export default class Search extends Component {
             <NavItem eventKey={'divisions'}> Divisions</NavItem>
           </Nav>
 
-          {this.state.dataLoaded && this.state.toDisplay === 'players' && this.state.players.length > 0 &&<PlayerGrid players={this.state.players}/>}
-          {this.state.dataLoaded && this.state.toDisplay === 'coaches' && this.state.coaches.length > 0 &&<CoachGrid coaches={this.state.coaches}/>}
-          {this.state.dataLoaded && this.state.toDisplay === 'teams' && this.state.teams.length > 0 &&<TeamGrid teams={this.state.teams}/>}
-          {this.state.dataLoaded && this.state.toDisplay === 'divisions' && this.state.divisions.length > 0 &&<DivisionGrid divisions={this.state.divisions}/>}
+          {this.state.toDisplay === 'players' && this.state.players.length > 0 && <PlayerGrid players={this.state.players}/>}
+          {this.state.toDisplay === 'coaches' && this.state.coaches.length > 0 && <CoachGrid coaches={this.state.coaches}/>}
+          {this.state.toDisplay === 'teams' && this.state.teams.length > 0 && <TeamGrid teams={this.state.teams}/>}
+          {this.state.toDisplay === 'divisions' && this.state.divisions.length > 0 &&<DivisionGrid divisions={this.state.divisions}/>}
 
-          {this.state.dataLoaded && this.state.toDisplay === 'players' && this.state.players.length <= 0
+          {this.state.toDisplay === 'players' && this.state.players.length <= 0
           &&<div className="text-center">
               <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
             </div>}
-          {this.state.dataLoaded && this.state.toDisplay === 'coaches' && this.state.coaches.length <= 0
+          {this.state.toDisplay === 'coaches' && this.state.coaches.length <= 0
           &&<div className="text-center">
               <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
             </div>}
-          {this.state.dataLoaded && this.state.toDisplay === 'teams' && this.state.teams.length <= 0
+          {this.state.toDisplay === 'teams' && this.state.teams.length <= 0
           &&<div className="text-center">
               <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
             </div>}
-          {this.state.dataLoaded && this.state.toDisplay === 'divisions' && this.state.divisions.length <= 0
+          {this.state.toDisplay === 'divisions' && this.state.divisions.length <= 0
           &&<div className="text-center">
               <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
             </div>}
 
-
-
-          {/* <h2>Players:</h2>
-          <Row>
-            { this.RenderPlayerThumbnails()}
-          </Row>
-
-          <h2>Teams:</h2>
-          <Row>
-            { this.RenderTeamThumbnails()}
-          </Row>
-
-          <h2>Coaches:</h2>
-          <Row>
-            { this.RenderCoachThumbnails()}
-          </Row>
-
-          <h2>Divisions:</h2>
-          <Row>
-            { this.RenderDivisionThumbnails()}
-          </Row> */}
       </div>
     )
   }
