@@ -205,12 +205,29 @@ nav.navbar {
   }
 }
 
+.overlay-search {
+  display: block;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 2;
+  .overlay-info {
+    margin-top: 10px;
+  }
+}
+
 .image-card .card-title:hover .overlay {
   display: block;
   background: rgba(0, 0, 0, 0.7);
   opacity: 1;
   .overlay-info {
     margin-top: 10px;
+  }
+}
+
+.image-card .card-title:hover .overlay-search {
+  background: rgba(0, 0, 0, 0);
+  opacity: 0;
+  .overlay-info {
+    margin-top: 50px;
   }
 }
 

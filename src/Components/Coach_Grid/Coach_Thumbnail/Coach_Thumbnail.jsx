@@ -11,12 +11,14 @@ export default class Coach_Thumbnail extends Component {
 
   renderOverlay() {
     var search = "";
+    var searchClass = "";
     if (this.props.search != "" && this.props.search != null) {
       search = this.props.search;
+      searchClass = "overlay-search";
     }
-    
+
     if (this.props.overlay) {
-      return (<div className="overlay">
+      return (<div className={"overlay " + searchClass}>
         <div className="overlay-info">
           <h2 className='overlay-info-title'>
             <Highlighter

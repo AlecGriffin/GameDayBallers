@@ -10,11 +10,13 @@ export default class Player_Thumbnail extends Component {
   renderOverlay() {
     if (this.props.overlay) {
       var search = "";
+      var searchClass = "";
       if (this.props.search != "" && this.props.search != null) {
         search = this.props.search;
+        searchClass = "overlay-search";
       }
 
-      return (<div className="overlay">
+      return (<div className={"overlay " + searchClass}>
         <div className="overlay-info">
             <h2 className='overlay-info-title'><Highlighter
               highlightStyle={{ backgroundColor: '#f18521' }}
