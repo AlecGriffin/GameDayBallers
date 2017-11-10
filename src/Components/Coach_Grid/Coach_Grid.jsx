@@ -28,7 +28,8 @@ export default class Coach_Grid extends Component {
       needToSort: false,
       teamFilter: "Any Team",
       updatePaginationAfterFiltering: false,
-      numFilteredCoaches: 0
+      numFilteredCoaches: 0,
+      search: ''
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -76,7 +77,7 @@ export default class Coach_Grid extends Component {
   RenderCoachThumbnail(coach){
     return(
       <Link key={coach.name } to= {coach.url}>
-        <CoachThumbnail overlay={true} name={coach.name} src={coach.image_url}
+        <CoachThumbnail search={this.props.search} overlay={true} name={coach.name} src={coach.image_url}
           dob={coach.dob} winloss ={coach.win_loss_percentage} team = {coach.current_team}/>
         </Link>
       );

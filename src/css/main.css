@@ -154,12 +154,25 @@ nav.navbar a.navbar-brand {
     width: 80%;
     margin: auto; }
 
+.overlay-search {
+  display: block;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 2; }
+  .overlay-search .overlay-info {
+    margin-top: 10px; }
+
 .image-card .card-title:hover .overlay {
   display: block;
   background: rgba(0, 0, 0, 0.7);
   opacity: 1; }
   .image-card .card-title:hover .overlay .overlay-info {
     margin-top: 10px; }
+
+.image-card .card-title:hover .overlay-search {
+  background: transparent;
+  opacity: 0; }
+  .image-card .card-title:hover .overlay-search .overlay-info {
+    margin-top: 50px; }
 
 .team-logo.image-card .card-title img {
   height: 180px;

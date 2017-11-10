@@ -28,7 +28,8 @@ export default class Division_Grid extends Component {
       conferenceFilter: 'Any Conference',
       seasonFilter: 'Any Inaugural Season',
       updatePaginationAfterFiltering: false,
-      numFilteredDivisions: 0
+      numFilteredDivisions: 0,
+      search: ''
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -75,7 +76,7 @@ export default class Division_Grid extends Component {
   RenderDivisionThumbnail(division){
     return(
       <Link key={division.name} to= {division.url}>
-        <DivisionThumbnail overlay={true} name={division.name} src={division.image_url}
+        <DivisionThumbnail search={this.props.search} overlay={true} name={division.name} src={division.image_url}
           divchamp={division.div_champ} conference={division.conference}
           mostdivtitles={division.most_div_titles}
           inauguralseason={division.inaugural_season}/>

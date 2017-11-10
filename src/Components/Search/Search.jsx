@@ -30,6 +30,7 @@ export default class Search extends Component {
       divisions: [],
       dataLoaded: false,
       toDisplay: 'players',
+      dataLoaded: false
     }
 
     this.handleSelect = this.handleSelect.bind(this)
@@ -44,12 +45,14 @@ export default class Search extends Component {
         coaches: response.data.coaches,
         teams: response.data.teams,
         divisions: response.data.divisions,
+        dataLoaded: true
       })
     })
   }
 
   componentWillReceiveProps(nextProps){
     if(this.props.match.params.searchTopic !== nextProps.match.params.searchTopic){
+      this.setState({dataLoaded: false})
       var url = 'http://api.gamedayballers.me/search/' + nextProps.match.params.searchTopic
       axios.get(url).then(response =>{
         this.setState({
@@ -57,6 +60,7 @@ export default class Search extends Component {
           coaches: response.data.coaches,
           teams: response.data.teams,
           divisions: response.data.divisions,
+          dataLoaded: true
         })
       })
     }
@@ -141,40 +145,42 @@ export default class Search extends Component {
   render(){
     // Get search input text by url
     var inputText = this.props.match.params.searchTopic
+    if(!this.state.dataLoaded){
+      return <Loading/>
+    }else{
+      return (
+        <div className='main'>
+            <h1><strong>Search Results For: </strong>{inputText}</h1>
+            <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
+              <NavItem eventKey={'players'}  > Players</NavItem>
+              <NavItem eventKey={'teams'}    > Teams</NavItem>
+              <NavItem eventKey={'coaches'}  > Coaches</NavItem>
+              <NavItem eventKey={'divisions'}> Divisions</NavItem>
+            </Nav>
 
-    return (
-      <div className='main'>
-          <h1><strong>Search Results For: </strong>{inputText}</h1>
-          <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
-            <NavItem eventKey={'players'}  > Players</NavItem>
-            <NavItem eventKey={'teams'}    > Teams</NavItem>
-            <NavItem eventKey={'coaches'}  > Coaches</NavItem>
-            <NavItem eventKey={'divisions'}> Divisions</NavItem>
-          </Nav>
+            {this.state.toDisplay === 'players' && this.state.players.length > 0 && <PlayerGrid search={inputText} players={this.state.players}/>}
+            {this.state.toDisplay === 'coaches' && this.state.coaches.length > 0 && <CoachGrid search={inputText} coaches={this.state.coaches}/>}
+            {this.state.toDisplay === 'teams' && this.state.teams.length > 0 && <TeamGrid search={inputText} teams={this.state.teams}/>}
+            {this.state.toDisplay === 'divisions' && this.state.divisions.length > 0 &&<DivisionGrid search={inputText} divisions={this.state.divisions}/>}
 
-          {this.state.toDisplay === 'players' && this.state.players.length > 0 && <PlayerGrid players={this.state.players}/>}
-          {this.state.toDisplay === 'coaches' && this.state.coaches.length > 0 && <CoachGrid coaches={this.state.coaches}/>}
-          {this.state.toDisplay === 'teams' && this.state.teams.length > 0 && <TeamGrid teams={this.state.teams}/>}
-          {this.state.toDisplay === 'divisions' && this.state.divisions.length > 0 &&<DivisionGrid divisions={this.state.divisions}/>}
-
-          {this.state.toDisplay === 'players' && this.state.players.length <= 0
-          &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
-            </div>}
-          {this.state.toDisplay === 'coaches' && this.state.coaches.length <= 0
-          &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
-            </div>}
-          {this.state.toDisplay === 'teams' && this.state.teams.length <= 0
-          &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
-            </div>}
-          {this.state.toDisplay === 'divisions' && this.state.divisions.length <= 0
-          &&<div className="text-center">
-              <h3>Sorry, there are no results for <strong>{inputText}</strong></h3>
-            </div>}
-
-      </div>
-    )
+            {this.state.toDisplay === 'players' && this.state.players.length <= 0
+            &&<div className="text-center">
+                <h3>Sorry, there are no player results for <strong>{inputText}</strong></h3>
+              </div>}
+            {this.state.toDisplay === 'coaches' && this.state.coaches.length <= 0
+            &&<div className="text-center">
+                <h3>Sorry, there are no coach results for <strong>{inputText}</strong></h3>
+              </div>}
+            {this.state.toDisplay === 'teams' && this.state.teams.length <= 0
+            &&<div className="text-center">
+                <h3>Sorry, there are no team results for <strong>{inputText}</strong></h3>
+              </div>}
+            {this.state.toDisplay === 'divisions' && this.state.divisions.length <= 0
+            &&<div className="text-center">
+                <h3>Sorry, there are no division results for <strong>{inputText}</strong></h3>
+              </div>}
+        </div>
+      )
+    }
   }
 }
