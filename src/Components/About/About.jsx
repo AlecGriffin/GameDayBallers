@@ -23,8 +23,8 @@ var Project_Members = {
     "name" : "Alec Griffin",
     "img_src" : "https://avatars0.githubusercontent.com/u/8799789?v=4&s=460",
     "about" : "Senior Computer Science major",
-    "responsibilities" : "React Front-End, Data Collection",
-    "issues": "7",
+    "responsibilities" : "React Front-End, Data Collection, Sorting, Pagination, Search",
+    "issues": "10",
     "tests": "0"
   },
 
@@ -32,17 +32,17 @@ var Project_Members = {
     "name":'Regan Brickman',
     "img_src":'https://avatars1.githubusercontent.com/u/17559269?v=4&s=460',
     "about":'Senior Computer Science major',
-    "responsibilities":'Technical Report, User Stories, React Front-End',
-    "issues": "8",
-    "tests": "0"
+    "responsibilities":'Technical Report, User Stories, React Front-End, Unit Tests, Sorting',
+    "issues": "11",
+    "tests": "6"
   },
 
  "Andrew":{
     "name": 'Andrew Duna',
     "img_src":'https://avatars0.githubusercontent.com/u/14189687?v=4&s=460',
     "about":'Senior Computer Science major',
-    "responsibilities":'CSS, React Front-End, Data Collection, UI Design',
-    "issues": "6",
+    "responsibilities":'CSS, React Front-End, Data Collection, UI Design, Filtering, Loading Animation',
+    "issues": "11",
     "tests": "0"
   },
 
@@ -50,8 +50,8 @@ var Project_Members = {
     "name":'Vikram Idury',
     "img_src":'https://avatars3.githubusercontent.com/u/7564838?v=4&s=460',
     "about":'Senior Computer Science major',
-    "responsibilities":'GCP Setup, API Setup, Apiary Documentation',
-    "issues": "8",
+    "responsibilities":'GCP Setup, API Setup, Apiary Documentation, Search',
+    "issues": "10",
     "tests": "0"
   },
 
@@ -59,8 +59,8 @@ var Project_Members = {
       "name":'Nihal Dhamani',
       "img_src":'https://avatars3.githubusercontent.com/u/20764557?v=4&s=460',
       "about":'Senior Computer Science major',
-      "responsibilities":'React Front-End, Domain Setup, SQL Database, Data Collection',
-      "issues": "8",
+      "responsibilities":'React Front-End, Domain Setup, SQL Database, Data Collection, CloudSQL',
+      "issues": "11",
       "tests": "10"
   }
 }
@@ -177,7 +177,7 @@ function generateThumbnail(person, commits) {
                {generateThumbnail(Project_Members.Alec, this.state.Alec_Commits)}
           </Col>
            <Col sm={4}>
-               {generateThumbnail(Project_Members.Regan, 9 + this.state.Regan_Commits)}
+               {generateThumbnail(Project_Members.Regan, 25 + this.state.Regan_Commits)}
            </Col>
            <Col sm={4}>
                {generateThumbnail(Project_Members.Andrew, this.state.Andrew_Commits)}
@@ -189,7 +189,7 @@ function generateThumbnail(person, commits) {
                {generateThumbnail(Project_Members.Nihal, this.state.Nihal_Commits)}
            </Col>
            <Col sm={4}>
-               {generateThumbnail(Project_Members.Vikram, 9 + this.state.Vikram_Commits)}
+               {generateThumbnail(Project_Members.Vikram, this.state.Vikram_Commits)}
            </Col>
        </Row>
 
@@ -208,7 +208,7 @@ function generateThumbnail(person, commits) {
                <div className="card-body">
                  <ul>
                    <li>
-                     <b>Total No. of Commits:</b> { 18 + this.state.Total_Commits }
+                     <b>Total No. of Commits:</b> { 25 + this.state.Total_Commits }
                    </li>
                    <li>
                      <b>Total No. of Issues:</b> { this.state.Number_Of_Issues }
@@ -223,7 +223,7 @@ function generateThumbnail(person, commits) {
                      <a href="https://trello.com/b/ePPWWAuD/swe-project" className="card-link">Trello Link</a>
                    </li>
                    <li>
-                     <a href="https://utexas.box.com/s/y4vmxoo5yewy0pax8x99tpcwh0l1f1s4" className="card-link">Technical Report Link</a>
+                     <a href="https://utexas.box.com/s/0ooqwpb7w6v6a0pi6nbflpnketabaxe2" className="card-link">Technical Report Link</a>
                    </li>
                    <li>
                      <a href="https://utexas.box.com/s/sbbyc59801wdpftua4sp2eqbe9nkd0i3" className="card-link">UML Diagram</a>
