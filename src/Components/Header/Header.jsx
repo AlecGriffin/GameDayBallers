@@ -27,6 +27,7 @@ export default class Header extends Component {
         <Navbar fixedTop collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
+              {/* <img src='https://i.imgur.com/ptTJXyw.png' width={50} height={50}/> */}
               <Link to='/'>Game Day Ballers</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
