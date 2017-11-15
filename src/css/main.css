@@ -142,12 +142,12 @@ nav.navbar a.navbar-brand {
   height: 100%;
   background: transparent;
   opacity: 0;
-  transition: background, opacity 0.5s ease;
-  -webkit-transition: background, opacity 0.5s ease; }
+  transition: background, opacity .3s ease;
+  -webkit-transition: background, opacity 0.3s ease; }
   .overlay .overlay-info {
     margin-top: 50px;
-    transition: margin-top 0.5s ease;
-    -webkit-transition: margin-top 0.5s ease; }
+    transition: margin-top 0.3s ease;
+    -webkit-transition: margin-top 0.3s ease; }
   .overlay .overlay-info-body {
     font-size: 18px;
     text-align: left;

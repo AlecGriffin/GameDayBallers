@@ -199,12 +199,12 @@ nav.navbar {
   height: 100%;
   background: rgba(0, 0, 0, 0);
   opacity: 0;
-  transition: background, opacity 0.5s ease;
-  -webkit-transition: background, opacity 0.5s ease;
+  transition: background, opacity .3s ease;
+  -webkit-transition: background, opacity 0.3s ease;
   .overlay-info {
     margin-top: 50px;
-    transition: margin-top 0.5s ease;
-    -webkit-transition: margin-top 0.5s ease;
+    transition: margin-top 0.3s ease;
+    -webkit-transition: margin-top 0.3s ease;
   }
   .overlay-info-body {
     font-size: 18px;
