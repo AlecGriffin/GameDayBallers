@@ -6,7 +6,7 @@ import Team_Grid from '../Team_Grid/Team_Grid.jsx';
  const TeamRouter = () => (
   <Switch>
     <Route exact path='/teams' component={Team_Grid}/>
-    <Route path='/teams/:name' component={Team}/>
+    <Route exact path='/teams/:name' component={Team}/>
   </Switch>
  );
 export default TeamRouter;

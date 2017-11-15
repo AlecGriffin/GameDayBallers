@@ -47,7 +47,30 @@ export default class Team extends Component {
       }
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      data_loaded:false
+    })
+
+    console.log('componentWillReceiveProps() ->' + nextProps.match.params.name);
+    var team_url = 'http://api.gamedayballers.me/teams/' + nextProps.match.params.name
+    axios.get(team_url).then(response => {
+      this.setState({
+        team : response['data'],
+        data_loaded: true
+      })
+
+      return this.getYouTubeData()
+    }).then(youtube => {
+      this.setState({
+        youtube : youtube.data.items,
+        youtube_data_loaded : true,
+      })
+    })
+  }
+
   componentDidMount(){
+    console.log('componentDidMount() ->' + this.props.match.params.name);
     var team_url = 'http://api.gamedayballers.me/teams/' + this.props.match.params.name
     axios.get(team_url).then(response => {
       this.setState({
@@ -75,7 +98,6 @@ export default class Team extends Component {
     var part = 'snippet'
     var API_KEY = 'AIzaSyB_0ID-n-g31_B0GKkquWh5Kn7WBJPh4rM'
     var searchTopic = this.state.team.name + ' highlights'
-    console.log(searchTopic);
 
     var youtube_URL = "https://www.googleapis.com/youtube/v3/search?q=" + searchTopic + "&maxResults=" + maxResults + "&part=" + part + "&key=" + API_KEY
     return axios.get(youtube_URL)
