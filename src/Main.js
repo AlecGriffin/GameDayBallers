@@ -10,6 +10,7 @@ import PlayerRouter from './Components/Routers/PlayerRouter.jsx';
 import SearchRouter from './Components/Routers/SearchRouter.jsx';
 import Search from './Components/Search/Search.jsx'
 import Ticker from './Components/Ticker/Ticker.jsx'
+import Visualization from './Components/Visualization/Visualization.jsx'
 import {Row, Col} from 'react-bootstrap';
 
 export default class Main extends Component {
@@ -27,6 +28,7 @@ export default class Main extends Component {
               <Route path='/coaches' component={CoachRouter}/>
               <Route path='/divisions' component={DivisionRouter}/>
               <Route path='/search/' component={SearchRouter}/>
+              <Route exact path='/visualization' component={Visualization}/>
             </Switch>
           </main>
         </div>

@@ -72,6 +72,10 @@ export default class Header extends Component {
                 <NavItem eventKey={5} >About</NavItem>
               </LinkContainer>
 
+              <LinkContainer to='/visualization'>
+                <NavItem eventKey={6} >Visualization</NavItem>
+              </LinkContainer>
+
             </Nav>
           </Navbar.Collapse>
         </Navbar>
