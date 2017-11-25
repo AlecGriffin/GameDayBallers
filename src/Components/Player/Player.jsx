@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { getPlayer } from '../../json_old/player_data.js';
 import { Row, Col, Table } from 'react-bootstrap';
 import lebron_james_audio_file from './lebron_james_vine.wav';
 import {Link} from 'react-router-dom';

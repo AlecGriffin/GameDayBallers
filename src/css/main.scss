@@ -59,7 +59,7 @@ nav.navbar {
 }
 
 .home-logo {
-  width: 22%;
+  width: 40%;
   margin: auto;
   text-align: center;
   img {
@@ -354,9 +354,19 @@ ul {
   }
 }
 
+#header-basketball {
+  width: 30px;
+  height: 30px;
+}
+
+.image-brand .navbar-brand {
+  padding-top: 12px;
+}
+
+
 /* MEDIA QUERIES*/
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .tweets-container {
     display: none;
   }
@@ -364,9 +374,24 @@ ul {
     display: none;
   }
   .home-logo {
-    width: 40%;
+    width: 80%;
   }
+  .navbar-form .form-group input.form-control {
+    width: 85%;
+    display: inline;
+  }
+}
 
+@media only screen and (max-width: 999px) {
+  .text-brand {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .image-brand {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 600px) {

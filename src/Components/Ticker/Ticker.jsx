@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ticker.css';
-import calendarData from '../../NBA_Calendar_Data/calendar_data.json';
+import calendarData from './calendar_data.json';
 import {Link} from 'react-router-dom'
 
 export default class Ticker extends Component {
@@ -26,7 +26,7 @@ export default class Ticker extends Component {
       var weekFromNow = new Date()
       weekFromNow.setDate(today.getDate() + 1)
 
-      if(gameDate >= today && gameDate <= weekFromNow){
+      if(gameDate.getDate() + 1 == today.getDate()) { 
         var team1_1 = game.h.tc
         var team1_2 = game.h.tn
         var lowerCaseNameTeam1 = team1_1 + team1_2

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
 import { Timeline } from 'react-twitter-widgets'
-import { getTeam } from '../../json_old/team_data.js';
 import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
