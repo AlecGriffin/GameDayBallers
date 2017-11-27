@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import Highlighter from 'react-highlight-words';
 
 export default class Team_Thumbnail extends Component {
   renderOverlay() {
     var search = "";
     var searchClass = "";
-    if (this.props.search != "" && this.props.search != null) {
+    if (this.props.search !== "" && this.props.search != null) {
       search = this.props.search;
       searchClass = "overlay-search";
     }
@@ -68,7 +68,7 @@ export default class Team_Thumbnail extends Component {
           <div className="card thumbnail-card image-card white-card team-logo">
             <div className="card-title">
               { this.renderOverlay() }
-              <img src={this.props.src}/>
+              <img src={this.props.src} alt={this.props.name}/>
             </div>
             <div className="card-body">
               {this.props.name}

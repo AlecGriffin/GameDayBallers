@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Col } from 'react-bootstrap';
 import Highlighter from 'react-highlight-words';
 
 export default class Coach_Thumbnail extends Component {
@@ -12,7 +11,7 @@ export default class Coach_Thumbnail extends Component {
   renderOverlay() {
     var search = "";
     var searchClass = "";
-    if (this.props.search != "" && this.props.search != null) {
+    if (this.props.search !== "" && this.props.search != null) {
       search = this.props.search;
       searchClass = "overlay-search";
     }
@@ -75,8 +74,6 @@ export default class Coach_Thumbnail extends Component {
             <div className="card thumbnail-card image-card full-image">
               <div style = {coach_image_style} className="card-title">
                 {this.renderOverlay()}
-                {/* <div style = {coach_image_style} className="card-title">
-                <img style = {coach_image_style} onError={this.addDefaultSrc} src={this.props.src} alt='No Image Found'/> */}
               </div>
               <div className="card-body">
                 {this.props.name}

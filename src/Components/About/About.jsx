@@ -1,9 +1,7 @@
-import React, {PureComponent, Component} from 'react';
+import React, {Component} from 'react';
 import PersonThumbnail from './Person_Thumbnail.jsx';
-import { Grid, Row, Col, Image, Thumbnail, Clearfix } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import github from '../../images/github.png'
-import Tool_Thumbnail from './Tool_Thumbnail.jsx'
 
 var tools = [
   "Google Cloud Platform",
@@ -49,7 +47,7 @@ var Project_Members = {
   "Vikram":{
     "name":'Vikram Idury',
     "img_src":'https://avatars3.githubusercontent.com/u/7564838?v=4&s=460',
-    "about":'Senior Computer Science major',
+    "about":'Junior Computer Science major',
     "responsibilities":'GCP Setup, API Setup, Apiary Documentation, Search',
     "issues": "10",
     "tests": "0"
@@ -58,7 +56,7 @@ var Project_Members = {
   "Nihal":{
       "name":'Nihal Dhamani',
       "img_src":'https://avatars3.githubusercontent.com/u/20764557?v=4&s=460',
-      "about":'Senior Computer Science major',
+      "about":'Junior Computer Science major',
       "responsibilities":'React Front-End, Domain Setup, SQL Database, Data Collection, CloudSQL',
       "issues": "11",
       "tests": "10"
@@ -126,11 +124,7 @@ function generateThumbnail(person, commits) {
      // Get Total and Individual Commit Numbers (from Github)
      var githubCommitsURL = "https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors"
      axios.get(githubCommitsURL).then(response => {
-       console.log(response.data);
        let sum = 0
-       // response.data.map((member)=>{
-       //   sum += member.total
-       // })
 
        for(let i = 0; i < response.data.length; i++){
          sum += response.data[i].total
@@ -141,8 +135,8 @@ function generateThumbnail(person, commits) {
           Alec_Commits: response.data[2].total,
           //  Regan_Commits: response['data'][#]['total'],
           Andrew_Commits: response.data[3].total,
-          Vikram_Commits: response.data[0].total,
-          Nihal_Commits: response.data[1].total
+          Vikram_Commits: response.data[1].total,
+          Nihal_Commits: response.data[0].total
         })
        });
 

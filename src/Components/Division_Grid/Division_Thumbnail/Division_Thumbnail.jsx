@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import Highlighter from 'react-highlight-words';
 
 export default class Division_Thumbnail extends Component {
 renderOverlay() {
   var search = "";
   var searchClass = "";
-  if (this.props.search != "" && this.props.search != null) {
+  if (this.props.search !== "" && this.props.search != null) {
     search = this.props.search;
     searchClass = "overlay-search";
   }
@@ -66,7 +66,7 @@ renderOverlay() {
           <div className="card thumbnail-card image-card white-card">
             <div className="card-title">
               {this.renderOverlay()}
-              <img src={this.props.src}/>
+              <img alt={this.props.name} src={this.props.src}/>
             </div>
             <div className="card-body">
               {this.props.name}

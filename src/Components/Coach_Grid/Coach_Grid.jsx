@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import CoachThumbnail from './Coach_Thumbnail/Coach_Thumbnail.jsx'
-import { Grid, Row, Col, Image, Thumbnail, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx';
@@ -47,8 +47,8 @@ export default class Coach_Grid extends Component {
           data_loaded : true
         })
       })
-    }else{
-      var url = "http://api.gamedayballers.me/coaches_full/"
+    } else {
+      url = "http://api.gamedayballers.me/coaches_full/"
       axios.get(url).then(response => {
         this.setState({
           coaches : this.props.coaches,
@@ -60,7 +60,7 @@ export default class Coach_Grid extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.coaches != nextProps.coaches){
+    if(this.props.coaches !== nextProps.coaches){
       this.setState({
         coaches: nextProps.coaches
       })
@@ -111,7 +111,7 @@ export default class Coach_Grid extends Component {
     }
 
     for(let i = lowerBound; (i < fCoaches.length) && (i < upperBound); i++){
-      var coach = fCoaches[i]
+      coach = fCoaches[i]
       result.push(this.RenderCoachThumbnail(coach));
     }
 
@@ -148,38 +148,29 @@ export default class Coach_Grid extends Component {
   }
 
   determineSort(){
-    var order = this.state.order
     var sortBy = this.state.sortBy
 
     switch (sortBy) {
       case 'Name':
-        console.log('Name');
         return ((p1, p2) => {
           var result = p2.name.localeCompare(p1.name)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
       case 'Win/Loss%':
-        console.log('Win/Loss%');
         return ((p1, p2) => {
           var result = parseFloat(p2.win_loss_percentage) - parseFloat(p1.win_loss_percentage)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
       case 'Age':
-        console.log('Age');
         return ((p1, p2) => {
           var result = Date.parse(p2.dob) - Date.parse(p1.dob)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
-      Default:
-        console.log('Default');
+      default:
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
   }
 }
 
@@ -206,7 +197,7 @@ export default class Coach_Grid extends Component {
               {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
+              <DropdownButton id="Team" title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
                 <MenuItem eventKey="Any Team">Any Team</MenuItem>
                 <MenuItem eventKey="Atlanta Hawks">Atlanta Hawks</MenuItem>
                 <MenuItem eventKey="Boston Celtics">Boston Celtics</MenuItem>
@@ -239,12 +230,12 @@ export default class Coach_Grid extends Component {
                 <MenuItem eventKey="Utah Jazz">Utah Jazz</MenuItem>
                 <MenuItem eventKey="Washington Wizards">Washington Wizards</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+              <DropdownButton id="Sort By" title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name" >Coach Name</MenuItem>
                 <MenuItem eventKey="Win/Loss%" >Win/Loss Percentage</MenuItem>
                 <MenuItem eventKey="Age" >Age</MenuItem>
               </DropdownButton>
-              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+              <DropdownButton id="Order" title={this.state.order} onSelect={this.handleOrder}>
                 <MenuItem eventKey="Ascending">Ascending</MenuItem>
                 <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>

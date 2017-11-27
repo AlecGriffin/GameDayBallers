@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import Highlighter from 'react-highlight-words';
 import No_Image from './no_image.png'
 
@@ -13,7 +13,7 @@ export default class Player_Thumbnail extends Component {
     if (this.props.overlay) {
       var search = "";
       var searchClass = "";
-      if (this.props.search != "" && this.props.search != null) {
+      if (this.props.search !== "" && this.props.search != null) {
         search = this.props.search;
         searchClass = "overlay-search";
       }
@@ -86,7 +86,7 @@ export default class Player_Thumbnail extends Component {
           <div className="card thumbnail-card image-card">
             <div className="card-title">
               { this.renderOverlay() }
-              <img onError={this.addDefaultSrc} src={this.props.src} alt='No Image Found'/>
+              <img onError={this.addDefaultSrc} src={this.props.src} alt={this.props.name}/>
             </div>
             <div className="card-body">
               <p>{this.props.name}</p>

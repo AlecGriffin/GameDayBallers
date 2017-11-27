@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {NavLink, Link} from 'react-router-dom';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Navbar, Nav, NavItem, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 
@@ -59,17 +59,10 @@ export default class Header extends Component {
           <Navbar.Collapse>
             <Navbar.Form pullLeft>
               <FormGroup>
-                {/*
-                  * CODE: inputRef={node=> this.inputNode = node
-                  *
-                  * This code creates a reference to the
-                  * <input></input> component contained by the FormControl component.
-                  * Access the text within the search box using: this.inputNode.value
-                  */}
                 <FormControl type="text" placeholder="Search" inputRef={node => this.inputNode = node} onKeyUp={this.updateInput}/>
                 {' '}
                 <LinkContainer to={'/search/' + this.state.search}>
-                  <Button type="submit"><i class="fa fa-search" aria-hidden="true"></i></Button>
+                  <Button type="submit"><i className="fa fa-search" aria-hidden="true"></i></Button>
                 </LinkContainer>
               </FormGroup>
             </Navbar.Form>

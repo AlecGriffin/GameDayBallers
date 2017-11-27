@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
-import ReactDOM from 'react-dom';
 import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
@@ -70,7 +69,7 @@ export default class Team extends Component {
   }
 
   getColor() {
-    if (this.state.coach.color != "" && this.state.coach.color != null) {
+    if (this.state.coach.color !== "" && this.state.coach.color !== null) {
       return this.state.coach.color;
     } else {
       return "gray";
@@ -87,9 +86,7 @@ export default class Team extends Component {
 
      var pastTeams = coach.past_teams.map((team) =>
        <li key={team.toLowerCase().replace(/\s+/g, '')}>
-         {/*<Link to="/teams/">*/}
            { team }
-         {/*</Link>*/}
        </li>
      );
 
@@ -98,15 +95,6 @@ export default class Team extends Component {
        {rec}
      </li>
      );
-
-    var roster = coach.current_roster.map((player) =>
-    <Col md={4} xs={6} className="grid-element" key={player.name.toLowerCase().replace(/\s+/g, '')}>
-      <Link to={player.url}>
-        { player.name }
-      </Link>
-    </Col>
-    );
-
 
     if(!this.state.data_loaded){
       return(<Loading/>);
@@ -117,7 +105,7 @@ export default class Team extends Component {
             <Col sm={4}>
               <div className="card image-card full-image">
                 <div className="card-title">
-                  <img onError={this.addDefaultSrc} src={coach.image_url} alt='No Image Found'/>
+                  <img onError={this.addDefaultSrc} src={coach.image_url} alt={coach.name}/>
                 </div>
                 <div className="card-body">
                   <ul>
@@ -152,7 +140,7 @@ export default class Team extends Component {
                 </div>
                 <Link to={ this.state.coach['current_team']['url'] }>
                   <div className="card-body image-body">
-                    <img src={ this.state.coach['current_team']['image_url'] }/>
+                    <img src={ this.state.coach['current_team']['image_url'] } alt={this.state.coach['current_team']['name']}/>
                   </div>
                 </Link>
               </div>

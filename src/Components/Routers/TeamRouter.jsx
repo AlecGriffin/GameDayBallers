@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Team from '../Team/Team.jsx';
 import Team_Grid from '../Team_Grid/Team_Grid.jsx';

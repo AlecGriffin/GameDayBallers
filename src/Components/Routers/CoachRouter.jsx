@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Coach from '../Coach/Coach.jsx';
 import Coach_Grid from '../Coach_Grid/Coach_Grid.jsx';
-import Team from '../Team/Team.jsx'
 
  const CoachRouter = () => (
   <Switch>

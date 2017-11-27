@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import PlayerThumbnail from './Player_Thumbnail/Player_Thumbnail.jsx';
-import { Grid, Row, Col, Image, Thumbnail, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import PaginationAdvanced from '../Pagination/PaginationAdvanced.jsx';
 import axios from 'axios';
@@ -71,7 +70,7 @@ export default class Player_Grid extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.players != nextProps.players){
+    if(this.props.players !== nextProps.players){
       this.setState({
         players: nextProps.players
       })
@@ -118,7 +117,7 @@ export default class Player_Grid extends Component {
     var filteredByTeam = [];
     if (this.state.teamFilter !== "Any Team") {
       for (let i = 0; i < this.state.players.length; i++) {
-        var player = players[i];
+        player = players[i];
         if (player.team === this.state.teamFilter) {
             filteredByTeam.push(player);
         }
@@ -130,11 +129,8 @@ export default class Player_Grid extends Component {
 
     var fPlayers = filteredByPosition.filter((n) => filteredByTeam.includes(n));
 
-
-    // console.log(lowerBound);
-    // console.log(upperBound);
     for(let i = lowerBound; (i < fPlayers.length) && (i < upperBound); i++){
-      var player = fPlayers[i];
+      player = fPlayers[i];
       result.push(this.RenderPlayerThumbnail(player));
     }
 
@@ -156,96 +152,69 @@ export default class Player_Grid extends Component {
 
   determineSort(){
 
-    var order = this.state.order
     var sortBy = this.state.sortBy
 
     switch (sortBy) {
       case 'Name':
-        console.log('Name');
         return ((p1, p2) => {
           var result = p2.name.localeCompare(p1.name)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
       case 'Height':
-        console.log('Height');
         return ((p1, p2) => {
-          // TODO: Broken due to the format being: 7-0 for 7 feet tall
           var result = parseFloat(p2.height) - parseFloat(p1.height)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
       case 'Age':
-        console.log('Age');
         return ((p1, p2) => {
           var result = Date.parse(p2.dob) - Date.parse(p1.dob)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
       case 'MPG':
-        console.log('MPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.minutes_per_game) - parseFloat(p1.career_stats.minutes_per_game)
           return this.state.order === 'Ascending' ? result * -1 : result
         })
-        break;
       case 'FG%':
-        console.log('FG%');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.field_goal_percentage) - parseFloat(p1.career_stats.field_goal_percentage)
           return this.state.order === 'Ascending' ? result * -1 : result
-      })
-      break;
+        })
       case '3P%':
-        console.log('3P%');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.three_point_percentage) - parseFloat(p1.career_stats.three_point_percentage)
           return this.state.order === 'Ascending' ? result * -1 : result
-      })
-      break;
+        })
       case 'FT%':
-        console.log('FT%');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.free_throw_percentage) - parseFloat(p1.career_stats.free_throw_percentage)
           return this.state.order === 'Ascending' ? result * -1 : result
-      })
-      break;
+        })
       case 'PPG':
-        console.log('PPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.points_per_game) - parseFloat(p1.career_stats.points_per_game)
           return this.state.order === 'Ascending' ? result * -1 : result
-      })
-      break;
+        })
       case 'RPG':
-        console.log('RPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.rebounds_per_game) - parseFloat(p1.career_stats.rebounds_per_game)
           return this.state.order === 'Ascending' ? result * -1 : result
-      })
-      break;
+        })
       case 'APG':
-        console.log('APG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.assists_per_game) - parseFloat(p1.career_stats.assists_per_game)
           return this.state.order === 'Ascending' ? result * -1 : result
-      })
-      break;
+        })
       case 'BPG':
-        console.log('BPG');
         return ((p1, p2) => {
           var result = parseFloat(p2.career_stats.blocks_per_game) - parseFloat(p1.career_stats.blocks_per_game)
           return this.state.order === 'Ascending' ? result * -1 : result
-      })
-      break;
-
+        })
       default:
-        console.log('Default');
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
           return this.state.order === 'Ascending' ? result * -1 : result
       })
-      break;
     }
   }
 
@@ -300,7 +269,7 @@ export default class Player_Grid extends Component {
               {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
+              <DropdownButton id="Team" title={this.state.teamFilter} onSelect={this.handleTeamFilter}>
               <MenuItem eventKey="Any Team">Any Team</MenuItem>
               <MenuItem eventKey="Atlanta Hawks">Atlanta Hawks</MenuItem>
               <MenuItem eventKey="Boston Celtics">Boston Celtics</MenuItem>
@@ -333,13 +302,13 @@ export default class Player_Grid extends Component {
               <MenuItem eventKey="Utah Jazz">Utah Jazz</MenuItem>
               <MenuItem eventKey="Washington Wizards">Washington Wizards</MenuItem>
               </DropdownButton>
-              <DropdownButton title={this.state.positionFilter} onSelect={this.handlePositionFilter}>
+              <DropdownButton id="Position" title={this.state.positionFilter} onSelect={this.handlePositionFilter}>
                 <MenuItem eventKey="Any Position">Any Position</MenuItem>
                 <MenuItem eventKey="C">C</MenuItem>
                 <MenuItem eventKey="F">F</MenuItem>
                 <MenuItem eventKey="G">G</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+              <DropdownButton id="Sort By" title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Player Name</MenuItem>
                 <MenuItem eventKey="Height">Height</MenuItem>
                 <MenuItem eventKey="Age">Age</MenuItem>
@@ -352,7 +321,7 @@ export default class Player_Grid extends Component {
                 <MenuItem eventKey="APG">APG</MenuItem>
                 <MenuItem eventKey="BPG">BPG</MenuItem>
               </DropdownButton>
-              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+              <DropdownButton id="Order" title={this.state.order} onSelect={this.handleOrder}>
                 <MenuItem eventKey="Ascending">Ascending</MenuItem>
                 <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>

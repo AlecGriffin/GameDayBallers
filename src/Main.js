@@ -8,10 +8,8 @@ import CoachRouter from './Components/Routers/CoachRouter.jsx';
 import DivisionRouter from './Components/Routers/DivisionRouter.jsx';
 import PlayerRouter from './Components/Routers/PlayerRouter.jsx';
 import SearchRouter from './Components/Routers/SearchRouter.jsx';
-import Search from './Components/Search/Search.jsx'
 import Ticker from './Components/Ticker/Ticker.jsx'
 import Visualization from './Components/Visualization/Visualization.jsx'
-import {Row, Col} from 'react-bootstrap';
 
 export default class Main extends Component {
   render () {

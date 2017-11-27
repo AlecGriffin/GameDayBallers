@@ -51,7 +51,6 @@ export default class Team extends Component {
       data_loaded:false
     })
 
-    console.log('componentWillReceiveProps() ->' + nextProps.match.params.name);
     var team_url = 'http://api.gamedayballers.me/teams/' + nextProps.match.params.name
     axios.get(team_url).then(response => {
       this.setState({
@@ -69,7 +68,6 @@ export default class Team extends Component {
   }
 
   componentDidMount(){
-    console.log('componentDidMount() ->' + this.props.match.params.name);
     var team_url = 'http://api.gamedayballers.me/teams/' + this.props.match.params.name
     axios.get(team_url).then(response => {
       this.setState({
@@ -112,16 +110,10 @@ export default class Team extends Component {
       }
     }
 
-    function _onReady(event) {
-      // access to player in all event handlers via event.target
-      event.target.pauseVideo();
-    }
-
     return (
       <YouTube
           videoId={this.state.youtube[0].id.videoId}
           opts={opts}
-          onReady={this._onReady}
         />
     )
   }
@@ -148,7 +140,7 @@ export default class Team extends Component {
   }
 
   getColor() {
-    if (this.state.team.color != "" && this.state.team.color != null) {
+    if (this.state.team.color !== "" && this.state.team.color !== null) {
       return this.state.team.color;
     } else {
       return "gray";
@@ -162,7 +154,7 @@ export default class Team extends Component {
   }
 
   renderTimeline() {
-    if (this.state.team.twitter != null) {
+    if (this.state.team.twitter !== null) {
       return (
         <Timeline
           dataSource={{
@@ -185,14 +177,6 @@ export default class Team extends Component {
     var cardTitleStyle = {
       backgroundColor: this.getColor()
     };
-
-    var roster = team.current_roster.map((player) =>
-    <Col md={4} xs={6} className="grid-element" key={player.name.toLowerCase().replace(/\s+/g, '')}>
-      <Link to={ player.url}>
-        { player.name }
-      </Link>
-    </Col>
-    );
 
     if(!this.state.data_loaded){
       return(<Loading/>);
@@ -260,9 +244,10 @@ export default class Team extends Component {
                 </div>
                 <div className="card-body">
                   <iframe
+                    title="highlights"
                     width="100%"
                     height="300"
-                    frameborder="0" style={{ border: 0 }}
+                    frameBorder="0" style={{ border: 0 }}
                     src={this.getMapURL()}>
                   </iframe>
                 </div>
@@ -282,7 +267,7 @@ export default class Team extends Component {
                         <Link to={ this.state.team.head_coach.url }>
                           <div className="card image-card full-image">
                             <div className="card-title">
-                              <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt='No Image Found'/>
+                              <img onError={this.addDefaultSrc} src={team.head_coach.image_url} alt={team.head_coach.name}/>
                             </div>
                             <div className="card-body">
                               {team.head_coach.name}

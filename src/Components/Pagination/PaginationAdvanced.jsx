@@ -3,20 +3,6 @@ import {Pagination} from 'react-bootstrap';
 
 export default class PaginationAdvanced extends Component {
 
-  constructor(props){
-    super(props);
-
-    // this.state = {
-    //   activePage: 1,
-    // }
-  }
-
-  // handleSelect(eventKey) {
-  //   this.setState({
-  //     activePage: eventKey,
-  //   });
-  // }
-
   render() {
     return (
       <Pagination

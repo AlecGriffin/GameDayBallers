@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import TeamThumbnail from './Team_Thumbnail/Team_Thumbnail.jsx';
-import { Grid, Row, Col, Image, Thumbnail, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx';
@@ -61,7 +61,7 @@ export default class Team_Grid extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.teams != nextProps.teams){
+    if(this.props.teams !== nextProps.teams){
       this.setState({
         teams: nextProps.teams
       })
@@ -69,7 +69,6 @@ export default class Team_Grid extends Component {
   }
 
   handleSelect(eventKey) {
-    console.log("Set Active Page To: " + eventKey);
     this.setState({
       activePage: eventKey,
     });
@@ -117,7 +116,7 @@ export default class Team_Grid extends Component {
 
     if (this.state.conferenceFilter !== "Any Conference") {
       for (let i = 0; i < this.state.teams.length; i++) {
-        var team = teams[i];
+        team = teams[i];
         if (team.conference === this.state.conferenceFilter) {
             filteredByConference.push(team);
 
@@ -130,7 +129,7 @@ export default class Team_Grid extends Component {
     var fTeams = filteredByConference.filter((n) => filteredByDivision.includes(n));
 
     for(let i = lowerBound; i < fTeams.length && i < upperBound; i++){
-      var team = fTeams[i]
+      team = fTeams[i]
       result.push(this.RenderTeamThumbnail(team));
     }
 
@@ -145,44 +144,34 @@ export default class Team_Grid extends Component {
   }
 
   determineSort(){
-    var sortBy = this.state.sortBy
+    var sortBy = this.state.sortBy;
 
     switch (sortBy) {
       case 'Name':
-        console.log('Name');
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
           return this.state.order === 'Descending' ? result * -1 : result
         })
-        break;
       case 'Conference':
-        console.log('Name');
         return ((p1, p2) => {
           var result = p1.conference.localeCompare(p2.conference)
           return this.state.order === 'Descending' ? result * -1 : result
         })
-        break;
-        case 'Division':
-          console.log('Name');
-          return ((p1, p2) => {
-            var result = p1.division.localeCompare(p2.division)
-            return this.state.order === 'Descending' ? result * -1 : result
-          })
-          break;
+      case 'Division':
+        return ((p1, p2) => {
+          var result = p1.division.localeCompare(p2.division)
+          return this.state.order === 'Descending' ? result * -1 : result
+        })
       case 'numTitles':
-        console.log('numTitles');
         return ((p1, p2) => {
           var result = parseFloat(p2.win_loss_percentage) - parseFloat(p1.win_loss_percentage)
           return this.state.order === 'Descending' ? result * -1 : result
         })
-        break;
-      Default:
-        console.log('Name');
+      default:
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
           return this.state.order === 'Descending' ? result * -1 : result
         })
-        break;
   }
 }
 
@@ -237,12 +226,12 @@ export default class Team_Grid extends Component {
               {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
+              <DropdownButton id="Conference" title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
                 <MenuItem eventKey="Any Conference">Any Conference</MenuItem>
                 <MenuItem eventKey="East">East</MenuItem>
                 <MenuItem eventKey="West">West</MenuItem>
               </DropdownButton>
-              <DropdownButton title={this.state.divisionFilter} onSelect={this.handleDivisionFilter}>
+              <DropdownButton id="Division" title={this.state.divisionFilter} onSelect={this.handleDivisionFilter}>
                 <MenuItem eventKey="Any Division">Any Division</MenuItem>
                 <MenuItem eventKey="Atlantic">Atlantic</MenuItem>
                 <MenuItem eventKey="Central">Central</MenuItem>
@@ -251,13 +240,13 @@ export default class Team_Grid extends Component {
                 <MenuItem eventKey="Pacific">Pacific</MenuItem>
                 <MenuItem eventKey="Northwest">Northwest</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+              <DropdownButton id="Sort By" title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Team Name</MenuItem>
                 <MenuItem eventKey="numTitles" >Number of Titles</MenuItem>
                 <MenuItem eventKey="numPlayers" >Number of Players</MenuItem>
 
               </DropdownButton>
-              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+              <DropdownButton id="Order" title={this.state.order} onSelect={this.handleOrder}>
                 <MenuItem eventKey="Ascending">Ascending</MenuItem>
                 <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>

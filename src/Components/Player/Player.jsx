@@ -53,7 +53,7 @@ export default class Player extends Component {
   componentDidMount(){
 
     // Handle Aquiring Data from RESTful API
-    var url = window.location.href;
+    //var url = window.location.href;
     var player_url = 'http://api.gamedayballers.me/players/' + this.props.match.params.name
     axios.get(player_url).then(response => {
       this.setState({
@@ -95,22 +95,17 @@ export default class Player extends Component {
       }
     }
 
-    function _onReady(event) {
-      // access to player in all event handlers via event.target
-      event.target.pauseVideo();
-    }
-
     return (
       <YouTube
           videoId={this.state.youtube[0].id.videoId}
           opts={opts}
-          onReady={this._onReady}
+          //onReady={this._onReady}
         />
     )
   }
 
   playSound () {
-    if (this.state.player.player == "LeBron James") {
+    if (this.state.player.player === "LeBron James") {
       const audio = new Audio(lebron_james_audio_file);
       audio.play();
 
@@ -123,7 +118,7 @@ export default class Player extends Component {
   }
 
   getColor() {
-    if (this.state.player.color != "" && this.state.player.color != null) {
+    if (this.state.player.color !== "" && this.state.player.color !== null) {
       return this.state.player.color;
     } else {
       return "gray";
@@ -131,17 +126,6 @@ export default class Player extends Component {
   }
 
   render(){
-
-    // var url = window.location.href;
-    // var playerName = url.split('/')[url.split('/').length - 1];
-    // var DivisionURL = "/division/" + player.DivisionURL;
-    // var teamURL = "/teams/" + player.team.toLowerCase().replace(/\s+/g, '')
-
-    // var pastTeams = this.state.player.past_teams.map((team) =>
-    //   <li key={team.toLowerCase().replace(/\s+/g, '')}>
-    //     <Link to='/'>{team}</Link>
-    //   </li>
-    // );
 
     var player = this.state.player
 
@@ -167,7 +151,7 @@ export default class Player extends Component {
               <div className="card image-card">
                 <div className="card-title" style={cardTitleStyle}>
                   { this.state.player['player'] } #{ this.state.player['jersey_number']}
-                  <img onError={this.addDefaultSrc} src={this.state.player['image_url']} alt='No Image Found'/>
+                  <img onError={this.addDefaultSrc} src={this.state.player['image_url']} alt={this.state.player['player']}/>
                 </div>
                 <div className="card-body">
                   <ul>
@@ -189,9 +173,6 @@ export default class Player extends Component {
                     <li>
                       <b>Date of Birth:</b> { player['dob'] }
                     </li>
-                    <li>
-                      {/* <b>Pre-NBA Career:</b> <Link to={ DivisionURL }>{ player.Division }</Link> */}
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -202,7 +183,7 @@ export default class Player extends Component {
                 </div>
                 <Link to={ this.state.player['team']['url'] }>
                   <div className="card-body image-body">
-                    <img src={ this.state.player['team']['image_url'] }/>
+                    <img src={ this.state.player['team']['image_url']} alt={this.state.player.player}/>
                   </div>
                 </Link>
               </div>
@@ -273,18 +254,6 @@ export default class Player extends Component {
                     </div>
                   </div>
                 </Col>
-                {/*<Col lg={6}>
-                  <div className="card">
-                    <div className="card-title">
-                      Previous Teams
-                    </div>
-                    <div className="card-body text-center">
-                      <ul>
-                        { pastTeams }
-                      </ul>
-                    </div>
-                  </div>
-                </Col>*/}
               </Row>
               <Row>
                 <Col xs={12}>

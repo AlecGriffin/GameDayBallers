@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import DivisionThumbnail from './Division_Thumbnail/Division_Thumbnail.jsx'
-import { Grid, Row, Col, Image, Thumbnail, ButtonToolbar, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Row, Col, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx';
@@ -57,7 +57,7 @@ export default class Division_Grid extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.divisions != nextProps.divisions){
+    if(this.props.divisions !== nextProps.divisions){
       this.setState({
         divisions: nextProps.divisions
       })
@@ -109,7 +109,7 @@ export default class Division_Grid extends Component {
     var filteredBySeason = [];
     if (this.state.seasonFilter !== "Any Inaugural Season") {
       for (let i = 0; i < this.state.divisions.length; i++) {
-        var division = divisions[i];
+        division = divisions[i];
         if (division.inaugural_season + "Season" === this.state.seasonFilter) {
             filteredBySeason.push(division);
         }
@@ -121,7 +121,7 @@ export default class Division_Grid extends Component {
     var fDivisions = filteredByConference.filter((n) => filteredBySeason.includes(n));
 
     for(let i = 0; i < fDivisions.length; i++){
-      var division = fDivisions[i]
+      division = fDivisions[i]
       result.push(this.RenderDivisionThumbnail(division));
     }
 
@@ -163,25 +163,19 @@ export default class Division_Grid extends Component {
   }
 
   determineSort(){
-    var order = this.state.order
     var sortBy = this.state.sortBy
 
     switch (sortBy) {
       case 'Name':
-        console.log('Name');
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
           return this.state.order === 'Descending' ? result * -1 : result
         })
-        break;
-      Default:
-        console.log('Default');
+      default:
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
           return this.state.order === 'Descending' ? result * -1 : result
         })
-      break;
-
     }
   }
 
@@ -208,21 +202,21 @@ export default class Division_Grid extends Component {
               {paginationToDisplay}
             </Col>
             <Col xs={6} className="sort-and-filter">
-              <DropdownButton title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
+              <DropdownButton id="Conference" title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
                 <MenuItem eventKey="Any Conference">Any Conference</MenuItem>
                 <MenuItem eventKey="Eastern">Eastern</MenuItem>
                 <MenuItem eventKey="Western">Western</MenuItem>
               </DropdownButton>
-              <DropdownButton title={this.state.seasonFilter} onSelect={this.handleSeasonFilter}>
+              <DropdownButton id="Inaugural Season" title={this.state.seasonFilter} onSelect={this.handleSeasonFilter}>
                 <MenuItem eventKey="Any Inaugural Season">Any Inaugural Season</MenuItem>
                 <MenuItem eventKey="1970-71 Season">1970-71 Season</MenuItem>
                 <MenuItem eventKey="2004-05 Season">2004-05 Season</MenuItem>
               </DropdownButton>
-              <DropdownButton title="Sort By" onSelect={this.handleSortType}>
+              <DropdownButton id="Sort By" title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Division Name</MenuItem>
                 <MenuItem eventKey="InauguralSeason">Inaugural Season</MenuItem>
               </DropdownButton>
-              <DropdownButton title={this.state.order} onSelect={this.handleOrder}>
+              <DropdownButton id="Order" title={this.state.order} onSelect={this.handleOrder}>
                 <MenuItem eventKey="Ascending">Ascending</MenuItem>
                 <MenuItem eventKey="Descending">Descending</MenuItem>
               </DropdownButton>

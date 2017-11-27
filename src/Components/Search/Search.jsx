@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx'
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button } from 'react-bootstrap';
+import {Nav, NavItem } from 'react-bootstrap';
 import PlayerGrid from '../Player_Grid/Player_Grid.jsx'
 import TeamGrid from '../Team_Grid/Team_Grid.jsx'
 import CoachGrid from '../Coach_Grid/Coach_Grid.jsx'
 import DivisionGrid from '../Division_Grid/Division_Grid.jsx'
-
 
 import PlayerThumbnail from '../Player_Grid/Player_Thumbnail/Player_Thumbnail.jsx';
 import TeamThumbnail from '../Team_Grid/Team_Thumbnail/Team_Thumbnail.jsx';
@@ -22,22 +19,19 @@ export default class Search extends Component {
   constructor(props){
     super(props)
 
-    console.log('Constructor!');
     this.state = {
       players: [],
       coaches: [],
       teams: [],
       divisions: [],
       dataLoaded: false,
-      toDisplay: 'players',
-      dataLoaded: false
+      toDisplay: 'players'
     }
 
     this.handleSelect = this.handleSelect.bind(this)
   }
 
   componentDidMount(){
-    console.log('Did Mount!');
     var url = 'http://api.gamedayballers.me/search/' + this.props.match.params.searchTopic
     axios.get(url).then(response =>{
       this.setState({
@@ -74,7 +68,7 @@ export default class Search extends Component {
     );
   }
 
-  RenderPlayerThumbnails(player){
+  RenderPlayerThumbnails(){
     var result = []
     for(let i = 0; i < this.state.players.length; i++){
       var player = this.state.players[i]
@@ -91,7 +85,7 @@ export default class Search extends Component {
     );
   }
 
-  RenderCoachThumbnails(coach){
+  RenderCoachThumbnails(){
     var result = []
     for(let i = 0; i < this.state.coaches.length; i++){
       var coach = this.state.coaches[i]
@@ -108,7 +102,7 @@ export default class Search extends Component {
     );
   }
 
-  RenderTeamThumbnails(team){
+  RenderTeamThumbnails(){
     var result = []
     for(let i = 0; i < this.state.teams.length; i++){
       var team = this.state.teams[i]
@@ -125,7 +119,7 @@ export default class Search extends Component {
     );
   }
 
-  RenderDivisionThumbnails(division){
+  RenderDivisionThumbnails(){
     var result = []
     for(let i = 0; i < this.state.divisions.length; i++){
       var division = this.state.divisions[i]

@@ -94,6 +94,15 @@ nav.navbar a.navbar-brand {
   padding: 0 20px;
   list-style: disc; }
 
+.chart-card {
+  padding: 0; }
+  .chart-card .card-body {
+    height: 550px; }
+    .chart-card .card-body .chart-body-container {
+      width: 90%;
+      height: 100%;
+      margin: auto; }
+
 .info ul {
   list-style: none;
   padding: 0; }

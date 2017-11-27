@@ -36,7 +36,6 @@ export default class Division extends Component {
   }
 
   componentDidMount(){
-    var url = window.location.href;
     var division_url = 'http://api.gamedayballers.me/divisions/' + this.props.match.params.name
     axios.get(division_url).then(response => {
       this.setState({
@@ -55,7 +54,7 @@ export default class Division extends Component {
 
   RenderTeamThumbnail(link, Team_name, img_source){
     return(
-      <Link to= {link}>
+      <Link to= {link} key={Team_name}>
         <TeamThumbnail name={Team_name} src={img_source}/>
       </Link>
     );
@@ -70,13 +69,8 @@ export default class Division extends Component {
     return result;
   }
 
-//////
-
   getAxiosPromisesAllPlayers(){
-    // console.log("Loaded:" + this.state.division_loaded);
     if(this.state.division_loaded){
-      // console.log("start");
-      // console.log(this.state.division.teams);
       var promises = []
       for(let i = 0; i < this.state.division.teams.length; i++){
         var team = this.state.division.teams[i]
@@ -107,9 +101,8 @@ export default class Division extends Component {
   }
 
   GetTeamName(url){
-    var result = "";
     for(let i = 0; i < this.state.division.teams.length; i++){
-      if (this.state.division.teams[i].url.replace("/teams/","") == url) {
+      if (this.state.division.teams[i].url.replace("/teams/","") === url) {
         return this.state.division.teams[i].name;
       }
     }
@@ -117,9 +110,9 @@ export default class Division extends Component {
   }
 
   getColor() {
-    if (this.state.division.conference == "Eastern") {
+    if (this.state.division.conference === "Eastern") {
       return "#157BE1";
-    } else if (this.state.division.conference == "Western") {
+    } else if (this.state.division.conference === "Western") {
       return "#E11515";
     } else {
       return "gray";
@@ -188,7 +181,7 @@ export default class Division extends Component {
               <div className="card-body">
 
                 <div className="roster-wrapper">
-                  <Row class="roster">
+                  <Row className="roster">
                       {this.RenderTeamThumbnails()}
                   </Row>
                 </div>
