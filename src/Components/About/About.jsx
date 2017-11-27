@@ -126,11 +126,15 @@ function generateThumbnail(person, commits) {
      // Get Total and Individual Commit Numbers (from Github)
      var githubCommitsURL = "https://api.github.com/repos/GameDayBallers/GameDayBallers/stats/contributors"
      axios.get(githubCommitsURL).then(response => {
-       console.log(response);
+       console.log(response.data);
        let sum = 0
-       response.data.map((member)=>{
-         sum += member.total
-       })
+       // response.data.map((member)=>{
+       //   sum += member.total
+       // })
+
+       for(let i = 0; i < response.data.length; i++){
+         sum += response.data[i].total
+       }
 
        this.setState({
           Total_Commits: sum,

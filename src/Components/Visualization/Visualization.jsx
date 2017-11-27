@@ -16,7 +16,6 @@ export default class Visualization extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.history.location);
     const axiosCalls = [
       axios.get('http://api.hackappellas.me/artists/'),
       axios.get('http://api.hackappellas.me/albums/'),
@@ -25,17 +24,6 @@ export default class Visualization extends Component {
     ]
 
     axios.all(axiosCalls).then(axios.spread((artists, albums, tracks, playlists) =>{
-      console.log('Artists: ');
-      console.log(artists.data.artists);
-
-      console.log('Albums: ');
-      console.log(albums.data.albums);
-
-      console.log('Tracks: ');
-      console.log(tracks.data.tracks);
-
-      console.log('Playlists: ');
-      console.log(playlists.data.playlists);
       this.setState({
         artistData: this.createArtistData(artists.data.artists),
         albumData: this.createAlbumData(albums.data.albums),
@@ -96,8 +84,13 @@ export default class Visualization extends Component {
 
     createPlaylistData(playlists){
       return playlists.map((a) =>{
+        var playlistName = a.name
+        const maxLength = 30
+        if(a.name.length > maxLength){
+          playlistName = playlistName.substring(0,maxLength) + "..."
+        }
         return {
-          name: a.name,
+          name: playlistName,
           numFollowers: a.numFollowers
         }
       })
@@ -111,6 +104,7 @@ export default class Visualization extends Component {
       <div className='main'>
         <h1>Visualizations:</h1>
         { !this.state.dataLoaded && <Loading/> }
+
         { this.state.dataLoaded && (
           <Row>
             <h2>Artists:</h2>
@@ -126,9 +120,6 @@ export default class Visualization extends Component {
            </BarChart>
            </Row>
         )}
-
-
-
 
         { this.state.dataLoaded && (
           <Row>
