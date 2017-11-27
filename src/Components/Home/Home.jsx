@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Carousel, Row, Col} from 'react-bootstrap';
 import { Timeline } from 'react-twitter-widgets';
-import calendarData from '../../NBA_Calendar_Data/calendar_data.json'
+import calendarData from '../Ticker/calendar_data.json'
 
 export default class Home extends Component {
   constructor(props){

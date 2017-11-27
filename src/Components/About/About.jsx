@@ -226,7 +226,7 @@ function generateThumbnail(person, commits) {
                      <a href="https://utexas.box.com/s/0ooqwpb7w6v6a0pi6nbflpnketabaxe2" className="card-link">Technical Report Link</a>
                    </li>
                    <li>
-                     <a href="https://utexas.box.com/s/sbbyc59801wdpftua4sp2eqbe9nkd0i3" className="card-link">UML Diagram</a>
+                     <a href="https://dewnah.gitbooks.io/game-day-ballers-uml-diagram/content/" className="card-link">UML Diagram</a>
                    </li>
                  </ul>
                </div>
