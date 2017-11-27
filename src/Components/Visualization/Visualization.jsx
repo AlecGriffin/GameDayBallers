@@ -1,108 +1,181 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {RadialBar, RadialBarChart, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Pie, PieChart, Bar, BarChart, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import {Text, ReferenceLine, Brush, RadialBar, RadialBarChart, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Pie, PieChart, Bar, BarChart, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
+import {Row, Col} from 'react-bootstrap'
 
 
 export default class Visualization extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      artists: [],
+      artistDataLoaded: false
+    }
+  }
+
   componentDidMount(){
-    axios.get('http://api.hackappellas.me/artists/').then((data) => {
-      console.log('It Worked!');
+    console.log(this.props.history.location);
+    const axiosCalls = [
+      axios.get('http://api.hackappellas.me/artists/'),
+      axios.get('http://api.hackappellas.me/albums/'),
+      axios.get('http://api.hackappellas.me/tracks/'),
+      axios.get('http://api.hackappellas.me/playlists/')
+    ]
+
+    axios.all(axiosCalls).then(axios.spread((artists, albums, tracks, playlists) =>{
+      console.log('Artists: ');
+      console.log(artists.data.artists);
+
+      console.log('Albums: ');
+      console.log(albums.data.albums);
+
+      console.log('Tracks: ');
+      console.log(tracks.data.tracks);
+
+      console.log('Playlists: ');
+      console.log(playlists.data.playlists);
+      this.setState({
+        artistData: this.createArtistData(artists.data.artists),
+        albumData: this.createAlbumData(albums.data.albums),
+        trackData: this.createTrackData(tracks.data.tracks),
+        playlistData: this.createPlaylistData(playlists.data.playlists),
+        dataLoaded: true
+      })
+    }))
+  }
+
+  // ===============================================
+  // ===============================================
+  createArtistData(data){
+    return data.map((a) =>{
+      var artistName = a.name
+      const maxLength = 30
+      if(a.name.length > maxLength){
+        artistName = artistName.substring(0,maxLength) + "..."
+      }
+      return {
+        name: artistName,
+        playcount: a.playcount
+      }
     })
   }
 
+  createAlbumData(albums){
+    return albums.map((a) =>{
+      var albumName = a.name
+      const maxLength = 30
+      if(a.name.length > maxLength){
+        albumName = albumName.substring(0,maxLength) + "..."
+      }
+
+      return {
+        name: albumName,
+        playcount: a.playcount,
+        artist: a.artist.name
+      }
+    })
+  }
+
+  createTrackData(tracks){
+    return tracks.map((a) =>{
+      var trackName = a.name
+      const maxLength = 30
+      if(a.name.length > maxLength){
+        trackName = trackName.substring(0,maxLength) + "..."
+      }
+
+      return {
+        name: trackName,
+        playcount: a.playcount
+      }
+    })
+  }
+
+
+    createPlaylistData(playlists){
+      return playlists.map((a) =>{
+        return {
+          name: a.name,
+          numFollowers: a.numFollowers
+        }
+      })
+    }
+  // ===============================================
+  // ===============================================
+
   render(){
-    // <---------- Sample Data ----------
-    const data1 = [
-          {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
-          {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
-          {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
-          {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
-          {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
-          {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
-          {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
-    ];
-
-    const data01 = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
-                  {name: 'Group C', value: 300}, {name: 'Group D', value: 200},
-                  {name: 'Group E', value: 278}, {name: 'Group F', value: 189}]
-
-    const data02 = [{name: 'Group A', value: 2400}, {name: 'Group B', value: 4567},
-                      {name: 'Group C', value: 1398}, {name: 'Group D', value: 9800},
-                      {name: 'Group E', value: 3908}, {name: 'Group F', value: 4800}];
-
-    const data2 = [
-                  { subject: 'Math', A: 120, B: 110, fullMark: 150 },
-                  { subject: 'Chinese', A: 98, B: 130, fullMark: 150 },
-                  { subject: 'English', A: 86, B: 130, fullMark: 150 },
-                  { subject: 'Geography', A: 99, B: 100, fullMark: 150 },
-                  { subject: 'Physics', A: 85, B: 90, fullMark: 150 },
-                  { subject: 'History', A: 65, B: 85, fullMark: 150 },
-                  ];
-
-    const data3 = [
-      {name: '18-24', uv: 31.47, pv: 2400, fill: '#8884d8'},
-      {name: '25-29', uv: 26.69, pv: 4567, fill: '#83a6ed'},
-      {name: '30-34', uv: 15.69, pv: 1398, fill: '#8dd1e1'},
-      {name: '35-39', uv: 8.22, pv: 9800, fill: '#82ca9d'},
-      {name: '40-49', uv: 8.63, pv: 3908, fill: '#a4de6c'},
-      {name: '50+', uv: 2.63, pv: 4800, fill: '#d0ed57'},
-      {name: 'unknow', uv: 6.67, pv: 4800, fill: '#ffc658'}
-    ];
-
-    const style = {
-      top: 0,
-      left: 350,
-      lineHeight: '24px'
-    };
 
     return(
       <div className='main'>
-        <h1>Visualization</h1>
+        <h1>Visualizations:</h1>
+      <Row>
+        <h2>Artists:</h2>
+        { this.state.dataLoaded && (
+           <BarChart width={1200} height={800} data={this.state.artistData.sort((a,b) =>{return b.playcount - a.playcount})}
+              margin={{top: 100, right: 30, left: 20, bottom: 100}}>
+              <Brush dataKey='name' height={30} stroke="#ff7300"/>
+              <XAxis height={180} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+              <YAxis/>
+              <CartesianGrid strokeDasharray="3 3"/>
+              <Tooltip/>
+              <Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
+              <Bar dataKey="playcount" fill="#8884d8" />
+           </BarChart>
+        )}
+      </Row>
 
-        {/* LineChart: */}
-        <LineChart width={600} height={300} data={data1}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-         <XAxis dataKey="name"/>
-         <YAxis/>
-         <CartesianGrid strokeDasharray="3 3"/>
-         <Tooltip/>
-         <Legend />
-         <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
-         <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-      </LineChart>
+      <Row>
+        <h2>Albums:</h2>
+        { this.state.dataLoaded && (
+          <BarChart width={1200} height={800} data={this.state.albumData.sort((a,b) =>{return b.playcount - a.playcount})}
+             margin={{top: 100, right: 30, left: 20, bottom: 100}}>
+             <XAxis height={180} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+             <YAxis/>
+             <CartesianGrid strokeDasharray="3 3"/>
+             <Tooltip/>
+             <Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
 
-      {/* BarChart: */}
-      <BarChart width={600} height={300} data={data1}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-       <XAxis dataKey="name"/>
-       <YAxis/>
-       <CartesianGrid strokeDasharray="3 3"/>
-       <Tooltip/>
-       <Legend />
-       <Bar dataKey="pv" fill="#8884d8" />
-       <Bar dataKey="uv" fill="#82ca9d" />
-      </BarChart>
+             <Brush dataKey='name' height={30} stroke="#ff7300"/>
+             <Bar dataKey="playcount" fill="#8884d8" />
+          </BarChart>
 
-      {/* Piechart: */}
-    <PieChart width={800} height={400}>
-      <Pie isAnimationActive={false} data={data01} cx={200} cy={200} outerRadius={80} fill="#8884d8" label/>
-      <Pie data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
-      <Tooltip/>
-    </PieChart>
+        )}
+      </Row>
 
-    {/* Radar Chart: */}
-    <RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={data2}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis/>
-          <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
-        </RadarChart>
+      <Row>
+        <h2>Tracks:</h2>
+        { this.state.dataLoaded && (
+          <BarChart width={1200} height={800} data={this.state.trackData.sort((a,b) =>{return b.playcount - a.playcount})}
+             margin={{top: 100, right: 30, left: 20, bottom: 100}}>
+             <XAxis height={180} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+             <YAxis/>
+             <CartesianGrid strokeDasharray="3 3"/>
+             <Tooltip/>
+             <Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
 
-    {/* RadialBarChart: */}
-    <RadialBarChart width={500} height={300} cx={150} cy={150} innerRadius={20} outerRadius={140} barSize={10} data={data3}>
-        <RadialBar minAngle={15} background clockWise={true} dataKey='uv'/>
-        <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' wrapperStyle={style}/>
-        </RadialBarChart>
+             <Brush dataKey='name' height={30} stroke="#ff7300"/>
+             <Bar dataKey="playcount" fill="#8884d8" />
+          </BarChart>
+        )}
+      </Row>
+
+      <Row>
+        <h2>Playlists:</h2>
+        { this.state.dataLoaded && (
+          <BarChart width={1200} height={800} data={this.state.playlistData.sort((a,b) =>{return b.numFollowers - a.numFollowers})}
+             margin={{top: 100, right: 30, left: 20, bottom: 100}}>
+             <XAxis height={180} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+             <YAxis/>
+             <CartesianGrid strokeDasharray="3 3"/>
+             <Tooltip/>
+             <Legend verticalAlign="top" wrapperStyle={{lineHeight: '40px'}}/>
+
+             <Brush dataKey='name' height={30} stroke="#ff7300"/>
+             <Bar dataKey="numFollowers" fill="#8884d8" />
+          </BarChart>
+        )}
+      </Row>
 
       </div>
     )

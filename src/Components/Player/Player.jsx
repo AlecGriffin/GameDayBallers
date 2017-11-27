@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { getPlayer } from '../../json_old/player_data.js';
 import { Row, Col, Table } from 'react-bootstrap';
 import lebron_james_audio_file from './lebron_james_vine.wav';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading.jsx'
 import YouTube from 'react-youtube'
+import No_Image from '../Player_Grid/Player_Thumbnail/no_image.png'
 
 
 export default class Player extends Component {
@@ -118,7 +118,8 @@ export default class Player extends Component {
   }
 
   addDefaultSrc(ev){
-    ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found';
+    // ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found';
+    ev.target.src = No_Image
   }
 
   getColor() {

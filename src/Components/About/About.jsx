@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent, Component} from 'react';
 import PersonThumbnail from './Person_Thumbnail.jsx';
 import { Grid, Row, Col, Image, Thumbnail, Clearfix } from 'react-bootstrap';
 import axios from 'axios';
@@ -106,7 +106,7 @@ function generateThumbnail(person, commits) {
 
  export default class About extends Component {
    constructor(props){
-     super(props);
+     super(props)
 
      // Set Initial State
      this.state = {

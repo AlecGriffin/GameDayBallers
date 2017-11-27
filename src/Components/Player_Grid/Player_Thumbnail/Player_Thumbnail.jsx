@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import { Grid, Row, Col, Image, Thumbnail } from 'react-bootstrap';
 import Highlighter from 'react-highlight-words';
+import No_Image from './no_image.png'
 
 export default class Player_Thumbnail extends Component {
   addDefaultSrc(ev){
-    ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
+    // ev.target.src = 'https://dummyimage.com/260x190/9e9e9e/ffffff.png&text=No+Image+Found'
+    ev.target.src = No_Image
   }
 
   renderOverlay() {
@@ -84,8 +86,7 @@ export default class Player_Thumbnail extends Component {
           <div className="card thumbnail-card image-card">
             <div className="card-title">
               { this.renderOverlay() }
-              <img onError={this.addDefaultSrc} src={this.props.src} alt='Wtf'/ >
-
+              <img onError={this.addDefaultSrc} src={this.props.src} alt='No Image Found'/>
             </div>
             <div className="card-body">
               <p>{this.props.name}</p>

@@ -18,7 +18,8 @@
     "react-sound": "^0.8.0",
     "react-twitter-widgets": "^1.7.1",
     "react-youtube": "^7.5.0",
-    "recharts": "^1.0.0-beta.2"
+    "recharts": "^1.0.0-beta.2",
+    "twitter-node-client": "0.0.6"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

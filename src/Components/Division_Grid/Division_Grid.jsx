@@ -46,14 +46,12 @@ export default class Division_Grid extends Component {
         this.setState({
           divisions : response['data'],
           data_loaded: true
-
         })
       })
     }else{
       this.setState({
         divisions : this.props.divisions,
         data_loaded: true
-
       })
     }
   }
@@ -69,7 +67,7 @@ export default class Division_Grid extends Component {
   handleSelect(eventKey) {
     this.setState({
       activePage: eventKey,
-    });
+    })
   }
 
 // <------------ Thumbnail Generation ------------>
@@ -133,8 +131,6 @@ export default class Division_Grid extends Component {
         updatePaginationAfterFiltering: false
       })
     }
-
-
     return result;
   }
 

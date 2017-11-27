@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import TeamThumbnail from '../Team_Grid/Team_Thumbnail/Team_Thumbnail.jsx';
-import { getDivision } from '../../json_old/division_data.js';
-import { getPlayer } from '../../json_old/player_data.js';
 import {Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
