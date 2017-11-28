@@ -198,10 +198,10 @@ export default class Division_Grid extends Component {
       return(
         <div className="main">
           <Row className="controls">
-            <Col xs={6} className="paginate">
+            <Col xs={4} className="paginate">
               {paginationToDisplay}
             </Col>
-            <Col xs={6} className="sort-and-filter">
+            <Col xs={8} className="sort-and-filter">
               <DropdownButton id="Conference" title={this.state.conferenceFilter} onSelect={this.handleConferenceFilter}>
                 <MenuItem eventKey="Any Conference">Any Conference</MenuItem>
                 <MenuItem eventKey="Eastern">Eastern</MenuItem>
