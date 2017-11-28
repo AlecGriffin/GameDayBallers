@@ -190,9 +190,28 @@ export default class Visualization extends Component {
       <div className='main'>
       { !allItemsLoaded && <Loading/> }
         <Row>
-          { allItemsLoaded && <PageHeader> Visualizations</PageHeader>}
+          { allItemsLoaded &&
+            <div className="card display-card">
+              <div className="card-body">
+                <h1 className="display-3">Visualizations</h1>
+              </div>
+            </div>
+          }
           { allItemsLoaded && (
             <Col sm={12}>
+              <div className="card card-white">
+                <div className="card-body">
+                  <PageHeader>Overview</PageHeader>
+                  <p>
+                    We were assigned to display the data used to build <a href="http://hackappellas.me">hackappellas.me</a>.
+                    We used a library built with react and D3 called Recharts, a composable charting library that can be used to create data
+                    visualizations. This library was attractive because it was already built from the ground up to work with React and its associated Virtual DOM.
+                    Each of the following Bar Charts displays of all the Artists, Albums, Tracks, and Playlists found within their database.
+                    Since there is an enormous amount of data there are sliders present below each chart that allows one to reduce the amount
+                    of data displayed for better readability.
+                  </p>
+                </div>
+              </div>
             <div className="card chart-card">
               <div className="card-title">
                 Artists

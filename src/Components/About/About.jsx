@@ -226,6 +226,9 @@ function generateThumbnail(person, commits) {
                    <li>
                      <a href="https://dewnah.gitbooks.io/game-day-ballers-uml-diagram/content/" className="card-link">UML Diagram</a>
                    </li>
+                   <li>
+                     <a href="https://gitpitch.com/GameDayBallers/GameDayBallers" className="card-link">Final Presentation</a>
+                   </li>
                  </ul>
                </div>
              </div>
