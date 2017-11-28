@@ -153,7 +153,6 @@ function generateThumbnail(person, commits) {
 
      return(
        <div className="main">
-         {/* <div id="home-background"></div> */}
          <div className="card display-card">
            <div className="card-body">
              <h1 className="display-3">About</h1>
@@ -175,7 +174,7 @@ function generateThumbnail(person, commits) {
                {generateThumbnail(Project_Members.Alec, this.state.Alec_Commits)}
           </Col>
            <Col sm={4}>
-               {generateThumbnail(Project_Members.Regan, 25 + this.state.Regan_Commits)}
+               {generateThumbnail(Project_Members.Regan, 28 + this.state.Regan_Commits)}
            </Col>
            <Col sm={4}>
                {generateThumbnail(Project_Members.Andrew, this.state.Andrew_Commits)}
@@ -206,7 +205,7 @@ function generateThumbnail(person, commits) {
                <div className="card-body">
                  <ul>
                    <li>
-                     <b>Total No. of Commits:</b> { 25 + this.state.Total_Commits }
+                     <b>Total No. of Commits:</b> { 28 + this.state.Total_Commits }
                    </li>
                    <li>
                      <b>Total No. of Issues:</b> { this.state.Number_Of_Issues }
