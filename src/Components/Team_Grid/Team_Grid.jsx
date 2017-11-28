@@ -152,21 +152,6 @@ export default class Team_Grid extends Component {
           var result = p1.name.localeCompare(p2.name)
           return this.state.order === 'Descending' ? result * -1 : result
         })
-      case 'Conference':
-        return ((p1, p2) => {
-          var result = p1.conference.localeCompare(p2.conference)
-          return this.state.order === 'Descending' ? result * -1 : result
-        })
-      case 'Division':
-        return ((p1, p2) => {
-          var result = p1.division.localeCompare(p2.division)
-          return this.state.order === 'Descending' ? result * -1 : result
-        })
-      case 'numTitles':
-        return ((p1, p2) => {
-          var result = parseFloat(p2.win_loss_percentage) - parseFloat(p1.win_loss_percentage)
-          return this.state.order === 'Descending' ? result * -1 : result
-        })
       default:
         return ((p1, p2) => {
           var result = p1.name.localeCompare(p2.name)
@@ -242,8 +227,6 @@ export default class Team_Grid extends Component {
               </DropdownButton>
               <DropdownButton id="Sort By" title="Sort By" onSelect={this.handleSortType}>
                 <MenuItem eventKey="Name">Team Name</MenuItem>
-                <MenuItem eventKey="numTitles" >Number of Titles</MenuItem>
-                <MenuItem eventKey="numPlayers" >Number of Players</MenuItem>
 
               </DropdownButton>
               <DropdownButton id="Order" title={this.state.order} onSelect={this.handleOrder}>
