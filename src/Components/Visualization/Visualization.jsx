@@ -11,33 +11,115 @@ export default class Visualization extends Component {
 
     this.state = {
       artists: [],
-      artistDataLoaded: false
+      artistDataLoaded: false,
+      albumDataLoaded: false,
+      trackDataLoaded: false,
+      playlistDataLoaded: false
     }
+  }
+
+  generateAPICalls(numPages, dataModel){
+    const baseURL = 'http://api.hackappellas.me/'
+    const pageSelection = '?page='
+
+    var promises = []
+      for(let i = 1; i <= numPages; i++){
+        promises.push(axios.get(baseURL + dataModel + '/' + pageSelection + i))
+      }
+    return promises
   }
 
   componentDidMount(){
     const axiosCalls = [
-      axios.get('http://api.hackappellas.me/artists/'),
-      axios.get('http://api.hackappellas.me/albums/'),
-      axios.get('http://api.hackappellas.me/tracks/'),
-      axios.get('http://api.hackappellas.me/playlists/')
+      axios.get('http://api.hackappellas.me/artists/?page=1'),
+      axios.get('http://api.hackappellas.me/albums/?page=1'),
+      axios.get('http://api.hackappellas.me/tracks/?page=1'),
+      axios.get('http://api.hackappellas.me/playlists/?page=1')
     ]
 
+
+
     axios.all(axiosCalls).then(axios.spread((artists, albums, tracks, playlists) =>{
-      this.setState({
-        artistData: this.createArtistData(artists.data.artists),
-        albumData: this.createAlbumData(albums.data.albums),
-        trackData: this.createTrackData(tracks.data.tracks),
-        playlistData: this.createPlaylistData(playlists.data.playlists),
-        dataLoaded: true
-      })
+      const dataModels = ['artists', 'albums', 'tracks', 'playlists']
+      const numPages = [artists.data.pages, albums.data.pages, tracks.data.pages, playlists.data.pages]
+      const promises = []
+      for(let i = 0; i < dataModels.length; i++){
+        promises.push(this.generateAPICalls(numPages[i], dataModels[i]))
+      }
+
+        // Artist Data:
+        axios.all(promises[0]).then((response) => {
+          var result = []
+          response.map((artistPage) => {
+            result = this.createArtistData(artistPage.data.artists).reduce( function(coll,item){
+                coll.push( item );
+                return coll;
+              }, result );
+          })
+
+          this.setState({
+            artistData: result,
+            artistDataLoaded: true
+          })
+        })
+
+        // Album Data:
+        axios.all(promises[1]).then((response) => {
+          var result = []
+          response.map((albumPage) => {
+            result = this.createAlbumData(albumPage.data.albums).reduce( function(coll,item){
+                coll.push( item );
+                return coll;
+              }, result );
+          })
+
+          // console.log('ALBUM DATA');
+          this.setState({
+            albumData: result,
+            albumDataLoaded: true
+          })
+        })
+
+        // Track Data:
+        axios.all(promises[2]).then((response) => {
+          var result = []
+          response.map((trackPage) => {
+            result = this.createTrackData(trackPage.data.tracks).reduce( function(coll,item){
+                coll.push( item );
+                return coll;
+              }, result );
+          })
+
+          this.setState({
+            trackData: result,
+            trackDataLoaded: true
+          })
+        })
+
+        // Playlist Data:
+        axios.all(promises[3]).then((response) => {
+          var result = []
+          response.map((playlistPage) => {
+            result = this.createPlaylistData(playlistPage.data.playlists).reduce( function(coll,item){
+                coll.push( item );
+                return coll;
+              }, result );
+          })
+
+          this.setState({
+            playlistData: result,
+            playlistDataLoaded: true
+          })
+        })
     }))
+
   }
 
   // ===============================================
   // ===============================================
   createArtistData(data){
-    return data.map((a) =>{
+
+    var result = data.map((a) =>{
       var artistName = a.name
       const maxLength = 30
       if(a.name.length > maxLength){
@@ -48,6 +130,9 @@ export default class Visualization extends Component {
         playcount: a.playcount
       }
     })
+
+    // console.log(result);
+    return result
   }
 
   createAlbumData(albums){
@@ -103,9 +188,9 @@ export default class Visualization extends Component {
     return(
       <div className='main'>
         <h1>Visualizations:</h1>
-        { !this.state.dataLoaded && <Loading/> }
+        { !this.state.artistDataLoaded && <Loading/> }
         <Row>
-          { this.state.dataLoaded && (
+          { this.state.artistDataLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
@@ -117,7 +202,7 @@ export default class Visualization extends Component {
                     <BarChart data={this.state.artistData.sort((a,b) =>{return b.playcount - a.playcount})}
                        margin={{right: 30, left: 20, bottom: 20}}>
                        <Brush dataKey='name' height={30} stroke="#ff7300"/>
-                       <XAxis height={140} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+                       <XAxis height={160} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false} hide={true}/>
                        <YAxis/>
                        <CartesianGrid strokeDasharray="3 3"/>
                        <Tooltip/>
@@ -130,7 +215,7 @@ export default class Visualization extends Component {
             </div>
           </Col>)}
 
-          { this.state.dataLoaded && (
+          { this.state.albumDataLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
@@ -141,7 +226,7 @@ export default class Visualization extends Component {
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={this.state.albumData.sort((a,b) =>{return b.playcount - a.playcount})}
                        margin={{right: 30, left: 20, bottom: 20}}>
-                       <XAxis height={140} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+                       <XAxis height={160} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false} hide={true}/>
                        <YAxis/>
                        <CartesianGrid strokeDasharray="3 3"/>
                        <Tooltip/>
@@ -156,7 +241,7 @@ export default class Visualization extends Component {
             </div>
           </Col>)}
 
-          { this.state.dataLoaded && (
+          { this.state.trackDataLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
@@ -167,7 +252,7 @@ export default class Visualization extends Component {
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={this.state.trackData.sort((a,b) =>{return b.playcount - a.playcount})}
                        margin={{right: 30, left: 20, bottom: 20}}>
-                       <XAxis height={140} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+                       <XAxis height={160} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false} hide={true}/>
                        <YAxis/>
                        <CartesianGrid strokeDasharray="3 3"/>
                        <Tooltip/>
@@ -182,7 +267,7 @@ export default class Visualization extends Component {
             </div>
           </Col>)}
 
-          { this.state.dataLoaded && (
+          { this.state.playlistDataLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
@@ -193,7 +278,7 @@ export default class Visualization extends Component {
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={this.state.playlistData.sort((a,b) =>{return b.numFollowers - a.numFollowers})}
                        margin={{right: 30, left: 20, bottom: 20}}>
-                       <XAxis height={140} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false}/>
+                       <XAxis height={160} angle={40} textAnchor="start" dataKey="name" interval={0} tickLine={false} hide={true}/>
                        <YAxis/>
                        <CartesianGrid strokeDasharray="3 3"/>
                        <Tooltip/>
