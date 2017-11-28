@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {Brush, Bar, BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, PageHeader} from 'react-bootstrap'
 import Loading from '../Loading/Loading.jsx'
 
 
@@ -184,13 +184,14 @@ export default class Visualization extends Component {
   // ===============================================
 
   render(){
+    const allItemsLoaded = this.state.artistDataLoaded && this.state.albumDataLoaded && this.state.trackDataLoaded && this.state.playlistDataLoaded
 
     return(
       <div className='main'>
-        <h1>Visualizations:</h1>
-        { !this.state.artistDataLoaded && <Loading/> }
+      { !allItemsLoaded && <Loading/> }
         <Row>
-          { this.state.artistDataLoaded && (
+          { allItemsLoaded && <PageHeader> Visualizations</PageHeader>}
+          { allItemsLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
@@ -215,7 +216,7 @@ export default class Visualization extends Component {
             </div>
           </Col>)}
 
-          { this.state.albumDataLoaded && (
+          { allItemsLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
@@ -241,7 +242,7 @@ export default class Visualization extends Component {
             </div>
           </Col>)}
 
-          { this.state.trackDataLoaded && (
+          { allItemsLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
@@ -267,7 +268,7 @@ export default class Visualization extends Component {
             </div>
           </Col>)}
 
-          { this.state.playlistDataLoaded && (
+          { allItemsLoaded && (
             <Col sm={12}>
             <div className="card chart-card">
               <div className="card-title">
