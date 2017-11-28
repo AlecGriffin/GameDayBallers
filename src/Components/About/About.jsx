@@ -21,7 +21,7 @@ var Project_Members = {
     "name" : "Alec Griffin",
     "img_src" : "https://avatars0.githubusercontent.com/u/8799789?v=4&s=460",
     "about" : "Senior Computer Science major",
-    "responsibilities" : "React Front-End, Data Collection, Sorting, Pagination, Search",
+    "responsibilities" : "React Front-End, Data Collection, Sorting, Pagination, Search, Visualization",
     "issues": "10",
     "tests": "0"
   },
@@ -39,9 +39,9 @@ var Project_Members = {
     "name": 'Andrew Duna',
     "img_src":'https://avatars0.githubusercontent.com/u/14189687?v=4&s=460',
     "about":'Senior Computer Science major',
-    "responsibilities":'CSS, React Front-End, Data Collection, UI Design, Filtering, Loading Animation',
+    "responsibilities":'CSS, React Front-End, Data Collection, UI Design, Filtering, Loading Animation, Unit Tests',
     "issues": "11",
-    "tests": "0"
+    "tests": "7"
   },
 
   "Vikram":{
@@ -220,7 +220,7 @@ function generateThumbnail(person, commits) {
                      <a href="https://trello.com/b/ePPWWAuD/swe-project" className="card-link">Trello Link</a>
                    </li>
                    <li>
-                     <a href="https://utexas.box.com/s/0ooqwpb7w6v6a0pi6nbflpnketabaxe2" className="card-link">Technical Report Link</a>
+                     <a href="https://dewnah.gitbooks.io/game-day-ballers-technical-report/" className="card-link">Technical Report Link</a>
                    </li>
                    <li>
                      <a href="https://dewnah.gitbooks.io/game-day-ballers-uml-diagram/content/" className="card-link">UML Diagram</a>

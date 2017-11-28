@@ -1,0 +1,12 @@
+test_about (__main__.GameDayBallersTests) ... ok
+test_coaches (__main__.GameDayBallersTests) ... ok
+test_divisions (__main__.GameDayBallersTests) ... ok
+test_home_nav (__main__.GameDayBallersTests) ... ok
+test_players (__main__.GameDayBallersTests) ... ok
+test_search (__main__.GameDayBallersTests) ... ok
+test_teams (__main__.GameDayBallersTests) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 111.539s
+
+OK
