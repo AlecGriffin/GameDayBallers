@@ -1,16 +1,16 @@
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
   <img src="https://i.imgur.com/ptTJXyw.png" style="width: 60%; height: auto; margin: auto; border: none; box-shadow: none;"/>
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 # INTRODUCTIONS
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 # DEMONSTRATION
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## SELF CRITIQUE
 #### What did we do well?
@@ -30,7 +30,7 @@ Note:
 
   Data Organization: Our data is organized in a logical and understandable way.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## SELF CRITIQUE
 #### What did we learn?
@@ -45,7 +45,7 @@ Note:
 
   RESTful API: We learned how to use this architectural style in order to interact with our data sources using GET, POST, DELETE, and PUT requests. This was new to most of us at the beginning of the project, so we learned quite a bit about it along the way.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## SELF CRITIQUE
 #### What can we do better?
@@ -63,7 +63,7 @@ Note:
 
   Project Organization: We do many things in similar ways, and could have redefined parts of the code to remove duplicates. There are also many other ways we could have divided our React Components for reusability.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## SELF CRITIQUE
 #### What puzzles us?
@@ -72,7 +72,7 @@ Note:
 Note:
   We would sometimes get an error on our about page, and we could not figure out where it came from.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## OTHER CRITIQUE: PLAYLISTR
 #### What did they do well?
@@ -87,7 +87,7 @@ Note:
 
   Design: Their use of material design and "cards" to display their information helped organize the grid pages, and looked pretty good.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## OTHER CRITIQUE: PLAYLISTR
 #### What did we learn from their website?
@@ -99,7 +99,7 @@ Note:
 
   Tool: Looking at the tools used, Prettier is something that we had not heard of and would be interested in using in the future.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## OTHER CRITIQUE: PLAYLISTR
 #### What can they do better?
@@ -138,7 +138,7 @@ Note:
   not have a way to acquire all of the datas for Artists, Tracks, Playlists, and
   Albums in one API call per model.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## OTHER CRITIQUE: PLAYLISTR
 #### What puzzles us about their website?
@@ -154,7 +154,7 @@ Note:
   Travis Scott. This may come if they appear in multiple playlists from the way
   that they are scraping, but I would assume one could easily filter out duplicates.
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 # VISUALIZATION
 
@@ -164,6 +164,6 @@ Note:
   The page must have a clear English description and be rendered attractively.
 
 
----?image=https://i.imgur.com/ZsdqpnY.jpg&size=cover
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
   <img src="https://i.imgur.com/ptTJXyw.png" style="width: 60%; height: auto; margin: auto; border: none; box-shadow: none;"/>
