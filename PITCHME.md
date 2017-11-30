@@ -47,7 +47,6 @@ Note:
 ### What did we learn?
   - Full-Stack Development
   - React, RESTful API
-  - If you scrape too much data from the NBA, they'll block your IP
   - LeBron James is like really good at basketball
 
 Note:
@@ -62,7 +61,6 @@ Note:
 ### What can we do better?
   - Design
   - Loading Times
-  - Accessibility
   - Project Organization
   - Front-End vs. Back-End Knowledge
 
@@ -92,6 +90,7 @@ http://www.hackappellas.me/
 
 ### What did they do well?
   - Sorting
+    - Intuitive Design
   - Relevant Links to Spotify Songs
   - Design
 
@@ -116,11 +115,9 @@ Note:
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ### What can they do better?
-  - Organizing Data
-  - Search
-  - Pagination
+  - Organizing Displayed Data
+  - Search, Pagination
   - Filtering
-  - Variety
 
 Note:
   Organizing Data: The display of any text data is usually just a chunk or a long
