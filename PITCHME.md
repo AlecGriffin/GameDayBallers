@@ -93,6 +93,7 @@ http://www.hackappellas.me/
     - Intuitive Design
   - Relevant Links to Spotify Songs
   - Design
+  - Search Speed
 
 Note:
   Sorting: The design of the sidebar made it easy to see what we were sorting and filtering by, and easy to modify those queries.
@@ -116,7 +117,7 @@ Note:
 
 ### What can they do better?
   - Organizing Displayed Data
-  - Search, Pagination
+  - Search Pagination
   - Filtering
 
 Note:
