@@ -6,7 +6,11 @@ import {Link} from 'react-router-dom'
 export default class Ticker extends Component {
 
   buildTime(d) {
-        var h = d.getHours() - 12
+
+        var h = d.getHours()
+        if(h > 12){
+          h -= 12
+        }
         var m = this.addZero(d.getMinutes());
         return (h + ":" + m)
     }
@@ -16,14 +20,14 @@ export default class Ticker extends Component {
     }
 
   render(){
-    var games = calendarData.lscd[2].mscd.g.map( (game) => {
+    var games = calendarData.lscd[3].mscd.g.map( (game) => {
 
-      var gameDate = new Date(Date.parse(game.gdte))
+
+      var gameDate = new Date(Date.parse(game.etm))
       var today = new Date()
-      var weekFromNow = new Date()
-      weekFromNow.setDate(today.getDate() + 1)
 
-      if(gameDate.getDate() + 1 === today.getDate()) {
+      if(gameDate.getDate() === today.getDate()) {
+
         var team1_1 = game.h.tc
         var team1_2 = game.h.tn
         var lowerCaseNameTeam1 = team1_1 + team1_2
@@ -45,6 +49,8 @@ export default class Ticker extends Component {
         )
       }
     })
+
+
 
     return(
         <div className="ticker-wrap">

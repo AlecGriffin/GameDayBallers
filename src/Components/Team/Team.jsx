@@ -204,7 +204,7 @@ export default class Team extends Component {
                       <b>Conference: </b>{ team.conference }
                     </li>
                     <li>
-                      <b>Division: </b>{ team.division }
+                      <b>Division: </b> <Link to={'/divisions/' + team.division} >{ team.division }</Link>
                     </li>
                   </ul>
                 </div>
