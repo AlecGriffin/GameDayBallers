@@ -1,25 +1,37 @@
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-  <img src="https://i.imgur.com/ptTJXyw.png" style="width: 60%; height: auto; margin: auto; border: none; box-shadow: none;"/>
+  <img src="https://i.imgur.com/ptTJXyw.png" style="width: 60%; height: auto; margin: auto; border: none; box-shadow: none; background-color: transparent;"/>
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 # INTRODUCTIONS
 
+|  **Andrew Duna**  |   **Regan Brickman**  | **Nihal Dhamani** |
+|:---------------:|:------------------:|:-------------------:|
+&nbsp;&nbsp; **Alec Griffin** &nbsp;&nbsp; **Vikram Idury**
+
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
+
+# SCRAPING
+
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 # DEMONSTRATION
+http://gamedayballers.me/
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## SELF CRITIQUE
-#### What did we do well?
-  * Team
-    * Communication
-  * Website
-    * Design
-    * Usability
-    * Data Organization
+
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
+
+### What did we do well?
+  - Team
+    - Communication
+  - Website
+    - Design
+    - Usability
+    - Data Organization
 
 Note:
   Communication: We communicated well regarding each group member’s job and what needed to be accomplished during each project iteration. This allowed us to work effectively, even when our group was unable to meet together. We met regularly before project deadlines to ensure each person had a job to do and that we had a clear vision on what we were trying to achieve.
@@ -32,11 +44,10 @@ Note:
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-## SELF CRITIQUE
-#### What did we learn?
-  * Full-Stack Development
-  * React
-  * RESTful API
+### What did we learn?
+  - Full-Stack Development
+  - React, RESTful API
+  - LeBron James is like really good at basketball
 
 Note:
   Full-Stack Development: We worked with both front and back-end, obviously. Those of us who were more experienced in front-end got to learn about back-end work, and vice versa.
@@ -47,12 +58,11 @@ Note:
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-## SELF CRITIQUE
-#### What can we do better?
-  * Design
-  * Loading Times
-  * Accessibility
-  * Project Organization
+### What can we do better?
+  - Design
+  - Loading Times
+  - Project Organization
+  - Front-End vs. Back-End Knowledge
 
 Note:
   Design: While focusing on the functionality of our site, there was not a lot of time to experiment with unique design concepts. We feel like we did a pretty good job for what we had time for, but there is definitely room for improvement.
@@ -65,9 +75,8 @@ Note:
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-## SELF CRITIQUE
-#### What puzzles us?
-  * About Page Github Error
+### What puzzles us?
+  - About Page Github Error
 
 Note:
   We would sometimes get an error on our about page, and we could not figure out where it came from.
@@ -75,10 +84,16 @@ Note:
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
 ## OTHER CRITIQUE: PLAYLISTR
-#### What did they do well?
-  * Sorting
-  * Relevant Links to Spotify Songs
-  * Design
+http://www.hackappellas.me/
+
+---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
+
+### What did they do well?
+  - Sorting
+    - Intuitive Design
+  - Relevant Links to Spotify Songs
+  - Design
+  - Search Speed
 
 Note:
   Sorting: The design of the sidebar made it easy to see what we were sorting and filtering by, and easy to modify those queries.
@@ -89,10 +104,9 @@ Note:
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-## OTHER CRITIQUE: PLAYLISTR
-#### What did we learn from their website?
-  * Scraping starting at playlists
-  * Code styling tool: Prettier
+### What did we learn from their website?
+  - Scraping starting at playlists
+  - Code styling tool: Prettier
 
 Note:
   Scraping: The concept of starting by scraping playlists and following the chain can lead to a wide variety of information. That was a very quick solution to gathering a large amount of data without having to scrape for every song ever, and then match it to albums and playlists.
@@ -101,13 +115,10 @@ Note:
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-## OTHER CRITIQUE: PLAYLISTR
-#### What can they do better?
-  * Organizing Data
-  * Search
-  * Pagination
-  * Filtering
-  * Variety
+### What can they do better?
+  - Organizing Displayed Data
+  - Search Pagination
+  - Filtering
 
 Note:
   Organizing Data: The display of any text data is usually just a chunk or a long
@@ -140,10 +151,9 @@ Note:
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-## OTHER CRITIQUE: PLAYLISTR
-#### What puzzles us about their website?
-  * Where did inaccuracies come from?
-  * Duplicate Artists
+### What puzzles us about their website?
+  - Where did inaccuracies come from?
+  - Duplicate Artists
 
 Note:
   Many artists, including Taylor Swift and Kanye West are listed as Pop Christmas.
@@ -166,4 +176,4 @@ Note:
 
 ---?image=https://i.imgur.com/CvADPLo.jpg&size=cover
 
-  <img src="https://i.imgur.com/ptTJXyw.png" style="width: 60%; height: auto; margin: auto; border: none; box-shadow: none;"/>
+  <img src="https://i.imgur.com/ptTJXyw.png" style="width: 60%; height: auto; margin: auto; border: none; box-shadow: none; background-color: transparent;"/>
